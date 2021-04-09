@@ -13,6 +13,7 @@ export default function Playbar() {
   const [sliderPos, setSliderPos] = useState("100");
   const [audio, setAudio] = useState();
   const [date, setDate] = useState(new Date());
+  const [rotateClass, setRotateClass] = useState("rotate")
   
   const handleClick = () => {
     if (playBarClass === "playBar") {
@@ -28,7 +29,7 @@ export default function Playbar() {
       setImageClass("playBar-main");
     }
 
-  
+    setRotateClass("rotate")
   };
 
   const handleChange = (e) =>{
@@ -52,11 +53,12 @@ export default function Playbar() {
       
       setSliderValue(audioTime.currentTime)
       
-    },1)
+    },1000)
 
 
   },[]);
 
+  
   return (
     <div className={playBarClass}>
      
@@ -78,15 +80,18 @@ export default function Playbar() {
       </div>
 
       <div className="controls-div">
+       
+
+        <div className="left">
         <img
+          className={rotateClass}
           id="arrow"
+         
           onClick={handleClick}
           
           src="./src/img/arrow.svg"
           alt=""
         />
-
-        <div className="left">
           <div className="miniature">
             <img src="./src/img/playbar-miniature.png" alt="" />
           </div>
@@ -122,6 +127,7 @@ export default function Playbar() {
               <div className="slidecontainer">
                 <div className="endTime"></div>
                 <input
+                
                   type="range"
                   min="1"
                   max="100"

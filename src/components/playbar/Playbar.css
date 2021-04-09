@@ -10,9 +10,18 @@
     bottom: 1vh;
     margin-left: 5%;
     font-size: 0.8rem;
+    border: 1px solid white;
 }
 
 
+.rotate{
+   
+}
+
+.rotate:hover{
+    transform: rotateX(180deg);
+    transition: transform 1s ease 1s;
+}
 
 
 .fullPic{
@@ -32,13 +41,11 @@
 }
 
 #arrow{
-    height: 3vh;
-    width: 3vw;
+    height: 2vh;
+    width: 2vw;
     cursor: pointer;
     position:relative;
-    right: 100px;
-    bottom: 300px;
-    position:absolute
+    margin-right: 30px;
 }
 
 .vignete{
