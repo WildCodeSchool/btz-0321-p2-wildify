@@ -12,7 +12,6 @@ export default function Playbar() {
   const [imageClass, setImageClass] = useState("playBar-main");
   const [sliderPos, setSliderPos] = useState("100");
   const [audio, setAudio] = useState();
-  
   const [rotateClass, setRotateClass] = useState("rotate")
   
 let x = sliderValue * 100000
