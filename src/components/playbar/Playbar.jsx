@@ -111,7 +111,7 @@ console.log(timeSong)
           <div className="song-info">
             <div className="nameSong">J'san chineese Foof</div>
             <div className="artist">l'indécis</div>
-            <div className="album">Ta soeur</div>
+            <div className="album">Soulful</div>
           </div>
         </div>
         <div className="right">

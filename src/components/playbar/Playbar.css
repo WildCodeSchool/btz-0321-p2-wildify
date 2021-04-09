@@ -93,7 +93,7 @@ input:focus, textarea:focus, select:focus{
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
     width: 90%; /* Full-width */
-    height: 5px; /* Specified height */
+    height: 3px; /* Specified height */
     background: #ffffff; /* Grey background */
     outline: none; /* Remove outline */
     opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
