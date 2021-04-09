@@ -19,15 +19,18 @@ const [error, setError] = useState()
               setIsLoaded(true);
               
               setItems(result);
-             
+             console.log(result)
               setMyChoice(items[0])
             },
-           
+            
             (error) => {
               setIsLoaded(true);
               setError(error);
             }
-          )
+            )
+            
+           
+
         }, [])
 
     return(

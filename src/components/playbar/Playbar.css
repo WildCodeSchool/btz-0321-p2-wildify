@@ -14,14 +14,7 @@
 }
 
 
-.rotate{
-   
-}
 
-.rotate:hover{
-    transform: rotateX(180deg);
-    transition: transform 1s ease 1s;
-}
 
 
 .fullPic{
