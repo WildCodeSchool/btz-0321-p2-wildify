@@ -12,7 +12,6 @@ function App() {
   return (
   
     <div>
-     git ad
       <Playbar/>
     </div>
   )

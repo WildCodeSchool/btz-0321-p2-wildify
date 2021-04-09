@@ -10,12 +10,8 @@
     bottom: 1vh;
     margin-left: 5%;
     font-size: 0.8rem;
-    border: 1px solid white;
+    
 }
-
-
-
-
 
 .fullPic{
     width: 100%;
@@ -93,7 +89,7 @@ input:focus, textarea:focus, select:focus{
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
     width: 90%; /* Full-width */
-    height: 3px; /* Specified height */
+    height: 1px; /* Specified height */
     background: #ffffff; /* Grey background */
     outline: none; /* Remove outline */
     opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
@@ -110,8 +106,8 @@ input:focus, textarea:focus, select:focus{
   .slider::-webkit-slider-thumb {
     -webkit-appearance: none; /* Override default look */
     appearance: none;
-    width: 25px; /* Set a specific slider handle width */
-    height: 25px; /* Slider handle height */
+    width: 5px; /* Set a specific slider handle width */
+    height: 20git apx; /* Slider handle height */
     background: #b3a9a9; /* Green background */
     border-radius: 30px;
     cursor: pointer; /* Cursor on hover */
