@@ -10,13 +10,16 @@ function Sliderartist() {
     .then((result) => setSongs(result));
 
   return (
-    <div className="">
-      <button onClick={() => setIndex(index == 0 ? songs.length - 1 : index - 1)}>Previous</button>
-      <button onClick={() => setIndex(index == songs.length - 1 ? 0 : index + 1)}>Next</button>
+    <div className="slider">
+      <button className="previous" onClick={() => setIndex(index == songs.length - 1 ? 0 : index + 1)}>
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+        </svg>
+      </button>
 
       {songs.length ? (
-        <div className="label">
-          <img className="label-img" src={songs[index].album.picture} alt="" />
+        <div className="label h-56 w-56 rounded-3xl shadow-lg">
+          <img className="label-img h-56 w-56 rounded-3xl" src={songs[index].album.picture} alt="" />
           <div className="label-title">{songs[index].title}</div>
           <div className="label-album">{songs[index].album.title}</div>
           <div className="label-name">{songs[index].artist.name}</div>
@@ -24,6 +27,12 @@ function Sliderartist() {
       ) : (
         <div className="loading">loading</div>
       )}
+
+      <button className="next" onClick={() => setIndex(index == 0 ? songs.length - 1 : index - 1)}>
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
     </div>
   );
 }
