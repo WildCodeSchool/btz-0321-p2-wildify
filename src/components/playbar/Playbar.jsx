@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import "./Playbar.css";
 import Controls from "./controls/controls";
 import OnListen from "../../feature/apicall/OnListen";
-
+import moment  from 'moment'
 export default function Playbar() {
 
 
@@ -12,16 +12,29 @@ export default function Playbar() {
   const [imageClass, setImageClass] = useState("playBar-main");
   const [sliderPos, setSliderPos] = useState("100");
   const [audio, setAudio] = useState();
-  const [date, setDate] = useState(new Date());
+  
   const [rotateClass, setRotateClass] = useState("rotate")
   
+let x = sliderValue * 100000
+x = x.toFixed(2)
+
+let d = moment.duration(x, 'milliseconds');
+let hours = Math.floor(d.asHours());
+let mins = Math.floor(d.asMinutes()*0.01)*1;
+console.log(mins)
+let seconds = Math.floor(d.asSeconds());
+let timeSong =  mins + ":" + Math.floor(seconds/100)*1;
+console.log(timeSong)
+
+
+
   const handleClick = () => {
     if (playBarClass === "playBar") {
       setPlayBarClass("playBar full");
     } else {
       setPlayBarClass("playBar");
     }
-    
+    console.log("hours:" + hours + " mins:" + mins);
 
     if (imageClass == "playBar-main") {
       setImageClass("playBar-main");
@@ -30,6 +43,7 @@ export default function Playbar() {
     }
 
     setRotateClass("rotate")
+   
   };
 
   const handleChange = (e) =>{
@@ -40,7 +54,7 @@ export default function Playbar() {
     setAudio(e.target.value)
     console.log(audio)
     document.getElementById("audio").volume = e.target.value / 100;
-  
+   
   }
 
   
@@ -53,7 +67,7 @@ export default function Playbar() {
       
       setSliderValue(audioTime.currentTime)
       
-    },1000)
+    },1)
 
 
   },[]);
@@ -122,15 +136,15 @@ export default function Playbar() {
             <Controls />
           </div>
           <div className="down">
-            <div className="currentTime">{Math.floor(sliderValue)}</div>
+            <div className="currentTime">{timeSong}</div>
             <div className="bufferSlider">
               <div className="slidecontainer">
                 <div className="endTime"></div>
                 <input
                 
                   type="range"
-                  min="1"
-                  max="100"
+                  min="0"
+                  max="300"
                   onClick={() => setSliderPos(()=>{
                     let slider = document.getElementById("myRange");
                     setSliderValue(slider.value)
