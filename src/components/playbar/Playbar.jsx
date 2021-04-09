@@ -59,7 +59,7 @@ export default function Playbar() {
 
   return (
     <div className={playBarClass}>
-      <OnListen />
+     
       <div className={imageClass}>
         <div className="fullPic">
           <img
@@ -69,7 +69,7 @@ export default function Playbar() {
 
           <audio id="audio" className="hidden" controls>
             <source
-              src="https://bazify.s3.eu-west-3.amazonaws.com/Alpha-Wann/Dondada-mixtape/Farenheit-451.mp3"
+              src="./src/sound/bob.mp3"
               type="audio/mpeg"
             ></source>
             Your browser does not support this audio format.
