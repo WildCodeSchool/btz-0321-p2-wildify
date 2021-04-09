@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import './sliderartist.css';
 
-function Slideralbumcover() {
+function Sliderartist() {
   const [index, setIndex] = useState(0);
-
   const [songs, setSongs] = useState([]);
 
   fetch('https://bazify-backend.basile.vernouillet.dev/api/v1/songs')
@@ -16,20 +15,20 @@ function Slideralbumcover() {
       <button onClick={() => setIndex(index == songs.length - 1 ? 0 : index + 1)}>Next</button>
 
       {songs.length ? (
-        <div className="">
-          <img src={songs[index].album.picture} alt="" />
-          <div>{songs[index].title}</div>
-          <div>{songs[index].album.title}</div>
-          <div>{songs[index].artist.name}</div>
+        <div className="label">
+          <img className="label-img" src={songs[index].album.picture} alt="" />
+          <div className="label-title">{songs[index].title}</div>
+          <div className="label-album">{songs[index].album.title}</div>
+          <div className="label-name">{songs[index].artist.name}</div>
         </div>
       ) : (
-        'loading'
+        <div className="loading">loading</div>
       )}
     </div>
   );
 }
 
-export default Slideralbumcover;
+export default Sliderartist;
 
 const API = [
   {

@@ -1,14 +1,62 @@
-.info{
-    z-index: 10;
-    position: absolute;
-    top: 0;
-    left: 0;
-    color:white;
+.label {
+  font-family: Scada;
+  font-style: normal;
 }
 
-.pochette{
-    z-index: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
+.label-img {
+  position: absolute;
+  border-radius: 30px;
+  height: 214px;
+  top: 20px;
+  filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.25));
+}
+.label-img,
+.label-title,
+.label-album,
+.label-name {
+  width: 214px;
+  left: 14.48px;
+}
+
+.label-title,
+.label-album,
+.label-name {
+  z-index: 1;
+  position: absolute;
+  color: #ffffff;
+}
+.label-title,
+.label-name {
+  text-transform: uppercase;
+}
+
+.label-album,
+.label-title {
+  font-weight: bold;
+  font-weight: bold;
+}
+
+.label-title {
+  font-size: 15px;
+  line-height: 37px;
+  height: 20.46px;
+  top: 167.66px;
+}
+
+.label-album {
+  font-size: 20px;
+  line-height: 25px;
+  height: 27.28px;
+  top: 20px;
+}
+
+.label-name {
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 17px;
+  height: 11.55px;
+  top: 188.47px;
+}
+
+.loading {
 }

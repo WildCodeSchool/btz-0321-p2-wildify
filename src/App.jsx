@@ -1,11 +1,11 @@
 import React from 'react';
-import Slideralbumcover from './components/Sliderartist';
+import Sliderartist from './components/Sliderartist';
 import './App.css';
 
 function App() {
   return (
     <div className="app">
-      <Slideralbumcover />
+      <Sliderartist />
     </div>
   );
 }
