@@ -1,12 +1,10 @@
 import React from 'react';
-import Slider from './components/slider'
-import Slideralbumcover from './components/sliderhook'
+import Slideralbumcover from './components/Sliderartist';
 import './App.css';
 
 function App() {
   return (
     <div className="app">
-      {/* <Slider /> */}
       <Slideralbumcover />
     </div>
   );
