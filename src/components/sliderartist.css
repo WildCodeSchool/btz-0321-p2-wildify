@@ -8,7 +8,7 @@
 }
 
 .label-img {
-  position: relative;
+  position: absolute;
   /* border-radius: 30px;
   height: 214px;
   top: 20px; */
