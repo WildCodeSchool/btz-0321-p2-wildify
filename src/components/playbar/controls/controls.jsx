@@ -17,10 +17,6 @@ export default function Controls(props){
         setCurrentTime(document.querySelector('.currentTime'))
         let slider = document.getElementById("myRange");
        
-
-        
-        
-        
         window.setInterval(() => {
             setAudio(document.getElementById("audio"));
             
@@ -41,9 +37,6 @@ export default function Controls(props){
         audio.play()
         console.log(audio.currentTime)
 
-
-        
-     
     }
 
     

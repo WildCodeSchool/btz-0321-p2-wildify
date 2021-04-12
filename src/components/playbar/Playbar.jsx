@@ -2,10 +2,12 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import './Playbar.css';
 import Controls from './controls/controls';
-import onListen from '../../feature/apicall/OnListen';
+import fetchAPI from '../../feature/apicall/OnListen';
 import moment from 'moment';
 
-export default function Playbar() {
+
+
+export default function Playbar(props) {
   const [playBarClass, setPlayBarClass] = useState('playBar full');
   const [sliderValue, setSliderValue] = useState('0');
   const [imageClass, setImageClass] = useState('playBar-main');
@@ -13,19 +15,28 @@ export default function Playbar() {
   const [audio, setAudio] = useState();
   const [rotateClass, setRotateClass] = useState('rotate');
 
-  const [songUrl, setSongUrl] = useState(0);
 
+
+  const [songUrl, setSongUrl] = useState("");
+  const [index, setIndex] = useState("0");
+  
+
+ 
+  const myObj = fetchAPI()
+  console.log(myObj)
+  
   let x = sliderValue * 100000;
   x = x.toFixed(2);
 
   let d = moment.duration(x, 'milliseconds');
   let hours = Math.floor(d.asHours());
   let mins = Math.floor(d.asMinutes() * 0.01) * 1;
-
   let seconds = Math.floor(d.asSeconds());
   let timeSong = mins + ':' + Math.floor(seconds / 100) * 1;
 
+
   const handleClick = () => {
+
     if (playBarClass === 'playBar') {
       setPlayBarClass('playBar full');
     } else {
@@ -40,25 +51,31 @@ export default function Playbar() {
 
     setRotateClass('rotate');
   };
+  
+  console.log(Math.random())
 
-  const handleChange = (e) => {
-    let slider = document.getElementById('myRange');
-    setSliderPos(slider.value);
-    let audio2 = document.getElementById('audio');
+  const volumeChange = (e) => {
+    setSliderPos(e.target.value);
+    document.getElementById('audio').volume = sliderPos / 100;
+    console.log(sliderPos)
+  }
 
-    setAudio(e.target.value);
 
-    document.getElementById('audio').volume = e.target.value / 100;
-  };
 
   useEffect(() => {
     let audioTime = document.getElementById('audio');
-    let slider = document.getElementById('myRange');
 
-    window.setInterval(() => {
+
+    const timer =  window.setInterval(() => {
       setSliderValue(audioTime.currentTime);
-    }, 1);
-  }, []);
+    }, 1000);
+      return function(){
+        clearInterval(timer)
+      }
+  }, [sliderValue]);
+
+ 
+
 
  
   return (
@@ -66,12 +83,12 @@ export default function Playbar() {
       <div className={imageClass}>
         <div className="fullPic">
           <img
-            src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/artistic-album-cover-design-template-d12ef0296af80b58363dc0deef077ecc_screen.jpg?ts=1561488440"
+            src=""
             alt=""
           />
 
           <audio id="audio" className="hidden" controls>
-            <source src="./src/sound/bob.mp3" type="audio/mpeg"></source>
+            <source src="https://bazify.s3.eu-west-3.amazonaws.com/Alpha-Wann/Dondada-mixtape/trapchat.mp3" type="audio/mpeg"></source>
             Your browser does not support this audio format.
           </audio>
         </div>
@@ -96,7 +113,7 @@ export default function Playbar() {
             </div>
             <div className="volumeSlider">
               <div className="endTime"></div>
-              <input onChange={handleChange} type="range" min="0" max="100" value={sliderPos} className="slider" id="myRange"></input>
+              <input onChange={volumeChange} type="range" min="0" max="100" value={sliderPos} className="slider" id="myRange"></input>
               <div className="endTime"></div>
             </div>
             <Controls />
@@ -110,12 +127,6 @@ export default function Playbar() {
                   type="range"
                   min="0"
                   max="300"
-                  onClick={() =>
-                    setSliderPos(() => {
-                      let slider = document.getElementById('myRange');
-                      setSliderValue(slider.value);
-                    })
-                  }
                   value={sliderValue}
                   className="slider"
                   id="myRange"></input>

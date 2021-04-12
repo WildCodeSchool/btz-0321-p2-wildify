@@ -107,7 +107,7 @@ input:focus, textarea:focus, select:focus{
     -webkit-appearance: none; /* Override default look */
     appearance: none;
     width: 5px; /* Set a specific slider handle width */
-    height: 20git apx; /* Slider handle height */
+    height: 20px; /* Slider handle height */
     background: #b3a9a9; /* Green background */
     border-radius: 30px;
     cursor: pointer; /* Cursor on hover */
