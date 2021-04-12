@@ -14,16 +14,8 @@ export default function Playbar(props) {
   const [sliderPos, setSliderPos] = useState('100');
   const [audio, setAudio] = useState();
   const [rotateClass, setRotateClass] = useState('rotate');
-
-
-
-  const [songUrl, setSongUrl] = useState("");
-  const [index, setIndex] = useState("0");
   
-
- 
-  const myObj = fetchAPI()
-  console.log(myObj)
+  const [index, setIndex] = useState("0");
   
   let x = sliderValue * 100000;
   x = x.toFixed(2);
@@ -34,7 +26,7 @@ export default function Playbar(props) {
   let seconds = Math.floor(d.asSeconds());
   let timeSong = mins + ':' + Math.floor(seconds / 100) * 1;
 
-
+const myObj={}
   const handleClick = () => {
 
     if (playBarClass === 'playBar') {
@@ -42,8 +34,8 @@ export default function Playbar(props) {
     } else {
       setPlayBarClass('playBar');
     }
-
-    if (imageClass == 'playBar-main') {
+    
+    if (imageClass === 'playBar-main'){
       setImageClass('playBar-main');
     } else {
       setImageClass('playBar-main');
@@ -52,30 +44,34 @@ export default function Playbar(props) {
     setRotateClass('rotate');
   };
   
-  console.log(Math.random())
 
   const volumeChange = (e) => {
     setSliderPos(e.target.value);
     document.getElementById('audio').volume = sliderPos / 100;
-    console.log(sliderPos)
   }
 
 
 
   useEffect(() => {
+
+
     let audioTime = document.getElementById('audio');
-
-
     const timer =  window.setInterval(() => {
       setSliderValue(audioTime.currentTime);
     }, 1000);
       return function(){
         clearInterval(timer)
       }
+
   }, [sliderValue]);
 
- 
+  
 
+
+useEffect(()=>{
+  const myObj = fetchAPI()
+  console.log(myObj)
+})
 
  
   return (
@@ -88,7 +84,7 @@ export default function Playbar(props) {
           />
 
           <audio id="audio" className="hidden" controls>
-            <source src="https://bazify.s3.eu-west-3.amazonaws.com/Alpha-Wann/Dondada-mixtape/trapchat.mp3" type="audio/mpeg"></source>
+            <source src={"https://bazify.s3.eu-west-3.amazonaws.com/Josman/MYSTR-J.O.%24./F*cked-Up-4.mp3"} type="audio/mpeg"></source>
             Your browser does not support this audio format.
           </audio>
         </div>

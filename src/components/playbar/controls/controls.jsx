@@ -11,6 +11,8 @@ export default function Controls(props){
     const [sliderValue, setSliderValue] = useState("0");
     const [sliderPos, setSliderPos] = useState("0");
 
+
+
     useEffect(function(){
         
         let audioTime = document.getElementById("audio")
@@ -26,17 +28,10 @@ export default function Controls(props){
         
     },[])
     
-    
-  
-
-
-
-    
     function handleClick(){
         console.log(audio)
         audio.play()
         console.log(audio.currentTime)
-
     }
 
     
