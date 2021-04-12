@@ -11,31 +11,32 @@ function Sliderartist() {
 
   return (
     <div className="slider">
+      <div className="previous text-black cursor-pointer" onClick={() => setIndex(index == songs.length - 1 ? 0 : index + 1)}>
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-56" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+        </svg>
+      </div>
       {songs.length ? (
-        <div
-          className="label h-56 w-56 rounded-3xl shadow-lg"
-          style={{ backgroundImage: `url(${songs[index].album.picture})`, backgroundSize: `14rem` }}>
-          <div className="previous text-white cursor-pointer" onClick={() => setIndex(index == songs.length - 1 ? 0 : index + 1)}>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-56" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-            </svg>
+        songs.map((song, index) => (
+          <div
+            key={index}
+            className="label h-56 w-56 rounded-3xl shadow-lg"
+            style={{ backgroundImage: `url(${song.album.picture})`, backgroundSize: `14rem` }}>
+            <div className="relative w-56 h-44">
+              <div className="label-title pl-1">{song.title}</div>
+              <div className="label-album pl-1">{song.album.title}</div>
+              <div className="label-name pl-1">{song.artist.name}</div>
+            </div>
           </div>
-
-          <div className="w-56 h-44">
-            <div className="label-title pl-1">{songs[index].title}</div>
-            <div className="label-album pl-1">{songs[index].album.title}</div>
-            <div className="label-name pl-1">{songs[index].artist.name}</div>
-          </div>
-
-          <div className="next text-white cursor-pointer" onClick={() => setIndex(index == 0 ? songs.length - 1 : index - 1)}>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-56" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </div>
-        </div>
+        ))
       ) : (
         <div className="loading">loading</div>
       )}
+      <div className="next text-black cursor-pointer" onClick={() => setIndex(index == 0 ? songs.length - 1 : index - 1)}>
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-56" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </div>
     </div>
   );
 }
