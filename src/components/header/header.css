@@ -3,86 +3,79 @@
   height: 15%;
 }
 
-
 .header .navHeader {
-    padding: 7% 1%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-  
-  
-  
-  .logo {
+  padding: 7% 1%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.logo {
   font-family: 'Scada', sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 45px;
   line-height: 56px;
-  color: #FFFFFF;
+  color: #ffffff;
+}
+
+.uploadLink {
+  margin-right: 5%;
+  display: flex;
+  justify-content: space-between;
+  font-family: Scada;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 25px;
+  color: #ffffff;
+}
+
+.uploadLink img {
+  margin-left: 10%;
+}
+
+/* - SearchBar - */
+
+.search {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.inputSearch {
+  color: white;
+  font-family: 'Cuprum', sans-serif;
+  width: 100%;
+  height: 40px;
+  padding: 2% 5%;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+}
+
+@media screen and (min-width: 900px) {
+  .header {
+    width: 100%;
   }
-  
-  .uploadLink {
-    margin-right: 5%;
-    display: flex;
-    justify-content: space-between;
-    font-family: Scada;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 25px;
-    color: #FFFFFF; 
-  }
-  
-  .uploadLink img {
-    margin-left: 10%;
+  .header .navHeader {
+    padding: 0%;
+    padding-top: 2%;
   }
 
-  /* - SearchBar - */
+  .uploadLink {
+    display: none;
+  }
 
   .search {
     width: 100%;
     display: flex;
-    justify-content: center;
-}
-
+    justify-content: flex-end;
+  }
 
   .inputSearch {
-    color: white;
-    font-family: 'Cuprum', sans-serif;
-    width: 100%;
-    height: 40px;
-    padding: 2% 5%;
-    background: rgba(255, 255, 255, 0.08);
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
-    border-radius: 30px;
+    width: 40%;
+    padding: 1% 2%;
   }
-
-
-  @media screen and (min-width: 900px) {
-    .header {
-      width: 100%;
-    }
-    .header .navHeader {
-        padding: 0%;
-        padding-top: 2%;
-      } 
-
-     
-      .uploadLink {
-        display: none;
-      }
-      
-      .search {
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
-      }
-
-      .inputSearch {
-        width: 40%;
-        padding: 2% 2%;
-      }
-    
-  }
+}
