@@ -3,8 +3,9 @@ import { useState, useEffect } from 'react';
 import './Playbar.css';
 import Controls from './controls/controls';
 import moment from 'moment';
-import {useRef} from 'react'
+import { useRef } from 'react';
 
+import HiddenPlayer from '../HiddenPlayer/HiddenPlayer';
 
 export default function Playbar(props) {
   const [playBarClass, setPlayBarClass] = useState('playBar full');
@@ -12,13 +13,16 @@ export default function Playbar(props) {
   const [imageClass, setImageClass] = useState('playBar-main');
   const [sliderPos, setSliderPos] = useState('100');
   const [rotateClass, setRotateClass] = useState('rotate');
-  const [index, setIndex] = useState("0");
-  const [onPlay, setOnPlay] = useState("")
-  const [picture,setPicture] = useState("")
-  const {item} = props;  // object with api response Insisde.
-  const [audio,setAudio] = useState(false)
-  
-
+  const [index, setIndex] = useState('0');
+  const [onPlay, setOnPlay] = useState('');
+  const [picture, setPicture] = useState('');
+  const [currentTrack, setCurrentTrack] = useState(9);
+  const { item } = props; // object with api response Insisde.
+  const { audio } = props;
+  const { setAudio } = props;
+  const { onListen } = props;
+  const { setOnListen } = props;
+  const { handleSong } = props;
 
   //timer convert
   let x = sliderValue * 100000;
@@ -29,8 +33,6 @@ export default function Playbar(props) {
   let seconds = Math.floor(d.asSeconds());
   let timeSong = mins + ':' + Math.floor(seconds / 100) * 1;
 
-
-
   // playbar deployment handleclick
   const handleClick = () => {
     if (playBarClass === 'playBar') {
@@ -38,7 +40,7 @@ export default function Playbar(props) {
     } else {
       setPlayBarClass('playBar');
     }
-    if (imageClass === 'playBar-main'){
+    if (imageClass === 'playBar-main') {
       setImageClass('playBar-main');
     } else {
       setImageClass('playBar-main');
@@ -46,82 +48,61 @@ export default function Playbar(props) {
     setRotateClass('rotate');
   };
 
-
-  
-
-  
-
   const volumeChange = (e) => {
     setSliderPos(e.target.value);
     document.getElementById('audio').volume = sliderPos / 100;
-  }
-
-  // useEffect to refresh buffer cursor position
+  };
   useEffect(() => {
-
-
     let audioTime = document.getElementById('audio');
-    const timer =  window.setInterval(() => {
-      if (audioTime.currentTime > 0 ) {setSliderValue(audioTime.currentTime)}
+    const timer = window.setInterval(() => {
+      if (audioTime.currentTime > 0) {
+        setSliderValue(audioTime.currentTime);
+      }
     }, 100);
-    return function(){
-      clearInterval(timer)
-    }
+    return function () {
+      clearInterval(timer);
+    };
   }, [sliderValue]);
-  
-  const audioPlay = document.getElementById('audio')
-  
 
-// choosing a song from the object recieved from the API
- 
+  const audioPlay = document.getElementById('audio');
 
+  const handlePause = () => {
+    audioPlay.pause();
+    console.log('pause');
+    setAudio(false);
+  };
 
+  const handlePlay = () => {
+    console.log('play');
+    setAudio(true);
+    setOnPlay(item[3].s3_link);
+    audioPlay.play();
+  };
 
+  const handleBackWard = () => {
+    setCurrentTrack(currentTrack - 1);
+    console.log(currentTrack);
+  };
 
-const handlePause =() =>{
-  document.getElementById('audio').pause()
-  console.log("pause")
-  setAudio(false)
-}
-const handlePlay = () => {
-  console.log('play')
-  setAudio(true)
- setAudio(true)
- setOnPlay(item[3].s3_link)
- 
-    audioPlay.play()
-  
-  console.log(audioPlay)
-  console.log(onPlay)
-  console.log(item)
-}
+  const handleForWard = () => {};
 
+  useEffect(() => {
+    if (audio === true) {
+      audioPlay.play();
+      console.log('use');
+      console.log(audioPlay);
+    }
+  }, []);
 
-useEffect(()=>{
-  if(audio === true){
-    audioPlay.play()
-    console.log("use")
-  }
-},[audio])
-
- 
   return (
     <div className={playBarClass}>
       <div className={imageClass}>
         <div className="fullPic">
-          <img
-            src={picture}
-            alt=""
-          />
+          <img src={picture} alt="" />
 
-          <audio id="audio" className="hidden" controls>
-            <source src={"https://bazify.s3.amazonaws.com/Alpha-Wann/Dondada-mixtape/3095-pt2.mp3"} type="audio/mpeg"></source>
-            Your browser does not support this audio format.
-          </audio>
+          <HiddenPlayer currentTrack={currentTrack} setCurrentTrack={setCurrentTrack} item={item} handleSong={handleSong} />
         </div>
       </div>
-
-
 
       <div className="controls-div">
         <div className="left">
@@ -145,20 +126,14 @@ useEffect(()=>{
               <input onChange={volumeChange} type="range" min="0" max="100" value={sliderPos} className="slider" id="myRange"></input>
               <div className="endTime"></div>
             </div>
-            <Controls handlePlay={handlePlay} handlePause={handlePause} />
+            <Controls handlePlay={handlePlay} handlePause={handlePause} handleBackWard={handleBackWard} handleForWard={handleForWard} />
           </div>
           <div className="down">
             <div className="currentTime">{timeSong}</div>
             <div className="bufferSlider">
               <div className="slidecontainer">
                 <div className="endTime"></div>
-                <input
-                  type="range"
-                  min="0"
-                  max="300"
-                  value={sliderValue}
-                  className="slider"
-                  id="myRange"></input>
+                <input type="range" min="0" max="300" value={sliderValue} className="slider" id="myRange"></input>
                 <div className="endTime"></div>
               </div>
             </div>
