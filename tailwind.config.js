@@ -11,16 +11,28 @@ module.exports = {
     },
 
     extend: {
+      screens: {
+        900: '900px',
+      },
       gridTemplateColumns: {
         desktop: '4fr 2fr 2fr 3fr',
         mobile: '1fr 1fr',
       },
       borderRadius: {
         20: '1.25rem',
+        '4xl': '30px',
       },
       gridTemplateRows: {
         desktop: '1fr 400px 300px 300px 400px',
         mobile: '1fr 400px 350px 220px 300px 600px',
+      },
+      fontFamily: {
+        scada: ['Scada', 'sans-serif'],
+        cuprum: ['Cuprum', 'sans-serif'],
+      },
+      width: {
+        sb: '30%',
+        512: '512px',
       },
     },
   },
