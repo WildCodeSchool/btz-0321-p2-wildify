@@ -2,23 +2,25 @@ module.exports = {
   purge: ['./src/**/*.html', './src/**/*.js', './src/**/*.jsx'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    screens: {
-      tablet: '640px',
-      // => @media (min-width: 640px) { ... }
-
-      desktop: '1280px',
-      // => @media (min-width: 1280px) { ... }
+    boxShadow: {
+      sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+      DEFAULT: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+      md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+      lg: '10px 10px 5px rgba(0, 0, 0, 5)',
+      none: 'none',
     },
 
     extend: {
       gridTemplateColumns: {
-        playlist: '2fr 1fr 1fr 1.5fr',
+        desktop: '4fr 2fr 2fr 3fr',
+        mobile: '1fr 1fr',
       },
       borderRadius: {
         20: '1.25rem',
       },
       gridTemplateRows: {
-        rowHeight: '1fr 350px 200px 3fr 3fr',
+        desktop: '1fr 400px 300px 300px 400px',
+        mobile: '1fr 400px 350px 220px 300px 600px',
       },
     },
   },
