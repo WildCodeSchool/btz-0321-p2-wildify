@@ -24,7 +24,7 @@ module.exports = {
       },
       gridTemplateRows: {
         desktop: '1fr 400px 300px 300px 400px',
-        mobile: '1fr 400px 350px 220px 300px 600px',
+        mobile: '1fr 400px 550px 220px 300px 600px',
       },
       fontFamily: {
         scada: ['Scada', 'sans-serif'],
@@ -33,6 +33,10 @@ module.exports = {
       width: {
         sb: '30%',
         512: '512px',
+        plist: '50px',
+      },
+      height: {
+        plist: '50px',
       },
     },
   },

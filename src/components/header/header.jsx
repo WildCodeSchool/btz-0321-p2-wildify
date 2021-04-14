@@ -21,7 +21,7 @@ function Header() {
       <div className="900:self-end mt-5 900:mt-0">
         <input
           type="text"
-          className="text-white font-cuprum  md:w-512 w-80 h-10 px-3 py-2 bg-black bg-opacity-10 rounded-4xl border-none  shadow-searchbar"
+          className="text-white font-cuprum  md:w-512 w-80 h-10 px-5 py-2 bg-black bg-opacity-10 rounded-4xl border-none  shadow-searchbar"
           placeholder="Search..."
         />
       </div>
