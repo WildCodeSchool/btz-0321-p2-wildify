@@ -1,9 +1,9 @@
 import React from 'react';
 import useWindowDimensions from '../../Hooks/useWindowDimension';
-
+import PropTypes from 'prop-types';
 import HeadPhone from '../../img/Icons/HeadPhone.svg';
 
-function Header() {
+function Header({ handleSideBar }) {
   const { width } = useWindowDimensions();
 
   return (
@@ -13,7 +13,7 @@ function Header() {
       </div>
       {width < 900 && (
         <div className="flex flex-row justify-end font-scada text-xl text-white">
-          Upload
+          <button onClick={handleSideBar}>Upload</button>
           <img src={HeadPhone} className="ml-2" alt="Logo" />
         </div>
       )}
@@ -28,5 +28,8 @@ function Header() {
     </div>
   );
 }
+Header.propTypes = {
+  handleSideBar: PropTypes.func.isRequired,
+};
 
 export default Header;
