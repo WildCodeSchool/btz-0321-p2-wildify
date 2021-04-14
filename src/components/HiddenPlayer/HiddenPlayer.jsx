@@ -1,30 +1,34 @@
 import React from 'react';
 
 import { useState, useEffect } from 'react';
-import { useRef } from 'react';
+import {useRef} from 'react'
 
 export default function HiddenPlayer(props) {
-  const [onListen, setOnListen] = useState('');
+  
+  const {onListen} = props;
+  const {setOnListen} = props
   const { item } = props;
-  const audioRef = useRef();
-  const { currentTrack } = props;
-  const { setCurrentTrack } = props;
-
-  const updateSong = (source) => {
-    setOnListen(item[currentTrack].s3_link);
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.load();
-      audioRef.current.play();
-      console.log(currentTrack);
-    }
-  };
+  const {currentTrack } = props;
+  
+  
+  const audioRef = useRef()
+  
+ const updateSong = (source) =>{
+  setOnListen(item[currentTrack].s3_link);
+   if(audioRef.current){
+     audioRef.current.pause()
+     audioRef.current.load()
+     audioRef.current.play()
+   }
+   console.log(currentTrack) 
+ }
 
   const handleClick = () => {
-    updateSong();
+    updateSong()
   };
 
-  console.log(onListen);
+
+console.log(onListen)
   return (
     <div>
       <audio id="audio" className="hidden" ref={audioRef} controls>

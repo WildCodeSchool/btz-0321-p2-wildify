@@ -1,10 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import './Playbar.css';
+
 import Controls from './controls/controls';
 import moment from 'moment';
-import { useRef } from 'react';
-
 import HiddenPlayer from '../HiddenPlayer/HiddenPlayer';
 
 export default function Playbar(props) {
@@ -12,11 +10,11 @@ export default function Playbar(props) {
   const [sliderValue, setSliderValue] = useState(0);
   const [imageClass, setImageClass] = useState('playBar-main');
   const [sliderPos, setSliderPos] = useState('100');
-  const [rotateClass, setRotateClass] = useState('rotate');
   const [index, setIndex] = useState('0');
   const [onPlay, setOnPlay] = useState('');
   const [picture, setPicture] = useState('');
   const [currentTrack, setCurrentTrack] = useState(9);
+
   const { item } = props; // object with api response Insisde.
   const { audio } = props;
   const { setAudio } = props;
@@ -33,25 +31,11 @@ export default function Playbar(props) {
   let seconds = Math.floor(d.asSeconds());
   let timeSong = mins + ':' + Math.floor(seconds / 100) * 1;
 
-  // playbar deployment handleclick
-  const handleClick = () => {
-    if (playBarClass === 'playBar') {
-      setPlayBarClass('playBar full');
-    } else {
-      setPlayBarClass('playBar');
-    }
-    if (imageClass === 'playBar-main') {
-      setImageClass('playBar-main');
-    } else {
-      setImageClass('playBar-main');
-    }
-    setRotateClass('rotate');
-  };
-
   const volumeChange = (e) => {
     setSliderPos(e.target.value);
     document.getElementById('audio').volume = sliderPos / 100;
   };
+
   useEffect(() => {
     let audioTime = document.getElementById('audio');
     const timer = window.setInterval(() => {
@@ -84,7 +68,9 @@ export default function Playbar(props) {
     console.log(currentTrack);
   };
 
-  const handleForWard = () => {};
+  const handleForWard = () => {
+    setCurrentTrack(currentTrack + 1);
+  };
 
   useEffect(() => {
     if (audio === true) {
@@ -94,50 +80,51 @@ export default function Playbar(props) {
     }
   }, []);
 
+  console.log(onListen);
   return (
-    <div className={playBarClass}>
-      <div className={imageClass}>
-        <div className="fullPic">
-          <img src={picture} alt="" />
-
-          <HiddenPlayer currentTrack={currentTrack} setCurrentTrack={setCurrentTrack} item={item} handleSong={handleSong} />
-        </div>
-      </div>
-
-      <div className="controls-div">
-        <div className="left">
-          <img className={rotateClass} id="arrow" onClick={handleClick} src="./src/img/arrow.svg" alt="" />
+    <div className="w-2/3 flex-row align-middle justify-center fixed ">
+      <HiddenPlayer
+        currentTrack={currentTrack}
+        setCurrentTrack={setCurrentTrack}
+        item={item}
+        handleSong={handleSong}
+        onListen={onListen}
+        setOnListen={setOnListen}
+      />
+      <div className="flex bg-red-500 items-center h-full justify-center">
+        <div className="flex-row flex align-middle justify-center h-full">
+          <img id="arrow" src="./src/img/arrow.svg" alt="" />
           <div className="miniature">
             <img src="./src/img/playbar-miniature.png" alt="" />
           </div>
           <div className="song-info">
-            <div className="nameSong">J'san chineese Foof</div>
-            <div className="artist">l'indécis</div>
-            <div className="album">Soulful</div>
+            <div className="text-white">{currentTrack}</div>
+            <div className="text-white">l'indécis</div>
+            <div className="text-white">Soulful</div>
           </div>
         </div>
-        <div className="right">
-          <div className="up">
+        <div className="flex-col align-middle justify-center h-full w-8/12">
+          <div className="flex h-3/6 w-full">
             <div className="volumeLevel">
               <img src="./src/img/Group 44.png" alt="" />
             </div>
-            <div className="volumeSlider">
+            <div className="w-4/5">
               <div className="endTime"></div>
-              <input onChange={volumeChange} type="range" min="0" max="100" value={sliderPos} className="slider" id="myRange"></input>
+              <input onChange={volumeChange} type="range" min="0" max="100" value={sliderPos} className="w-11/12 h-0.5" id="myRange"></input>
               <div className="endTime"></div>
             </div>
             <Controls handlePlay={handlePlay} handlePause={handlePause} handleBackWard={handleBackWard} handleForWard={handleForWard} />
           </div>
-          <div className="down">
-            <div className="currentTime">{timeSong}</div>
-            <div className="bufferSlider">
-              <div className="slidecontainer">
+          <div className="w-full flex">
+            <div className="text-white">{timeSong}</div>
+            <div className="w-4/5">
+              <div className="w-full">
                 <div className="endTime"></div>
-                <input type="range" min="0" max="300" value={sliderValue} className="slider" id="myRange"></input>
+                <input type="range" min="0" max="300" value={sliderValue} className="w-full h-0.5" id="myRange"></input>
                 <div className="endTime"></div>
               </div>
             </div>
-            <div className="endTime">00:00:000</div>
+            <div className="text-white">00:00:000</div>
           </div>
         </div>
       </div>
