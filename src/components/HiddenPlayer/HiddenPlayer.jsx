@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-export default function HiddenPlayer({ onListen, setOnListen, item, currentTrack, audioRef, updateSong }) {
+export default function HiddenPlayer({ onListen, audioRef, updateSong }) {
   const handleClick = () => {
     updateSong();
   };
@@ -18,4 +18,6 @@ export default function HiddenPlayer({ onListen, setOnListen, item, currentTrack
 }
 HiddenPlayer.propTypes = {
   onListen: PropTypes.string.isRequired,
+  audioRef: PropTypes.func.isRequired,
+  updateSong: PropTypes.func.isRequired,
 };
