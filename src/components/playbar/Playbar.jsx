@@ -49,6 +49,7 @@ export default function Playbar({ item, audio, setAudio, onListen, setOnListen, 
 
   const handlePlay = () => {
     setAudio(true);
+    updateSong();
     audioRef.current.play();
   };
 
@@ -59,7 +60,11 @@ export default function Playbar({ item, audio, setAudio, onListen, setOnListen, 
   };
 
   const handleForWard = () => {
-    setCurrentTrack(currentTrack + 1);
+    if (currentTrack >= item.length) {
+      setCurrentTrack(0);
+    } else {
+      setCurrentTrack(currentTrack + 1);
+    }
     updateSong();
     audioRef.current.play();
   };
@@ -118,7 +123,7 @@ export default function Playbar({ item, audio, setAudio, onListen, setOnListen, 
 }
 
 Playbar.propTypes = {
-  item: PropTypes.object.isRequired,
+  item: PropTypes.array.isRequired,
   audio: PropTypes.bool.isRequired,
   setAudio: PropTypes.func.isRequired,
   onListen: PropTypes.string.isRequired,
