@@ -1,13 +1,29 @@
-import React, { useState, useEffect } from 'react';
-
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import useWindowDimensions from './Hooks/useWindowDimension';
+import Playbar from '../src/components/playbar/Playbar';
 import Header from './components/header/header.jsx';
 import SideBar from './components/sideBar/sideBar';
-import Playlist from './components/Playlist/playlist';
-import useWindowDimensions from './Hooks/useWindowDimension';
 
 function App() {
   const [isSideBarVisible, setisSideBarVisible] = useState(false);
   const { width } = useWindowDimensions();
+  const [item, setItem] = useState([]);
+  const [audio, setAudio] = useState(false);
+  const [onListen, setOnListen] = useState('');
+
+  const handleSong = () => {
+    setOnListen(item[5].s3_link);
+  };
+
+  useEffect(async () => {
+    const getSongs = () => {
+      axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs').then((res) => {
+        setItem(res.data);
+      });
+    };
+    getSongs();
+  }, []);
 
   useEffect(() => {
     if (width < 768) {
@@ -25,9 +41,7 @@ function App() {
         {/* The Main Component GoHere */}
       </div>
 
-      <div className="col-start-1 col-end-3 row-start-3 row-end-4 900:col-end-2 900:row-end-5 rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
-        <Playlist />
-      </div>
+      <div className="col-start-1 col-end-3 row-start-3 row-end-4 900:col-end-2 900:row-end-5 rounded-20 bg-black bg-opacity-20 shadow-layoutContainer"></div>
 
       <div className="col-start-1 col-end-2 row-start-4 row-end-5 gap-x-1 900:col-start-2 900:col-end-3 900:row-start-3 900:row-end-4  rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
         {/* ArtistComponent GoHere */}{' '}
@@ -44,6 +58,7 @@ function App() {
         {/* ContactFormComponent GoHere */}
       </div>
       {isSideBarVisible && <SideBar />}
+      <Playbar handleSong={handleSong} onListen={onListen} setOnListen={setOnListen} audio={audio} setAudio={setAudio} item={item} />
     </div>
   );
 }
