@@ -21,11 +21,9 @@ function Sliderartist() {
           {songs.length ? (
             songs.map((song, index) => (
               <div key={index} className="label h-56 w-56" style={{ backgroundImage: `url(${song.album.picture})`, backgroundSize: `14rem` }}>
-                <div className="relative w-56 h-44">
-                  <div className="label-title pl-1">{song.title}</div>
-                  <div className="label-album pl-1">{song.album.title}</div>
-                  <div className="label-name pl-1">{song.artist.name}</div>
-                </div>
+                <div className="label-title pl-1">{song.title}</div>
+                <div className="label-album pl-1">{song.album.title}</div>
+                <div className="label-name pl-1">{song.artist.name}</div>
               </div>
             ))
           ) : (
@@ -40,7 +38,6 @@ function Sliderartist() {
       </div>
     </div>
   );
-  console.log(songs[0]);
 }
 
 export default Sliderartist;

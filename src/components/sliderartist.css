@@ -5,6 +5,7 @@
 .label {
   font-family: Scada;
   font-style: normal;
+  position: relative;
 }
 
 .label-img {
