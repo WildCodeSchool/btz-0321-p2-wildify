@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import './sliderartist.css';
+import Slider from './Slider';
+import Next from './Next';
+import Previous from './Previous';
 
 function Sliderartist() {
   const [index, setIndex] = useState(0);
@@ -10,79 +12,22 @@ function Sliderartist() {
     .then((result) => setSongs(result));
 
   return (
-    <div className="slider">
-      <div className="previous text-black cursor-pointer" onClick={() => setIndex(index == 0 ? songs.length - 1 : index - 1)}>
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-56" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-        </svg>
-      </div>
-      <div className="h-56 w-56 overflow-hidden rounded-3xl shadow-lg">
-        <div style={{ transform: `translateY(${-14 * index}rem)`, transition: `transform 0.5s ease-in-out` }}>
-          {songs.length ? (
-            songs.map((song, index) => (
-              <div key={index} className="label h-56 w-56" style={{ backgroundImage: `url(${song.album.picture})`, backgroundSize: `14rem` }}>
-                <div className="label-title pl-1">{song.title}</div>
-                <div className="label-album pl-1">{song.album.title}</div>
-                <div className="label-name pl-1">{song.artist.name}</div>
-              </div>
-            ))
-          ) : (
-            <div className="loading">loading</div>
-          )}
-        </div>
-      </div>
-      <div className="next text-black cursor-pointer" onClick={() => setIndex(index == songs.length - 1 ? 0 : index + 1)}>
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-56" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
+    <div>
+      <div className="w-40 h-56 top-0 left-0 overflow-hidden rounded-3xl shadow-lg">
+        <button
+          className="w-40 top-0 left-0 z-50 relative text-black cursor-pointer focus:outline-none"
+          onClick={() => setIndex(index == 0 ? songs.length - 1 : index - 1)}>
+          <Previous />
+        </button>
+        <Slider songs={songs} index={index} />
+        <button
+          className="w-40 top-0 left-0 z-50 relative text-black cursor-pointer focus:outline-none bg-transparent"
+          onClick={() => setIndex(index == songs.length - 1 ? 0 : index + 1)}>
+          <Next />
+        </button>
       </div>
     </div>
   );
 }
 
 export default Sliderartist;
-
-const API = [
-  {
-    id: '98b2c41d-6b12-4f9a-a0aa-dd155608ea2a',
-    title: '3095 pt2',
-    duration: '3:16',
-    s3_link: 'https://bazify.s3.amazonaws.com/Alpha-Wann/Dondada-mixtape/3095-pt2.mp3',
-    artist: {
-      name: 'Alpha Wann',
-      picture: null,
-    },
-    album: {
-      title: 'Dondada mixtape',
-      picture: 'https://pbs.twimg.com/media/EpeX7DnWwAI_a8v.jpg',
-    },
-  },
-  {
-    id: '6e88d212-8d4f-4279-8b42-917c7df42465',
-    title: 'aaa',
-    duration: '2:44',
-    s3_link: 'https://bazify.s3.eu-west-3.amazonaws.com/Alpha-Wann/Dondada-mixtape/aaa.mp3',
-    artist: {
-      name: 'Alpha Wann',
-      picture: null,
-    },
-    album: {
-      title: 'Dondada mixtape',
-      picture: 'https://pbs.twimg.com/media/EpeX7DnWwAI_a8v.jpg',
-    },
-  },
-  {
-    id: '98e360e1-9ce7-4c6d-80f8-bc5d267cc083',
-    title: 'apdl',
-    duration: '2:42',
-    s3_link: 'https://bazify.s3.eu-west-3.amazonaws.com/Alpha-Wann/Dondada-mixtape/apdl.mp3',
-    artist: {
-      name: 'Alpha Wann',
-      picture: null,
-    },
-    album: {
-      title: 'Dondada mixtape',
-      picture: 'https://pbs.twimg.com/media/EpeX7DnWwAI_a8v.jpg',
-    },
-  },
-];
