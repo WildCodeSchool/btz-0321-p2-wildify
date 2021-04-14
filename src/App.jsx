@@ -11,11 +11,11 @@ function App() {
   const [item, setItem] = useState([]);
   const [audio, setAudio] = useState(false);
   const [onListen, setOnListen] = useState('');
+  const [currentTrack, setCurrentTrack] = useState(0);
 
   const handleSong = () => {
-    setOnListen(item[5].s3_link);
+    setOnListen(item[currentTrack].s3_link);
   };
-
   useEffect(async () => {
     const getSongs = () => {
       axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs').then((res) => {
@@ -58,7 +58,16 @@ function App() {
         {/* ContactFormComponent GoHere */}
       </div>
       {isSideBarVisible && <SideBar />}
-      <Playbar handleSong={handleSong} onListen={onListen} setOnListen={setOnListen} audio={audio} setAudio={setAudio} item={item} />
+      <Playbar
+        handleSong={handleSong}
+        onListen={onListen}
+        setOnListen={setOnListen}
+        audio={audio}
+        setAudio={setAudio}
+        currentTrack={currentTrack}
+        setCurrentTrack={setCurrentTrack}
+        item={item}
+      />
     </div>
   );
 }

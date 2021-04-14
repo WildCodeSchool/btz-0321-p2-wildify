@@ -1,8 +1,9 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
+import './controls.css';
 export default function Controls({ handlePause, handlePlay, handleBackWard, handleForWard }) {
   return (
-    <div className="flex">
+    <div className="flex mx-6">
       <button onClick={handleBackWard}>
         <img className="px-1" src="./src/img/backward.svg" alt="" />
       </button>
@@ -18,3 +19,10 @@ export default function Controls({ handlePause, handlePlay, handleBackWard, hand
     </div>
   );
 }
+
+Controls.propTypes = {
+  handlePause: PropTypes.func.isRequired,
+  handlePlay: PropTypes.func.isRequired,
+  handleBackWard: PropTypes.func.isRequired,
+  handleForWard: PropTypes.func.isRequired,
+};

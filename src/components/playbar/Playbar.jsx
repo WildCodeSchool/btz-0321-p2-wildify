@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 import Controls from './controls/controls';
 import HiddenPlayer from '../HiddenPlayer/HiddenPlayer';
 
-export default function Playbar({ item, audio, setAudio, onListen, setOnListen, handleSong }) {
+export default function Playbar({ item, currentTrack, setCurrentTrack, setAudio, onListen, setOnListen, handleSong }) {
   const [sliderValue, setSliderValue] = useState(0);
   const [sliderPos, setSliderPos] = useState('100');
-  const [currentTrack, setCurrentTrack] = useState(9);
+  const [title, setTitle] = useState();
+  const [artist, setArtist] = useState();
+  const [album, setAlbum] = useState();
+  const [picture, setPicture] = useState();
 
   const audioRef = useRef(null);
 
@@ -22,12 +25,6 @@ export default function Playbar({ item, audio, setAudio, onListen, setOnListen, 
     };
   }, [sliderValue]);
 
-  useEffect(() => {
-    if (audio === true) {
-      audioRef.current.play();
-    }
-  }, []);
-
   const updateSong = () => {
     setOnListen(item[currentTrack].s3_link);
     if (audioRef.current) {
@@ -36,6 +33,10 @@ export default function Playbar({ item, audio, setAudio, onListen, setOnListen, 
       audioRef.current.play();
       audioRef.current.pause();
     }
+    setTitle(item[currentTrack].title);
+    setArtist(item[currentTrack].artist.name);
+    setAlbum(item[currentTrack].album.title);
+    setPicture(item[currentTrack].album.picture);
   };
   const volumeChange = (e) => {
     setSliderPos(e.target.value);
@@ -61,16 +62,20 @@ export default function Playbar({ item, audio, setAudio, onListen, setOnListen, 
 
   const handleForWard = () => {
     if (currentTrack >= item.length) {
+      setAudio(true);
       setCurrentTrack(0);
+      updateSong();
+      audioRef.current.play();
     } else {
+      setAudio(true);
       setCurrentTrack(currentTrack + 1);
+      updateSong();
+      audioRef.current.play();
     }
-    updateSong();
-    audioRef.current.play();
   };
 
   return (
-    <div className="w-2/3 flex-row align-middle justify-center fixed">
+    <div className="w-8/12 flex-row align-middle justify-center fixed bottom-3">
       <HiddenPlayer
         currentTrack={currentTrack}
         setCurrentTrack={setCurrentTrack}
@@ -82,30 +87,30 @@ export default function Playbar({ item, audio, setAudio, onListen, setOnListen, 
         audioRef={audioRef}
       />
 
-      <div className="flex bg-black opacity-80 items-center h-full justify-center rounded-3xl">
-        <div className="flex-row flex align-middle justify-center h-full">
-          <div className="miniature">
-            <img src="./src/img/playbar-miniature.png" alt="" />
+      <div className="flex py-1 bg-opacity-50 bg-black items-center h-full justify-center rounded-3xl ">
+        <div className="flex-row w-5/12 flex align-middle justify-center h-full">
+          <div className="flex-col  w-2/4 flex items-center justify-around">
+            <img className="w-11/12 my-2 rounded-full" src={picture} alt="" />
           </div>
-          <div className="song-info">
-            <div className="text-white">{currentTrack}</div>
-            <div className="text-white">l&apos;indécis</div>
-            <div className="text-white">Soulful</div>
+          <div className="flex-col w-2/4 flex items-center justify-between py-8 mx-4">
+            <div className="text-white">{title}</div>
+            <div className="text-white">{album}</div>
+            <div className="text-white">{artist}</div>
           </div>
         </div>
-        <div className="flex-col align-middle justify-center h-full w-8/12">
-          <div className="flex h-3/6 w-full">
-            <div className="volumeLevel">
+        <div className="flex-col align-middle h-full justify-center  w-8/12">
+          <div className="flex h-full w-full">
+            <div className="h-full">
               <img src="./src/img/Group 44.png" alt="" />
             </div>
-            <div className="w-4/5">
+            <div className="h-full w-4/5">
               <div className="endTime"></div>
               <input onChange={volumeChange} type="range" min="0" max="100" value={sliderPos} className="w-11/12 h-0.5" id="myRange"></input>
               <div className="endTime"></div>
             </div>
             <Controls handlePlay={handlePlay} handlePause={handlePause} handleBackWard={handleBackWard} handleForWard={handleForWard} />
           </div>
-          <div className="w-full flex">
+          <div className="w-full h-full flex item-center justify-center">
             <div className="text-white">00:00:00</div>
             <div className="w-4/5">
               <div className="w-full">
@@ -114,7 +119,7 @@ export default function Playbar({ item, audio, setAudio, onListen, setOnListen, 
                 <div className="endTime"></div>
               </div>
             </div>
-            <div className="text-white">00:00:000</div>
+            <div className="text-white mx-6">00:00:000</div>
           </div>
         </div>
       </div>
@@ -124,9 +129,10 @@ export default function Playbar({ item, audio, setAudio, onListen, setOnListen, 
 
 Playbar.propTypes = {
   item: PropTypes.array.isRequired,
-  audio: PropTypes.bool.isRequired,
   setAudio: PropTypes.func.isRequired,
   onListen: PropTypes.string.isRequired,
   setOnListen: PropTypes.func.isRequired,
   handleSong: PropTypes.func.isRequired,
+  currentTrack: PropTypes.number.isRequired,
+  setCurrentTrack: PropTypes.func.isRequired,
 };
