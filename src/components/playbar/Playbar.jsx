@@ -1,18 +1,14 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-
 import Controls from './controls/controls';
-import moment from 'moment';
 import HiddenPlayer from '../HiddenPlayer/HiddenPlayer';
 
+
+
 export default function Playbar(props) {
-  const [playBarClass, setPlayBarClass] = useState('playBar full');
   const [sliderValue, setSliderValue] = useState(0);
-  const [imageClass, setImageClass] = useState('playBar-main');
   const [sliderPos, setSliderPos] = useState('100');
-  const [index, setIndex] = useState('0');
   const [onPlay, setOnPlay] = useState('');
-  const [picture, setPicture] = useState('');
   const [currentTrack, setCurrentTrack] = useState(9);
 
   const { item } = props; // object with api response Insisde.
@@ -21,20 +17,14 @@ export default function Playbar(props) {
   const { onListen } = props;
   const { setOnListen } = props;
   const { handleSong } = props;
-
-  //timer convert
-  let x = sliderValue * 100000;
-  x = x.toFixed(2);
-  let d = moment.duration(x, 'milliseconds');
-  let hours = Math.floor(d.asHours());
-  let mins = Math.floor(d.asMinutes() * 0.01) * 1;
-  let seconds = Math.floor(d.asSeconds());
-  let timeSong = mins + ':' + Math.floor(seconds / 100) * 1;
-
+  
   const volumeChange = (e) => {
     setSliderPos(e.target.value);
     document.getElementById('audio').volume = sliderPos / 100;
   };
+
+
+
 
   useEffect(() => {
     let audioTime = document.getElementById('audio');
@@ -59,30 +49,29 @@ export default function Playbar(props) {
   const handlePlay = () => {
     console.log('play');
     setAudio(true);
-    setOnPlay(item[3].s3_link);
     audioPlay.play();
   };
 
   const handleBackWard = () => {
     setCurrentTrack(currentTrack - 1);
     console.log(currentTrack);
+   
   };
 
   const handleForWard = () => {
     setCurrentTrack(currentTrack + 1);
+    console.log(currentTrack);
   };
 
   useEffect(() => {
     if (audio === true) {
       audioPlay.play();
-      console.log('use');
       console.log(audioPlay);
     }
   }, []);
 
-  console.log(onListen);
   return (
-    <div className="w-2/3 flex-row align-middle justify-center fixed ">
+    <div className="w-2/3 flex-row align-middle justify-center fixed">
       <HiddenPlayer
         currentTrack={currentTrack}
         setCurrentTrack={setCurrentTrack}
@@ -91,9 +80,9 @@ export default function Playbar(props) {
         onListen={onListen}
         setOnListen={setOnListen}
       />
-      <div className="flex bg-red-500 items-center h-full justify-center">
+      <div className="flex bg-black opacity-80 items-center h-full justify-center rounded-3xl">
         <div className="flex-row flex align-middle justify-center h-full">
-          <img id="arrow" src="./src/img/arrow.svg" alt="" />
+          
           <div className="miniature">
             <img src="./src/img/playbar-miniature.png" alt="" />
           </div>
@@ -116,7 +105,7 @@ export default function Playbar(props) {
             <Controls handlePlay={handlePlay} handlePause={handlePause} handleBackWard={handleBackWard} handleForWard={handleForWard} />
           </div>
           <div className="w-full flex">
-            <div className="text-white">{timeSong}</div>
+            <div className="text-white">00:00:00</div>
             <div className="w-4/5">
               <div className="w-full">
                 <div className="endTime"></div>
