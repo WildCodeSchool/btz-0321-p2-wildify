@@ -2,15 +2,15 @@ module.exports = {
   purge: ['./src/**/*.html', './src/**/*.js', './src/**/*.jsx'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    boxShadow: {
-      sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
-      DEFAULT: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
-      md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-      lg: '10px 10px 5px rgba(0, 0, 0, 5)',
-      none: 'none',
-    },
-
     extend: {
+      spacing: {
+        80: '21rem',
+      },
+      boxShadow: {
+        layoutContainer: '10px 10px 10px rgba(0, 0, 0, 0.5)',
+        searchbar: '5px 5px 10px rgba(0, 0, 0, 0.8)',
+        sideBar: '10px 10px 10px rgba(0, 0, 0, 0.49), -10px -10px 10px rgba(5, 5, 5, 0.25)',
+      },
       screens: {
         900: '900px',
       },
