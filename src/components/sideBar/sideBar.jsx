@@ -2,7 +2,7 @@ import React from 'react';
 
 function SideBar() {
   return (
-    <div className=" sticky flex flex-col  right-0 900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-black bg-opacity-30 shadow-sideBar">
+    <div className=" absolute flex flex-col  top-0 right-0 900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-black bg-opacity-30 shadow-sideBar">
       <div className="my-32 flex flex-col justify-center items-center">
         <label className="text-white text-sm md:font-scada w-8/12" htmlFor="Title">
           Title:

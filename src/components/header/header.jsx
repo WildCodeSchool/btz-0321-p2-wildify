@@ -13,7 +13,9 @@ function Header({ handleSideBar }) {
       </div>
       {width < 900 && (
         <div className="flex flex-row justify-end font-scada text-xl text-white">
-          <button onClick={handleSideBar}>Upload</button>
+          <button onClick={handleSideBar} className="z-30 rel">
+            Upload
+          </button>
           <img src={HeadPhone} className="ml-2" alt="Logo" />
         </div>
       )}
