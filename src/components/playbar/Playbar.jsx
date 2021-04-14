@@ -5,25 +5,18 @@ import HiddenPlayer from '../HiddenPlayer/HiddenPlayer';
 
 
 
-export default function Playbar(props) {
+export default function Playbar({item,audio,setAudio,onListen,setOnListen,handleSong}) {
   const [sliderValue, setSliderValue] = useState(0);
   const [sliderPos, setSliderPos] = useState('100');
   const [onPlay, setOnPlay] = useState('');
   const [currentTrack, setCurrentTrack] = useState(9);
 
-  const { item } = props; // object with api response Insisde.
-  const { audio } = props;
-  const { setAudio } = props;
-  const { onListen } = props;
-  const { setOnListen } = props;
-  const { handleSong } = props;
+
   
   const volumeChange = (e) => {
     setSliderPos(e.target.value);
     document.getElementById('audio').volume = sliderPos / 100;
   };
-
-
 
 
   useEffect(() => {
@@ -42,31 +35,31 @@ export default function Playbar(props) {
 
   const handlePause = () => {
     audioPlay.pause();
-    console.log('pause');
+    
     setAudio(false);
   };
 
   const handlePlay = () => {
-    console.log('play');
+    
     setAudio(true);
     audioPlay.play();
   };
 
   const handleBackWard = () => {
     setCurrentTrack(currentTrack - 1);
-    console.log(currentTrack);
+    
    
   };
 
   const handleForWard = () => {
     setCurrentTrack(currentTrack + 1);
-    console.log(currentTrack);
+   
   };
 
   useEffect(() => {
     if (audio === true) {
       audioPlay.play();
-      console.log(audioPlay);
+      
     }
   }, []);
 

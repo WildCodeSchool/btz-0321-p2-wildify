@@ -7,13 +7,6 @@ import '@vime/core/themes/default.css';
 import '@vime/core/themes/light.css';
 
 
-
-
-
-
-
-
-
 function App() {
   const [item, setItem] = useState([])
   const [audio,setAudio] = useState(false)

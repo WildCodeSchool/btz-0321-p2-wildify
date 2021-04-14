@@ -2,11 +2,8 @@ import React from 'react';
 
 import { useEffect, useState } from 'react';
 
-export default function Controls(props) {
-  const { handlePause } = props;
-  const { handlePlay } = props;
-  const { handleBackWard } = props;
-  const { handleForWard } = props;
+export default function Controls({handlePause,handlePlay,handleBackWard,handleForWard}) {
+  
 
   return (
     <div className="flex">

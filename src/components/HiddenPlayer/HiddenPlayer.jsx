@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { useState, useEffect } from 'react';
 import { useRef } from 'react';
 
 export default function HiddenPlayer(props) {
