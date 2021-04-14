@@ -1,5 +1,4 @@
 import React from 'react';
-import './playlist.css';
 import WorkingPlaylist from '../../img/Playlist/WorkingPlaylist.svg';
 import SportPlaylist from '../../img/Playlist/SportPlaylist.svg';
 import ChillPlaylist from '../../img/Playlist/chiilPlaylist.svg';
@@ -12,7 +11,7 @@ function Playlist() {
     <div className="wd-full h-full p-6">
       <h1 className="text-white font-scada text-3xl font-bold">WIZIC Playlists</h1>
 
-      <div className=" rounded-3xl flex 900:mt-5 mt-3 items-center  p-2 bg-black bg-opacity-20 shadow-searchbar">
+      <div className=" rounded-3xl flex 900:mt-5 mt-3 items-center  p-2 bg-black bg-opacity-20 shadow-searchbar hover:border-teal">
         <img src={WorkingPlaylist} alt="Playlist1" className="w-plist h-plist" />
         <div className="flex-col ml-3">
           <h3 className="text-white font-scada font-medium ">Working and Code</h3>
