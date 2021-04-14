@@ -1,23 +1,14 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import Controls from './controls/controls';
 import HiddenPlayer from '../HiddenPlayer/HiddenPlayer';
 
-
-
-export default function Playbar({item,audio,setAudio,onListen,setOnListen,handleSong}) {
+export default function Playbar({ item, audio, setAudio, onListen, setOnListen, handleSong }) {
   const [sliderValue, setSliderValue] = useState(0);
   const [sliderPos, setSliderPos] = useState('100');
-  const [onPlay, setOnPlay] = useState('');
   const [currentTrack, setCurrentTrack] = useState(9);
 
-
-  
-  const volumeChange = (e) => {
-    setSliderPos(e.target.value);
-    document.getElementById('audio').volume = sliderPos / 100;
-  };
-
+  const audioRef = useRef(null);
 
   useEffect(() => {
     let audioTime = document.getElementById('audio');
@@ -31,37 +22,47 @@ export default function Playbar({item,audio,setAudio,onListen,setOnListen,handle
     };
   }, [sliderValue]);
 
-  const audioPlay = document.getElementById('audio');
+  useEffect(() => {
+    if (audio === true) {
+      audioRef.current.play();
+    }
+  }, []);
+
+  const updateSong = () => {
+    setOnListen(item[currentTrack].s3_link);
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.load();
+      audioRef.current.play();
+      audioRef.current.pause();
+    }
+  };
+  const volumeChange = (e) => {
+    setSliderPos(e.target.value);
+    audioRef.current.volume = sliderPos / 100;
+  };
 
   const handlePause = () => {
-    audioPlay.pause();
-    
+    audioRef.current.pause();
     setAudio(false);
   };
 
   const handlePlay = () => {
-    
     setAudio(true);
-    audioPlay.play();
+    audioRef.current.play();
   };
 
   const handleBackWard = () => {
     setCurrentTrack(currentTrack - 1);
-    
-   
+    updateSong();
+    audioRef.current.play();
   };
 
   const handleForWard = () => {
     setCurrentTrack(currentTrack + 1);
-   
+    updateSong();
+    audioRef.current.play();
   };
-
-  useEffect(() => {
-    if (audio === true) {
-      audioPlay.play();
-      
-    }
-  }, []);
 
   return (
     <div className="w-2/3 flex-row align-middle justify-center fixed">
@@ -72,16 +73,18 @@ export default function Playbar({item,audio,setAudio,onListen,setOnListen,handle
         handleSong={handleSong}
         onListen={onListen}
         setOnListen={setOnListen}
+        updateSong={updateSong}
+        audioRef={audioRef}
       />
+
       <div className="flex bg-black opacity-80 items-center h-full justify-center rounded-3xl">
         <div className="flex-row flex align-middle justify-center h-full">
-          
           <div className="miniature">
             <img src="./src/img/playbar-miniature.png" alt="" />
           </div>
           <div className="song-info">
             <div className="text-white">{currentTrack}</div>
-            <div className="text-white">l'indécis</div>
+            <div className="text-white">l&apos;indécis</div>
             <div className="text-white">Soulful</div>
           </div>
         </div>
@@ -113,3 +116,12 @@ export default function Playbar({item,audio,setAudio,onListen,setOnListen,handle
     </div>
   );
 }
+
+Playbar.propTypes = {
+  item: PropTypes.object.isRequired,
+  audio: PropTypes.bool.isRequired,
+  setAudio: PropTypes.func.isRequired,
+  onListen: PropTypes.string.isRequired,
+  setOnListen: PropTypes.func.isRequired,
+  handleSong: PropTypes.func.isRequired,
+};

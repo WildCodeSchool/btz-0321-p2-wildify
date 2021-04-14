@@ -1,7 +1,4 @@
 module.exports = {
-
-
-
   root: true, // Make sure eslint picks up the config at the root of the directory
   parserOptions: {
     ecmaVersion: 2020, // Use the latest ecmascript standard
