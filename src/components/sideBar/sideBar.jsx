@@ -24,6 +24,7 @@ function SideBar({ sideBarClass }) {
   const handleArtist = () => {
     // setArtist(e.target.value);
   };
+  // const formData = new FormData();
 
   // function fileUpload(file) {
   //   const url = 'https://bazify-backend.basile.vernouillet.dev/api/v1/songs';
@@ -42,10 +43,11 @@ function SideBar({ sideBarClass }) {
   //     method: 'POST',
   //     headers: {
   //       headers: {
-  //         'Content-Type': 'multipart/form-data',
+  //         'Content-Type': 'application/json',
+  //         'X-Custom-Header': 'ProcessThisImmediately',
   //       },
   //     },
-  //     body: formData2,
+  //     body: formData.append('file', selectFile, 'file'),
   //   })
   //     .then((response) => response.json())
   //     .then((result) => {
@@ -67,6 +69,7 @@ function SideBar({ sideBarClass }) {
   const handleSubmission = () => {
     // eslint-disable-next-line no-console
     console.log(selectFile, isFilePicked);
+    // fetchUpload();
   };
 
   return (
