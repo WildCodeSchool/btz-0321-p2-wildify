@@ -25,33 +25,46 @@ function SideBar({ sideBarClass }) {
     // setArtist(e.target.value);
   };
 
-  const fetchUpload = () => {
-    fetch('https://bazify-backend.basile.vernouillet.dev/api/v1/songs', {
-      method: 'POST',
-      headers: {
-        headers: {
-          'Content-Type': 'audio/mpeg',
-        },
-      },
-      body: FormData,
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        // eslint-disable-next-line no-console
-        console.log('succes:', result);
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error('Error:', error);
-      });
-  };
+  // function fileUpload(file) {
+  //   const url = 'https://bazify-backend.basile.vernouillet.dev/api/v1/songs';
+  //   const formData = new FormData();
+  //   formData.append('file', file);
+  //   const config = {
+  //     headers: {
+  //       'content-type': 'multipart/form-data',
+  //     },
+  //   };
+  //   return post(url, formData, config);
+  // }
+
+  // const fetchUpload = () => {
+  //   fetch('https://bazify-backend.basile.vernouillet.dev/api/v1/songs', {
+  //     method: 'POST',
+  //     headers: {
+  //       headers: {
+  //         'Content-Type': 'multipart/form-data',
+  //       },
+  //     },
+  //     body: formData2,
+  //   })
+  //     .then((response) => response.json())
+  //     .then((result) => {
+  //       // eslint-disable-next-line no-console
+  //       console.log('succes:', result);
+  //     })
+  //     .then(console.log('ok'))
+  //     .catch((error) => {
+  //       // eslint-disable-next-line no-console
+  //       console.error('Error:', error);
+  //     });
+  // };
+
   const changeHandler = (event) => {
     setSelectFile(event.target.files[0]);
     setFilePicked(true);
   };
 
   const handleSubmission = () => {
-    fetchUpload();
     // eslint-disable-next-line no-console
     console.log(selectFile, isFilePicked);
   };
@@ -62,19 +75,19 @@ function SideBar({ sideBarClass }) {
         <label className="text-white text-sm font-Orbit w-8/12" htmlFor="Title">
           Title:
         </label>
-        <input onChange={handleTitle} className="w-3/4 bg-black text-white opacity-30 rounded-4xl my-4" name="title"></input>
+        <input onChange={handleTitle} className="w-3/4 bg-black text-white opacity-30 rounded-4xl my-4" type="text" name="title"></input>
         <label className="text-white text-sm font-Orbit w-8/12" htmlFor="Artist">
           Artist:
         </label>
-        <input onChange={handleArtist} className="w-3/4 bg-black text-white opacity-30 rounded-4xl my-4" name="Artist"></input>
+        <input onChange={handleArtist} className="w-3/4 bg-black text-white opacity-30 rounded-4xl my-4" type="text" name="Artist"></input>
         <label className="text-white text-sm font-Orbit w-8/12" htmlFor="Album">
           Album:
         </label>
-        <input onChange={handleAlbum} className="w-3/4 bg-black text-white opacity-30 rounded-4xl my-4" name="Album"></input>
+        <input onChange={handleAlbum} className="w-3/4 bg-black text-white opacity-30 rounded-4xl my-4" type="text" name="Album"></input>
         <label className="text-white text-sm font-Orbit w-8/12" htmlFor="Picture">
           Picture:
         </label>
-        <input onChange={handlePicture} className="w-3/4 bg-black text-white opacity-30 rounded-4xl my-4" name="Picture"></input>
+        <input onChange={handlePicture} className="w-3/4 bg-black text-white opacity-30 rounded-4xl my-4" type="text" name="Picture"></input>
       </form>
       <form className="flex flex-col justify-center items-center ">
         <label className="text-white text-sm font-Orbit w-8/12" htmlFor="playlist">
