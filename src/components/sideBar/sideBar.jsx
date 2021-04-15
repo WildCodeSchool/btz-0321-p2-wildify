@@ -68,7 +68,7 @@ function SideBar({ sideBarClass }) {
 
   return (
     <div className={sideBarClass}>
-      <div className="my-20 sticky flex flex-col justify-center items-center">
+      <div className="my-20  sticky flex flex-col justify-center items-center">
         <label className="text-white text-sm font-Orbit w-8/12" htmlFor="Title">
           Title:
         </label>
@@ -108,7 +108,7 @@ function SideBar({ sideBarClass }) {
           </option>
         </select>
       </div>
-      <div className="my-40 w-full flex flex-col items-center align-middle justify-center">
+      <div className="my-4 w-full flex flex-col items-center align-middle justify-center">
         <label className="text-white text-lg cursor-pointer" htmlFor="upload">
           Upload Song:
         </label>
