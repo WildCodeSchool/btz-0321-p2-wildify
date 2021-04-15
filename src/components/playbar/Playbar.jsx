@@ -36,21 +36,32 @@ export default function Playbar({ item, audio, currentTrack, setCurrentTrack, se
     };
   }, [sliderValue, audioRef]);
 
+  useEffect(() => {
+    if (audioRef.current.currentTime === audioRef.current.duration) {
+      handleForWard();
+    }
+  }, [currentTime]);
+
   const updateSong = () => {
     setOnListen(item[currentTrack].s3_link);
     if (audioRef.current) {
-      audioRef.current.pause();
       audioRef.current.load();
-      audioRef.current.play();
     }
+
     setTitle(item[currentTrack].title);
     setArtist(item[currentTrack].artist.name);
     setAlbum(item[currentTrack].album.title);
     setPicture(item[currentTrack].album.picture);
   };
+
   const volumeChange = (e) => {
     setSliderPos(e.target.value);
     audioRef.current.volume = sliderPos / 100;
+  };
+
+  const positionChange = (e) => {
+    setSliderValue(e.target.value);
+    audioRef.current.currentTime = e.target.value;
   };
 
   const handlePause = () => {
@@ -86,7 +97,7 @@ export default function Playbar({ item, audio, currentTrack, setCurrentTrack, se
   };
 
   return (
-    <div className="w-7/12 flex-row align-middle justify-center fixed bottom-3">
+    <div className="w-7/12 max-h-40 flex-row align-middle justify-center   fixed bottom-3">
       <HiddenPlayer
         currentTrack={currentTrack}
         setCurrentTrack={setCurrentTrack}
@@ -101,15 +112,15 @@ export default function Playbar({ item, audio, currentTrack, setCurrentTrack, se
 
       <div
         className="flex  py-2
-       bg-black opacity-40 items-center h-full justify-center rounded-3xl ">
+       bg-black opacity-60 items-center h-full max-h-28 justify-center rounded-3xl ">
         <div className="flex-row w-5/12 flex align-middle justify-center h-full">
-          <div className="flex-col  w-2/4 flex items-center justify-around">
-            <img className="w-5/12 rounded-full" src={picture} alt="" />
+          <div className="flex-col w-5/12  flex items-center justify-around">
+            <img className="w-9/12  rounded-full" src={picture} alt="" />
           </div>
           <div className="flex-col w-2/4 flex items-left py-6 justify-between ">
-            <div className="text-white md:font-scada text-xs">{title}</div>
-            <div className="text-white md:font-scada text-xs">{album}</div>
-            <div className="text-white md:font-scada text-xs">{artist}</div>
+            <div className="text-white font-Orbit text-xs">{title}</div>
+            <div className="text-white font-Orbit text-xs">{album}</div>
+            <div className="text-white font-Orbit text-xs">{artist}</div>
           </div>
         </div>
         <div className="flex-col align-middle h-full justify-center  w-8/12">
@@ -128,16 +139,23 @@ export default function Playbar({ item, audio, currentTrack, setCurrentTrack, se
             </div>
             <Controls handlePlay={handlePlay} handlePause={handlePause} handleBackWard={handleBackWard} handleForWard={handleForWard} />
           </div>
-          <div className="w-full h-full flex item-center justify-center">
-            <div className=" px-1 text-white">{audio ? secondsToHms(currentTime) : '00:00'}</div>
+          <div className="w-full leading-6 text-base h-full flex align-middle item-center justify-center">
+            <div className=" px-1  font-Orbit text-white">{audio ? secondsToHms(currentTime) : '00:00'}</div>
             <div className="w-4/5">
               <div className="w-full">
                 <div className="endTime"></div>
-                <input type="range" min="0" max={duration} value={sliderValue} className="w-full h-0.5 slider" id="myRange"></input>
+                <input
+                  onChange={positionChange}
+                  type="range"
+                  min="0"
+                  max={duration}
+                  value={sliderValue}
+                  className="w-full h-0.5 slider"
+                  id="myRange"></input>
                 <div className="endTime"></div>
               </div>
             </div>
-            <div className="text-white mx-6">{audio ? secondsToHms(duration - currentTime) : '00:00'}</div>
+            <div className="text-white font-Orbit mx-6">{audio ? secondsToHms(duration - currentTime) : '00:00'}</div>
           </div>
         </div>
       </div>

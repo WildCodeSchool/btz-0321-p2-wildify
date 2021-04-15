@@ -25,7 +25,7 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
-app.use('/app/', (req, res, next) => {
+app.use('/app/', (req, res) => {
   Thing.find()
     .then((things) => res.status(200).json(things))
     .catch((error) => res.status(400).json({ error }));
@@ -38,7 +38,7 @@ app.post('/api/stuff', (req, res) => {
   });
   thing
     .save()
-    .then(() => res.status(201).json({ message: 'Objet enregistré !' }))
+    .then(() => res.status(201).json({ message: 'UPLOAD OK' }))
     .catch((error) => res.status(400).json({ error }));
 });
 app.get('/api/stuff/:id', (req, res) => {

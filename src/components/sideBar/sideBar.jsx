@@ -4,10 +4,19 @@ import PropTypes from 'prop-types';
 function SideBar({ sideBarClass }) {
   const [selectFile, setSelectFile] = useState();
   const [isFilePicked, setFilePicked] = useState(false);
-  const [setTitle] = useState('');
-  const [setAlbum] = useState('');
-  const [setPicture] = useState('');
-  const [setArtist] = useState();
+  const [title, setTitle] = useState('');
+  const [album, setAlbum] = useState('');
+  const [picture, setPicture] = useState('');
+  const [artist, setArtist] = useState();
+
+  function apiCall(album, title, picture, artist) {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ _id: '1', title: title, imgLink: picture, linkUrl: artist }),
+    };
+    fetch('http://localhost:3001/api/stuff', requestOptions);
+  }
 
   const handleTitle = (e) => {
     setTitle(e.target.value);
@@ -54,6 +63,7 @@ function SideBar({ sideBarClass }) {
     fetchUpload();
     // eslint-disable-next-line no-console
     console.log(selectFile, isFilePicked);
+    apiCall(title, album, picture, artist);
   };
 
   return (
