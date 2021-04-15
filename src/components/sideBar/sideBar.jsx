@@ -4,34 +4,25 @@ import PropTypes from 'prop-types';
 function SideBar({ sideBarClass }) {
   const [selectFile, setSelectFile] = useState();
   const [isFilePicked, setFilePicked] = useState(false);
-  const [title, setTitle] = useState('');
-  const [album, setAlbum] = useState('');
-  const [picture, setPicture] = useState('');
-  const [artist, setArtist] = useState();
+  // const [title, setTitle] = useState('');
+  // const [album, setAlbum] = useState('');
+  // const [picture, setPicture] = useState('');
+  // const [artist, setArtist] = useState();
 
-  function apiCall(album, title, picture, artist) {
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ _id: '1', title: title, imgLink: picture, linkUrl: artist }),
-    };
-    fetch('http://localhost:3001/api/stuff', requestOptions);
-  }
-
-  const handleTitle = (e) => {
-    setTitle(e.target.value);
+  const handleTitle = () => {
+    // setTitle(e.target.value);
   };
 
-  const handleAlbum = (e) => {
-    setAlbum(e.target.value);
+  const handleAlbum = () => {
+    // setAlbum(e.target.value);
   };
 
-  const handlePicture = (e) => {
-    setPicture(e.target.value);
+  const handlePicture = () => {
+    // setPicture(e.target.value);
   };
 
-  const handleArtist = (e) => {
-    setArtist(e.target.value);
+  const handleArtist = () => {
+    // setArtist(e.target.value);
   };
 
   const fetchUpload = () => {
@@ -63,12 +54,11 @@ function SideBar({ sideBarClass }) {
     fetchUpload();
     // eslint-disable-next-line no-console
     console.log(selectFile, isFilePicked);
-    apiCall(title, album, picture, artist);
   };
 
   return (
     <div className={sideBarClass}>
-      <div className="my-20  sticky flex flex-col justify-center items-center">
+      <form className="my-20  sticky flex flex-col justify-center items-center">
         <label className="text-white text-sm font-Orbit w-8/12" htmlFor="Title">
           Title:
         </label>
@@ -85,8 +75,8 @@ function SideBar({ sideBarClass }) {
           Picture:
         </label>
         <input onChange={handlePicture} className="w-3/4 bg-black text-white opacity-30 rounded-4xl my-4" name="Picture"></input>
-      </div>
-      <div className="flex flex-col justify-center items-center ">
+      </form>
+      <form className="flex flex-col justify-center items-center ">
         <label className="text-white text-sm font-Orbit w-8/12" htmlFor="playlist">
           Playlist:
         </label>
@@ -107,7 +97,7 @@ function SideBar({ sideBarClass }) {
             Playlist 5
           </option>
         </select>
-      </div>
+      </form>
       <div className="my-4 w-full flex flex-col items-center align-middle justify-center">
         <label className="text-white text-lg cursor-pointer" htmlFor="upload">
           Upload Song:
