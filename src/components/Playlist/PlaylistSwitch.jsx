@@ -1,11 +1,7 @@
-import React, { useState } from 'react';
-import ListPlaylist from './listPlaylist';
-import PlaylistOnclick from './playlistOnclick';
+import React from 'react';
 
 function PlaylistSwitch() {
-  const [change, setChange] = useState(false);
-
-  return <div>{change ? <PlaylistOnclick /> : <ListPlaylist change={change} setChange={setChange} />}</div>;
+  return <div></div>;
 }
 
 export default PlaylistSwitch;
