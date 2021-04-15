@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-
 import Header from './components/header/header.jsx';
 import SideBar from './components/sideBar/sideBar';
-import Playlist from './components/Playlist/playlist';
+/*import Playlist from './components/Playlist/playlist';*/
+import PlaylistOnclick from './components/Playlist/playlistOnclick';
+
 import useWindowDimensions from './Hooks/useWindowDimension';
 
 function App() {
@@ -26,7 +27,8 @@ function App() {
       </div>
 
       <div className="col-start-1 col-end-3 row-start-3 row-end-4 900:col-end-2 900:row-end-5 rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
-        <Playlist />
+        {/*<Playlist />*/}
+        <PlaylistOnclick />
       </div>
 
       <div className="col-start-1 col-end-2 row-start-4 row-end-5 gap-x-1 900:col-start-2 900:col-end-3 900:row-start-3 900:row-end-4  rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
