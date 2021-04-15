@@ -32,6 +32,7 @@ module.exports = {
       fontFamily: {
         scada: ['Scada', 'sans-serif'],
         cuprum: ['Cuprum', 'sans-serif'],
+        Orbit: ['Orbitron', 'monospace'],
       },
       width: {
         sb: '30%',
