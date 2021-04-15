@@ -1,4 +1,3 @@
-const { ErrorSharp } = require('@material-ui/icons');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
