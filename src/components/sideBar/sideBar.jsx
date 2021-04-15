@@ -69,41 +69,41 @@ function SideBar({ sideBarClass }) {
   return (
     <div className={sideBarClass}>
       <div className="my-20 sticky flex flex-col justify-center items-center">
-        <label className="text-white text-sm md:font-scada w-8/12" htmlFor="Title">
+        <label className="text-white text-sm font-Orbit w-8/12" htmlFor="Title">
           Title:
         </label>
         <input onChange={handleTitle} className="w-3/4 bg-black text-white opacity-30 rounded-4xl my-4" name="title"></input>
-        <label className="text-white text-sm md:font-scada w-8/12" htmlFor="Artist">
+        <label className="text-white text-sm font-Orbit w-8/12" htmlFor="Artist">
           Artist:
         </label>
         <input onChange={handleArtist} className="w-3/4 bg-black text-white opacity-30 rounded-4xl my-4" name="Artist"></input>
-        <label className="text-white text-sm md:font-scada w-8/12" htmlFor="Album">
+        <label className="text-white text-sm font-Orbit w-8/12" htmlFor="Album">
           Album:
         </label>
         <input onChange={handleAlbum} className="w-3/4 bg-black text-white opacity-30 rounded-4xl my-4" name="Album"></input>
-        <label className="text-white text-sm md:font-scada w-8/12" htmlFor="Picture">
+        <label className="text-white text-sm font-Orbit w-8/12" htmlFor="Picture">
           Picture:
         </label>
         <input onChange={handlePicture} className="w-3/4 bg-black text-white opacity-30 rounded-4xl my-4" name="Picture"></input>
       </div>
       <div className="flex flex-col justify-center items-center ">
-        <label className="text-white text-sm md:font-scada w-8/12" htmlFor="playlist">
+        <label className="text-white text-sm font-Orbit w-8/12" htmlFor="playlist">
           Playlist:
         </label>
         <select className="w-3/4 bg-black opacity-30 rounded-4xl" name="playlist" id="">
-          <option className="w-3/4 bg-black text-white opacity-30 rounded-4xl my-4" value="1">
+          <option className="w-3/4 bg-black text-white font-Orbit opacity-30 rounded-4xl my-4" value="1">
             Playlist 1
           </option>
-          <option className="w-3/4 bg-black text-white opacity-30 rounded-4xl my-4" value="2">
+          <option className="w-3/4 bg-black text-white font-Orbit opacity-30 rounded-4xl my-4" value="2">
             Playlist 2
           </option>
-          <option className="w-3/4 bg-black text-white opacity-30 rounded-4xl my-4" value="3">
+          <option className="w-3/4 bg-black text-white font-Orbit opacity-30 rounded-4xl my-4" value="3">
             Playlist 3
           </option>
-          <option className="w-3/4 bg-black text-white opacity-30 rounded-4xl my-4" value="4">
+          <option className="w-3/4 bg-black text-white font-Orbit opacity-30 rounded-4xl my-4" value="4">
             Playlist 4
           </option>
-          <option className="w-3/4 bg-black text-white opacity-30 rounded-4xl my-4" value="5">
+          <option className="w-3/4 bg-black text-white font-Orbit opacity-30 rounded-4xl my-4" value="5">
             Playlist 5
           </option>
         </select>
@@ -119,7 +119,7 @@ function SideBar({ sideBarClass }) {
           name="file"
           onChange={changeHandler}
         />
-        <button className="bg-black opacity-60 rounded-2xl my-10 text-white px-8 py-4 hover:opacity-95 md:font-scada" onClick={handleSubmission}>
+        <button className="bg-black opacity-60 rounded-2xl my-10 text-white px-8 py-4 hover:opacity-95 font-Orbit" onClick={handleSubmission}>
           UPLOAD
         </button>
       </div>

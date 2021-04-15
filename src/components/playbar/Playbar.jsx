@@ -139,8 +139,8 @@ export default function Playbar({ item, audio, currentTrack, setCurrentTrack, se
             </div>
             <Controls handlePlay={handlePlay} handlePause={handlePause} handleBackWard={handleBackWard} handleForWard={handleForWard} />
           </div>
-          <div className="w-full leading-6 text-base h-full flex align-middle item-center justify-center">
-            <div className=" px-1  font-Orbit text-white">{audio ? secondsToHms(currentTime) : '00:00'}</div>
+          <div className="w-fulltext-base h-full flex align-middle item-center justify-center">
+            <div className=" px-1 mx-2  font-Orbit text-white">{audio ? secondsToHms(currentTime) : '00:00'}</div>
             <div className="w-4/5">
               <div className="w-full">
                 <div className="endTime"></div>
