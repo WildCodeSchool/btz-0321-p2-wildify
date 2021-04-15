@@ -47,7 +47,6 @@ export default function Playbar({ item, audio, currentTrack, setCurrentTrack, se
     if (audioRef.current) {
       audioRef.current.load();
     }
-
     setTitle(item[currentTrack].title);
     setArtist(item[currentTrack].artist.name);
     setAlbum(item[currentTrack].album.title);
