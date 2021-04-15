@@ -18,11 +18,10 @@ function App() {
     'flex h-screen fixed right-0 flex-col  900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-black bg-opacity-30 shadow-sideBar',
   );
 
-  useEffect(async () => {
-    const getSongs = () => {
-      axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs').then((res) => {
-        setItem(res.data);
-      });
+  useEffect(() => {
+    const getSongs = async () => {
+      const { data } = await axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs');
+      setItem(data);
     };
     getSongs();
   }, []);
