@@ -12,20 +12,12 @@ function Sliderartist() {
     .then((result) => setSongs(result));
 
   return (
-    <div>
-      <div className="w-40 h-56 top-0 left-0 overflow-hidden rounded-3xl shadow-lg">
-        <button
-          className="w-40 top-0 left-0 z-50 relative text-black cursor-pointer focus:outline-none"
-          onClick={() => setIndex(index == 0 ? songs.length - 1 : index - 1)}>
-          <Previous />
-        </button>
-        <Slider songs={songs} index={index} />
-        <button
-          className="w-40 top-0 left-0 z-50 relative text-black cursor-pointer focus:outline-none bg-transparent"
-          onClick={() => setIndex(index == songs.length - 1 ? 0 : index + 1)}>
-          <Next />
-        </button>
+    <div className="w-44 h-56 rounded-3xl shadow-lg bg-black">
+      <Previous className="" songs={songs} index={index} setIndex={setIndex} />
+      <div className="w-44 h-44 overflow-hidden">
+        <Slider className="" songs={songs} index={index} />
       </div>
+      <Next className="" songs={songs} index={index} setIndex={setIndex} />
     </div>
   );
 }

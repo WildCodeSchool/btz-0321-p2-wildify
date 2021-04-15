@@ -4,7 +4,7 @@ import './App.css';
 
 function App() {
   return (
-    <div className="app">
+    <div className="h-auto w-auto">
       <Sliderartist />
     </div>
   );
