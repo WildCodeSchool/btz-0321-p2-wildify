@@ -1,41 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-import './App.css';
-import Playbar from './components/playbar/Playbar';
-import Carousel from './components/carousel/Carousel';
-import Header from './components/header/header.jsx';
-import SideBar from './components/sideBar/sideBar';
-
-function App() {
-  return (
-    <div className="AppBody">
-      <div className="GridComponent">
-        <Header />
-
-        <div className="section1">
-          {/* The Main Component GoHere */}
-          <Carousel />
-        </div>
-
-        <div className="section2">
-          <div className="PlaylistComponent">{/* PlaylistComponent GoHere */} </div>
-
-          <div className="section2Left">
-            <div className="vignettes">
-              <div className="vignette1">{/* ArtistComponent GoHere */} </div>
-              <div className="vignette2">{/* AlbumComponent GoHere */} </div>
-            </div>
-
-            <div className="MixtapesComponent">{/* MixtapesComponent GoHere */}</div>
-          </div>
-        </div>
-
-        <div className="ContactForm">{/* ContactFormComponent GoHere */} </div>
-      </div>
-
-      <Playbar />
-      <SideBar />
-=======
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import useWindowDimensions from './Hooks/useWindowDimension';
@@ -43,6 +5,7 @@ import Playbar from '../src/components/playbar/Playbar';
 import Header from './components/header/header.jsx';
 import SideBar from './components/sideBar/sideBar';
 import Contact from './components/Contact/Contact';
+import Carousel from './components/carousel/Carousel';
 
 function App() {
   const [isSideBarVisible, setisSideBarVisible] = useState(false);
@@ -93,6 +56,7 @@ function App() {
 
         <div className="col-start-1 col-end-3 row-start-2 900:col-end-4 rounded-20 bg-black bg-opacity-10 shadow-layoutContainer">
           {/* The Main Component GoHere */}
+          <Carousel item={item} />
         </div>
 
         <div className="col-start-1 col-end-3 row-start-3 row-end-4 900:col-end-2 900:row-end-5 rounded-20 bg-black bg-opacity-20 shadow-layoutContainer"></div>
@@ -123,7 +87,6 @@ function App() {
         setCurrentTrack={setCurrentTrack}
         item={item}
       />
->>>>>>> Dev
     </div>
   );
 }

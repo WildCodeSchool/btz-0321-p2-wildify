@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-import React from 'react'
-import './sideBar.css'
-
-function SideBar() {
-    return (
-        <div className="sideBar">
-            
-        </div>
-    )
-}
-
-export default SideBar
-=======
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -149,4 +135,3 @@ SideBar.propTypes = {
 };
 
 export default SideBar;
->>>>>>> Dev

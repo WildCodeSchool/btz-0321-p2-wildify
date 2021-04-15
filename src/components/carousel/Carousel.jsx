@@ -1,18 +1,9 @@
 import React, { useState } from 'react';
 import RecentAdds from './RecentAdds/RecentAdds';
+import PropTypes from 'prop-types';
 
-export default function Carousel() {
+export default function Carousel({ item }) {
   const [count, setCount] = useState(0);
-  const [albumCovers] = useState([
-    'https://placedog.net/300/200',
-    'https://placedog.net/320/200',
-    'https://placedog.net/400/200',
-    'https://placedog.net/500/200',
-    'https://placedog.net/400/300',
-    'https://placedog.net/500/300',
-    'https://placedog.net/300/300',
-    'https://placedog.net/300/400',
-  ]);
 
   return (
     <div className="grid grid-cols-mobileCarousel grid-rows-mobileCarousel 900:grid-cols-desktopCarousel 900:grid-rows-desktopCarousel w-full h-full">
@@ -27,7 +18,11 @@ export default function Carousel() {
         <button>TrackList</button>
       </div>
 
-      <RecentAdds count={count} setCount={setCount} albumCovers={albumCovers} />
+      <RecentAdds count={count} setCount={setCount} item={item} />
     </div>
   );
 }
+
+Carousel.propTypes = {
+  item: PropTypes.array.isRequired,
+};
