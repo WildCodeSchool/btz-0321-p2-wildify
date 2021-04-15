@@ -42,7 +42,6 @@ export default function Playbar({ item, audio, currentTrack, setCurrentTrack, se
       audioRef.current.pause();
       audioRef.current.load();
       audioRef.current.play();
-      audioRef.current.pause();
     }
     setTitle(item[currentTrack].title);
     setArtist(item[currentTrack].artist.name);
@@ -66,9 +65,10 @@ export default function Playbar({ item, audio, currentTrack, setCurrentTrack, se
   };
 
   const handleBackWard = () => {
+    setAudio(true);
     setCurrentTrack(currentTrack - 1);
     updateSong();
-    audioRef.current.play();
+    handlePlay();
   };
 
   const handleForWard = () => {
@@ -76,17 +76,17 @@ export default function Playbar({ item, audio, currentTrack, setCurrentTrack, se
       setAudio(true);
       setCurrentTrack(0);
       updateSong();
-      audioRef.current.play();
+      handlePlay();
     } else {
       setAudio(true);
       setCurrentTrack(currentTrack + 1);
       updateSong();
-      audioRef.current.play();
+      handlePlay();
     }
   };
 
   return (
-    <div className="w-10/12 flex-row align-middle justify-center fixed bottom-3">
+    <div className="w-7/12 flex-row align-middle justify-center fixed bottom-3">
       <HiddenPlayer
         currentTrack={currentTrack}
         setCurrentTrack={setCurrentTrack}
@@ -101,7 +101,7 @@ export default function Playbar({ item, audio, currentTrack, setCurrentTrack, se
 
       <div
         className="flex  py-2
-       bg-black opacity-70 items-center h-full justify-center rounded-3xl ">
+       bg-black opacity-40 items-center h-full justify-center rounded-3xl ">
         <div className="flex-row w-5/12 flex align-middle justify-center h-full">
           <div className="flex-col  w-2/4 flex items-center justify-around">
             <img className="w-5/12 rounded-full" src={picture} alt="" />
@@ -116,7 +116,7 @@ export default function Playbar({ item, audio, currentTrack, setCurrentTrack, se
           <div className="flex h-full w-full">
             {audio ? (
               <div className="h-full flex  px-0 mx-0 ">
-                <img className="w-2/12" src="./src/img/gifSon.gif" alt="" />
+                <img className="w-5/12" src="./src/img/gifSon.gif" alt="" />
               </div>
             ) : (
               ''

@@ -13,6 +13,9 @@ function App() {
   const [audio, setAudio] = useState(false);
   const [onListen, setOnListen] = useState('');
   const [currentTrack, setCurrentTrack] = useState(0);
+  const [sideBarClass, setSideBarClass] = useState(
+    'flex fixed right-0 flex-col  900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-black bg-opacity-30 shadow-sideBar',
+  );
 
   useEffect(async () => {
     const getSongs = () => {
@@ -36,6 +39,13 @@ function App() {
   };
   const handleSideBar = () => {
     isSideBarVisible ? setisSideBarVisible(false) : setisSideBarVisible(true);
+    isSideBarVisible
+      ? setSideBarClass(
+          'flex fixed right-0 flex-col  900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-black bg-opacity-30 shadow-sideBar',
+        )
+      : setSideBarClass(
+          'flex fixed flex-col  top-0 right-0 900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-black bg-opacity-30 shadow-sideBar',
+        );
   };
 
   return (
@@ -63,7 +73,7 @@ function App() {
         <div className="col-start-1 col-end-3 row-start-6 row-end-7 rounded-20 900:col-end-4 900:row-start-5 900:row-end-6 bg-black bg-opacity-20 shadow-layoutContainer mb-4">
           <Contact />
         </div>
-        {isSideBarVisible && <SideBar />}
+        {isSideBarVisible && <SideBar sideBarClass={sideBarClass} setSideBarClass={setSideBarClass} />}
       </div>
       <Playbar
         handleSong={handleSong}
