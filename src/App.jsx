@@ -1,12 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import useWindowDimensions from './Hooks/useWindowDimension';
+import Playbar from '../src/components/playbar/Playbar';
 import Header from './components/header/header.jsx';
 import SideBar from './components/sideBar/sideBar';
 import ListPlaylist from './components/Playlist/listPlaylist';
-import useWindowDimensions from './Hooks/useWindowDimension';
 
 function App() {
   const [isSideBarVisible, setisSideBarVisible] = useState(false);
   const { width } = useWindowDimensions();
+  const [item, setItem] = useState([]);
+  const [audio, setAudio] = useState(false);
+  const [onListen, setOnListen] = useState('');
+
+  const handleSong = () => {
+    setOnListen(item[5].s3_link);
+  };
+
+  useEffect(async () => {
+    const getSongs = () => {
+      axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs').then((res) => {
+        setItem(res.data);
+      });
+    };
+    getSongs();
+  }, []);
 
   useEffect(() => {
     if (width < 768) {
@@ -43,6 +61,7 @@ function App() {
         {/* ContactFormComponent GoHere */}
       </div>
       {isSideBarVisible && <SideBar />}
+      <Playbar handleSong={handleSong} onListen={onListen} setOnListen={setOnListen} audio={audio} setAudio={setAudio} item={item} />
     </div>
   );
 }
