@@ -119,7 +119,6 @@ function SideBar({ sideBarClass }) {
 
 SideBar.propTypes = {
   sideBarClass: PropTypes.string.isRequired,
-  setSideBarClass: PropTypes.strfuncing.isRequired,
 };
 
 export default SideBar;
