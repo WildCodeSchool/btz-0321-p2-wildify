@@ -6,6 +6,7 @@ import Header from './components/header/header.jsx';
 import SideBar from './components/sideBar/sideBar';
 import Contact from './components/Contact/Contact';
 import SliderAlbum from './components/SliderAlbum';
+import ListPlaylist from './components/Playlist/listPlaylist';
 
 function App() {
   const [isSideBarVisible, setisSideBarVisible] = useState(false);
@@ -15,12 +16,14 @@ function App() {
   const [onListen, setOnListen] = useState('');
   const [currentTrack, setCurrentTrack] = useState(0);
   const [sideBarClass, setSideBarClass] = useState(
-    'flex h-screen fixed right-0 flex-col  900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-black bg-opacity-30 shadow-sideBar',
+    'flex fixed flex-col h-screen  top-0 right-0 900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-black bg-opacity-30 shadow-sideBar',
   );
 
-  useEffect(async () => {
-    const getSongs = () => {
-      axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs').then((res) => {
+  const [playBarVisible, setPlayBarVisible] = useState();
+
+  useEffect(() => {
+    const getSongs = async () => {
+      await axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs').then((res) => {
         setItem(res.data);
       });
     };
@@ -30,8 +33,10 @@ function App() {
   useEffect(() => {
     if (width < 768) {
       setisSideBarVisible(false);
+      setPlayBarVisible(false);
     } else {
       setisSideBarVisible(true);
+      setPlayBarVisible(true);
     }
   }, [width]);
 
@@ -58,7 +63,9 @@ function App() {
           {/* The Main Component GoHere */}
         </div>
 
-        <div className="col-start-1 col-end-3 row-start-3 row-end-4 900:col-end-2 900:row-end-5 rounded-20 bg-black bg-opacity-20 shadow-layoutContainer"></div>
+        <div className="col-start-1 col-end-3 row-start-3 row-end-4 900:col-end-2 900:row-end-5 rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
+          <ListPlaylist />
+        </div>
 
         <div className="col-start-1 col-end-2 row-start-4 row-end-5 gap-x-1 900:col-start-2 900:col-end-3 900:row-start-3 900:row-end-4  rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
           {/* ArtistComponent GoHere */}{' '}
@@ -76,16 +83,18 @@ function App() {
         </div>
         {isSideBarVisible && <SideBar sideBarClass={sideBarClass} setSideBarClass={setSideBarClass} />}
       </div>
-      <Playbar
-        handleSong={handleSong}
-        onListen={onListen}
-        setOnListen={setOnListen}
-        audio={audio}
-        setAudio={setAudio}
-        currentTrack={currentTrack}
-        setCurrentTrack={setCurrentTrack}
-        item={item}
-      />
+      {playBarVisible && (
+        <Playbar
+          handleSong={handleSong}
+          onListen={onListen}
+          setOnListen={setOnListen}
+          audio={audio}
+          setAudio={setAudio}
+          currentTrack={currentTrack}
+          setCurrentTrack={setCurrentTrack}
+          item={item}
+        />
+      )}
     </div>
   );
 }
