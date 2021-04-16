@@ -67,14 +67,8 @@ function SideBar({ sideBarClass }) {
   const handleSubmission = () => {
     let formData = new FormData();
     formData.append('file', selectFile);
-    formData.append('title', 'test');
-    formData.append('album', 'text');
-    formData.append('artist', 'test');
     fetch('https://bazify-backend.basile.vernouillet.dev/api/v1/songs', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/Json',
-      },
       body: formData,
     })
       .then((response) => response.json())
