@@ -4,9 +4,8 @@ import useWindowDimensions from './Hooks/useWindowDimension';
 import Playbar from '../src/components/playbar/Playbar';
 import Header from './components/header/header.jsx';
 import SideBar from './components/sideBar/sideBar';
-import Contact from './components/Contact/Contact';
 import ListPlaylist from './components/Playlist/listPlaylist';
-
+import Contact from './components/Contact/Contact';
 function App() {
   const [isSideBarVisible, setisSideBarVisible] = useState(false);
   const { width } = useWindowDimensions();
