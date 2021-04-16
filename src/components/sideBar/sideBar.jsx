@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 function SideBar({ sideBarClass }) {
   const [selectFile, setSelectFile] = useState();
-  const [isFilePicked, setFilePicked] = useState(false);
+
   // const [title, setTitle] = useState('');
   // const [album, setAlbum] = useState('');
-  // const [picture, setPicture] = useState('');
+  // // const [picture, setPicture] = useState('');
   // const [artist, setArtist] = useState();
 
   const handleTitle = () => {
@@ -24,6 +24,7 @@ function SideBar({ sideBarClass }) {
   const handleArtist = () => {
     // setArtist(e.target.value);
   };
+  // const formData = new FormData();
 
   // function fileUpload(file) {
   //   const url = 'https://bazify-backend.basile.vernouillet.dev/api/v1/songs';
@@ -42,10 +43,11 @@ function SideBar({ sideBarClass }) {
   //     method: 'POST',
   //     headers: {
   //       headers: {
-  //         'Content-Type': 'multipart/form-data',
+  //         'Content-Type': 'application/json',
+  //         'X-Custom-Header': 'ProcessThisImmediately',
   //       },
   //     },
-  //     body: formData2,
+  //     body: formData.append('file', selectFile, 'file'),
   //   })
   //     .then((response) => response.json())
   //     .then((result) => {
@@ -58,15 +60,30 @@ function SideBar({ sideBarClass }) {
   //       console.error('Error:', error);
   //     });
   // };
-
   const changeHandler = (event) => {
     setSelectFile(event.target.files[0]);
-    setFilePicked(true);
   };
 
   const handleSubmission = () => {
-    // eslint-disable-next-line no-console
-    console.log(selectFile, isFilePicked);
+    let formData = new FormData();
+    formData.append('file', selectFile);
+    formData.append('title', 'test');
+    formData.append('album', 'text');
+    formData.append('artist', 'test');
+    fetch('https://bazify-backend.basile.vernouillet.dev/api/v1/songs', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/Json',
+      },
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        result;
+      })
+      .catch((error) => {
+        error;
+      });
   };
 
   return (

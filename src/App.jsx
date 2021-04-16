@@ -6,6 +6,8 @@ import Header from './components/header/header.jsx';
 import SideBar from './components/sideBar/sideBar';
 import Contact from './components/Contact/Contact';
 import Carousel from './components/carousel/Carousel';
+import SliderAlbum from './components/SliderAlbum';
+import ListPlaylist from './components/Playlist/listPlaylist';
 
 function App() {
   const [isSideBarVisible, setisSideBarVisible] = useState(false);
@@ -18,11 +20,10 @@ function App() {
     'flex h-screen fixed right-0 flex-col  900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-black bg-opacity-30 shadow-sideBar',
   );
 
-  useEffect(async () => {
-    const getSongs = () => {
-      axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs').then((res) => {
-        setItem(res.data);
-      });
+  useEffect(() => {
+    const getSongs = async () => {
+      const { data } = await axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs');
+      setItem(data);
     };
     getSongs();
   }, []);
@@ -59,13 +60,15 @@ function App() {
           <Carousel item={item} />
         </div>
 
-        <div className="col-start-1 col-end-3 row-start-3 row-end-4 900:col-end-2 900:row-end-5 rounded-20 bg-black bg-opacity-20 shadow-layoutContainer"></div>
+        <div className="col-start-1 col-end-3 row-start-3 row-end-4 900:col-end-2 900:row-end-5 rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
+          <ListPlaylist />
+        </div>
 
         <div className="col-start-1 col-end-2 row-start-4 row-end-5 gap-x-1 900:col-start-2 900:col-end-3 900:row-start-3 900:row-end-4  rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
           {/* ArtistComponent GoHere */}{' '}
         </div>
         <div className="col-start-2 col-end-3 row-start-4 rows-end-5 900:col-start-3 900:col-end-4 900:row-start-3 900:row-end-4 rounded-20 gap-x-1 bg-black bg-opacity-20 shadow-layoutContainer">
-          {/* AlbumComponent GoHere */}{' '}
+          <SliderAlbum item={item} />
         </div>
 
         <div className="col-start-1 col-end-3 row-start-5 row-end-6 rounded-20 900:col-start-2 900:col-end-4 900:row-start-4 900:row-end-5 bg-black bg-opacity-20 shadow-layoutContainer">
