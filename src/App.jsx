@@ -5,6 +5,7 @@ import Playbar from '../src/components/playbar/Playbar';
 import Header from './components/header/header.jsx';
 import SideBar from './components/sideBar/sideBar';
 import Contact from './components/Contact/Contact';
+import SliderAlbum from './components/SliderAlbum';
 
 function App() {
   const [isSideBarVisible, setisSideBarVisible] = useState(false);
@@ -63,7 +64,7 @@ function App() {
           {/* ArtistComponent GoHere */}{' '}
         </div>
         <div className="col-start-2 col-end-3 row-start-4 rows-end-5 900:col-start-3 900:col-end-4 900:row-start-3 900:row-end-4 rounded-20 gap-x-1 bg-black bg-opacity-20 shadow-layoutContainer">
-          {/* AlbumComponent GoHere */}{' '}
+          <SliderAlbum />
         </div>
 
         <div className="col-start-1 col-end-3 row-start-5 row-end-6 rounded-20 900:col-start-2 900:col-end-4 900:row-start-4 900:row-end-5 bg-black bg-opacity-20 shadow-layoutContainer">

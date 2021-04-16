@@ -3,7 +3,7 @@ import Slider from './Slider';
 import Next from './Next';
 import Previous from './Previous';
 
-function Sliderartist() {
+function SliderAlbum() {
   const [index, setIndex] = useState(0);
   const [songs, setSongs] = useState([]);
 
@@ -22,4 +22,4 @@ function Sliderartist() {
   );
 }
 
-export default Sliderartist;
+export default SliderAlbum;
