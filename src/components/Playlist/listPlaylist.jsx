@@ -1,10 +1,10 @@
 import React from 'react';
-import WorkingPlaylist from '../../img/Playlist/WorkingPlaylist.svg';
-import SportPlaylist from '../../img/Playlist/SportPlaylist.svg';
-import ChillPlaylist from '../../img/Playlist/chiilPlaylist.svg';
-import PartyPlaylist from '../../img/Playlist/PartyAndFun.svg';
-import OldSchoolPlaylist from '../../img/Playlist/OldSchool.svg';
-import GamingPlaylist from '../../img/Playlist/Gaming.svg';
+import WorkingPlaylist from '../../img/PlayList/WorkingPlaylist.svg';
+import SportPlaylist from '../../img/PlayList/SportPlaylist.svg';
+import ChillPlaylist from '../../img/PlayList/ChiilPlaylist.svg';
+import PartyPlaylist from '../../img/PlayList/PartyAndFun.svg';
+import OldSchoolPlaylist from '../../img/PlayList/OldSchool.svg';
+import GamingPlaylist from '../../img/PlayList/Gaming.svg';
 import Playlist from './Playlist';
 
 function ListPlaylist() {
