@@ -24,7 +24,42 @@ function SideBar({ sideBarClass }) {
   const handleArtist = () => {
     // setArtist(e.target.value);
   };
+  // const formData = new FormData();
 
+  // function fileUpload(file) {
+  //   const url = 'https://bazify-backend.basile.vernouillet.dev/api/v1/songs';
+  //   const formData = new FormData();
+  //   formData.append('file', file);
+  //   const config = {
+  //     headers: {
+  //       'content-type': 'multipart/form-data',
+  //     },
+  //   };
+  //   return post(url, formData, config);
+  // }
+
+  // const fetchUpload = () => {
+  //   fetch('https://bazify-backend.basile.vernouillet.dev/api/v1/songs', {
+  //     method: 'POST',
+  //     headers: {
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'X-Custom-Header': 'ProcessThisImmediately',
+  //       },
+  //     },
+  //     body: formData.append('file', selectFile, 'file'),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((result) => {
+  //       // eslint-disable-next-line no-console
+  //       console.log('succes:', result);
+  //     })
+  //     .then(console.log('ok'))
+  //     .catch((error) => {
+  //       // eslint-disable-next-line no-console
+  //       console.error('Error:', error);
+  //     });
+  // };
   const changeHandler = (event) => {
     setSelectFile(event.target.files[0]);
   };

@@ -113,7 +113,7 @@ export default function Playbar({ item, audio, currentTrack, setCurrentTrack, se
 
       <div
         className="flex  py-2
-       bg-black opacity-60 items-center h-full max-h-28 justify-center rounded-3xl ">
+       bg-black opacity-80 items-center h-full max-h-28 justify-center rounded-3xl ">
         <div className="flex-row w-5/12 flex align-middle justify-center h-full">
           <div className="flex-col w-5/12  flex items-center justify-around">
             <img className="w-9/12  rounded-full" src={picture} alt="" />
