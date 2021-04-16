@@ -16,16 +16,13 @@ function App() {
   const [onListen, setOnListen] = useState('');
   const [currentTrack, setCurrentTrack] = useState(0);
   const [sideBarClass, setSideBarClass] = useState(
-    'flex fixed flex-col h-screen  top-0 right-0 900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-black bg-opacity-30 shadow-sideBar',
+    'flex h-screen fixed right-0 flex-col  900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-black bg-opacity-30 shadow-sideBar',
   );
-
-  const [playBarVisible, setPlayBarVisible] = useState();
 
   useEffect(() => {
     const getSongs = async () => {
-      await axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs').then((res) => {
-        setItem(res.data);
-      });
+      const { data } = await axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs');
+      setItem(data);
     };
     getSongs();
   }, []);
@@ -33,10 +30,8 @@ function App() {
   useEffect(() => {
     if (width < 768) {
       setisSideBarVisible(false);
-      setPlayBarVisible(false);
     } else {
       setisSideBarVisible(true);
-      setPlayBarVisible(true);
     }
   }, [width]);
 
@@ -83,18 +78,16 @@ function App() {
         </div>
         {isSideBarVisible && <SideBar sideBarClass={sideBarClass} setSideBarClass={setSideBarClass} />}
       </div>
-      {playBarVisible && (
-        <Playbar
-          handleSong={handleSong}
-          onListen={onListen}
-          setOnListen={setOnListen}
-          audio={audio}
-          setAudio={setAudio}
-          currentTrack={currentTrack}
-          setCurrentTrack={setCurrentTrack}
-          item={item}
-        />
-      )}
+      <Playbar
+        handleSong={handleSong}
+        onListen={onListen}
+        setOnListen={setOnListen}
+        audio={audio}
+        setAudio={setAudio}
+        currentTrack={currentTrack}
+        setCurrentTrack={setCurrentTrack}
+        item={item}
+      />
     </div>
   );
 }
