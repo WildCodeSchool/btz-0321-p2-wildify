@@ -8,6 +8,8 @@ import Contact from './components/Contact/Contact';
 import Carousel from './components/carousel/Carousel';
 import SliderAlbum from './components/SliderAlbum';
 import ListPlaylist from './components/Playlist/listPlaylist';
+import bg from './img/BackGrounds/BackGround1.webp';
+
 function App() {
   const [isSideBarVisible, setisSideBarVisible] = useState(false);
   const { width } = useWindowDimensions();
@@ -52,7 +54,13 @@ function App() {
   };
 
   return (
-    <div className="flex align-middle justify-center">
+    <div
+      className="flex align-middle justify-center"
+      style={{
+        backgroundImage: `url(${bg})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+      }}>
       <div className="grid mx-5 gap-5  900:gap-6 grid-cols-mobile grid-rows-mobile 900:grid-cols-desktop 900:ml-6 900:mr-0 900:grid-rows-desktop">
         <Header handleSideBar={handleSideBar} isSideBarVisible={isSideBarVisible} />
 
