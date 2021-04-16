@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import next from '../img/next.svg';
 
 function Next({ item, index, setIndex }) {
+  const Next = { next };
   return (
     <button className="text-black cursor-pointer focus:outline-none" onClick={() => setIndex(index == item.length - 1 ? 0 : index + 1)}>
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-44 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-      </svg>
+      <img src={Next.next} alt="" />
     </button>
   );
 }
