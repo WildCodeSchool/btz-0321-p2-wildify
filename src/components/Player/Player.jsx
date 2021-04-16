@@ -109,8 +109,8 @@ export default function Player({
         Your browser does not support this audio format.
       </audio>
       <div className="flex justify-around items-center w-full align-middle px-10">
-        <img src="./src/img/Group 44.png" className="w-5" alt="" />
         <input onChange={volumeChange} type="range" min="0" max="100" value={sliderPos} className="w-8/12 h-0.5 slider" id="myRange"></input>
+        <img src="./src/img/Group 44.png" className="w-5" alt="" />
       </div>
       <div className="w-full flex align-middle justify-center px-10">
         <img className="rounded-full w-2/4 max-w-xl" src={picture ? picture : './src/img/playbar-miniature.png'} alt="" />
