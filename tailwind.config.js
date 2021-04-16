@@ -15,8 +15,6 @@ module.exports = {
         900: '900px',
       },
       gridTemplateColumns: {
-        desktopCarousel: '1fr 1fr',
-        mobileCarousel: '1fr',
         desktop: '4fr 2fr 2fr 3fr',
         mobile: '1fr 1fr',
       },

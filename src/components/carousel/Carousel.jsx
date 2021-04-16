@@ -6,7 +6,7 @@ export default function Carousel({ item }) {
   const [count, setCount] = useState(0);
 
   return (
-    <div className="grid grid-cols-mobileCarousel grid-rows-mobileCarousel 900:grid-cols-desktopCarousel 900:grid-rows-desktopCarousel w-full h-full">
+    <div className="grid grid-cols-1 grid-rows-mobileCarousel 900:grid-cols-2 900:grid-rows-desktopCarousel w-full h-full">
       <div className="col-start-1 col-end-2 row-start-1 row-end-2">
         <p className="text-white px-2">Recent adds</p>
       </div>
