@@ -15,6 +15,7 @@ function App() {
   const [audio, setAudio] = useState(false);
   const [onListen, setOnListen] = useState('');
   const [currentTrack, setCurrentTrack] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   const [sideBarClass, setSideBarClass] = useState(
     'flex h-screen fixed right-0 flex-col  900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-black bg-opacity-30 shadow-sideBar',
   );
@@ -23,6 +24,7 @@ function App() {
     const getSongs = async () => {
       const { data } = await axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs');
       setItem(data);
+      setIsLoading(false);
     };
     getSongs();
   }, []);
@@ -56,7 +58,7 @@ function App() {
 
         <div className="col-start-1 col-end-3 row-start-2 900:col-end-4 rounded-20 bg-black bg-opacity-10 shadow-layoutContainer">
           {/* The Main Component GoHere */}
-          <Carousel item={item} />
+          {!isLoading && <Carousel item={item} />}
         </div>
 
         <div className="col-start-1 col-end-3 row-start-3 row-end-4 900:col-end-2 900:row-end-5 rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
