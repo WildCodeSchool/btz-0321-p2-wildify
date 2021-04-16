@@ -9,6 +9,7 @@ import Carousel from './components/carousel/Carousel';
 import SliderAlbum from './components/SliderAlbum';
 import ListPlaylist from './components/Playlist/listPlaylist';
 import bg from './img/BackGrounds/BackGround1.webp';
+import Player from './components/Player/Player';
 
 function App() {
   const [isSideBarVisible, setisSideBarVisible] = useState(false);
@@ -89,6 +90,7 @@ function App() {
         </div>
         {isSideBarVisible && <SideBar sideBarClass={sideBarClass} setSideBarClass={setSideBarClass} />}
       </div>
+      <Player />
       <Playbar
         handleSong={handleSong}
         onListen={onListen}
