@@ -6,7 +6,7 @@ function Previous({ item, index, setIndex }) {
   const Previous = { previous };
   return (
     <button className="text-black cursor-pointer focus:outline-none" onClick={() => setIndex(index == 0 ? item.length - 1 : index - 1)}>
-      <img src={Previous.previous} alt="previous" />
+      <img src={Previous.previous} alt="" />
     </button>
   );
 }
