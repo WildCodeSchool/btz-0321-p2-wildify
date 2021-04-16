@@ -16,7 +16,7 @@ export default function Contact() {
   return (
     <div className={formFlex}>
       <div className="py-24 px-8  h-full flex flex-col align-middle justify-center items-center">
-        <h2 className="text-gray-400 text-6xl md:font-scada">Help us to make Wizik better</h2>
+        <h2 className="text-gray-400 text-6xl md:font-scada">Help us to make Wizic better</h2>
         <p className="text-gray-400 text-2xl md:font-scada">You&apos;re opinion remain for us, please give a feedback</p>
       </div>
       <div className="px-12  h-full flex flex-col align-left items-left justify-center">
