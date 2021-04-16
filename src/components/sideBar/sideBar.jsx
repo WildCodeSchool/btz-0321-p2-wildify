@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 function SideBar({ sideBarClass }) {
   const [selectFile, setSelectFile] = useState();
-  const [isFilePicked, setFilePicked] = useState(false);
+
   // const [title, setTitle] = useState('');
   // const [album, setAlbum] = useState('');
-  // const [picture, setPicture] = useState('');
+  // // const [picture, setPicture] = useState('');
   // const [artist, setArtist] = useState();
 
   const handleTitle = () => {
@@ -25,48 +25,30 @@ function SideBar({ sideBarClass }) {
     // setArtist(e.target.value);
   };
 
-  // function fileUpload(file) {
-  //   const url = 'https://bazify-backend.basile.vernouillet.dev/api/v1/songs';
-  //   const formData = new FormData();
-  //   formData.append('file', file);
-  //   const config = {
-  //     headers: {
-  //       'content-type': 'multipart/form-data',
-  //     },
-  //   };
-  //   return post(url, formData, config);
-  // }
-
-  // const fetchUpload = () => {
-  //   fetch('https://bazify-backend.basile.vernouillet.dev/api/v1/songs', {
-  //     method: 'POST',
-  //     headers: {
-  //       headers: {
-  //         'Content-Type': 'multipart/form-data',
-  //       },
-  //     },
-  //     body: formData2,
-  //   })
-  //     .then((response) => response.json())
-  //     .then((result) => {
-  //       // eslint-disable-next-line no-console
-  //       console.log('succes:', result);
-  //     })
-  //     .then(console.log('ok'))
-  //     .catch((error) => {
-  //       // eslint-disable-next-line no-console
-  //       console.error('Error:', error);
-  //     });
-  // };
-
   const changeHandler = (event) => {
     setSelectFile(event.target.files[0]);
-    setFilePicked(true);
   };
 
   const handleSubmission = () => {
-    // eslint-disable-next-line no-console
-    console.log(selectFile, isFilePicked);
+    let formData = new FormData();
+    formData.append('file', selectFile);
+    formData.append('title', 'test');
+    formData.append('album', 'text');
+    formData.append('artist', 'test');
+    fetch('https://bazify-backend.basile.vernouillet.dev/api/v1/songs', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/Json',
+      },
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        result;
+      })
+      .catch((error) => {
+        error;
+      });
   };
 
   return (

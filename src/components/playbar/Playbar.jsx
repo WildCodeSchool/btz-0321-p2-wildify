@@ -75,6 +75,7 @@ export default function Playbar({ item, audio, currentTrack, setCurrentTrack, se
   };
 
   const handleBackWard = () => {
+    audioRef.current.pause();
     setAudio(true);
     setCurrentTrack(currentTrack - 1);
     updateSong();
@@ -82,12 +83,13 @@ export default function Playbar({ item, audio, currentTrack, setCurrentTrack, se
   };
 
   const handleForWard = () => {
+    audioRef.current.pause();
     if (currentTrack >= item.length) {
       setAudio(true);
       setCurrentTrack(0);
       updateSong();
-      handlePlay();
     } else {
+      audioRef.current.pause();
       setAudio(true);
       setCurrentTrack(currentTrack + 1);
       updateSong();
@@ -96,7 +98,7 @@ export default function Playbar({ item, audio, currentTrack, setCurrentTrack, se
   };
 
   return (
-    <div className="w-7/12 max-h-40 flex-row align-middle justify-center   fixed bottom-3">
+    <div className="w-2/4 max-h-40 flex-row align-middle justify-center   fixed bottom-3">
       <HiddenPlayer
         currentTrack={currentTrack}
         setCurrentTrack={setCurrentTrack}
@@ -139,7 +141,7 @@ export default function Playbar({ item, audio, currentTrack, setCurrentTrack, se
             <Controls handlePlay={handlePlay} handlePause={handlePause} handleBackWard={handleBackWard} handleForWard={handleForWard} />
           </div>
           <div className="w-fulltext-base h-full flex align-middle item-center justify-center">
-            <div className=" px-1 mx-2  font-Orbit text-white">{audio ? secondsToHms(currentTime) : '00:00'}</div>
+            <div className=" px-1 mx-2 text-xs  font-Orbit text-white">{audio ? secondsToHms(currentTime) : '00:00'}</div>
             <div className="w-4/5">
               <div className="w-full">
                 <div className="endTime"></div>
@@ -154,7 +156,7 @@ export default function Playbar({ item, audio, currentTrack, setCurrentTrack, se
                 <div className="endTime"></div>
               </div>
             </div>
-            <div className="text-white font-Orbit mx-6">{audio ? secondsToHms(duration - currentTime) : '00:00'}</div>
+            <div className="text-white  font-Orbit mx-6">{audio ? secondsToHms(duration - currentTime) : '00:00'}</div>
           </div>
         </div>
       </div>
