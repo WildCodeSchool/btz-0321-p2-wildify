@@ -102,23 +102,23 @@ export default function Player({
   }
 
   return (
-    <div className="bg-black  opacity-95 fixed flex flex-col  justify-between z-50 align-middle w-full h-full py-20">
+    <div className="bg-black fixed flex flex-col  justify-between z-50 align-middle w-full h-full py-20">
       <audio id="audio" className="hidden" onEnded={handleForWard} ref={audioRef2} controls>
         <source src={onListen} type="audio/mp3"></source>
         <track default kind="captions" />
         Your browser does not support this audio format.
       </audio>
       <div className="flex justify-around items-center w-full align-middle px-10">
-        <img src="./src/img/Group 44.png" alt="" />
-        <input onChange={volumeChange} type="range" min="0" max="100" value={sliderPos} className="w-11/12 h-0.5 slider" id="myRange"></input>
+        <img src="./src/img/Group 44.png" className="w-5" alt="" />
+        <input onChange={volumeChange} type="range" min="0" max="100" value={sliderPos} className="w-8/12 h-0.5 slider" id="myRange"></input>
       </div>
       <div className="w-full flex align-middle justify-center px-10">
         <img className="rounded-full w-2/4 max-w-xl" src={picture ? picture : './src/img/playbar-miniature.png'} alt="" />
       </div>
-      <div className="text-white font-scada flex flex-col items-center w-full align-middle justify-center px-10">
-        <div>{title}</div>
-        <div>{artist}</div>
-        <div>{album}</div>
+      <div className="text-white text-3xl font-Orbit flex flex-col items-center w-full align-middle justify-center px-10">
+        <div className="font-Orbit">{title}</div>
+        <div className="font-Orbit">{artist}</div>
+        <div className="font-Orbit">{album}</div>
         <div>
           {title ? (
             <div className="flex align-middle justify-center items-center">
@@ -130,9 +130,9 @@ export default function Player({
         </div>
       </div>
       <div className="w-full flex align-middle items-center justify-center px-10">
-        <div className="text-white">{title ? secondsToHms(currentTime) : '00:00'}</div>
+        <div className="text-white font-Orbit">{title ? secondsToHms(currentTime) : '00:00'}</div>
         <Controls handleBackWard={handleBackWard} handleForWard={handleForWard} handlePause={handlePause} handlePlay={handlePlay} />
-        <div className="text-white">{title ? secondsToHms(duration - currentTime) : '00:00'}</div>
+        <div className="text-white font-Orbit">{title ? secondsToHms(duration - currentTime) : '00:00'}</div>
       </div>
       <div className="w-full flex align-middle items-center justify-center px-10">
         <input
@@ -141,7 +141,7 @@ export default function Player({
           min="0"
           max={duration}
           value={sliderValue}
-          className="w-11/12 h-0.5 slider"
+          className="w-8/12 mx-14 h-0.5 slider"
           id="myRange"></input>
         <button onClick="">
           <img src="./src/img/arrow.svg" className="w-8 cursor-pointer" alt="" />
