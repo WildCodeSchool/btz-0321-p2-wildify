@@ -4,16 +4,29 @@ import Controls from './controls/controls';
 import HiddenPlayer from '../HiddenPlayer/HiddenPlayer';
 import './playbar.css';
 
-export default function Playbar({ item, audio, currentTrack, setCurrentTrack, setAudio, onListen, setOnListen, handleSong }) {
+export default function Playbar({
+  title,
+  album,
+  artist,
+  picture,
+  item,
+  audio,
+  currentTrack,
+  setCurrentTrack,
+  setAudio,
+  onListen,
+  setOnListen,
+  handleSong,
+  setPicture,
+  setTitle,
+  setAlbum,
+  setArtist,
+}) {
   const [sliderValue, setSliderValue] = useState(0);
   const [sliderPos, setSliderPos] = useState('100');
-  const [title, setTitle] = useState();
-  const [artist, setArtist] = useState();
-  const [album, setAlbum] = useState();
-  const [picture, setPicture] = useState();
+
   const [duration, setDuration] = useState('00:00');
   const [currentTime, setCurrentTime] = useState('00:00');
-
   const audioRef = useRef(null);
 
   function secondsToHms(d) {
@@ -35,12 +48,6 @@ export default function Playbar({ item, audio, currentTrack, setCurrentTrack, se
       clearInterval(timer);
     };
   }, [sliderValue, audioRef]);
-
-  useEffect(() => {
-    if (audioRef.current.currentTime === audioRef.current.duration) {
-      handleForWard();
-    }
-  }, [currentTime]);
 
   const updateSong = () => {
     setOnListen(item[currentTrack].s3_link);
@@ -173,4 +180,12 @@ Playbar.propTypes = {
   currentTrack: PropTypes.number.isRequired,
   setCurrentTrack: PropTypes.func.isRequired,
   audio: PropTypes.bool.isRequired,
+  picture: PropTypes.string.isRequired,
+  artist: PropTypes.string.isRequired,
+  album: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  setTitle: PropTypes.func.isRequired,
+  setArtist: PropTypes.func.isRequired,
+  setAlbum: PropTypes.func.isRequired,
+  setPicture: PropTypes.func.isRequired,
 };

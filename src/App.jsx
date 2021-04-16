@@ -19,6 +19,10 @@ function App() {
   const [onListen, setOnListen] = useState('');
   const [currentTrack, setCurrentTrack] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [title, setTitle] = useState();
+  const [artist, setArtist] = useState();
+  const [album, setAlbum] = useState();
+  const [picture, setPicture] = useState();
   const [sideBarClass, setSideBarClass] = useState(
     'flex h-screen fixed right-0 flex-col  900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-black bg-opacity-30 shadow-sideBar',
   );
@@ -90,7 +94,23 @@ function App() {
         </div>
         {isSideBarVisible && <SideBar sideBarClass={sideBarClass} setSideBarClass={setSideBarClass} />}
       </div>
-      <Player />
+      {!isLoading && (
+        <Player
+          currentTrack={currentTrack}
+          setCurrentTrack={setCurrentTrack}
+          item={item}
+          title={title}
+          album={album}
+          picture={picture}
+          artist={artist}
+          setTitle={setTitle}
+          setArtist={setArtist}
+          setPicture={setPicture}
+          setAlbum={setAlbum}
+          onListen={onListen}
+          setOnListen={setOnListen}
+        />
+      )}
       <Playbar
         handleSong={handleSong}
         onListen={onListen}
@@ -100,6 +120,14 @@ function App() {
         currentTrack={currentTrack}
         setCurrentTrack={setCurrentTrack}
         item={item}
+        title={title}
+        album={album}
+        picture={picture}
+        artist={artist}
+        setTitle={setTitle}
+        setArtist={setArtist}
+        setPicture={setPicture}
+        setAlbum={setAlbum}
       />
     </div>
   );
