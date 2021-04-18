@@ -8,40 +8,23 @@ import GamingPlaylist from '../../img/PlayList/Gaming.svg';
 import Playlist from './Playlist';
 
 function ListPlaylist() {
-  const img = {
-    img1: WorkingPlaylist,
-    img2: SportPlaylist,
-    img3: ChillPlaylist,
-    img4: PartyPlaylist,
-    img5: OldSchoolPlaylist,
-    img6: GamingPlaylist,
-  };
-  const title = {
-    title1: 'Work and Code',
-    title2: 'Relax and Chill',
-    title3: 'Sport Motivation',
-    title4: 'Party and fun',
-    title5: 'Old School',
-    title6: 'Gaming',
-  };
-  const description = {
-    desc1: 'Relaxing and chill songs fot concentration',
-    desc2: 'Be chill, be calm, be Cool, be Wizic',
-    desc3: 'Listen Good music for help you to run !',
-    desc4: 'Let’s get the best sound for a party with your friends',
-    desc5: 'Find the best old School Music',
-    desc6: 'Check ours gamer’s selection',
-  };
+  const WizicPlaylist = [
+    { title: 'Work and Code', desc: 'Relaxing and chill songs fot concentration', img: WorkingPlaylist, id: 1 },
+    { title: 'Relax and Chill', desc: 'Be chill, be calm, be Cool, be Wizic', img: SportPlaylist, id: 2 },
+    { title: 'Sport Motivation', desc: 'Listen Good music for help you to run !', img: ChillPlaylist, id: 3 },
+    { title: 'Party and fun', desc: 'Let’s get the best sound for a party with your friends', img: PartyPlaylist, id: 4 },
+    { title: 'Old School', desc: 'Find the best old School Music', img: OldSchoolPlaylist, id: 5 },
+    { title: 'Gaming', desc: 'Check ours gamer’s selection', img: GamingPlaylist, id: 6 },
+  ];
+
+  const wizicPlaylistListener = WizicPlaylist.map((playlist, key) => (
+    <Playlist key={key} title={playlist.title} description={playlist.desc} img={playlist.img} />
+  ));
 
   return (
-    <div className="wd-full h-full p-6">
+    <div className="w-full h-full  p-6">
       <h1 className="text-white font-scada text-3xl font-bold">WizicPlaylist</h1>
-      <Playlist img={img.img1} title={title.title1} description={description.desc1} />
-      <Playlist img={img.img2} title={title.title2} description={description.desc2} />
-      <Playlist img={img.img3} title={title.title3} description={description.desc3} />
-      <Playlist img={img.img4} title={title.title4} description={description.desc4} />
-      <Playlist img={img.img5} title={title.title5} description={description.desc5} />
-      <Playlist img={img.img6} title={title.title6} description={description.desc6} />
+      {wizicPlaylistListener}
     </div>
   );
 }

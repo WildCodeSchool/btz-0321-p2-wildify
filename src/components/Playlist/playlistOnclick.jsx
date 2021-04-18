@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function PlaylistOnclick({ title, Artist, album }) {
+function PlaylistOnclick({ title, Artist, img }) {
   return (
     <div className="bg p-1">
-      <div className="flex  items-center mt-4 border-b border-gra border-white pb-1">
-        <div className="text-white font-scada font-medium mr-2">{title}</div>
-        <div className="text-white font-scada text-xsm mr-2">{Artist}</div>
-        <div className="text-white font-scada text-xs">{album}</div>
+      <div className="flex flex-wrap items-center text-white mt-4 border-b border-gra border-white pb-1 mb-2 hover:border-mainColor hover:text-mainColor transform hover:scale-105">
+        <img src={img} alt="albumPicture" className="h-10 w-10 mr-2 rounded-full " />
+        <div className=" font-scada text-xs font-bold mr-2 ">{title} -</div>
+        <div className=" font-scada text-xs ">{Artist}</div>
       </div>
     </div>
   );
@@ -16,8 +16,7 @@ function PlaylistOnclick({ title, Artist, album }) {
 export default PlaylistOnclick;
 
 PlaylistOnclick.propTypes = {
-  img: PropTypes.any.isRequired,
   title: PropTypes.string.isRequired,
   Artist: PropTypes.string.isRequired,
-  album: PropTypes.string.isRequired,
+  img: PropTypes.any.isRequired,
 };

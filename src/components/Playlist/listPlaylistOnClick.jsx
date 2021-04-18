@@ -1,32 +1,22 @@
 import React from 'react';
 import PlaylistOnclick from './playlistOnclick';
+import PropTypes from 'prop-types';
 
-function ListPlaylistOnClick() {
-  const title = {
-    title1: 'Check It Out',
-  };
-  const Artist = {
-    name: 'AlphaWann',
-  };
-
-  const album = {
-    albm: 'PlayTime',
-  };
+function ListPlaylistOnClick({ item }) {
+  const musicListener = item.map((music, key) => (
+    <PlaylistOnclick key={key} title={music.title} Artist={music.artist.name} img={music.album.picture} />
+  ));
 
   return (
-    <div className="p-5">
-      <h1 className="text-white font-scada text-3xl font-bold">PlaylistName</h1>
-      <PlaylistOnclick title={title.title1} Artist={Artist.name} album={album.albm} />
-      <PlaylistOnclick title={title.title1} Artist={Artist.name} album={album.albm} />
-      <PlaylistOnclick title={title.title1} Artist={Artist.name} album={album.albm} />
-      <PlaylistOnclick title={title.title1} Artist={Artist.name} album={album.albm} />
-      <PlaylistOnclick title={title.title1} Artist={Artist.name} album={album.albm} />
-      <PlaylistOnclick title={title.title1} Artist={Artist.name} album={album.albm} />
-      <PlaylistOnclick title={title.title1} Artist={Artist.name} album={album.albm} />
-      <PlaylistOnclick title={title.title1} Artist={Artist.name} album={album.albm} />
-      <PlaylistOnclick title={title.title1} Artist={Artist.name} album={album.albm} />
+    <div className="overflow-y-auto p-7 ">
+      <h1 className="text-white font-scada text-3xl font-bold mb-2">PlaylistName</h1>
+      {musicListener}
     </div>
   );
 }
 
 export default ListPlaylistOnClick;
+
+ListPlaylistOnClick.propTypes = {
+  item: PropTypes.array.isrequired,
+};
