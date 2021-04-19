@@ -156,7 +156,7 @@ export default function Player({
         </div>
       </div>
       <button onClick={handleClick}>
-        <img src="./src/img/arrow.svg" className="w-8 cursor-pointer absolute bottom-5 right-10 z-50" alt="" />
+        <img src="./src/img/arrow.svg" className="w-8 cursor-pointer fixed bottom-20 right-20 z-50" alt="" />
       </button>
     </div>
   );
@@ -176,4 +176,6 @@ Player.propTypes = {
   onListen: PropTypes.string.isRequired,
   currentTrack: PropTypes.string.isRequired,
   setCurrentTrack: PropTypes.func.isRequired,
+  audio: PropTypes.bool.isRequired,
+  setAudio: PropTypes.func.isRequired,
 };
