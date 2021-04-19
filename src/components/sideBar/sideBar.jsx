@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function SideBar({ sideBarClass }) {
   const [selectFile, setSelectFile] = useState();
-
+  // const [selectPicture, setSelectPicture] = useState();
   // const [title, setTitle] = useState('');
   // const [album, setAlbum] = useState('');
   // // const [picture, setPicture] = useState('');
@@ -15,10 +15,6 @@ function SideBar({ sideBarClass }) {
 
   const handleAlbum = () => {
     // setAlbum(e.target.value);
-  };
-
-  const handlePicture = () => {
-    // setPicture(e.target.value);
   };
 
   const handleArtist = () => {
@@ -60,21 +56,18 @@ function SideBar({ sideBarClass }) {
   //       console.error('Error:', error);
   //     });
   // };
-  const changeHandler = (event) => {
+  const changeFileHandler = (event) => {
     setSelectFile(event.target.files[0]);
+  };
+  const changePictureHandler = () => {
+    // setSelectPicture(event.target.files[0]);
   };
 
   const handleSubmission = () => {
     let formData = new FormData();
     formData.append('file', selectFile);
-    formData.append('title', 'test');
-    formData.append('album', 'text');
-    formData.append('artist', 'test');
     fetch('https://bazify-backend.basile.vernouillet.dev/api/v1/songs', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/Json',
-      },
       body: formData,
     })
       .then((response) => response.json())
@@ -84,6 +77,17 @@ function SideBar({ sideBarClass }) {
       .catch((error) => {
         error;
       });
+  };
+
+  const handlePictureSubmission = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('file', selectFile);
+
+    fetch('https://bazify-backend.basile.vernouillet.dev/api/v1/album/The Very Best Of (2009) By LamaPower', {
+      method: 'POST',
+      body: formData,
+    }).then((res) => res);
   };
 
   return (
@@ -104,7 +108,10 @@ function SideBar({ sideBarClass }) {
         <label className="text-white text-sm font-Orbit w-8/12" htmlFor="Picture">
           Picture:
         </label>
-        <input onChange={handlePicture} className="w-3/4 bg-black text-white opacity-30 rounded-4xl my-4" type="text" name="Picture"></input>
+        <input onChange={changePictureHandler} className="w-3/4 bg-black text-white opacity-30 rounded-4xl my-4" type="file" name="Picture"></input>
+        <button className="bg-black opacity-60 rounded-2xl my-10 text-white px-8 py-4 hover:opacity-95 font-Orbit" onClick={handlePictureSubmission}>
+          UPLOAD
+        </button>
       </form>
       <form className="flex flex-col justify-center items-center ">
         <label className="text-white text-sm font-Orbit w-8/12" htmlFor="playlist">
@@ -137,7 +144,7 @@ function SideBar({ sideBarClass }) {
           type="file"
           id="file"
           name="file"
-          onChange={changeHandler}
+          onChange={changeFileHandler}
         />
         <button className="bg-black opacity-60 rounded-2xl my-10 text-white px-8 py-4 hover:opacity-95 font-Orbit" onClick={handleSubmission}>
           UPLOAD

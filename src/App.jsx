@@ -8,7 +8,14 @@ import Contact from './components/Contact/Contact';
 import Carousel from './components/carousel/Carousel';
 import SliderAlbum from './components/SliderAlbum';
 
+
 import PlaylistSwitch from './components/Playlist/PlaylistSwitch';
+
+import ListPlaylist from './components/Playlist/listPlaylist';
+import bg from './img/BackGrounds/BackGround1.webp';
+import Player from './components/Player/Player';
+
+
 function App() {
   const [isSideBarVisible, setisSideBarVisible] = useState(false);
   const { width } = useWindowDimensions();
@@ -17,6 +24,10 @@ function App() {
   const [onListen, setOnListen] = useState('');
   const [currentTrack, setCurrentTrack] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [title, setTitle] = useState();
+  const [artist, setArtist] = useState();
+  const [album, setAlbum] = useState();
+  const [picture, setPicture] = useState();
   const [sideBarClass, setSideBarClass] = useState(
     'flex h-screen fixed right-0 flex-col  900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-black bg-opacity-30 shadow-sideBar',
   );
@@ -53,7 +64,13 @@ function App() {
   };
 
   return (
-    <div className="flex align-middle justify-center">
+    <div
+      className="flex align-middle justify-center"
+      style={{
+        backgroundImage: `url(${bg})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+      }}>
       <div className="grid mx-5 gap-5  900:gap-6 grid-cols-mobile grid-rows-mobile 900:grid-cols-desktop 900:ml-6 900:mr-0 900:grid-rows-desktop">
         <Header handleSideBar={handleSideBar} isSideBarVisible={isSideBarVisible} />
 
@@ -84,6 +101,7 @@ function App() {
         {isSideBarVisible && <SideBar sideBarClass={sideBarClass} setSideBarClass={setSideBarClass} />}
       </div>
       {!isLoading && (
+
         <Playbar
           handleSong={handleSong}
           onListen={onListen}
@@ -95,6 +113,25 @@ function App() {
           item={item}
         />
       )}
+
+        <Player
+          currentTrack={currentTrack}
+          setCurrentTrack={setCurrentTrack}
+          item={item}
+          title={title}
+          album={album}
+          picture={picture}
+          artist={artist}
+          setTitle={setTitle}
+          setArtist={setArtist}
+          setPicture={setPicture}
+          setAlbum={setAlbum}
+          onListen={onListen}
+          setOnListen={setOnListen}
+        />
+      )}
+
+
     </div>
   );
 }
