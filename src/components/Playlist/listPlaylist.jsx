@@ -5,41 +5,45 @@ import ChillPlaylist from '../../img/PlayList/ChiilPlaylist.svg';
 import PartyPlaylist from '../../img/PlayList/PartyAndFun.svg';
 import OldSchoolPlaylist from '../../img/PlayList/OldSchool.svg';
 import GamingPlaylist from '../../img/PlayList/Gaming.svg';
-import PropTypes from 'prop-types';
+import Playlist from './Playlist';
 
-function ListPlaylist({ setIsChange }) {
-  const WizicPlaylist = [
-    { title: 'Work and Code', desc: 'Relaxing and chill songs fot concentration', img: WorkingPlaylist, id: 1 },
-    { title: 'Relax and Chill', desc: 'Be chill, be calm, be Cool, be Wizic', img: SportPlaylist, id: 2 },
-    { title: 'Sport Motivation', desc: 'Listen Good music for help you to run !', img: ChillPlaylist, id: 3 },
-    { title: 'Party and fun', desc: 'Let’s get the best sound for a party with your friends', img: PartyPlaylist, id: 4 },
-    { title: 'Old School', desc: 'Find the best old School Music', img: OldSchoolPlaylist, id: 5 },
-    { title: 'Gaming', desc: 'Check ours gamer’s selection', img: GamingPlaylist, id: 6 },
-  ];
+function ListPlaylist() {
+  const img = {
+    img1: WorkingPlaylist,
+    img2: SportPlaylist,
+    img3: ChillPlaylist,
+    img4: PartyPlaylist,
+    img5: OldSchoolPlaylist,
+    img6: GamingPlaylist,
+  };
+  const title = {
+    title1: 'Work and Code',
+    title2: 'Relax and Chill',
+    title3: 'Sport Motivation',
+    title4: 'Party and fun',
+    title5: 'Old School',
+    title6: 'Gaming',
+  };
+  const description = {
+    desc1: 'Relaxing and chill songs fot concentration',
+    desc2: 'Be chill, be calm, be Cool, be Wizic',
+    desc3: 'Listen Good music for help you to run !',
+    desc4: 'Let’s get the best sound for a party with your friends',
+    desc5: 'Find the best old School Music',
+    desc6: 'Check ours gamer’s selection',
+  };
 
   return (
-    <div className="w-full h-full  p-6">
+    <div className="wd-full h-full p-6">
       <h1 className="text-white font-scada text-3xl font-bold">WizicPlaylist</h1>
-      {WizicPlaylist.map((playlist, key) => (
-        <button
-          onClick={setIsChange}
-          key={key}
-          type="button"
-          className="rounded-3xl w-full flex 900:mt-5 mt-3 items-center p-2 bg-black bg-opacity-20 shadow-searchbar focus:outline-none cursor-pointer hover:bg-opacity-50">
-          <img src={playlist.img} alt="Playlist1" className="w-plist h-pl border-2 border-green-300 rounded-fullist rounded-3xl" />
-          <div className="flex-col ml-3 text-left">
-            <h3 className="text-white font-scada font-medium ">{playlist.title}</h3>
-            <p className="text-white font-cuprum text-xs font-thin">{playlist.desc}</p>
-          </div>
-        </button>
-      ))}
-      ;
+      <Playlist img={img.img1} title={title.title1} description={description.desc1} />
+      <Playlist img={img.img2} title={title.title2} description={description.desc2} />
+      <Playlist img={img.img3} title={title.title3} description={description.desc3} />
+      <Playlist img={img.img4} title={title.title4} description={description.desc4} />
+      <Playlist img={img.img5} title={title.title5} description={description.desc5} />
+      <Playlist img={img.img6} title={title.title6} description={description.desc6} />
     </div>
   );
 }
 
 export default ListPlaylist;
-
-ListPlaylist.propTypes = {
-  setIsChange: PropTypes.func.isRequired,
-};

@@ -7,14 +7,9 @@ import SideBar from './components/sideBar/sideBar';
 import Contact from './components/Contact/Contact';
 import Carousel from './components/carousel/Carousel';
 import SliderAlbum from './components/SliderAlbum';
-
-
-import PlaylistSwitch from './components/Playlist/PlaylistSwitch';
-
 import ListPlaylist from './components/Playlist/listPlaylist';
 import bg from './img/BackGrounds/BackGround1.webp';
 import Player from './components/Player/Player';
-
 
 function App() {
   const [isSideBarVisible, setisSideBarVisible] = useState(false);
@@ -79,9 +74,8 @@ function App() {
           {!isLoading && <Carousel item={item} />}
         </div>
 
-        <div className=" overflow-y-auto col-start-1 col-end-3 row-start-3 row-end-4 900:col-end-2 900:row-end-5 rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
-          {!isLoading && <PlaylistSwitch item={item} setOnListen={setOnListen} setCurrentTrack={setCurrentTrack} />}
-          {/* />*/}
+        <div className="col-start-1 col-end-3 row-start-3 row-end-4 900:col-end-2 900:row-end-5 rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
+          <ListPlaylist />
         </div>
 
         <div className="col-start-1 col-end-2 row-start-4 row-end-5 gap-x-1 900:col-start-2 900:col-end-3 900:row-start-3 900:row-end-4  rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
@@ -101,19 +95,6 @@ function App() {
         {isSideBarVisible && <SideBar sideBarClass={sideBarClass} setSideBarClass={setSideBarClass} />}
       </div>
       {!isLoading && (
-
-        <Playbar
-          handleSong={handleSong}
-          onListen={onListen}
-          setOnListen={setOnListen}
-          audio={audio}
-          setAudio={setAudio}
-          currentTrack={currentTrack}
-          setCurrentTrack={setCurrentTrack}
-          item={item}
-        />
-      )}
-
         <Player
           currentTrack={currentTrack}
           setCurrentTrack={setCurrentTrack}
@@ -130,8 +111,24 @@ function App() {
           setOnListen={setOnListen}
         />
       )}
-
-
+      <Playbar
+        handleSong={handleSong}
+        onListen={onListen}
+        setOnListen={setOnListen}
+        audio={audio}
+        setAudio={setAudio}
+        currentTrack={currentTrack}
+        setCurrentTrack={setCurrentTrack}
+        item={item}
+        title={title}
+        album={album}
+        picture={picture}
+        artist={artist}
+        setTitle={setTitle}
+        setArtist={setArtist}
+        setPicture={setPicture}
+        setAlbum={setAlbum}
+      />
     </div>
   );
 }

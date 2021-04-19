@@ -49,39 +49,15 @@ export default function Playbar({
     };
   }, [sliderValue, audioRef]);
 
-
-  useEffect(() => {
-    if (audioRef.current.currentTime === audioRef.current.duration) {
-      handleForWard();
-    }
-  }, [currentTime]);
-
-  useEffect(() => {
-    updateSong();
-  }, [currentTrack]);
-
-
   const updateSong = () => {
-    if (currentTrack) {
-      setOnListen(item[currentTrack].s3_link);
-      setTitle(item[currentTrack].title);
-      setArtist(item[currentTrack].artist.name);
-      setAlbum(item[currentTrack].album.title);
-      setPicture(item[currentTrack].album.picture);
-    } else {
-      setOnListen(item[0].s3_link);
-      setTitle(item[0].title);
-      setArtist(item[0].artist.name);
-      setAlbum(item[0].album.title);
-      setPicture(item[0].album.picture);
-    }
-
+    setOnListen(item[currentTrack].s3_link);
     if (audioRef.current) {
       audioRef.current.load();
     }
-    if (currentTrack) {
-      audioRef.current.play();
-    }
+    setTitle(item[currentTrack].title);
+    setArtist(item[currentTrack].artist.name);
+    setAlbum(item[currentTrack].album.title);
+    setPicture(item[currentTrack].album.picture);
   };
 
   const volumeChange = (e) => {
@@ -114,8 +90,18 @@ export default function Playbar({
   };
 
   const handleForWard = () => {
-    setAudio(true);
-    setCurrentTrack(currentTrack + 1);
+    audioRef.current.pause();
+    if (currentTrack >= item.length) {
+      setAudio(true);
+      setCurrentTrack(0);
+      updateSong();
+    } else {
+      audioRef.current.pause();
+      setAudio(true);
+      setCurrentTrack(currentTrack + 1);
+      updateSong();
+      handlePlay();
+    }
   };
 
   return (
