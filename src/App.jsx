@@ -53,7 +53,7 @@ function App() {
   };
 
   return (
-    <div className="flex align-middle justify-center">
+    <div className="flex align-middle justify-center mb-24">
       <div className="grid mx-5 gap-5  900:gap-6 grid-cols-mobile grid-rows-mobile 900:grid-cols-desktop 900:ml-6 900:mr-0 900:grid-rows-desktop">
         <Header handleSideBar={handleSideBar} isSideBarVisible={isSideBarVisible} />
 

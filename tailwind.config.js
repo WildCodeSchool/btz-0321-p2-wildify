@@ -25,7 +25,7 @@ module.exports = {
         mobileCarousel: '1fr 1fr 3fr',
         desktopCarousel: '1fr 2fr',
         desktop: '1fr 400px 300px 300px 400px',
-        mobile: '1fr 400px 550px 220px 300px 600px',
+        mobile: '1fr 400px 550px 220px 300px 700px',
       },
       borderRadius: {
         20: '1.25rem',
