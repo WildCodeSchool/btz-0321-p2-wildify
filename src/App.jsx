@@ -63,7 +63,7 @@ function App() {
         </div>
 
         <div className=" overflow-y-auto col-start-1 col-end-3 row-start-3 row-end-4 900:col-end-2 900:row-end-5 rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
-          {!isLoading && <PlaylistSwitch item={item} setOnListen={setOnListen} currentTrack={currentTrack} />}
+          {!isLoading && <PlaylistSwitch item={item} setOnListen={setOnListen} setCurrentTrack={setCurrentTrack} />}
           {/* />*/}
         </div>
 
@@ -83,16 +83,18 @@ function App() {
         </div>
         {isSideBarVisible && <SideBar sideBarClass={sideBarClass} setSideBarClass={setSideBarClass} />}
       </div>
-      <Playbar
-        handleSong={handleSong}
-        onListen={onListen}
-        setOnListen={setOnListen}
-        audio={audio}
-        setAudio={setAudio}
-        currentTrack={currentTrack}
-        setCurrentTrack={setCurrentTrack}
-        item={item}
-      />
+      {!isLoading && (
+        <Playbar
+          handleSong={handleSong}
+          onListen={onListen}
+          setOnListen={setOnListen}
+          audio={audio}
+          setAudio={setAudio}
+          currentTrack={currentTrack}
+          setCurrentTrack={setCurrentTrack}
+          item={item}
+        />
+      )}
     </div>
   );
 }
