@@ -24,17 +24,9 @@ export default function Playbar({
 }) {
   const [sliderValue, setSliderValue] = useState(0);
   const [sliderPos, setSliderPos] = useState('100');
-
   const [duration, setDuration] = useState('00:00');
   const [currentTime, setCurrentTime] = useState('00:00');
   const audioRef = useRef(null);
-
-  function secondsToHms(d) {
-    d = Number(d);
-    let m = Math.floor((d % 3600) / 60);
-    let s = Math.floor((d % 3600) % 60);
-    return m + ':' + s;
-  }
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -49,7 +41,6 @@ export default function Playbar({
     };
   }, [sliderValue, audioRef]);
 
-
   useEffect(() => {
     if (audioRef.current.currentTime === audioRef.current.duration) {
       handleForWard();
@@ -60,28 +51,25 @@ export default function Playbar({
     updateSong();
   }, [currentTrack]);
 
+  const secondsToHms = (d) => {
+    d = Number(d);
+    let m = Math.floor((d % 3600) / 60);
+    let s = Math.floor((d % 3600) % 60);
+    return m + ':' + s;
+  };
 
   const updateSong = () => {
-    if (currentTrack) {
-      setOnListen(item[currentTrack].s3_link);
-      setTitle(item[currentTrack].title);
-      setArtist(item[currentTrack].artist.name);
-      setAlbum(item[currentTrack].album.title);
-      setPicture(item[currentTrack].album.picture);
-    } else {
-      setOnListen(item[0].s3_link);
-      setTitle(item[0].title);
-      setArtist(item[0].artist.name);
-      setAlbum(item[0].album.title);
-      setPicture(item[0].album.picture);
-    }
-
+    setOnListen(item[currentTrack].s3_link);
     if (audioRef.current) {
       audioRef.current.load();
     }
-    if (currentTrack) {
+    if (audio) {
       audioRef.current.play();
     }
+    setTitle(item[currentTrack].title);
+    setArtist(item[currentTrack].artist.name);
+    setAlbum(item[currentTrack].album.title);
+    setPicture(item[currentTrack].album.picture);
   };
 
   const volumeChange = (e) => {
@@ -101,21 +89,25 @@ export default function Playbar({
 
   const handlePlay = () => {
     setAudio(true);
-    updateSong();
     audioRef.current.play();
   };
 
   const handleBackWard = () => {
     audioRef.current.pause();
     setAudio(true);
-    setCurrentTrack(currentTrack - 1);
+    setCurrentTrack((currentTrack -= 1));
     updateSong();
     handlePlay();
   };
 
   const handleForWard = () => {
-    setAudio(true);
-    setCurrentTrack(currentTrack + 1);
+    if (currentTrack === item.length - 1) {
+      setCurrentTrack(0);
+      updateSong();
+    } else {
+      setCurrentTrack((currentTrack += 1));
+      updateSong();
+    }
   };
 
   return (

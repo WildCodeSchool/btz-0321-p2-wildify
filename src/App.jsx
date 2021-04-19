@@ -8,13 +8,9 @@ import Contact from './components/Contact/Contact';
 import Carousel from './components/carousel/Carousel';
 import SliderAlbum from './components/SliderAlbum';
 
-
 import PlaylistSwitch from './components/Playlist/PlaylistSwitch';
 
-import ListPlaylist from './components/Playlist/listPlaylist';
 import bg from './img/BackGrounds/BackGround1.webp';
-import Player from './components/Player/Player';
-
 
 function App() {
   const [isSideBarVisible, setisSideBarVisible] = useState(false);
@@ -80,7 +76,7 @@ function App() {
         </div>
 
         <div className=" overflow-y-auto col-start-1 col-end-3 row-start-3 row-end-4 900:col-end-2 900:row-end-5 rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
-          {!isLoading && <PlaylistSwitch item={item} setOnListen={setOnListen} setCurrentTrack={setCurrentTrack} />}
+          {!isLoading && <PlaylistSwitch item={item} setCurrentTrack={setCurrentTrack} currentTrack={currentTrack} />}
           {/* />*/}
         </div>
 
@@ -100,8 +96,8 @@ function App() {
         </div>
         {isSideBarVisible && <SideBar sideBarClass={sideBarClass} setSideBarClass={setSideBarClass} />}
       </div>
+      (
       {!isLoading && (
-
         <Playbar
           handleSong={handleSong}
           onListen={onListen}
@@ -111,27 +107,16 @@ function App() {
           currentTrack={currentTrack}
           setCurrentTrack={setCurrentTrack}
           item={item}
-        />
-      )}
-
-        <Player
-          currentTrack={currentTrack}
-          setCurrentTrack={setCurrentTrack}
-          item={item}
           title={title}
           album={album}
-          picture={picture}
           artist={artist}
+          picture={picture}
+          setAlbum={setAlbum}
           setTitle={setTitle}
           setArtist={setArtist}
           setPicture={setPicture}
-          setAlbum={setAlbum}
-          onListen={onListen}
-          setOnListen={setOnListen}
         />
       )}
-
-
     </div>
   );
 }

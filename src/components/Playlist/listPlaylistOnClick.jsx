@@ -23,7 +23,5 @@ export default ListPlaylistOnClick;
 
 ListPlaylistOnClick.propTypes = {
   item: PropTypes.array.isRequired,
-  setOnListen: PropTypes.func,
-  currentTrack: PropTypes.string.isRequired,
   setCurrentTrack: PropTypes.func.isRequired,
 };
