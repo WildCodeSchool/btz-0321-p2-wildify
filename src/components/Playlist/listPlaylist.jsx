@@ -33,7 +33,6 @@ function ListPlaylist({ setIsChange }) {
           </div>
         </button>
       ))}
-      ;
     </div>
   );
 }
