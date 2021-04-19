@@ -42,12 +42,6 @@ export default function Playbar({
   }, [sliderValue, audioRef]);
 
   useEffect(() => {
-    if (audioRef.current.currentTime === audioRef.current.duration) {
-      handleForWard();
-    }
-  }, [currentTime]);
-
-  useEffect(() => {
     updateSong();
   }, [currentTrack]);
 
@@ -59,6 +53,7 @@ export default function Playbar({
   };
 
   const updateSong = () => {
+    console.log('2');
     setOnListen(item[currentTrack].s3_link);
     if (audioRef.current) {
       audioRef.current.load();

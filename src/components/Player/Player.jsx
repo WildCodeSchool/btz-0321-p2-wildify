@@ -17,19 +17,31 @@ export default function Player({
   item,
   currentTrack,
   setCurrentTrack,
+  audio,
+  setAudio,
 }) {
   const [sliderValue, setSliderValue] = useState(0);
   const [sliderPos, setSliderPos] = useState('100');
   const [duration, setDuration] = useState('00:00');
   const [currentTime, setCurrentTime] = useState('00:00');
+
   const audioRef2 = useRef();
-  // const [hiddenClass, setHiddenClass] = useState(true);
+  const [hiddenClass, setHiddenClass] = useState(true);
+
+  useEffect(() => {
+    updateSong();
+  }, [currentTrack]);
 
   const updateSong = () => {
     setOnListen(item[currentTrack].s3_link);
+
     if (audioRef2.current) {
       audioRef2.current.load();
     }
+    if (audio) {
+      audioRef2.current.play();
+    }
+
     setTitle(item[currentTrack].title);
     setArtist(item[currentTrack].artist.name);
     setAlbum(item[currentTrack].album.title);
@@ -48,38 +60,35 @@ export default function Player({
 
   const handlePause = () => {
     audioRef2.current.pause();
+    setAudio(false);
   };
 
   const handlePlay = () => {
-    updateSong();
+    setAudio(true);
     audioRef2.current.play();
   };
 
   const handleBackWard = () => {
     audioRef2.current.pause();
-
-    setCurrentTrack(currentTrack - 1);
+    setAudio(true);
+    setCurrentTrack((currentTrack -= 1));
     updateSong();
     handlePlay();
   };
 
   const handleForWard = () => {
-    audioRef2.current.pause();
-    if (currentTrack >= item.length) {
+    if (currentTrack >= item.length - 1) {
       setCurrentTrack(0);
       updateSong();
     } else {
-      audioRef2.current.pause();
-
-      setCurrentTrack(currentTrack + 1);
+      setCurrentTrack((currentTrack += 1));
       updateSong();
-      handlePlay();
     }
   };
 
-  // const handleClick = () => {
-  //   setHiddenClass(true);
-  // };
+  const handleClick = () => {
+    hiddenClass ? setHiddenClass(false) : setHiddenClass(true);
+  };
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -102,51 +111,53 @@ export default function Player({
   }
 
   return (
-    <div className="bg-black fixed flex flex-col  justify-between z-50 align-middle w-full h-full py-20">
-      <audio id="audio" className="hidden" onEnded={handleForWard} ref={audioRef2} controls>
-        <source src={onListen} type="audio/mp3"></source>
-        <track default kind="captions" />
-        Your browser does not support this audio format.
-      </audio>
-      <div className="flex justify-around items-center w-full align-middle px-10">
-        <input onChange={volumeChange} type="range" min="0" max="100" value={sliderPos} className="w-8/12 h-0.5 slider" id="myRange"></input>
-        <img src="./src/img/Group 44.png" className="w-5" alt="" />
-      </div>
-      <div className="w-full flex align-middle justify-center px-10">
-        <img className="rounded-full w-2/4 max-w-xl" src={picture ? picture : './src/img/playbar-miniature.png'} alt="" />
-      </div>
-      <div className="text-white text-3xl font-Orbit flex flex-col items-center w-full align-middle justify-center px-10">
-        <div className="font-Orbit">{title}</div>
-        <div className="font-Orbit">{artist}</div>
-        <div className="font-Orbit">{album}</div>
-        <div>
-          {title ? (
-            <div className="flex align-middle justify-center items-center">
-              <img src="./src/img/gifSon.gif" className="w-1/4" alt=""></img>
-            </div>
-          ) : (
-            ''
-          )}
+    <div className="h-full w-full absolute">
+      <div className={`bg-black fixed flex flex-col  justify-between z-50 align-middle w-full h-full py-20 ${hiddenClass ? 'hidden' : ''}`}>
+        <audio id="audio" className="hidden" onEnded={handleForWard} ref={audioRef2} controls>
+          <source src={onListen} type="audio/mp3"></source>
+          <track default kind="captions" />
+          Your browser does not support this audio format.
+        </audio>
+        <div className="flex justify-around items-center w-full align-middle px-10">
+          <input onChange={volumeChange} type="range" min="0" max="100" value={sliderPos} className="w-8/12 h-0.5 slider" id="myRange"></input>
+          <img src="./src/img/Group 44.png" className="w-5" alt="" />
+        </div>
+        <div className="w-full flex align-middle justify-center px-10">
+          <img className="rounded-full w-2/4 max-w-xl" src={picture ? picture : './src/img/playbar-miniature.png'} alt="" />
+        </div>
+        <div className="text-white text-3xl font-Orbit flex flex-col items-center w-full align-middle justify-center px-10">
+          <div className="font-Orbit">{title}</div>
+          <div className="font-Orbit">{artist}</div>
+          <div className="font-Orbit">{album}</div>
+          <div>
+            {title ? (
+              <div className="flex align-middle justify-center items-center">
+                <img src="./src/img/gifSon.gif" className="w-1/4" alt=""></img>
+              </div>
+            ) : (
+              ''
+            )}
+          </div>
+        </div>
+        <div className="w-full flex align-middle items-center justify-center px-10">
+          <div className="text-white font-Orbit">{audio ? secondsToHms(currentTime) : '00:00'}</div>
+          <Controls handleBackWard={handleBackWard} handleForWard={handleForWard} handlePause={handlePause} handlePlay={handlePlay} />
+          <div className="text-white font-Orbit">{audio ? secondsToHms(duration - currentTime) : '00:00'}</div>
+        </div>
+        <div className="w-full flex align-middle items-center justify-center px-10">
+          <input
+            onChange={positionChange}
+            type="range"
+            min="0"
+            max={duration}
+            value={sliderValue}
+            className="w-8/12 mx-14 h-0.5 slider"
+            id="myRange"></input>
         </div>
       </div>
-      <div className="w-full flex align-middle items-center justify-center px-10">
-        <div className="text-white font-Orbit">{title ? secondsToHms(currentTime) : '00:00'}</div>
-        <Controls handleBackWard={handleBackWard} handleForWard={handleForWard} handlePause={handlePause} handlePlay={handlePlay} />
-        <div className="text-white font-Orbit">{title ? secondsToHms(duration - currentTime) : '00:00'}</div>
-      </div>
-      <div className="w-full flex align-middle items-center justify-center px-10">
-        <input
-          onChange={positionChange}
-          type="range"
-          min="0"
-          max={duration}
-          value={sliderValue}
-          className="w-8/12 mx-14 h-0.5 slider"
-          id="myRange"></input>
-        <button onClick="">
-          <img src="./src/img/arrow.svg" className="w-8 cursor-pointer" alt="" />
-        </button>
-      </div>
+      <button onClick={handleClick}>
+        <img src="./src/img/arrow.svg" className="w-8 cursor-pointer absolute bottom-5 right-10 z-50" alt="" />
+      </button>
     </div>
   );
 }
@@ -164,5 +175,5 @@ Player.propTypes = {
   setOnListen: PropTypes.string.isRequired,
   onListen: PropTypes.string.isRequired,
   currentTrack: PropTypes.string.isRequired,
-  setCurrentTrack: PropTypes.string.isRequired,
+  setCurrentTrack: PropTypes.func.isRequired,
 };

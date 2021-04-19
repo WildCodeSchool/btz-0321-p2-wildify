@@ -7,7 +7,7 @@ import SideBar from './components/sideBar/sideBar';
 import Contact from './components/Contact/Contact';
 import Carousel from './components/carousel/Carousel';
 import SliderAlbum from './components/SliderAlbum';
-
+import Player from './components/Player/Player';
 import PlaylistSwitch from './components/Playlist/PlaylistSwitch';
 
 import bg from './img/BackGrounds/BackGround1.webp';
@@ -97,25 +97,48 @@ function App() {
         {isSideBarVisible && <SideBar sideBarClass={sideBarClass} setSideBarClass={setSideBarClass} />}
       </div>
       (
-      {!isLoading && (
+      {!isLoading && isSideBarVisible ? (
         <Playbar
-          handleSong={handleSong}
           onListen={onListen}
-          setOnListen={setOnListen}
           audio={audio}
-          setAudio={setAudio}
           currentTrack={currentTrack}
-          setCurrentTrack={setCurrentTrack}
+          handleSong={handleSong}
           item={item}
           title={title}
           album={album}
           artist={artist}
           picture={picture}
+          setAudio={setAudio}
+          setOnListen={setOnListen}
+          setCurrentTrack={setCurrentTrack}
           setAlbum={setAlbum}
           setTitle={setTitle}
           setArtist={setArtist}
           setPicture={setPicture}
         />
+      ) : (
+        ''
+      )}
+      {!isLoading && !isSideBarVisible ? (
+        <Player
+          item={item}
+          title={title}
+          album={album}
+          artist={artist}
+          picture={picture}
+          setAudio={setAudio}
+          setOnListen={setOnListen}
+          setCurrentTrack={setCurrentTrack}
+          setAlbum={setAlbum}
+          setTitle={setTitle}
+          setArtist={setArtist}
+          setPicture={setPicture}
+          audio={audio}
+          currentTrack={currentTrack}
+          onListen={onListen}
+        />
+      ) : (
+        ''
       )}
     </div>
   );
