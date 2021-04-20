@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export default function ArtistCard({ picture, active }) {
   return (
     <div className="w-6/12 h-4/6">
-      <img src={picture} alt="ArtistPicture" className={!active ? 'hidden' : 'w-full h-full'} />
+      <img src={picture} alt="ArtistPicture" className={!active ? 'hidden' : 'w-full h-full'} placeholder="../../img/defaultPicture.png" />
     </div>
   );
 }
