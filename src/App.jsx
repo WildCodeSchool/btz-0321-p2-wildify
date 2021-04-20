@@ -123,6 +123,7 @@ function App() {
           setTitle={setTitle}
           setArtist={setArtist}
           setPicture={setPicture}
+          albums={albums}
         />
       ) : (
         ''

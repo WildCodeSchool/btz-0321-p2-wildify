@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 function SideBar({ sideBarClass }) {
   const [selectFile, setSelectFile] = useState();
+  const [imgUrl, setImgUrl] = useState();
   // const [selectPicture, setSelectPicture] = useState();
   // const [title, setTitle] = useState('');
   // const [album, setAlbum] = useState('');
@@ -81,13 +82,15 @@ function SideBar({ sideBarClass }) {
 
   const handlePictureSubmission = (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append('file', selectFile);
+    fetch('https://bazify-backend.basile.vernouillet.dev/api/v1/albums/29dd4385-3a85-41d0-ab3b-14c9db7abc2e', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ picture: imgUrl }),
+    }).then(console.log(JSON.stringify({ picture: imgUrl })));
+  };
 
-    fetch('https://bazify-backend.basile.vernouillet.dev/api/v1/album/The Very Best Of (2009) By LamaPower', {
-      method: 'POST',
-      body: formData,
-    }).then((res) => res);
+  const handleChange = (e) => {
+    setImgUrl(e.target.value);
   };
 
   return (
@@ -108,7 +111,7 @@ function SideBar({ sideBarClass }) {
         <label className="text-white text-sm font-Orbit w-8/12" htmlFor="Picture">
           Picture:
         </label>
-        <input onChange={changePictureHandler} className="w-3/4 bg-black text-white opacity-30 rounded-4xl my-4" type="file" name="Picture"></input>
+        <input onChange={handleChange} className="w-3/4 bg-black text-white opacity-30 rounded-4xl my-4" type="text" name="Picture"></input>
         <button className="bg-black opacity-60 rounded-2xl my-10 text-white px-8 py-4 hover:opacity-95 font-Orbit" onClick={handlePictureSubmission}>
           UPLOAD
         </button>
