@@ -5,8 +5,8 @@ import Nxt from '../../img/next.svg';
 function Next({ albums, index, setIndex }) {
   return (
     <button
-      className="absolute left-1/2 cursor-pointer focus:outline-none bg-transparent z-10"
-      onClick={() => setIndex(index == albums.length - 1 ? 0 : index + 1)}>
+      className=" absolute top-almost cursor-pointer focus:outline-none bg-transparent z-10"
+      onClick={() => setIndex(index === albums.length - 1 ? 0 : index + 1)}>
       <img src={Nxt} alt="next" />
     </button>
   );
