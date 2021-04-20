@@ -25,7 +25,7 @@ function ListPlaylist({ setIsChange }) {
           onClick={setIsChange}
           key={key}
           type="button"
-          className="rounded-3xl w-full flex 900:mt-5 mt-3 items-center p-2 bg-black bg-opacity-20 shadow-searchbar focus:outline-none cursor-pointer hover:bg-opacity-50">
+          className="rounded-3xl w-full flex 900:mt-5 mt-3 items-center p-2 bg-black bg-opacity-20 shadow-searchbar focus:outline-none cursor-pointer hover:border-mainColor hover:text-mainColor transform hover:scale-105">
           <img src={playlist.img} alt="Playlist1" className="w-plist h-pl border-2 border-green-300 rounded-fullist rounded-3xl" />
           <div className="flex-col ml-3 text-left">
             <h3 className="text-white font-scada font-medium ">{playlist.title}</h3>

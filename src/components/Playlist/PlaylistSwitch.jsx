@@ -5,12 +5,26 @@ import PropTypes from 'prop-types';
 
 function PlaylistSwitch({ item, setCurrentTrack }) {
   const [ischange, setIsChange] = useState(true);
-
   const handleClick = () => {
     setIsChange(false);
   };
 
-  return <div>{ischange ? <ListPlaylist setIsChange={handleClick} /> : <ListPlaylistOnClick item={item} setCurrentTrack={setCurrentTrack} />}</div>;
+  const ReturnBtn = () => {
+    setIsChange(true);
+  };
+
+  return (
+    <div>
+      <div>
+        {ischange ? (
+          <ListPlaylist setIsChange={handleClick} />
+        ) : (
+          <ListPlaylistOnClick item={item} setIsChange={ReturnBtn} setCurrentTrack={setCurrentTrack} />
+        )}
+      </div>
+      ;
+    </div>
+  );
 }
 
 export default PlaylistSwitch;
