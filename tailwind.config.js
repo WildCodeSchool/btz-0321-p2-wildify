@@ -22,7 +22,7 @@ module.exports = {
         mobile: '1fr 1fr',
       },
       inset: {
-        almost: '87%',
+        almost: '90%',
       },
       gridTemplateRows: {
         mobileCarousel: '1fr 1fr 3fr',
