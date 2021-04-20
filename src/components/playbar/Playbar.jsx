@@ -4,24 +4,29 @@ import Controls from './controls/controls';
 import HiddenPlayer from '../HiddenPlayer/HiddenPlayer';
 import './playbar.css';
 
-export default function Playbar({ item, audio, currentTrack, setCurrentTrack, setAudio, onListen, setOnListen, handleSong }) {
+export default function Playbar({
+  title,
+  album,
+  artist,
+  picture,
+  item,
+  audio,
+  currentTrack,
+  setCurrentTrack,
+  setAudio,
+  onListen,
+  setOnListen,
+  handleSong,
+  setPicture,
+  setTitle,
+  setAlbum,
+  setArtist,
+}) {
   const [sliderValue, setSliderValue] = useState(0);
   const [sliderPos, setSliderPos] = useState('100');
-  const [title, setTitle] = useState();
-  const [artist, setArtist] = useState();
-  const [album, setAlbum] = useState();
-  const [picture, setPicture] = useState();
   const [duration, setDuration] = useState('00:00');
   const [currentTime, setCurrentTime] = useState('00:00');
-
   const audioRef = useRef(null);
-
-  function secondsToHms(d) {
-    d = Number(d);
-    let m = Math.floor((d % 3600) / 60);
-    let s = Math.floor((d % 3600) % 60);
-    return m + ':' + s;
-  }
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -37,15 +42,23 @@ export default function Playbar({ item, audio, currentTrack, setCurrentTrack, se
   }, [sliderValue, audioRef]);
 
   useEffect(() => {
-    if (audioRef.current.currentTime === audioRef.current.duration) {
-      handleForWard();
-    }
-  }, [currentTime]);
+    updateSong();
+  }, [currentTrack]);
+
+  const secondsToHms = (d) => {
+    d = Number(d);
+    let m = Math.floor((d % 3600) / 60);
+    let s = Math.floor((d % 3600) % 60);
+    return m + ':' + s;
+  };
 
   const updateSong = () => {
     setOnListen(item[currentTrack].s3_link);
     if (audioRef.current) {
       audioRef.current.load();
+    }
+    if (audio === true) {
+      audioRef.current.play();
     }
     setTitle(item[currentTrack].title);
     setArtist(item[currentTrack].artist.name);
@@ -70,30 +83,24 @@ export default function Playbar({ item, audio, currentTrack, setCurrentTrack, se
 
   const handlePlay = () => {
     setAudio(true);
-    updateSong();
     audioRef.current.play();
   };
 
   const handleBackWard = () => {
     audioRef.current.pause();
     setAudio(true);
-    setCurrentTrack(currentTrack - 1);
+    setCurrentTrack((currentTrack -= 1));
     updateSong();
     handlePlay();
   };
 
   const handleForWard = () => {
-    audioRef.current.pause();
-    if (currentTrack >= item.length) {
-      setAudio(true);
+    if (currentTrack === item.length - 1) {
       setCurrentTrack(0);
       updateSong();
     } else {
-      audioRef.current.pause();
-      setAudio(true);
-      setCurrentTrack(currentTrack + 1);
+      setCurrentTrack((currentTrack += 1));
       updateSong();
-      handlePlay();
     }
   };
 
@@ -156,7 +163,7 @@ export default function Playbar({ item, audio, currentTrack, setCurrentTrack, se
                 <div className="endTime"></div>
               </div>
             </div>
-            <div className="text-white  font-Orbit mx-6">{audio ? secondsToHms(duration - currentTime) : '00:00'}</div>
+            <div className="text-white text-xs font-Orbit mx-6">{audio ? secondsToHms(duration - currentTime) : '00:00'}</div>
           </div>
         </div>
       </div>
@@ -173,4 +180,12 @@ Playbar.propTypes = {
   currentTrack: PropTypes.number.isRequired,
   setCurrentTrack: PropTypes.func.isRequired,
   audio: PropTypes.bool.isRequired,
+  picture: PropTypes.string,
+  artist: PropTypes.string,
+  album: PropTypes.string,
+  title: PropTypes.string,
+  setTitle: PropTypes.func.isRequired,
+  setArtist: PropTypes.func.isRequired,
+  setAlbum: PropTypes.func.isRequired,
+  setPicture: PropTypes.func.isRequired,
 };
