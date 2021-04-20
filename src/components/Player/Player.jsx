@@ -110,7 +110,7 @@ export default function Player({
   }
 
   return (
-    <div className="h-full w-full absolute">
+    <div className="h-full w-full  absolute">
       <div className={`bg-black fixed flex flex-col  justify-between z-50 align-middle w-full h-full py-20 ${hiddenClass ? 'hidden' : ''}`}>
         <audio id="audio" className="hidden" onEnded={handleForWard} ref={audioRef2} controls>
           <source src={onListen} type="audio/mp3"></source>

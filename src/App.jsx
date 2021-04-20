@@ -6,10 +6,11 @@ import Header from './components/header/header.jsx';
 import SideBar from './components/sideBar/sideBar';
 import Contact from './components/Contact/Contact';
 import Carousel from './components/carousel/Carousel';
-/*import Player from './components/Player/Player';*/
+import Player from './components/Player/Player';
 import PlaylistSwitch from './components/Playlist/PlaylistSwitch';
 import SliderAlbum from './components/Slider/SliderAlbum';
 import bg from './img/BackGrounds/BackGround1.webp';
+import PlayerMobile from './components/PlayerMobile/PlayerMobile';
 
 function App() {
   const [isSideBarVisible, setisSideBarVisible] = useState(false);
@@ -104,7 +105,24 @@ function App() {
         </div>
         {isSideBarVisible && <SideBar sideBarClass={sideBarClass} setSideBarClass={setSideBarClass} />}
       </div>
-
+      <PlayerMobile
+        onListen={onListen}
+        audio={audio}
+        currentTrack={currentTrack}
+        handleSong={handleSong}
+        item={item}
+        title={title}
+        album={album}
+        artist={artist}
+        picture={picture}
+        setAudio={setAudio}
+        setOnListen={setOnListen}
+        setCurrentTrack={setCurrentTrack}
+        setAlbum={setAlbum}
+        setTitle={setTitle}
+        setArtist={setArtist}
+        setPicture={setPicture}
+      />
       {!isLoading && isSideBarVisible ? (
         <Playbar
           onListen={onListen}
@@ -127,7 +145,7 @@ function App() {
       ) : (
         ''
       )}
-      {/*{!isLoading && isSideBarVisible ? (
+      {!isLoading && isSideBarVisible ? (
         <Player
           item={item}
           title={title}
@@ -147,7 +165,7 @@ function App() {
         />
       ) : (
         ''
-      )}*/}
+      )}
     </div>
   );
 }
