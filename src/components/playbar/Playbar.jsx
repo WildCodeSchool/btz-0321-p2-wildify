@@ -28,7 +28,7 @@ export default function Playbar({
   const [duration, setDuration] = useState('00:00');
   const [currentTime, setCurrentTime] = useState('00:00');
   const audioRef = useRef(null);
-  console.log(albums);
+
   useEffect(() => {
     const timer = window.setInterval(() => {
       if (audioRef.current.currentTime > 0) {

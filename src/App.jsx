@@ -66,7 +66,6 @@ function App() {
           'flex fixed flex-col h-screen  top-0 right-0 900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-black bg-opacity-30 shadow-sideBar',
         );
   };
-
   return (
     <div
       className="flex align-middle justify-center pb-24"
@@ -102,7 +101,7 @@ function App() {
         <div className="col-start-1 col-end-3 row-start-6 row-end-7 rounded-20 900:col-end-4 900:row-start-5 900:row-end-6 bg-black bg-opacity-20 shadow-layoutContainer mb-4">
           <Contact />
         </div>
-        {isSideBarVisible && <SideBar sideBarClass={sideBarClass} setSideBarClass={setSideBarClass} />}
+        {isSideBarVisible && <SideBar sideBarClass={sideBarClass} albums={albums} setSideBarClass={setSideBarClass} />}
       </div>
 
       {!isLoading && isSideBarVisible ? (
