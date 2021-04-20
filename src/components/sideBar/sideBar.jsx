@@ -35,6 +35,7 @@ function SideBar({ sideBarClass, albums }) {
   // };
 
   const handlePictureSubmission = (e) => {
+    e.preventDefault();
     fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/albums/${albums[albumIndex].id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
