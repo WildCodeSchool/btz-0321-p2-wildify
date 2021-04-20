@@ -19,7 +19,6 @@ function ListPlaylistOnClick({ item, setIsChange, setCurrentTrack }) {
           </div>
         </button>
       ))}
-      ;
     </div>
   );
 }
