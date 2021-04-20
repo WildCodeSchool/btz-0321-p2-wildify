@@ -6,7 +6,7 @@ import Header from './components/header/header.jsx';
 import SideBar from './components/sideBar/sideBar';
 import Contact from './components/Contact/Contact';
 import Carousel from './components/carousel/Carousel';
-import SliderAlbum from './components/SliderAlbum';
+import SliderAlbum from './components/Slider/SliderAlbum';
 import ListPlaylist from './components/Playlist/listPlaylist';
 import bg from './img/BackGrounds/BackGround1.webp';
 
@@ -22,13 +22,22 @@ function App() {
     'flex h-screen fixed right-0 flex-col  900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-black bg-opacity-30 shadow-sideBar',
   );
 
+  const [albums, setAlbums] = useState([]);
+  const [artists, setArtists] = useState([]);
+
   useEffect(() => {
-    const getSongs = async () => {
-      const { data } = await axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs');
-      setItem(data);
+    const getDatas = async () => {
+      const [resSongs, resArtists, resAlbums] = await Promise.all([
+        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs'),
+        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/artists'),
+        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/albums'),
+      ]);
+      setItem(resSongs.data);
+      setAlbums(resAlbums.data);
+      setArtists(resArtists.data);
       setIsLoading(false);
     };
-    getSongs();
+    getDatas();
   }, []);
 
   useEffect(() => {
@@ -77,7 +86,7 @@ function App() {
           {/* ArtistComponent GoHere */}{' '}
         </div>
         <div className="col-start-2 col-end-3 row-start-4 rows-end-5 900:col-start-3 900:col-end-4 900:row-start-3 900:row-end-4 rounded-20 gap-x-1 bg-black bg-opacity-20 shadow-layoutContainer">
-          <SliderAlbum item={item} />
+          {!isLoading && <SliderAlbum item={item} albums={albums} artists={artists} />}
         </div>
 
         <div className="col-start-1 col-end-3 row-start-5 row-end-6 rounded-20 900:col-start-2 900:col-end-4 900:row-start-4 900:row-end-5 bg-black bg-opacity-20 shadow-layoutContainer">
