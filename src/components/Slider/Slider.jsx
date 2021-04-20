@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 function Slider({ albums, index }) {
   return (
-    <div className="h-full w-full" style={{ transform: `translateY(${-11 * index}rem)`, transition: `transform 0.5s ease-in-out` }}>
+    <div className="h-full w-full" style={{ transform: `translateY(${-15 * index}rem)`, transition: `transform 0.5s ease-in-out` }}>
       {albums.map((album, index) => (
-        <div key={index} className="w-full h-full bg-no-repeat bg-cover" style={{ backgroundImage: `url(${album.picture})` }}>
+        <div key={index} className="w-44 h-60 bg-center bg-no-repeat bg-cover rounded-3xl" style={{ backgroundImage: `url(${album.picture})` }}>
           <div className="text-white pl-1">{album.title}</div>
           <div className=" text-white pl-1">{album.artist}</div>
         </div>

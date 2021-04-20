@@ -4,7 +4,7 @@ import Prev from '../../img/previous.svg';
 
 function Previous({ albums, index, setIndex }) {
   return (
-    <button className="text-black cursor-pointer focus:outline-none" onClick={() => setIndex(index == 0 ? albums.length - 1 : index - 1)}>
+    <button className="absolute left-1/2 cursor-pointer focus:outline-none z-10" onClick={() => setIndex(index == 0 ? albums.length - 1 : index - 1)}>
       <img src={Prev} alt="previous" />
     </button>
   );
