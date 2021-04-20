@@ -6,12 +6,9 @@ import Header from './components/header/header.jsx';
 import SideBar from './components/sideBar/sideBar';
 import Contact from './components/Contact/Contact';
 import Carousel from './components/carousel/Carousel';
-
 import Player from './components/Player/Player';
 import PlaylistSwitch from './components/Playlist/PlaylistSwitch';
-
 import SliderAlbum from './components/Slider/SliderAlbum';
-
 import bg from './img/BackGrounds/BackGround1.webp';
 
 function App() {
