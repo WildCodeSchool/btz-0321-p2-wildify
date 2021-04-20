@@ -4,16 +4,16 @@ import Slider from './Slider';
 import Next from './Next';
 import Previous from './Previous';
 
-function SliderAlbum({ item }) {
+function SliderAlbum({ albums }) {
   const [index, setIndex] = useState(0);
 
   return (
     <div className="w-44 h-56 rounded-3xl shadow-lg bg-black">
-      <Previous className="" item={item} index={index} setIndex={setIndex} />
+      <Previous className="" albums={albums} index={index} setIndex={setIndex} />
       <div className="w-44 h-44 overflow-hidden">
-        <Slider className="" item={item} index={index} />
+        <Slider className="" albums={albums} index={index} />
       </div>
-      <Next className="" item={item} index={index} setIndex={setIndex} />
+      <Next className="" albums={albums} index={index} setIndex={setIndex} />
     </div>
   );
 }
@@ -21,5 +21,5 @@ function SliderAlbum({ item }) {
 export default SliderAlbum;
 
 SliderAlbum.propTypes = {
-  item: PropTypes.array.isRequired,
+  albums: PropTypes.array.isRequired,
 };
