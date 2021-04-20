@@ -6,9 +6,11 @@ import Header from './components/header/header.jsx';
 import SideBar from './components/sideBar/sideBar';
 import Contact from './components/Contact/Contact';
 import Carousel from './components/carousel/Carousel';
-import SliderAlbum from './components/SliderAlbum';
-
+import Player from './components/Player/Player';
 import PlaylistSwitch from './components/Playlist/PlaylistSwitch';
+import SliderAlbum from './components/Slider/SliderAlbum';
+import bg from './img/BackGrounds/BackGround1.webp';
+
 function App() {
   const [isSideBarVisible, setisSideBarVisible] = useState(false);
   const { width } = useWindowDimensions();
@@ -17,17 +19,30 @@ function App() {
   const [onListen, setOnListen] = useState('');
   const [currentTrack, setCurrentTrack] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [title, setTitle] = useState();
+  const [artist, setArtist] = useState();
+  const [album, setAlbum] = useState();
+  const [picture, setPicture] = useState();
   const [sideBarClass, setSideBarClass] = useState(
     'flex h-screen fixed right-0 flex-col  900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-black bg-opacity-30 shadow-sideBar',
   );
 
+  const [albums, setAlbums] = useState([]);
+  const [artists, setArtists] = useState([]);
+
   useEffect(() => {
-    const getSongs = async () => {
-      const { data } = await axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs');
-      setItem(data);
+    const getDatas = async () => {
+      const [resSongs, resArtists, resAlbums] = await Promise.all([
+        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs'),
+        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/artists'),
+        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/albums'),
+      ]);
+      setItem(resSongs.data);
+      setAlbums(resAlbums.data);
+      setArtists(resArtists.data);
       setIsLoading(false);
     };
-    getSongs();
+    getDatas();
   }, []);
 
   useEffect(() => {
@@ -53,7 +68,13 @@ function App() {
   };
 
   return (
-    <div className="flex align-middle justify-center mb-24">
+    <div
+      className="flex align-middle justify-center pb-24"
+      style={{
+        backgroundImage: `url(${bg})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+      }}>
       <div className="grid mx-5 gap-5  900:gap-6 grid-cols-mobile grid-rows-mobile 900:grid-cols-desktop 900:ml-6 900:mr-0 900:grid-rows-desktop">
         <Header handleSideBar={handleSideBar} isSideBarVisible={isSideBarVisible} />
 
@@ -63,7 +84,7 @@ function App() {
         </div>
 
         <div className=" overflow-y-auto col-start-1 col-end-3 row-start-3 row-end-4 900:col-end-2 900:row-end-5 rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
-          {!isLoading && <PlaylistSwitch item={item} setOnListen={setOnListen} currentTrack={currentTrack} />}
+          {!isLoading && <PlaylistSwitch item={item} setCurrentTrack={setCurrentTrack} currentTrack={currentTrack} />}
           {/* />*/}
         </div>
 
@@ -71,7 +92,7 @@ function App() {
           {/* ArtistComponent GoHere */}{' '}
         </div>
         <div className="col-start-2 col-end-3 row-start-4 rows-end-5 900:col-start-3 900:col-end-4 900:row-start-3 900:row-end-4 rounded-20 gap-x-1 bg-black bg-opacity-20 shadow-layoutContainer">
-          <SliderAlbum item={item} />
+          {!isLoading && <SliderAlbum item={item} albums={albums} artists={artists} />}
         </div>
 
         <div className="col-start-1 col-end-3 row-start-5 row-end-6 rounded-20 900:col-start-2 900:col-end-4 900:row-start-4 900:row-end-5 bg-black bg-opacity-20 shadow-layoutContainer">
@@ -83,16 +104,50 @@ function App() {
         </div>
         {isSideBarVisible && <SideBar sideBarClass={sideBarClass} setSideBarClass={setSideBarClass} />}
       </div>
-      <Playbar
-        handleSong={handleSong}
-        onListen={onListen}
-        setOnListen={setOnListen}
-        audio={audio}
-        setAudio={setAudio}
-        currentTrack={currentTrack}
-        setCurrentTrack={setCurrentTrack}
-        item={item}
-      />
+      (
+      {!isLoading && isSideBarVisible ? (
+        <Playbar
+          onListen={onListen}
+          audio={audio}
+          currentTrack={currentTrack}
+          handleSong={handleSong}
+          item={item}
+          title={title}
+          album={album}
+          artist={artist}
+          picture={picture}
+          setAudio={setAudio}
+          setOnListen={setOnListen}
+          setCurrentTrack={setCurrentTrack}
+          setAlbum={setAlbum}
+          setTitle={setTitle}
+          setArtist={setArtist}
+          setPicture={setPicture}
+        />
+      ) : (
+        ''
+      )}
+      {!isLoading && !isSideBarVisible ? (
+        <Player
+          item={item}
+          title={title}
+          album={album}
+          artist={artist}
+          picture={picture}
+          setAudio={setAudio}
+          setOnListen={setOnListen}
+          setCurrentTrack={setCurrentTrack}
+          setAlbum={setAlbum}
+          setTitle={setTitle}
+          setArtist={setArtist}
+          setPicture={setPicture}
+          audio={audio}
+          currentTrack={currentTrack}
+          onListen={onListen}
+        />
+      ) : (
+        ''
+      )}
     </div>
   );
 }
