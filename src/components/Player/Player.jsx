@@ -34,14 +34,13 @@ export default function Player({
 
   const updateSong = () => {
     setOnListen(item[currentTrack].s3_link);
-
+    setAudio(true);
     if (audioRef2.current) {
       audioRef2.current.load();
     }
     if (audio) {
       audioRef2.current.play();
     }
-
     setTitle(item[currentTrack].title);
     setArtist(item[currentTrack].artist.name);
     setAlbum(item[currentTrack].album.title);

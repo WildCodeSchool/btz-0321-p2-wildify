@@ -53,12 +53,11 @@ export default function Playbar({
   };
 
   const updateSong = () => {
-    console.log('2');
     setOnListen(item[currentTrack].s3_link);
     if (audioRef.current) {
       audioRef.current.load();
     }
-    if (audio) {
+    if (audio === true) {
       audioRef.current.play();
     }
     setTitle(item[currentTrack].title);
@@ -164,7 +163,7 @@ export default function Playbar({
                 <div className="endTime"></div>
               </div>
             </div>
-            <div className="text-white  font-Orbit mx-6">{audio ? secondsToHms(duration - currentTime) : '00:00'}</div>
+            <div className="text-white text-xs font-Orbit mx-6">{audio ? secondsToHms(duration - currentTime) : '00:00'}</div>
           </div>
         </div>
       </div>
