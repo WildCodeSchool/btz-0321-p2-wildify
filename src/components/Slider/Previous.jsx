@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import previous from '../img/previous.svg';
+import previous from '../../img/previous.svg';
 
 function Previous({ item, index, setIndex }) {
   const Previous = { previous };

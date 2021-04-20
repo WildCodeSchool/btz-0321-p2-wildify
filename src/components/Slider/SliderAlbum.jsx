@@ -22,4 +22,6 @@ export default SliderAlbum;
 
 SliderAlbum.propTypes = {
   item: PropTypes.array.isRequired,
+  albums: PropTypes.array.isRequired,
+  artists: PropTypes.array.isRequired,
 };

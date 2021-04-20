@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import next from '../img/next.svg';
+import next from '../../img/next.svg';
 
 function Next({ item, index, setIndex }) {
   const Next = { next };
