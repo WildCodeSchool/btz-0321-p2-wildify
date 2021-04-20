@@ -8,10 +8,11 @@ function SliderAlbum({ albums }) {
   const [index, setIndex] = useState(0);
 
   return (
-    <div className="w-full h-full">
+    <div>
       <Previous className="" albums={albums} index={index} setIndex={setIndex} />
-
-      <Slider className="overflow-hidden" albums={albums} index={index} />
+      <div className="w-full h-full rounded-3xl shadow-lg bg-black">
+        <Slider className="w-full h-full overflow-hidden" albums={albums} index={index} />
+      </div>
 
       <Next className="" albums={albums} index={index} setIndex={setIndex} />
     </div>
