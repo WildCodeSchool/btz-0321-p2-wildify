@@ -8,7 +8,7 @@ import Contact from './components/Contact/Contact';
 import Carousel from './components/carousel/Carousel';
 /*import Player from './components/Player/Player';*/
 import PlaylistSwitch from './components/Playlist/PlaylistSwitch';
-import SliderAlbum from './components/Slider/SliderAlbum';
+import Slider from './components/Slider/Slider';
 import bg from './img/BackGrounds/BackGround1.webp';
 
 function App() {
@@ -91,8 +91,8 @@ function App() {
         <div className="col-start-1 col-end-2 row-start-4 row-end-5 gap-x-1 900:col-start-2 900:col-end-3 900:row-start-3 900:row-end-4  rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
           {/* ArtistComponent GoHere */}{' '}
         </div>
-        <div className="col-start-2 col-end-3 row-start-4 rows-end-5 900:col-start-3 900:col-end-4 900:row-start-3 900:row-end-4 rounded-20 gap-x-1 bg-black bg-opacity-20 shadow-layoutContainer">
-          {!isLoading && <SliderAlbum item={item} albums={albums} artists={artists} />}
+        <div className="overflow-hidden col-start-2 col-end-3 row-start-4 rows-end-5 900:col-start-3 900:col-end-4 900:row-start-3 900:row-end-4 rounded-20 gap-x-1 bg-black bg-opacity-20 shadow-layoutContainer">
+          {!isLoading && <Slider item={item} albums={albums} artists={artists} />}
         </div>
 
         <div className="col-start-1 col-end-3 row-start-5 row-end-6 rounded-20 900:col-start-2 900:col-end-4 900:row-start-4 900:row-end-5 bg-black bg-opacity-20 shadow-layoutContainer">
