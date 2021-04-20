@@ -25,15 +25,6 @@ function SideBar({ sideBarClass, albums }) {
       });
   };
 
-  // const handlePictureSubmission = (e) => {
-  //   e.preventDefault();
-  //   fetch('https://bazify-backend.basile.vernouillet.dev/api/v1/albums/29dd4385-3a85-41d0-ab3b-14c9db7abc2e', {
-  //     method: 'PUT',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify({ picture: imgUrl }),
-  //   }).then((res) => res);
-  // };
-
   const handlePictureSubmission = (e) => {
     e.preventDefault();
     fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/albums/${albums[albumIndex].id}`, {
