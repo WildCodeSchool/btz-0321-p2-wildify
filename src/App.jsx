@@ -53,6 +53,7 @@ function App() {
     } else {
       setisSideBarVisible(true);
       setIsMobilePlayerVisible(false);
+      setIsPlayerVisible(false);
     }
   }, [width]);
 
@@ -172,6 +173,7 @@ function App() {
           currentTrack={currentTrack}
           onListen={onListen}
           setIsPlayerVisible={setIsPlayerVisible}
+          setIsMobilePlayerVisible={setIsMobilePlayerVisible}
         />
       ) : (
         ''

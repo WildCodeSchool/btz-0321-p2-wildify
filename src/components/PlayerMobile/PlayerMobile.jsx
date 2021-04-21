@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import Controls from '../playbar/controls/controls';
 import PropTypes from 'prop-types';
+import Arrow from '../../img/arrow.svg';
+import Miniature from '../../img/playbar-miniature.png';
 export default function PlayerMobile({
   setIsMobilePlayerVisible,
   setIsPlayerVisible,
@@ -15,7 +17,6 @@ export default function PlayerMobile({
   useEffect(() => {
     updateSong();
   }, [currentTrack]);
-
   const updateSong = () => {
     if (audio) {
       setOnListen(item[currentTrack].s3_link);
@@ -64,10 +65,10 @@ export default function PlayerMobile({
         <track default kind="captions" />
         Your browser does not support this audio format.
       </audio>
-      <img className="h-full" src="./src/img/playbar-miniature.png" alt="" />
+      <img className="h-full" src={Miniature} alt="" />
       <Controls handleBackWard={handleBackWard} handleForWard={handleForWard} handlePause={handlePause} handlePlay={handlePlay} />
       <button onClick={handleClick} className="flex items-center justify-center flex-col h-full">
-        <img src="./src/img/arrow.svg" className="w-8 cursor-pointer" alt="" />
+        <img src={Arrow} className="w-8 cursor-pointer" alt="" />
       </button>
     </div>
   );
@@ -82,4 +83,5 @@ PlayerMobile.propTypes = {
   audio: PropTypes.bool.isRequired,
   setAudio: PropTypes.func.isRequired,
   setIsPlayerVisible: PropTypes.func.isRequired,
+  setIsMobilePlayerVisible: PropTypes.func.isRequired,
 };

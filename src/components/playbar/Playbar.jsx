@@ -133,13 +133,6 @@ export default function Playbar({
         </div>
         <div className="flex-col align-middle  justify-center  w-8/12">
           <div className="flex h-full w-full align-middle justify-center items-center">
-            {audio ? (
-              <div className="h-full flex w-4/12  items-center justify-center align-middle   ">
-                <img className="w-full" src="./src/img/gifSon.gif" alt="" />
-              </div>
-            ) : (
-              ''
-            )}
             <div className="h-full  w-9/12">
               <div className="endTime"></div>
               <input onChange={volumeChange} type="range" min="0" max="100" value={sliderPos} className="w-11/12 h-0.5 slider" id="myRange"></input>
