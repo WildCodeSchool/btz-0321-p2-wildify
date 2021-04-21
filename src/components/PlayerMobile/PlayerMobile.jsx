@@ -1,7 +1,17 @@
 import React, { useEffect, useRef } from 'react';
 import Controls from '../playbar/controls/controls';
 import PropTypes from 'prop-types';
-export default function PlayerMobile({ setIsPlayerVisible, setOnListen, onListen, item, currentTrack, setCurrentTrack, audio, setAudio }) {
+export default function PlayerMobile({
+  setIsMobilePlayerVisible,
+  setIsPlayerVisible,
+  setOnListen,
+  onListen,
+  item,
+  currentTrack,
+  setCurrentTrack,
+  audio,
+  setAudio,
+}) {
   useEffect(() => {
     updateSong();
   }, [currentTrack]);
@@ -44,6 +54,7 @@ export default function PlayerMobile({ setIsPlayerVisible, setOnListen, onListen
   };
   const handleClick = () => {
     setIsPlayerVisible(true);
+    setIsMobilePlayerVisible(false);
   };
 
   return (

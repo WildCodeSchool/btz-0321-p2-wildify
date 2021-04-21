@@ -125,6 +125,7 @@ function App() {
           setArtist={setArtist}
           setPicture={setPicture}
           setIsPlayerVisible={setIsPlayerVisible}
+          setIsMobilePlayerVisible={setIsMobilePlayerVisible}
         />
       ) : (
         ''
@@ -148,6 +149,7 @@ function App() {
           setArtist={setArtist}
           setPicture={setPicture}
           albums={albums}
+          setIsMobilePlayerVisible={setIsMobilePlayerVisible}
         />
       ) : (
         ''

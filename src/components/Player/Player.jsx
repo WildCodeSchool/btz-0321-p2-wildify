@@ -20,6 +20,7 @@ export default function Player({
   audio,
   setAudio,
   setIsPlayerVisible,
+  setIsMobilePlayerVisible,
 }) {
   const [sliderValue, setSliderValue] = useState(0);
   const [sliderPos, setSliderPos] = useState('100');
