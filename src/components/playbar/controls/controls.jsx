@@ -13,7 +13,7 @@ export default function Controls({ handlePause, handlePlay, handleBackWard, hand
     forward: Forward,
   };
   return (
-    <div className="flex mx-6 w-6/12">
+    <div className="flex align-middle justify-center mx-6 w-6/12">
       <button className="outline-none" onClick={handleBackWard}>
         <img
           className="px-1 hover:opacity-50 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105 ..."

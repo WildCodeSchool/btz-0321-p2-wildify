@@ -1,66 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-function SideBar({ sideBarClass }) {
+function SideBar({ sideBarClass, albums }) {
   const [selectFile, setSelectFile] = useState();
-
-  // const [title, setTitle] = useState('');
-  // const [album, setAlbum] = useState('');
-  // // const [picture, setPicture] = useState('');
-  // const [artist, setArtist] = useState();
-
-  const handleTitle = () => {
-    // setTitle(e.target.value);
-  };
-
-  const handleAlbum = () => {
-    // setAlbum(e.target.value);
-  };
-
-  const handlePicture = () => {
-    // setPicture(e.target.value);
-  };
-
-  const handleArtist = () => {
-    // setArtist(e.target.value);
-  };
-  // const formData = new FormData();
-
-  // function fileUpload(file) {
-  //   const url = 'https://bazify-backend.basile.vernouillet.dev/api/v1/songs';
-  //   const formData = new FormData();
-  //   formData.append('file', file);
-  //   const config = {
-  //     headers: {
-  //       'content-type': 'multipart/form-data',
-  //     },
-  //   };
-  //   return post(url, formData, config);
-  // }
-
-  // const fetchUpload = () => {
-  //   fetch('https://bazify-backend.basile.vernouillet.dev/api/v1/songs', {
-  //     method: 'POST',
-  //     headers: {
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         'X-Custom-Header': 'ProcessThisImmediately',
-  //       },
-  //     },
-  //     body: formData.append('file', selectFile, 'file'),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((result) => {
-  //       // eslint-disable-next-line no-console
-  //       console.log('succes:', result);
-  //     })
-  //     .then(console.log('ok'))
-  //     .catch((error) => {
-  //       // eslint-disable-next-line no-console
-  //       console.error('Error:', error);
-  //     });
-  // };
-  const changeHandler = (event) => {
+  const [imgUrl, setImgUrl] = useState();
+  const [albumIndex, setAlbumindex] = useState();
+  const changeFileHandler = (event) => {
     setSelectFile(event.target.files[0]);
   };
 
@@ -80,25 +25,42 @@ function SideBar({ sideBarClass }) {
       });
   };
 
+  const handlePictureSubmission = (e) => {
+    e.preventDefault();
+    fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/albums/${albums[albumIndex].id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ picture: imgUrl }),
+    }).then((res) => res);
+  };
+
+  const handleChange = (e) => {
+    setImgUrl(e.target.value);
+  };
+
+  const handlePictureChange = (e) => {
+    setAlbumindex(e.target.value);
+  };
+
   return (
     <div className={sideBarClass}>
       <form className="my-20  sticky flex flex-col justify-center items-center">
-        <label className="text-white text-sm font-Orbit w-8/12" htmlFor="Title">
-          Title:
-        </label>
-        <input onChange={handleTitle} className="w-3/4 bg-black text-white opacity-30 rounded-4xl my-4" type="text" name="title"></input>
-        <label className="text-white text-sm font-Orbit w-8/12" htmlFor="Artist">
-          Artist:
-        </label>
-        <input onChange={handleArtist} className="w-3/4 bg-black text-white opacity-30 rounded-4xl my-4" type="text" name="Artist"></input>
-        <label className="text-white text-sm font-Orbit w-8/12" htmlFor="Album">
-          Album:
-        </label>
-        <input onChange={handleAlbum} className="w-3/4 bg-black text-white opacity-30 rounded-4xl my-4" type="text" name="Album"></input>
+        <select onBlur={handlePictureChange}>
+          {albums.map((album, key) => {
+            return (
+              <option className="w-3/4 bg-black text-white font-Orbit opacity-30 rounded-4xl my-4" value={key} id={album.id} key={album.id}>
+                {album.title}
+              </option>
+            );
+          })}
+        </select>
         <label className="text-white text-sm font-Orbit w-8/12" htmlFor="Picture">
           Picture:
         </label>
-        <input onChange={handlePicture} className="w-3/4 bg-black text-white opacity-30 rounded-4xl my-4" type="text" name="Picture"></input>
+        <input onChange={handleChange} className="w-3/4 bg-black text-white opacity-30 rounded-4xl my-4" type="text" name="Picture"></input>
+        <button className="bg-black opacity-60 rounded-2xl my-10 text-white px-8 py-4 hover:opacity-95 font-Orbit" onClick={handlePictureSubmission}>
+          UPLOAD
+        </button>
       </form>
       <form className="flex flex-col justify-center items-center ">
         <label className="text-white text-sm font-Orbit w-8/12" htmlFor="playlist">
@@ -131,7 +93,7 @@ function SideBar({ sideBarClass }) {
           type="file"
           id="file"
           name="file"
-          onChange={changeHandler}
+          onChange={changeFileHandler}
         />
         <button className="bg-black opacity-60 rounded-2xl my-10 text-white px-8 py-4 hover:opacity-95 font-Orbit" onClick={handleSubmission}>
           UPLOAD
@@ -143,6 +105,7 @@ function SideBar({ sideBarClass }) {
 
 SideBar.propTypes = {
   sideBarClass: PropTypes.string.isRequired,
+  albums: PropTypes.array.isRequired,
 };
 
 export default SideBar;
