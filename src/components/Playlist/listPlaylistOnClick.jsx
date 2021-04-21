@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReturnBtn from '../../img/PlayList/ReturnButton.svg';
 
 function ListPlaylistOnClick({ item, setIsChange, setCurrentTrack }) {
   return (
@@ -7,7 +8,7 @@ function ListPlaylistOnClick({ item, setIsChange, setCurrentTrack }) {
       <div className="flex justify-between items-center">
         <h1 className="text-white font-scada text-3xl font-bold mb-2">PlaylistName</h1>
         <button onClick={setIsChange} className="h-3 w-3  focus:outline-none transform hover:scale-110">
-          <img src="src/img/PlayList/ReturnButton.svg" alt="ReturnButton" />
+          <img src={ReturnBtn} alt="ReturnButton" />
         </button>
       </div>
       {item.map((music, key) => (
