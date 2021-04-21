@@ -9,11 +9,21 @@ function Artist({ count, setCount, artists }) {
         Prev
       </button>
 
-      <ArtistCard picture={artists[count].picture} />
-      <ArtistCard picture={artists[count === artists.length - 1 ? 0 : count + 1].picture} />
-      <ArtistCard picture={artists[count === artists.length - 2 ? 0 : count === artists.length - 1 ? 1 : count + 2].picture} />
+      <ArtistCard picture={artists[count].picture} count={count} artists={artists} />
+      <ArtistCard
+        picture={artists[count === artists.length - 1 ? 0 : count + 1].picture}
+        count={count === artists.length - 1 ? 0 : count + 1}
+        artists={artists}
+      />
+      <ArtistCard
+        picture={artists[count === artists.length - 2 ? 0 : count === artists.length - 1 ? 1 : count + 2].picture}
+        count={count === artists.length - 2 ? 0 : count === artists.length - 1 ? 1 : count + 2}
+        artists={artists}
+      />
       <ArtistCard
         picture={artists[count === artists.length - 3 ? 0 : count === artists.length - 2 ? 1 : count === artists.length - 1 ? 2 : count + 3].picture}
+        count={count === artists.length - 3 ? 0 : count === artists.length - 2 ? 1 : count === artists.length - 1 ? 2 : count + 3}
+        artists={artists}
       />
 
       <button onClick={() => setCount(count === 6 - 1 ? 0 : (count += 1))} className="border bg-white rounded-2xl">

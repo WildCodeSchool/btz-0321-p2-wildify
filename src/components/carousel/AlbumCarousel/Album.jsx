@@ -9,11 +9,21 @@ function Album({ count, setCount, albums }) {
         Prev
       </button>
 
-      <AlbumCard picture={albums[count].picture} />
-      <AlbumCard picture={albums[count === albums.length - 1 ? 0 : count + 1].picture} />
-      <AlbumCard picture={albums[count === albums.length - 2 ? 0 : count === albums.length - 1 ? 1 : count + 2].picture} />
+      <AlbumCard picture={albums[count].picture} count={count} albums={albums} />
+      <AlbumCard
+        picture={albums[count === albums.length - 1 ? 0 : count + 1].picture}
+        count={count === albums.length - 1 ? 0 : count + 1}
+        albums={albums}
+      />
+      <AlbumCard
+        picture={albums[count === albums.length - 2 ? 0 : count === albums.length - 1 ? 1 : count + 2].picture}
+        count={count === albums.length - 2 ? 0 : count === albums.length - 1 ? 1 : count + 2}
+        albums={albums}
+      />
       <AlbumCard
         picture={albums[count === albums.length - 3 ? 0 : count === albums.length - 2 ? 1 : count === albums.length - 1 ? 2 : count + 3].picture}
+        count={count === albums.length - 3 ? 0 : count === albums.length - 2 ? 1 : count === albums.length - 1 ? 2 : count + 3}
+        albums={albums}
       />
 
       <button onClick={() => setCount(count === 6 ? 0 : (count += 1))} className="border bg-white rounded-2xl">
