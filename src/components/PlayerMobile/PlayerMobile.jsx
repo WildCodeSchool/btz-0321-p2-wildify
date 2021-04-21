@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Controls from '../playbar/controls/controls';
 import PropTypes from 'prop-types';
-export default function PlayerMobile({ setOnListen, onListen, item, currentTrack, setCurrentTrack, audio, setAudio }) {
+export default function PlayerMobile({ setIsPlayerVisible, setOnListen, onListen, item, currentTrack, setCurrentTrack, audio, setAudio }) {
   useEffect(() => {
     updateSong();
   }, [currentTrack]);
@@ -42,6 +42,9 @@ export default function PlayerMobile({ setOnListen, onListen, item, currentTrack
       updateSong();
     }
   };
+  const handleClick = () => {
+    setIsPlayerVisible(true);
+  };
 
   return (
     <div className="p-2 w-7/12 h-28 flex items-center align-middle justify-center rounded-4xl fixed bottom-10 bg-black">
@@ -52,7 +55,7 @@ export default function PlayerMobile({ setOnListen, onListen, item, currentTrack
       </audio>
       <img className="h-full" src="./src/img/playbar-miniature.png" alt="" />
       <Controls handleBackWard={handleBackWard} handleForWard={handleForWard} handlePause={handlePause} handlePlay={handlePlay} />
-      <button className=" flex items-center justify-center flex-col h-full">
+      <button onClick={handleClick} className="flex items-center justify-center flex-col h-full">
         <img src="./src/img/arrow.svg" className="w-8 cursor-pointer" alt="" />
       </button>
     </div>
@@ -67,4 +70,5 @@ PlayerMobile.propTypes = {
   setCurrentTrack: PropTypes.func.isRequired,
   audio: PropTypes.bool.isRequired,
   setAudio: PropTypes.func.isRequired,
+  setIsPlayerVisible: PropTypes.func.isRequired,
 };

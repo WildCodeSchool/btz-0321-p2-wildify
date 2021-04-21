@@ -14,6 +14,8 @@ import PlayerMobile from './components/PlayerMobile/PlayerMobile';
 
 function App() {
   const [isSideBarVisible, setisSideBarVisible] = useState(false);
+  const [isPlayerVisible, setIsPlayerVisible] = useState(false);
+  const [isMobilePlayerVisible, setIsMobilePlayerVisible] = useState(true);
   const { width } = useWindowDimensions();
   const [item, setItem] = useState([]);
   const [audio, setAudio] = useState(false);
@@ -49,8 +51,10 @@ function App() {
   useEffect(() => {
     if (width < 768) {
       setisSideBarVisible(false);
+      setIsMobilePlayerVisible(true);
     } else {
       setisSideBarVisible(true);
+      setIsMobilePlayerVisible(false);
     }
   }, [width]);
 
@@ -105,24 +109,29 @@ function App() {
         </div>
         {isSideBarVisible && <SideBar sideBarClass={sideBarClass} setSideBarClass={setSideBarClass} />}
       </div>
-      <PlayerMobile
-        onListen={onListen}
-        audio={audio}
-        currentTrack={currentTrack}
-        handleSong={handleSong}
-        item={item}
-        title={title}
-        album={album}
-        artist={artist}
-        picture={picture}
-        setAudio={setAudio}
-        setOnListen={setOnListen}
-        setCurrentTrack={setCurrentTrack}
-        setAlbum={setAlbum}
-        setTitle={setTitle}
-        setArtist={setArtist}
-        setPicture={setPicture}
-      />
+      {!isLoading && isMobilePlayerVisible ? (
+        <PlayerMobile
+          onListen={onListen}
+          audio={audio}
+          currentTrack={currentTrack}
+          handleSong={handleSong}
+          item={item}
+          title={title}
+          album={album}
+          artist={artist}
+          picture={picture}
+          setAudio={setAudio}
+          setOnListen={setOnListen}
+          setCurrentTrack={setCurrentTrack}
+          setAlbum={setAlbum}
+          setTitle={setTitle}
+          setArtist={setArtist}
+          setPicture={setPicture}
+          setIsPlayerVisible={setIsPlayerVisible}
+        />
+      ) : (
+        ''
+      )}
       {!isLoading && isSideBarVisible ? (
         <Playbar
           onListen={onListen}
@@ -145,7 +154,7 @@ function App() {
       ) : (
         ''
       )}
-      {!isLoading && isSideBarVisible ? (
+      {!isLoading && isPlayerVisible ? (
         <Player
           item={item}
           title={title}
@@ -162,6 +171,7 @@ function App() {
           audio={audio}
           currentTrack={currentTrack}
           onListen={onListen}
+          setIsPlayerVisible={setIsPlayerVisible}
         />
       ) : (
         ''

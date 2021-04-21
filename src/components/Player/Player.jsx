@@ -19,6 +19,7 @@ export default function Player({
   setCurrentTrack,
   audio,
   setAudio,
+  setIsPlayerVisible,
 }) {
   const [sliderValue, setSliderValue] = useState(0);
   const [sliderPos, setSliderPos] = useState('100');
@@ -26,7 +27,6 @@ export default function Player({
   const [currentTime, setCurrentTime] = useState('00:00');
 
   const audioRef2 = useRef();
-  const [hiddenClass, setHiddenClass] = useState(true);
 
   useEffect(() => {
     updateSong();
@@ -86,7 +86,7 @@ export default function Player({
   };
 
   const handleClick = () => {
-    hiddenClass ? setHiddenClass(false) : setHiddenClass(true);
+    setIsPlayerVisible(false);
   };
 
   useEffect(() => {
@@ -111,15 +111,18 @@ export default function Player({
 
   return (
     <div className="h-full w-full  absolute">
-      <div className={`bg-black fixed flex flex-col  justify-between z-50 align-middle w-full h-full py-20 ${hiddenClass ? 'hidden' : ''}`}>
+      <div className="bg-black fixed flex flex-col  justify-between z-50 align-middle w-full h-full py-20">
         <audio id="audio" className="hidden" onEnded={handleForWard} ref={audioRef2} controls>
           <source src={onListen} type="audio/mp3"></source>
           <track default kind="captions" />
           Your browser does not support this audio format.
         </audio>
         <div className="flex justify-around items-center w-full align-middle px-10">
-          <input onChange={volumeChange} type="range" min="0" max="100" value={sliderPos} className="w-8/12 h-0.5 slider" id="myRange"></input>
           <img src="./src/img/Group 44.png" className="w-5" alt="" />
+          <input onChange={volumeChange} type="range" min="0" max="100" value={sliderPos} className="w-8/12 h-0.5 slider" id="myRange"></input>
+          <button onClick={handleClick}>
+            <img className="transform rotate-180" src="./src/img/arrow.svg" alt="" />
+          </button>
         </div>
         <div className="w-full flex align-middle justify-center px-10">
           <img className="rounded-full w-2/4 max-w-xl" src={picture ? picture : './src/img/playbar-miniature.png'} alt="" />
@@ -154,9 +157,6 @@ export default function Player({
             id="myRange"></input>
         </div>
       </div>
-      <button onClick={handleClick}>
-        <img src="./src/img/arrow.svg" className="w-8 cursor-pointer fixed bottom-20 right-20 z-50" alt="" />
-      </button>
     </div>
   );
 }
@@ -177,4 +177,5 @@ Player.propTypes = {
   setCurrentTrack: PropTypes.func.isRequired,
   audio: PropTypes.bool.isRequired,
   setAudio: PropTypes.func.isRequired,
+  setIsPlayerVisible: PropTypes.func.isRequired,
 };
