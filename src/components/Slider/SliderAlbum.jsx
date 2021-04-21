@@ -9,9 +9,9 @@ function SliderAlbum({ albums }) {
 
   return (
     <div className="w-full h-full">
+      <Slider className="" albums={albums} index={index} />
       <Previous className="left-1/2" albums={albums} index={index} setIndex={setIndex} />
       <Next className="bottom-0" albums={albums} index={index} setIndex={setIndex} />
-      <Slider className="" albums={albums} index={index} />
     </div>
   );
 }
