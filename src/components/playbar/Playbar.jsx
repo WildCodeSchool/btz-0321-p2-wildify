@@ -22,12 +22,13 @@ export default function Playbar({
   setTitle,
   setAlbum,
   setArtist,
+  isPlaySwitch,
+  setIsPlaySwitch,
 }) {
   const [sliderValue, setSliderValue] = useState(0);
   const [sliderPos, setSliderPos] = useState('100');
   const [duration, setDuration] = useState('00:00');
   const [currentTime, setCurrentTime] = useState('00:00');
-  const [isPlaySwitch, setIsPlaySwitch] = useState(true);
   const audioRef = useRef(null);
 
   useEffect(() => {
@@ -173,7 +174,7 @@ export default function Playbar({
             handlePause={handlePause}
             handleBackWard={handleBackWard}
             handleForWard={handleForWard}
-            playSwitch={isPlaySwitch}
+            isPlaySwitch={isPlaySwitch}
           />
           <div className="ml-6 mr-3 flex-col align-middle w-5/12">
             <div className="flex h-full w-full align-middle justify-center items-center">
@@ -217,4 +218,6 @@ Playbar.propTypes = {
   setArtist: PropTypes.func.isRequired,
   setAlbum: PropTypes.func.isRequired,
   setPicture: PropTypes.func.isRequired,
+  isPlaySwitch: PropTypes.bool.isrequired,
+  setIsPlaySwitch: PropTypes.func.isrequired,
 };

@@ -51,6 +51,13 @@ module.exports = {
       height: {
         plist: '50px',
       },
+      minWidth: {
+        0: '0',
+        'controls-minW': '200px',
+        '1/2': '50%',
+        '3/4': '75%',
+        full: '100%',
+      },
     },
   },
   variants: {},
