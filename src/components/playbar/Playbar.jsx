@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Controls from './controls/controls';
 import HiddenPlayer from '../HiddenPlayer/HiddenPlayer';
+import Volume from '../../img/volume.svg';
 import './playbar.css';
 
 export default function Playbar({
@@ -169,7 +170,7 @@ export default function Playbar({
           <div className="ml-6 mr-3 flex-col align-middle w-5/12">
             <div className="flex h-full w-full align-middle justify-center items-center">
               <div className="h-full mr-2">
-                <img className="w-full" src="src/img/volume.svg" alt="" />
+                <img className="w-full" src={Volume} alt="" />
               </div>
               <div className="h-full  w-full">
                 <div className="endTime"></div>
