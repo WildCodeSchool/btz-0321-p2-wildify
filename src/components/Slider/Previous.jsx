@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import Prev from '../../img/previous.svg';
 
-function Previous({ albums, index, setIndex }) {
+function Previous({ albums, index, setIndex, width }) {
+  const [translationTopArrow, setTranslationTopArrow] = useState();
+  useEffect(() => {
+    if (width < 900) {
+      setTranslationTopArrow('-translate-y-24');
+    } else {
+      setTranslationTopArrow('-translate-y-32');
+    }
+  }, [width]);
   return (
-    <button className="text-black cursor-pointer focus:outline-none" onClick={() => setIndex(index == 0 ? albums.length - 1 : index - 1)}>
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-56" fill="#fff" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-      </svg>
+    <button
+      className={`absolute cursor-pointer transform ${translationTopArrow} focus:outline-none z-10`}
+      onClick={() => setIndex(index === 0 ? albums.length - 1 : index - 1)}>
+      <img src={Prev} alt="previous" />
     </button>
   );
 }
@@ -16,5 +25,6 @@ export default Previous;
 Previous.propTypes = {
   albums: PropTypes.array.isRequired,
   index: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
   setIndex: PropTypes.func.isRequired,
 };
