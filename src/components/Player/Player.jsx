@@ -71,11 +71,19 @@ export default function Player({
   };
 
   const handleBackWard = () => {
-    audioRef2.current.pause();
-    setAudio(true);
-    setCurrentTrack((currentTrack -= 1));
-    updateSong();
-    handlePlay();
+    if (currentTrack === 0) {
+      setCurrentTrack(item.length - 1);
+      audioRef2.current.pause();
+      setAudio(true);
+      updateSong();
+      handlePlay();
+    } else {
+      audioRef2.current.pause();
+      setAudio(true);
+      setCurrentTrack((currentTrack -= 1));
+      updateSong();
+      handlePlay();
+    }
   };
 
   const handleForWard = () => {

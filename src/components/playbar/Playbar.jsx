@@ -91,11 +91,19 @@ export default function Playbar({
   };
 
   const handleBackWard = () => {
-    audioRef.current.pause();
-    setAudio(true);
-    setCurrentTrack((currentTrack -= 1));
-    updateSong();
-    handlePlay();
+    if (currentTrack === 0) {
+      setCurrentTrack(item.length - 1);
+      audioRef.current.pause();
+      setAudio(true);
+      updateSong();
+      handlePlay();
+    } else {
+      audioRef.current.pause();
+      setAudio(true);
+      setCurrentTrack((currentTrack -= 1));
+      updateSong();
+      handlePlay();
+    }
   };
 
   const handleForWard = () => {

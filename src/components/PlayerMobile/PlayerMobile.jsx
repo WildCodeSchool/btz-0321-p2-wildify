@@ -37,11 +37,19 @@ export default function PlayerMobile({
   };
 
   const handleBackWard = () => {
-    audioRef3.current.pause();
-    setAudio(true);
-    setCurrentTrack((currentTrack -= 1));
-    updateSong();
-    handlePlay();
+    if (currentTrack === 0) {
+      setCurrentTrack(item.length - 1);
+      audioRef3.current.pause();
+      setAudio(true);
+      updateSong();
+      handlePlay();
+    } else {
+      audioRef3.current.pause();
+      setAudio(true);
+      setCurrentTrack((currentTrack -= 1));
+      updateSong();
+      handlePlay();
+    }
   };
 
   const handleForWard = () => {
