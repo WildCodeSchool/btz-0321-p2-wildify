@@ -59,7 +59,7 @@ export default function PlayerMobile({
   };
 
   return (
-    <div className="p-2 w-7/12 h-28 flex items-center align-middle justify-center rounded-4xl fixed bottom-10 bg-black">
+    <div className="p-2 w-7/12 h-28 z-50 flex items-center align-middle justify-center rounded-4xl fixed bottom-10 bg-black">
       <audio id="audio" className="hidden" onEnded={handleForWard} ref={audioRef3} controls>
         <source src={onListen} type="audio/mp3"></source>
         <track default kind="captions" />

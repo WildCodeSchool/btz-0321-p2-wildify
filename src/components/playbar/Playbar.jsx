@@ -105,7 +105,7 @@ export default function Playbar({
   };
 
   return (
-    <div className="w-2/4 max-h-40 flex-row align-middle justify-center   fixed bottom-3">
+    <div className="w-2/4 max-h-40 flex-row align-middle justify-center  fixed bottom-3">
       <HiddenPlayer
         currentTrack={currentTrack}
         setCurrentTrack={setCurrentTrack}
