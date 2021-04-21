@@ -28,7 +28,7 @@ function Slider({ albums, index, width }) {
       {albums.map((album, index) => (
         <div key={index} className="w-full h-full bg-center bg-no-repeat bg-cover rounded-3xl" style={{ backgroundImage: `url(${album.picture})` }}>
           <div className={`font-scada font-medium transform shadow-2xl text-white pl-4 ${translationTitle}`}>{album.title}</div>
-          <div className={`font-cuprum text-xs font-thin shadow-2xl transform  text-white pl-4 ${translationArtist}`}>pupul{album.artist}</div>
+          <div className={`font-cuprum text-xs font-thin shadow-2xl transform  text-white pl-4 ${translationArtist}`}>{album.artist}</div>
         </div>
       ))}
     </div>
@@ -39,6 +39,6 @@ export default Slider;
 
 Slider.propTypes = {
   albums: PropTypes.array.isRequired,
-  index: PropTypes.any,
+  index: PropTypes.number.isRequired,
   width: PropTypes.number.isRequired,
 };
