@@ -5,7 +5,7 @@ import Prev from '../../img/previous.svg';
 function Previous({ albums, index, setIndex }) {
   return (
     <button
-      className="absolute cursor-pointer transform -translate-y-32 focus:outline-none z-10"
+      className="absolute cursor-pointer transform -translate-y-24 focus:outline-none z-10"
       onClick={() => setIndex(index === 0 ? albums.length - 1 : index - 1)}>
       <img src={Prev} alt="previous" />
     </button>
