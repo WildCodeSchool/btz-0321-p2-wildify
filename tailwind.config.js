@@ -21,6 +21,9 @@ module.exports = {
         desktop: '4fr 2fr 2fr 3fr',
         mobile: '1fr 1fr',
       },
+      inset: {
+        almost: '90%',
+      },
       gridTemplateRows: {
         mobileCarousel: '1fr 1fr 3fr',
         desktopCarousel: '1fr 2fr',
