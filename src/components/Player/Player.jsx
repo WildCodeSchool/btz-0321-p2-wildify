@@ -2,6 +2,8 @@ import React, { useRef, useEffect, useState } from 'react';
 import Controls from '../playbar/controls/controls';
 import './Player.css';
 import PropTypes from 'prop-types';
+import Arrow from '../../img/arrow.svg';
+import Miniature from '../../img/playbar-miniature.png';
 
 export default function Player({
   setPicture,
@@ -20,6 +22,7 @@ export default function Player({
   audio,
   setAudio,
   setIsPlayerVisible,
+  setIsMobilePlayerVisible,
 }) {
   const [sliderValue, setSliderValue] = useState(0);
   const [sliderPos, setSliderPos] = useState('100');
@@ -87,6 +90,7 @@ export default function Player({
 
   const handleClick = () => {
     setIsPlayerVisible(false);
+    setIsMobilePlayerVisible(true);
   };
 
   useEffect(() => {
@@ -118,28 +122,18 @@ export default function Player({
           Your browser does not support this audio format.
         </audio>
         <div className="flex justify-around items-center w-full align-middle px-10">
-          <img src="./src/img/Group 44.png" className="w-5" alt="" />
           <input onChange={volumeChange} type="range" min="0" max="100" value={sliderPos} className="w-8/12 h-0.5 slider" id="myRange"></input>
           <button onClick={handleClick}>
-            <img className="transform rotate-180" src="./src/img/arrow.svg" alt="" />
+            <img className="transform rotate-180" src={Arrow} alt="" />
           </button>
         </div>
         <div className="w-full flex align-middle justify-center px-10">
-          <img className="rounded-full w-2/4 max-w-xl" src={picture ? picture : './src/img/playbar-miniature.png'} alt="" />
+          <img className="rounded-full w-2/4 max-w-xl" src={picture ? picture : Miniature} alt="" />
         </div>
         <div className="text-white text-3xl font-Orbit flex flex-col items-center w-full align-middle justify-center px-10">
           <div className="font-Orbit">{title}</div>
           <div className="font-Orbit">{artist}</div>
           <div className="font-Orbit">{album}</div>
-          <div>
-            {title ? (
-              <div className="flex align-middle justify-center items-center">
-                <img src="./src/img/gifSon.gif" className="w-1/4" alt=""></img>
-              </div>
-            ) : (
-              ''
-            )}
-          </div>
         </div>
         <div className="w-full flex align-middle items-center justify-center px-10">
           <div className="text-white font-Orbit">{audio ? secondsToHms(currentTime) : '00:00'}</div>
@@ -178,4 +172,5 @@ Player.propTypes = {
   audio: PropTypes.bool.isRequired,
   setAudio: PropTypes.func.isRequired,
   setIsPlayerVisible: PropTypes.func.isRequired,
+  setIsMobilePlayerVisible: PropTypes.func.isRequired,
 };

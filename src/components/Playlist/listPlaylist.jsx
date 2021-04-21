@@ -1,10 +1,10 @@
 import React from 'react';
-import WorkingPlaylist from '../../img/PlayList/WorkingPlaylist.svg';
-import SportPlaylist from '../../img/PlayList/SportPlaylist.svg';
-import ChillPlaylist from '../../img/PlayList/ChiilPlaylist.svg';
-import PartyPlaylist from '../../img/PlayList/PartyAndFun.svg';
-import OldSchoolPlaylist from '../../img/PlayList/OldSchool.svg';
-import GamingPlaylist from '../../img/PlayList/Gaming.svg';
+import WorkingPlaylist from '../../img/PlayList/WorkingPlaylist.webp';
+import SportPlaylist from '../../img/PlayList/SportPlaylist.webp';
+import ChillPlaylist from '../../img/PlayList/ChiilPlaylist.webp';
+import PartyPlaylist from '../../img/PlayList/PartyAndFun.webp';
+import OldSchoolPlaylist from '../../img/PlayList/OldSchool.webp';
+import GamingPlaylist from '../../img/PlayList/Gaming.webp';
 import PropTypes from 'prop-types';
 
 function ListPlaylist({ setIsChange }) {

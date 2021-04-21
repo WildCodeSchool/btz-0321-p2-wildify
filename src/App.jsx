@@ -28,7 +28,6 @@ function App() {
   const [sideBarClass, setSideBarClass] = useState(
     'flex h-screen fixed right-0 flex-col  900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-black bg-opacity-30 shadow-sideBar',
   );
-
   const [albums, setAlbums] = useState([]);
   const [artists, setArtists] = useState([]);
 
@@ -54,6 +53,7 @@ function App() {
     } else {
       setisSideBarVisible(true);
       setIsMobilePlayerVisible(false);
+      setIsPlayerVisible(false);
     }
   }, [width]);
 
@@ -83,7 +83,7 @@ function App() {
 
         <div className="col-start-1 col-end-3 row-start-2 900:col-end-4 rounded-20 bg-black bg-opacity-10 shadow-layoutContainer">
           {/* The Main Component GoHere */}
-          {!isLoading && <Carousel item={item} />}
+          {!isLoading && <Carousel item={item} albums={albums} artists={artists} />}
         </div>
 
         <div className=" overflow-y-auto col-start-1 col-end-3 row-start-3 row-end-4 900:col-end-2 900:row-end-5 rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
@@ -126,6 +126,7 @@ function App() {
           setArtist={setArtist}
           setPicture={setPicture}
           setIsPlayerVisible={setIsPlayerVisible}
+          setIsMobilePlayerVisible={setIsMobilePlayerVisible}
         />
       ) : (
         ''
@@ -149,6 +150,7 @@ function App() {
           setArtist={setArtist}
           setPicture={setPicture}
           albums={albums}
+          setIsMobilePlayerVisible={setIsMobilePlayerVisible}
         />
       ) : (
         ''
@@ -171,6 +173,7 @@ function App() {
           currentTrack={currentTrack}
           onListen={onListen}
           setIsPlayerVisible={setIsPlayerVisible}
+          setIsMobilePlayerVisible={setIsMobilePlayerVisible}
         />
       ) : (
         ''
