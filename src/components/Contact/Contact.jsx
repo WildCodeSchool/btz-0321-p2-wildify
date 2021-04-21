@@ -1,13 +1,28 @@
 import React from 'react';
+import emailjs from 'emailjs-com';
 
 export default function Contact() {
+  function sendEmail(e) {
+    e.preventDefault();
+
+    emailjs.sendForm('service_mvp7t8n', 'template_1ql6rpl', e.target, 'user_Cy3IIX3RpbiCfm5rTqCW2').then(
+      (result) => {
+        alert(`Your Message has been send`, result.text);
+      },
+      (error) => {
+        alert(`Something gone wrong`, error.text);
+      },
+    );
+    e.target.reset();
+  }
+
   return (
     <div className="w-full h-full p-6 pb-20 900:flex 900:flex-row 900:p-10">
-      <div className="flex flex-col">
+      <div className="flex flex-col pr-12">
         <h2 className="text-white text-6xl md:font-scada">Help us to make Wizic better</h2>
         <p className="mt-3 text-white text-2xl md:font-scada">Your opinion remain for us, please give a feedback</p>
       </div>
-      <form className=" w-full flex flex-col mt-10 900:my-1 900:w-4/5 ">
+      <form className=" w-full flex flex-col mt-10 900:my-1 900:w-4/5 " onSubmit={sendEmail}>
         <label className="text-white  md:font-scada" htmlFor="name">
           Name:
         </label>
@@ -30,7 +45,7 @@ export default function Contact() {
           Message:
         </label>
         <textarea
-          className=" p-2x mt-1 h-24 w-full md:font-scada text-white bg-white bg-opacity-10 rounded focus:outline-none"
+          className=" p-2 mt-1 h-24 w-full md:font-scada text-white bg-white bg-opacity-10 rounded focus:outline-none"
           type="text"
           id="message"
           name="message"

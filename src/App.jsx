@@ -6,13 +6,15 @@ import Header from './components/header/header.jsx';
 import SideBar from './components/sideBar/sideBar';
 import Contact from './components/Contact/Contact';
 import Carousel from './components/carousel/Carousel';
-/*import Player from './components/Player/Player';*/
+import Player from './components/Player/Player';
 import PlaylistSwitch from './components/Playlist/PlaylistSwitch';
 import SliderAlbum from './components/Slider/SliderAlbum';
 import bg from './img/BackGrounds/BackGround1.webp';
-
+import PlayerMobile from './components/PlayerMobile/PlayerMobile';
 function App() {
   const [isSideBarVisible, setisSideBarVisible] = useState(false);
+  const [isPlayerVisible, setIsPlayerVisible] = useState(false);
+  const [isMobilePlayerVisible, setIsMobilePlayerVisible] = useState(true);
   const { width } = useWindowDimensions();
   const [item, setItem] = useState([]);
   const [audio, setAudio] = useState(false);
@@ -47,8 +49,10 @@ function App() {
   useEffect(() => {
     if (width < 768) {
       setisSideBarVisible(false);
+      setIsMobilePlayerVisible(true);
     } else {
       setisSideBarVisible(true);
+      setIsMobilePlayerVisible(false);
     }
   }, [width]);
 
@@ -65,7 +69,6 @@ function App() {
           'flex fixed flex-col h-screen  top-0 right-0 900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-black bg-opacity-30 shadow-sideBar',
         );
   };
-
   return (
     <div
       className="flex align-middle justify-center pb-24"
@@ -90,7 +93,7 @@ function App() {
         <div className="col-start-1 col-end-2 row-start-4 row-end-5 gap-x-1 900:col-start-2 900:col-end-3 900:row-start-3 900:row-end-4  rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
           {/* ArtistComponent GoHere */}{' '}
         </div>
-        <div className="col-start-2 col-end-3 row-start-4 rows-end-5 900:col-start-3 900:col-end-4 900:row-start-3 900:row-end-4 rounded-20 gap-x-1 bg-black bg-opacity-20 shadow-layoutContainer">
+        <div className="overflow-hidden col-start-2 col-end-3 row-start-4 rows-end-5 900:col-start-3 900:col-end-4 900:row-start-3 900:row-end-4 rounded-20 gap-x-1 bg-black bg-opacity-20 shadow-layoutContainer">
           {!isLoading && <SliderAlbum item={item} albums={albums} artists={artists} />}
         </div>
 
@@ -101,9 +104,31 @@ function App() {
         <div className="col-start-1 col-end-3 row-start-6 row-end-7 rounded-20 900:col-end-4 900:row-start-5 900:row-end-6 bg-black bg-opacity-20 shadow-layoutContainer mb-4">
           <Contact />
         </div>
-        {isSideBarVisible && <SideBar sideBarClass={sideBarClass} setSideBarClass={setSideBarClass} />}
+        {isSideBarVisible && <SideBar sideBarClass={sideBarClass} albums={albums} setSideBarClass={setSideBarClass} />}
       </div>
-
+      {!isLoading && isMobilePlayerVisible ? (
+        <PlayerMobile
+          onListen={onListen}
+          audio={audio}
+          currentTrack={currentTrack}
+          handleSong={handleSong}
+          item={item}
+          title={title}
+          album={album}
+          artist={artist}
+          picture={picture}
+          setAudio={setAudio}
+          setOnListen={setOnListen}
+          setCurrentTrack={setCurrentTrack}
+          setAlbum={setAlbum}
+          setTitle={setTitle}
+          setArtist={setArtist}
+          setPicture={setPicture}
+          setIsPlayerVisible={setIsPlayerVisible}
+        />
+      ) : (
+        ''
+      )}
       {!isLoading && isSideBarVisible ? (
         <Playbar
           onListen={onListen}
@@ -122,11 +147,12 @@ function App() {
           setTitle={setTitle}
           setArtist={setArtist}
           setPicture={setPicture}
+          albums={albums}
         />
       ) : (
         ''
       )}
-      {/*{!isLoading && isSideBarVisible ? (
+      {!isLoading && isPlayerVisible ? (
         <Player
           item={item}
           title={title}
@@ -143,10 +169,11 @@ function App() {
           audio={audio}
           currentTrack={currentTrack}
           onListen={onListen}
+          setIsPlayerVisible={setIsPlayerVisible}
         />
       ) : (
         ''
-      )}*/}
+      )}
     </div>
   );
 }

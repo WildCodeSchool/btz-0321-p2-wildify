@@ -21,6 +21,7 @@ export default function Playbar({
   setTitle,
   setAlbum,
   setArtist,
+  albums,
 }) {
   const [sliderValue, setSliderValue] = useState(0);
   const [sliderPos, setSliderPos] = useState('100');
