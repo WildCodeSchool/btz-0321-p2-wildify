@@ -5,7 +5,7 @@ import Album from './AlbumCarousel/Album';
 import TrackList from './TrackListCarousel/Tracklist';
 import PropTypes from 'prop-types';
 
-export default function Carousel({ item }) {
+export default function Carousel({ item, albums, artists }) {
   const [count, setCount] = useState(0);
   const [isRecentAddsActive, setIsRecentAddsActive] = useState(true);
   const [isArtistActive, setIsArtistActive] = useState(false);
@@ -13,24 +13,28 @@ export default function Carousel({ item }) {
   const [isTrackListActive, setIsTrackListActive] = useState(false);
 
   function handleArtistChange() {
+    setCount(0);
     setIsRecentAddsActive(false);
     setIsArtistActive(true);
     setIsAlbumActive(false);
     setIsTrackListActive(false);
   }
   function handleRecentAddsChange() {
+    setCount(0);
     setIsRecentAddsActive(true);
     setIsArtistActive(false);
     setIsAlbumActive(false);
     setIsTrackListActive(false);
   }
   function handleAlbumChange() {
+    setCount(0);
     setIsRecentAddsActive(false);
     setIsArtistActive(false);
     setIsAlbumActive(true);
     setIsTrackListActive(false);
   }
   function handleTrackListChange() {
+    setCount(0);
     setIsRecentAddsActive(false);
     setIsArtistActive(false);
     setIsAlbumActive(false);
@@ -53,14 +57,16 @@ export default function Carousel({ item }) {
         <button onClick={handleTrackListChange}>TrackList</button>
       </div>
 
-      <RecentAdds count={count} setCount={setCount} item={item} active={isRecentAddsActive} />
-      <Artist count={count} setCount={setCount} item={item} active={isArtistActive} />
-      <Album count={count} setCount={setCount} item={item} active={isAlbumActive} />
-      <TrackList count={count} setCount={setCount} item={item} active={isTrackListActive} />
+      {isRecentAddsActive && <RecentAdds count={count} setCount={setCount} item={item} />}
+      {isArtistActive && <Artist count={count} setCount={setCount} artists={artists} />}
+      {isAlbumActive && <Album count={count} setCount={setCount} albums={albums} />}
+      {isTrackListActive && <TrackList count={count} setCount={setCount} item={item} />}
     </div>
   );
 }
 
 Carousel.propTypes = {
   item: PropTypes.array.isRequired,
+  albums: PropTypes.array.isRequired,
+  artists: PropTypes.array.isRequired,
 };
