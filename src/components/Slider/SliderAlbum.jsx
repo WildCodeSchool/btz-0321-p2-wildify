@@ -28,7 +28,9 @@ function SliderAlbum({ albums, item }) {
           <Slider handleClick={handleClick} width={width} albums={albums} index={index} />
         </div>
       ) : (
-        <AlbumTrackList albumChoice={albumChoice} handleClick={handleClick} albums={albums} index={index} item={item} />
+        <div className="overflow-y-auto">
+          <AlbumTrackList albumChoice={albumChoice} handleClick={handleClick} albums={albums} index={index} item={item} width={width} />
+        </div>
       )}
     </div>
   );
