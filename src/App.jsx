@@ -131,7 +131,7 @@ function App() {
       ) : (
         ''
       )}
-      {!isLoading && isSideBarVisible ? (
+      {!isLoading && width > 768 ? (
         <Playbar
           onListen={onListen}
           audio={audio}
