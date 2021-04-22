@@ -12,8 +12,7 @@ module.exports = {
         80: '21rem',
       },
       boxShadow: {
-        playbar: '8px 8px 15px rgba(0, 0, 0, 0.6), 10px 10px 15px rgba(255, 255, 255, 0.08)inset, -10px -10px 15px rgba(0, 0, 0, 0.5)inset',
-        player: '5px 5px 15px rgba(0, 0, 0, 0.5), 10px 10px 15px rgba(255, 255, 255, 0.08)inset, -10px -10px 15px rgba(0, 0, 0, 0.5)inset',
+        playbar: '10px 10px 15px rgba(0, 0, 0, 0.9), 10px 10px 15px rgba(255, 255, 255, 0.08)inset, -10px -10px 15px rgba(0, 0, 0, 0.5)inset',
         layoutContainer: '10px 10px 10px rgba(0, 0, 0, 0.5)',
         searchbar: '5px 5px 10px rgba(0, 0, 0, 0.8)',
         sideBar: '10px 10px 10px rgba(0, 0, 0, 0.49), -10px -10px 10px rgba(5, 5, 5, 0.25)',
@@ -34,7 +33,7 @@ module.exports = {
         mobileCarousel: '1fr 1fr 3fr',
         desktopCarousel: '1fr 2fr',
         desktop: '1fr 400px 300px 300px 400px',
-        mobile: '1fr 400px 550px 220px 300px 690px',
+        mobile: '1fr 400px 550px 220px 300px 800px',
       },
       borderRadius: {
         20: '1.25rem',
@@ -46,7 +45,6 @@ module.exports = {
         Orbit: ['Orbitron', 'monospace'],
       },
       width: {
-        mpb: '95%',
         sb: '30%',
         512: '512px',
         plist: '50px',

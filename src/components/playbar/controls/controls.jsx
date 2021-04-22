@@ -16,19 +16,19 @@ export default function Controls({ handlePause, handlePlay, handleBackWard, hand
   return (
     <div className="flex align-middle justify-center w-full 900:w-3/12">
       <button className="focus:outline-none" onClick={handleBackWard}>
-        <img className="px-2 w-14 900:w-28 900:px-1" src={controlsButtons.backward} alt="" />
+        <img className="px-3 w-16 900:w-28 900:px-1" src={controlsButtons.backward} alt="" />
       </button>
       {isPlaySwitch ? (
         <button className="focus:outline-none" onClick={handlePlay}>
-          <img className="px-2 w-12 900:w-24 900:px-1" src={controlsButtons.play} alt="" />
+          <img className="px-3 w-14 900:w-24 900:px-1" src={controlsButtons.play} alt="" />
         </button>
       ) : (
         <button className="focus:outline-none" onClick={handlePause}>
-          <img className="px-2 w-12 900:w-24 900:px-1" src={controlsButtons.pause} alt="" />
+          <img className="px-3 w-14 900:w-24 900:px-1" src={controlsButtons.pause} alt="" />
         </button>
       )}
       <button className="focus:outline-none" onClick={handleForWard}>
-        <img className="px-2 w-14 900:w-28 900:px-1" src={controlsButtons.forward} alt="" />
+        <img className="px-3 w-16 900:w-28 900:px-1" src={controlsButtons.forward} alt="" />
       </button>
     </div>
   );
