@@ -14,7 +14,7 @@ function Next({ albums, index, setIndex, width, setAlbumChoice }) {
 
   const handleClick = () => {
     setIndex(index === albums.length - 1 ? 0 : index + 1);
-    setAlbumChoice(albums[index + 1].title);
+    setAlbumChoice(albums[index === albums.length - 1 ? 0 : index + 1].title);
   };
   return (
     <button className={`absolute transform ${translationDownArrow} cursor-pointer focus:outline-none bg-transparent z-10`} onClick={handleClick}>

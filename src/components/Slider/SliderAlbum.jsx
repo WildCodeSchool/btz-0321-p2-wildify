@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import useWindowDimensions from '../../Hooks/useWindowDimension';
 import PropTypes from 'prop-types';
 import Slider from './Slider';
@@ -19,13 +19,14 @@ function SliderAlbum({ albums, item }) {
       setIsTrackList(true);
     }
   };
-  useEffect(() => {}, [albumChoice]);
   return (
     <div className="w-full h-full flex flex-col align-middle justify-center items-center">
-      <Previous className="" width={width} albums={albums} index={index} setIndex={setIndex} setAlbumChoice={setAlbumChoice} />
-      <Next className="" width={width} albums={albums} index={index} setIndex={setIndex} setAlbumChoice={setAlbumChoice} />
       {!isTrackList ? (
-        <Slider handleClick={handleClick} width={width} albums={albums} index={index} />
+        <div className="w-full h-full flex flex-col align-middle justify-center items-center">
+          <Previous className="" width={width} albums={albums} index={index} setIndex={setIndex} setAlbumChoice={setAlbumChoice} />
+          <Next className="" width={width} albums={albums} index={index} setIndex={setIndex} setAlbumChoice={setAlbumChoice} />
+          <Slider handleClick={handleClick} width={width} albums={albums} index={index} />
+        </div>
       ) : (
         <AlbumTrackList albumChoice={albumChoice} handleClick={handleClick} albums={albums} index={index} item={item} />
       )}

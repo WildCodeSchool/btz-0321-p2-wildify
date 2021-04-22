@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Backward from '../../img/BackwardArrow.svg';
 
 function AlbumTrackList({ handleClick, item, albumChoice }) {
   return (
     <div>
-      <button onClick={handleClick}>X</button>
+      <button onClick={handleClick}>
+        <img src={Backward} alt="BackwardArrow" />
+      </button>
       <ul>
         {item
           .filter((song) => song.album.title.includes(albumChoice))

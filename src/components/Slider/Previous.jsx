@@ -13,8 +13,8 @@ function Previous({ albums, index, setIndex, width, setAlbumChoice }) {
   }, [width]);
 
   const handleClick = () => {
-    setIndex(index === albums.length - 1 ? 0 : index + 1);
-    setAlbumChoice(albums[index - 1].title);
+    setIndex(index === 0 ? albums.length - 1 : index - 1);
+    setAlbumChoice(albums[index === 0 ? albums.length - 1 : index - 1].title);
   };
   return (
     <button className={`absolute cursor-pointer transform ${translationTopArrow} focus:outline-none z-10`} onClick={handleClick}>
