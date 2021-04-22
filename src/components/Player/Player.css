@@ -1,10 +1,24 @@
+.backGrnd {
+  background: linear-gradient(346.15deg, #000000 -5.11%, rgba(54, 56, 57, 1) 124.64%);
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 5px;
+  height: 20px;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
 input[type='range'].slider {
   width: 100%;
   -webkit-appearance: none; /*nécessaire pour Chrome */
   padding: 0; /* nécessaire pour IE */
   font-family: 'Scada', sans-serif; /* même rendu suivant font document */
   outline: none;
-  background: rgb(255, 255, 255); /* sert pour couleur de fond de la zone de déplacement */
+  background: rgba(255, 255, 255, 0.63); /* sert pour couleur de fond de la zone de déplacement */
+  box-shadow: '-5px -5px 15px rgba(255, 255, 255, 0.10), 5px 5px 10px rgba(0, 0, 0, 0.8)';
   box-sizing: border-box; /* même modèle de boîte pour tous */
   cursor: pointer;
 }
