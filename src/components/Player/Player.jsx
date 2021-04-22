@@ -38,7 +38,7 @@ export default function Player({
 
   const updateSong = () => {
     setOnListen(item[currentTrack].s3_link);
-    setAudio(true);
+
     if (audioRef2.current) {
       audioRef2.current.load();
     }
@@ -97,6 +97,7 @@ export default function Player({
   const handleClick = () => {
     setIsPlayerVisible(false);
     setIsMobilePlayerVisible(true);
+    audioRef2.current.pause();
   };
 
   useEffect(() => {
