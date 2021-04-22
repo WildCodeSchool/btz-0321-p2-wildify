@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import Controls from '../playbar/controls/controls';
 import PropTypes from 'prop-types';
 import Arrow from '../../img/arrow.svg';
-import Miniature from '../../img/playbar-miniature.png';
 
 export default function PlayerMobile({
   setIsMobilePlayerVisible,
@@ -16,6 +15,8 @@ export default function PlayerMobile({
   setAudio,
   isPlaySwitch,
   setIsPlaySwitch,
+  picture,
+  setPicture,
 }) {
   useEffect(() => {
     updateSong();
@@ -26,6 +27,7 @@ export default function PlayerMobile({
       audioRef3.current.load();
       audioRef3.current.play();
     }
+    setPicture(item[currentTrack].album.picture);
   };
   const audioRef3 = useRef();
   const handlePause = () => {
@@ -72,13 +74,20 @@ export default function PlayerMobile({
   };
 
   return (
-    <div className="p-2 w-7/12 h-28 z-50 flex items-center align-middle justify-center rounded-4xl fixed bottom-10 bg-black">
+    <div className="bg-bgPlaybar shadow-player w-mpb h-24 z-50 p-4 flex items-center align-middle justify-center rounded-full fixed bottom-3 ">
       <audio id="audio" className="hidden" onEnded={handleForWard} ref={audioRef3} controls>
         <source src={onListen} type="audio/mp3"></source>
         <track default kind="captions" />
         Your browser does not support this audio format.
       </audio>
-      <img className="h-full" src={Miniature} alt="" />
+      <div
+        className="h-20 w-28 rounded-full shadow-ImgPlaybar"
+        style={{
+          backgroundImage: `url(${picture})`,
+          backgroundSize: `cover`,
+          backgroundRepeat: `no-repeat`,
+          backgroundPosition: `center`,
+        }}></div>
       <Controls
         handleBackWard={handleBackWard}
         handleForWard={handleForWard}
@@ -86,7 +95,7 @@ export default function PlayerMobile({
         handlePlay={handlePlay}
         isPlaySwitch={isPlaySwitch}
       />
-      <button onClick={handleClick} className="flex items-center justify-center flex-col h-full">
+      <button onClick={handleClick} className="flex mr-5 items-center justify-center flex-col h-full">
         <img src={Arrow} className="w-8 cursor-pointer" alt="" />
       </button>
     </div>
@@ -105,4 +114,6 @@ PlayerMobile.propTypes = {
   setIsMobilePlayerVisible: PropTypes.func.isRequired,
   isPlaySwitch: PropTypes.bool,
   setIsPlaySwitch: PropTypes.func,
+  picture: PropTypes.string,
+  setPicture: PropTypes.string,
 };
