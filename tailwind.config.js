@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         mainColor: '#00FBCE',
         bgPlaybar: '#1F1F1F',
+        bgPlayerMobile: 'linear-gradient(346.15deg, rgba(0, 0, 0, 1), rgba(54, 56, 57, 0.89) 124.64%)',
       },
       spacing: {
         80: '21rem',
@@ -16,6 +17,7 @@ module.exports = {
         searchbar: '5px 5px 10px rgba(0, 0, 0, 0.8)',
         sideBar: '10px 10px 10px rgba(0, 0, 0, 0.49), -10px -10px 10px rgba(5, 5, 5, 0.25)',
         ImgPlaybar: '-5px -5px 15px rgba(255, 255, 255, 0.10), 5px 5px 10px rgba(0, 0, 0, 0.8)',
+        MobilPlaybar: '-10px -10px 15px rgba(255, 255, 255, 0.10), 10px 10px 10px rgba(0, 0, 0, 0.9)',
       },
       screens: {
         900: '900px',
@@ -31,7 +33,7 @@ module.exports = {
         mobileCarousel: '1fr 1fr 3fr',
         desktopCarousel: '1fr 2fr',
         desktop: '1fr 400px 300px 300px 400px',
-        mobile: '1fr 400px 550px 220px 300px 700px',
+        mobile: '1fr 400px 550px 220px 300px 800px',
       },
       borderRadius: {
         20: '1.25rem',
@@ -53,7 +55,7 @@ module.exports = {
       },
       minWidth: {
         0: '0',
-        'controls-minW': '200px',
+        'controls-minW': '30px',
         '1/2': '50%',
         '3/4': '75%',
         full: '100%',
