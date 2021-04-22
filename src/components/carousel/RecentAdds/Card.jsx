@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 export default function Card({ picture, count, item }) {
   const itemReversed = [...item];
   itemReversed.reverse();
+
   return (
     <div className="w-6/12 h-4/6">
       <div className=" text-white text-sm z-10">{itemReversed[count].title}</div>

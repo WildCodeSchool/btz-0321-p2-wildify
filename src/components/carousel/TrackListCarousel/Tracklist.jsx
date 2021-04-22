@@ -9,11 +9,21 @@ function TrackList({ count, setCount, item }) {
         Prev
       </button>
 
-      <TrackListCard picture={item[count].album.picture} />
-      <TrackListCard picture={item[count === item.length - 1 ? 0 : count + 1].album.picture} />
-      <TrackListCard picture={item[count === item.length - 2 ? 0 : count === item.length - 1 ? 1 : count + 2].album.picture} />
+      <TrackListCard picture={item[count].album.picture} count={count} item={item} />
+      <TrackListCard
+        picture={item[count === item.length - 1 ? 0 : count + 1].album.picture}
+        count={count === item.length - 1 ? 0 : count + 1}
+        item={item}
+      />
+      <TrackListCard
+        picture={item[count === item.length - 2 ? 0 : count === item.length - 1 ? 1 : count + 2].album.picture}
+        count={count === item.length - 2 ? 0 : count === item.length - 1 ? 1 : count + 2}
+        item={item}
+      />
       <TrackListCard
         picture={item[count === item.length - 3 ? 0 : count === item.length - 2 ? 1 : count === item.length - 1 ? 2 : count + 3].album.picture}
+        count={count === item.length - 3 ? 0 : count === item.length - 2 ? 1 : count === item.length - 1 ? 2 : count + 3}
+        item={item}
       />
 
       <button onClick={() => setCount(count === item.length - 1 ? 0 : count + 1)} className="border bg-white rounded-2xl">
