@@ -12,6 +12,8 @@ module.exports = {
         80: '21rem',
       },
       boxShadow: {
+        input2: '5px 5px 5px rgba(0, 0, 0, 0.5), -5px -5px 5px rgba(68, 68, 68, 0.25)',
+        input: 'inset 5px 5px 5px rgba(0, 0, 0, 0.5), inset -5px -5px 5px rgba(68, 68, 68, 0.25)',
         playbar: '8px 8px 15px rgba(0, 0, 0, 0.6), 10px 10px 15px rgba(255, 255, 255, 0.08)inset, -10px -10px 15px rgba(0, 0, 0, 0.5)inset',
         player: '5px 5px 15px rgba(0, 0, 0, 0.5), 10px 10px 15px rgba(255, 255, 255, 0.08)inset, -10px -10px 15px rgba(0, 0, 0, 0.5)inset',
         layoutContainer: '10px 10px 10px rgba(0, 0, 0, 0.5)',
