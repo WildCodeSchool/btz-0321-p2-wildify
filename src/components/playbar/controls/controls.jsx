@@ -39,5 +39,5 @@ Controls.propTypes = {
   handlePlay: PropTypes.func.isRequired,
   handleBackWard: PropTypes.func.isRequired,
   handleForWard: PropTypes.func.isRequired,
-  playSwitch: PropTypes.bool.isRequired,
+  isPlaySwitch: PropTypes.bool.isRequired,
 };

@@ -103,6 +103,6 @@ PlayerMobile.propTypes = {
   setAudio: PropTypes.func.isRequired,
   setIsPlayerVisible: PropTypes.func.isRequired,
   setIsMobilePlayerVisible: PropTypes.func.isRequired,
-  isPlaySwitch: PropTypes.bool.isrequired,
+  isPlaySwitch: PropTypes.bool,
   setIsPlaySwitch: PropTypes.func.isrequired,
 };

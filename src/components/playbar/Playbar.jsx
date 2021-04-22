@@ -218,6 +218,6 @@ Playbar.propTypes = {
   setArtist: PropTypes.func.isRequired,
   setAlbum: PropTypes.func.isRequired,
   setPicture: PropTypes.func.isRequired,
-  isPlaySwitch: PropTypes.bool.isrequired,
-  setIsPlaySwitch: PropTypes.func.isrequired,
+  isPlaySwitch: PropTypes.bool,
+  setIsPlaySwitch: PropTypes.func,
 };
