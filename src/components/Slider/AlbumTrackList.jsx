@@ -24,7 +24,7 @@ function AlbumTrackList({ handleClick, item, albumChoice, width }) {
             return (
               <li
                 key={index}
-                className={`overflow-scroll font-cuprum text-base font-regular border-opacity-25 shadow-2xl transform  text-white pl-14 ${translationTrack}`}>
+                className={`font-cuprum text-base font-regular border-opacity-25 shadow-2xl transform  text-white pl-14 ${translationTrack}`}>
                 {song.title}
               </li>
             );
