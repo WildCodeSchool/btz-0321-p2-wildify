@@ -127,14 +127,21 @@ export default function Player({
 
   return (
     <div className="h-full w-full  absolute">
-      <div className="bg-black fixed flex flex-col  justify-between z-50 align-middle w-full h-full py-20">
+      <div className="bg-black fixed flex flex-col  justify-between z-50 align-middle w-full h-full py-8 px-8">
         <audio id="audio" className="hidden" onEnded={handleForWard} ref={audioRef2} controls>
           <source src={onListen} type="audio/mp3"></source>
           <track default kind="captions" />
           Your browser does not support this audio format.
         </audio>
-        <div className="flex justify-around items-center w-full align-middle px-10">
-          <input onChange={volumeChange} type="range" min="0" max="100" value={sliderPos} className="w-8/12 h-0.5 slider" id="myRange"></input>
+        <div className="flex justify-around items-center w-full align-middle">
+          <input
+            onChange={volumeChange}
+            type="range"
+            min="0"
+            max="100"
+            value={sliderPos}
+            className="w-5/12 mr-3 h-1.5 bg-white rounded slider"
+            id="myRange"></input>
           <button onClick={handleClick}>
             <img className="transform rotate-180" src={Arrow} alt="" />
           </button>

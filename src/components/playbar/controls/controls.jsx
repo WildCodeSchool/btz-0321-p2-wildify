@@ -14,21 +14,21 @@ export default function Controls({ handlePause, handlePlay, handleBackWard, hand
   };
 
   return (
-    <div className="flex align-middle justify-center w-3/12 min-w-controls-minW">
+    <div className="flex align-middle justify-center w-3/12">
       <button className="focus:outline-none" onClick={handleBackWard}>
-        <img className="px-1 hover:opacity-50" src={controlsButtons.backward} alt="" />
+        <img className="min-w-controls-minW px-1 hover:opacity-50" src={controlsButtons.backward} alt="" />
       </button>
       {isPlaySwitch ? (
         <button className="focus:outline-none" onClick={handlePlay}>
-          <img className="px-1 hover:opacity-50" src={controlsButtons.play} alt="" />
+          <img className="min-w-controls-minW px-1 hover:opacity-50" src={controlsButtons.play} alt="" />
         </button>
       ) : (
         <button className="focus:outline-none" onClick={handlePause}>
-          <img className="px-1 hover:opacity-50" src={controlsButtons.pause} alt="" />
+          <img className="min-w-controls-minW px-1 hover:opacity-50" src={controlsButtons.pause} alt="" />
         </button>
       )}
       <button className="focus:outline-none" onClick={handleForWard}>
-        <img className="px-1 hover:opacity-50" src={controlsButtons.forward} alt="" />
+        <img className="min-w-controls-minW px-1 hover:opacity-50" src={controlsButtons.forward} alt="" />
       </button>
     </div>
   );

@@ -53,7 +53,7 @@ module.exports = {
       },
       minWidth: {
         0: '0',
-        'controls-minW': '200px',
+        'controls-minW': '30px',
         '1/2': '50%',
         '3/4': '75%',
         full: '100%',

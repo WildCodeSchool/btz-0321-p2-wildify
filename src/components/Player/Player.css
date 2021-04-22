@@ -1,32 +1,33 @@
-.slider {
-  -webkit-appearance: none;
-  appearance: none;
-
-  height: 1px;
-  background: #ffffff;
+input[type='range'].slider {
+  width: 100%;
+  -webkit-appearance: none; /*nécessaire pour Chrome */
+  padding: 0; /* nécessaire pour IE */
+  font-family: 'Scada', sans-serif; /* même rendu suivant font document */
   outline: none;
-  opacity: 0.7;
-  -webkit-transition: 0.2s;
-  transition: opacity 0.2s;
-}
-
-.slider:hover {
-  opacity: 1;
-}
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 5px;
-  height: 20px;
-  background: #b3a9a9;
-  border-radius: 30px;
+  background: rgb(255, 255, 255); /* sert pour couleur de fond de la zone de déplacement */
+  box-sizing: border-box; /* même modèle de boîte pour tous */
   cursor: pointer;
 }
 
-.slider::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
-  background: #4caf50;
-  cursor: pointer;
+input[type='range'].slider::-webkit-slider-thumb {
+  /* également nécessaire sur le curseur */
+  color: #00fbce;
+  width: 20px;
+  height: 20px; /* s'adapte à la hauteur de l'input */
+  border-radius: 100%;
+  background: currentColor; /* pris en compte sur Webkit only */
+}
+
+input[type='range'].slider::-moz-range-thumb {
+  /* également nécessaire sur le curseur */
+  color: #00fbce;
+  width: 20px;
+  height: 20px; /* s'adapte à la hauteur de l'input */
+  border-radius: 100%;
+  background: currentColor; /* pris en compte sur Webkit only */
+}
+
+input[type='range'].slider::-moz-range-progress {
+  border: none;
+  background: #00fbce; /* supprime barre progression avant */
 }
