@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Controls from '../playbar/controls/controls';
 import PropTypes from 'prop-types';
 import Arrow from '../../img/arrow.svg';
