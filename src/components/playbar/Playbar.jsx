@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Controls from './controls/controls';
 import HiddenPlayer from '../HiddenPlayer/HiddenPlayer';
+import Volume from '../../img/volume.svg';
 import './playbar.css';
 
 export default function Playbar({
@@ -21,6 +22,8 @@ export default function Playbar({
   setTitle,
   setAlbum,
   setArtist,
+  isPlaySwitch,
+  setIsPlaySwitch,
 }) {
   const [sliderValue, setSliderValue] = useState(0);
   const [sliderPos, setSliderPos] = useState('100');
@@ -79,19 +82,29 @@ export default function Playbar({
   const handlePause = () => {
     audioRef.current.pause();
     setAudio(false);
+    setIsPlaySwitch(true);
   };
 
   const handlePlay = () => {
     setAudio(true);
+    setIsPlaySwitch(false);
     audioRef.current.play();
   };
 
   const handleBackWard = () => {
-    audioRef.current.pause();
-    setAudio(true);
-    setCurrentTrack((currentTrack -= 1));
-    updateSong();
-    handlePlay();
+    if (currentTrack === 0) {
+      setCurrentTrack(item.length - 1);
+      audioRef.current.pause();
+      setAudio(true);
+      updateSong();
+      handlePlay();
+    } else {
+      audioRef.current.pause();
+      setAudio(true);
+      setCurrentTrack((currentTrack -= 1));
+      updateSong();
+      handlePlay();
+    }
   };
 
   const handleForWard = () => {
@@ -105,7 +118,7 @@ export default function Playbar({
   };
 
   return (
-    <div className="w-2/4 max-h-40 flex-row align-middle justify-center   fixed bottom-3">
+    <div className="w-pbar max-h-40 flex-row fixed bottom-3 left-3 z-50">
       <HiddenPlayer
         currentTrack={currentTrack}
         setCurrentTrack={setCurrentTrack}
@@ -119,29 +132,27 @@ export default function Playbar({
       />
 
       <div
-        className="flex  py-2
-       bg-black opacity-80 items-center h-full max-h-28 justify-center rounded-3xl ">
-        <div className="flex-row w-5/12 flex align-middle justify-center h-full">
-          <div className="flex-col w-5/12  flex items-center justify-around">
-            <img className="w-9/12  rounded-full" src={picture} alt="" />
-          </div>
-          <div className="flex-col w-2/4 flex items-left py-6 justify-between ">
-            <div className="text-white font-Orbit text-xs">{title}</div>
-            <div className="text-white font-Orbit text-xs">{album}</div>
-            <div className="text-white font-Orbit text-xs">{artist}</div>
+        className="flex 
+       bg-bgPlaybar  items-center h-20 rounded-4xl shadow-playbar">
+        <div className=" flex-row w-2/5 flex h-full items-center ">
+          <div
+            className="w-2/12 h-16 ml-4 mr-4 rounded-full shadow-ImgPlaybar"
+            style={{
+              backgroundImage: `url(${picture})`,
+              backgroundSize: `cover`,
+              backgroundRepeat: `no-repeat`,
+              backgroundPosition: `center`,
+            }}></div>
+          <div className="flex-col w-4/5 flex justify-start items-left ">
+            <div className="text-white font-scada text-lg font-bold">{title}</div>
+            <div className="text-white font-cuprum text-sm">
+              {album} - {artist}
+            </div>
           </div>
         </div>
-        <div className="flex-col align-middle  justify-center  w-8/12">
-          <div className="flex h-full w-full align-middle justify-center items-center">
-            <div className="h-full  w-9/12">
-              <div className="endTime"></div>
-              <input onChange={volumeChange} type="range" min="0" max="100" value={sliderPos} className="w-11/12 h-0.5 slider" id="myRange"></input>
-              <div className="endTime"></div>
-            </div>
-            <Controls handlePlay={handlePlay} handlePause={handlePause} handleBackWard={handleBackWard} handleForWard={handleForWard} />
-          </div>
-          <div className="w-fulltext-base h-full flex align-middle item-center justify-center">
-            <div className=" px-1 mx-2 text-xs  font-Orbit text-white">{audio ? secondsToHms(currentTime) : '00:00'}</div>
+        <div className="w-8/12 flex align-middle item-center justify-center mr-3">
+          <div className="w-4/5 mr-6 h-full flex align-middle item-center justify-center">
+            <div className=" flex px-1 mx-2 mt-2 text-xs align-middle font-Cuprum text-white">{audio ? secondsToHms(currentTime) : '00:00'}</div>
             <div className="w-4/5">
               <div className="w-full">
                 <div className="endTime"></div>
@@ -151,12 +162,38 @@ export default function Playbar({
                   min="0"
                   max={duration}
                   value={sliderValue}
-                  className="w-full h-0.5 slider"
+                  className=" h-1.5 bg-white rounded slider"
                   id="myRange"></input>
                 <div className="endTime"></div>
               </div>
             </div>
-            <div className="text-white text-xs font-Orbit mx-6">{audio ? secondsToHms(duration - currentTime) : '00:00'}</div>
+            <div className="text-white text-xs mt-2 font-Cuprum mx-2">{audio ? secondsToHms(duration - currentTime) : '00:00'}</div>
+          </div>
+          <Controls
+            handlePlay={handlePlay}
+            handlePause={handlePause}
+            handleBackWard={handleBackWard}
+            handleForWard={handleForWard}
+            isPlaySwitch={isPlaySwitch}
+          />
+          <div className="ml-6 mr-3 flex-col align-middle w-5/12">
+            <div className="flex h-full w-full align-middle justify-center items-center">
+              <div className="h-full mr-2">
+                <img className="w-full" src={Volume} alt="" />
+              </div>
+              <div className="h-full  w-full">
+                <div className="endTime"></div>
+                <input
+                  onChange={volumeChange}
+                  type="range"
+                  min="0"
+                  max="100"
+                  value={sliderPos}
+                  className="w-11/12 h-1.5 rounded slider"
+                  id="myRange"></input>
+                <div className="endTime"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -181,4 +218,6 @@ Playbar.propTypes = {
   setArtist: PropTypes.func.isRequired,
   setAlbum: PropTypes.func.isRequired,
   setPicture: PropTypes.func.isRequired,
+  isPlaySwitch: PropTypes.bool,
+  setIsPlaySwitch: PropTypes.func,
 };

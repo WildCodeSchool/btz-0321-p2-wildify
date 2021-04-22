@@ -23,6 +23,8 @@ export default function Player({
   setAudio,
   setIsPlayerVisible,
   setIsMobilePlayerVisible,
+  isPlaySwitch,
+  setIsPlaySwitch,
 }) {
   const [sliderValue, setSliderValue] = useState(0);
   const [sliderPos, setSliderPos] = useState('100');
@@ -63,19 +65,29 @@ export default function Player({
   const handlePause = () => {
     audioRef2.current.pause();
     setAudio(false);
+    setIsPlaySwitch(true);
   };
 
   const handlePlay = () => {
     setAudio(true);
+    setIsPlaySwitch(false);
     audioRef2.current.play();
   };
 
   const handleBackWard = () => {
-    audioRef2.current.pause();
-    setAudio(true);
-    setCurrentTrack((currentTrack -= 1));
-    updateSong();
-    handlePlay();
+    if (currentTrack === 0) {
+      setCurrentTrack(item.length - 1);
+      audioRef2.current.pause();
+      setAudio(true);
+      updateSong();
+      handlePlay();
+    } else {
+      audioRef2.current.pause();
+      setAudio(true);
+      setCurrentTrack((currentTrack -= 1));
+      updateSong();
+      handlePlay();
+    }
   };
 
   const handleForWard = () => {
@@ -137,7 +149,13 @@ export default function Player({
         </div>
         <div className="w-full flex align-middle items-center justify-center px-10">
           <div className="text-white font-Orbit">{audio ? secondsToHms(currentTime) : '00:00'}</div>
-          <Controls handleBackWard={handleBackWard} handleForWard={handleForWard} handlePause={handlePause} handlePlay={handlePlay} />
+          <Controls
+            handleBackWard={handleBackWard}
+            handleForWard={handleForWard}
+            handlePause={handlePause}
+            handlePlay={handlePlay}
+            isPlaySwitch={isPlaySwitch}
+          />
           <div className="text-white font-Orbit">{audio ? secondsToHms(duration - currentTime) : '00:00'}</div>
         </div>
         <div className="w-full flex align-middle items-center justify-center px-10">
@@ -173,4 +191,6 @@ Player.propTypes = {
   setAudio: PropTypes.func.isRequired,
   setIsPlayerVisible: PropTypes.func.isRequired,
   setIsMobilePlayerVisible: PropTypes.func.isRequired,
+  isPlaySwitch: PropTypes.bool.isRequired,
+  setIsPlaySwitch: PropTypes.func?.isRequired,
 };

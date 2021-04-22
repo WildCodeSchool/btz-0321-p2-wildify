@@ -5,14 +5,17 @@ module.exports = {
     extend: {
       colors: {
         mainColor: '#00FBCE',
+        bgPlaybar: '#1F1F1F',
       },
       spacing: {
         80: '21rem',
       },
       boxShadow: {
+        playbar: '10px 10px 15px rgba(0, 0, 0, 0.9), 10px 10px 15px rgba(255, 255, 255, 0.08)inset, -10px -10px 15px rgba(0, 0, 0, 0.5)inset',
         layoutContainer: '10px 10px 10px rgba(0, 0, 0, 0.5)',
         searchbar: '5px 5px 10px rgba(0, 0, 0, 0.8)',
         sideBar: '10px 10px 10px rgba(0, 0, 0, 0.49), -10px -10px 10px rgba(5, 5, 5, 0.25)',
+        ImgPlaybar: '-5px -5px 15px rgba(255, 255, 255, 0.10), 5px 5px 10px rgba(0, 0, 0, 0.8)',
       },
       screens: {
         900: '900px',
@@ -43,9 +46,17 @@ module.exports = {
         sb: '30%',
         512: '512px',
         plist: '50px',
+        pbar: '73%',
       },
       height: {
         plist: '50px',
+      },
+      minWidth: {
+        0: '0',
+        'controls-minW': '200px',
+        '1/2': '50%',
+        '3/4': '75%',
+        full: '100%',
       },
     },
   },

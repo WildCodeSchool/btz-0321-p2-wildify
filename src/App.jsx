@@ -25,6 +25,7 @@ function App() {
   const [artist, setArtist] = useState();
   const [album, setAlbum] = useState();
   const [picture, setPicture] = useState();
+  const [isPlaySwitch, setIsPlaySwitch] = useState(true);
   const [sideBarClass, setSideBarClass] = useState(
     'flex h-screen fixed right-0 flex-col  900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-black bg-opacity-30 shadow-sideBar',
   );
@@ -127,11 +128,13 @@ function App() {
           setPicture={setPicture}
           setIsPlayerVisible={setIsPlayerVisible}
           setIsMobilePlayerVisible={setIsMobilePlayerVisible}
+          isPlaySwitch={isPlaySwitch}
+          setIsPlaySwitch={setIsPlaySwitch}
         />
       ) : (
         ''
       )}
-      {!isLoading && isSideBarVisible ? (
+      {!isLoading && width > 900 ? (
         <Playbar
           onListen={onListen}
           audio={audio}
@@ -151,6 +154,8 @@ function App() {
           setPicture={setPicture}
           albums={albums}
           setIsMobilePlayerVisible={setIsMobilePlayerVisible}
+          isPlaySwitch={isPlaySwitch}
+          setIsPlaySwitch={setIsPlaySwitch}
         />
       ) : (
         ''
@@ -174,6 +179,8 @@ function App() {
           onListen={onListen}
           setIsPlayerVisible={setIsPlayerVisible}
           setIsMobilePlayerVisible={setIsMobilePlayerVisible}
+          isPlaySwitch={isPlaySwitch}
+          setIsPlaySwitch={setIsPlaySwitch}
         />
       ) : (
         ''
