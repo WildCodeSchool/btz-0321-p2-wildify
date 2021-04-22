@@ -104,5 +104,5 @@ PlayerMobile.propTypes = {
   setIsPlayerVisible: PropTypes.func.isRequired,
   setIsMobilePlayerVisible: PropTypes.func.isRequired,
   isPlaySwitch: PropTypes.bool,
-  setIsPlaySwitch: PropTypes.func.isrequired,
+  setIsPlaySwitch: PropTypes.func,
 };
