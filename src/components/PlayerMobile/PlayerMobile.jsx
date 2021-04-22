@@ -3,6 +3,7 @@ import Controls from '../playbar/controls/controls';
 import PropTypes from 'prop-types';
 import Arrow from '../../img/arrow.svg';
 import Miniature from '../../img/playbar-miniature.png';
+
 export default function PlayerMobile({
   setIsMobilePlayerVisible,
   setIsPlayerVisible,
@@ -13,6 +14,8 @@ export default function PlayerMobile({
   setCurrentTrack,
   audio,
   setAudio,
+  isPlaySwitch,
+  setIsPlaySwitch,
 }) {
   useEffect(() => {
     updateSong();
@@ -28,20 +31,30 @@ export default function PlayerMobile({
   const handlePause = () => {
     audioRef3.current.pause();
     setAudio(false);
+    setIsPlaySwitch(true);
   };
 
   const handlePlay = () => {
     audioRef3.current.play();
     setAudio(true);
     updateSong();
+    setIsPlaySwitch(false);
   };
 
   const handleBackWard = () => {
-    audioRef3.current.pause();
-    setAudio(true);
-    setCurrentTrack((currentTrack -= 1));
-    updateSong();
-    handlePlay();
+    if (currentTrack === 0) {
+      setCurrentTrack(item.length - 1);
+      audioRef3.current.pause();
+      setAudio(true);
+      updateSong();
+      handlePlay();
+    } else {
+      audioRef3.current.pause();
+      setAudio(true);
+      setCurrentTrack((currentTrack -= 1));
+      updateSong();
+      handlePlay();
+    }
   };
 
   const handleForWard = () => {
@@ -66,7 +79,13 @@ export default function PlayerMobile({
         Your browser does not support this audio format.
       </audio>
       <img className="h-full" src={Miniature} alt="" />
-      <Controls handleBackWard={handleBackWard} handleForWard={handleForWard} handlePause={handlePause} handlePlay={handlePlay} />
+      <Controls
+        handleBackWard={handleBackWard}
+        handleForWard={handleForWard}
+        handlePause={handlePause}
+        handlePlay={handlePlay}
+        isPlaySwitch={isPlaySwitch}
+      />
       <button onClick={handleClick} className="flex items-center justify-center flex-col h-full">
         <img src={Arrow} className="w-8 cursor-pointer" alt="" />
       </button>
@@ -84,4 +103,6 @@ PlayerMobile.propTypes = {
   setAudio: PropTypes.func.isRequired,
   setIsPlayerVisible: PropTypes.func.isRequired,
   setIsMobilePlayerVisible: PropTypes.func.isRequired,
+  isPlaySwitch: PropTypes.bool,
+  setIsPlaySwitch: PropTypes.func,
 };

@@ -5,7 +5,7 @@ import Backward from '../../../img/backward.svg';
 import Forward from '../../../img/forward.svg';
 
 import PropTypes from 'prop-types';
-export default function Controls({ handlePause, handlePlay, handleBackWard, handleForWard, playSwitch }) {
+export default function Controls({ handlePause, handlePlay, handleBackWard, handleForWard, isPlaySwitch }) {
   const controlsButtons = {
     play: Play,
     pause: Pause,
@@ -14,11 +14,11 @@ export default function Controls({ handlePause, handlePlay, handleBackWard, hand
   };
 
   return (
-    <div className="flex align-middle justify-center w-3/12">
+    <div className="flex align-middle justify-center w-3/12 min-w-controls-minW">
       <button className="focus:outline-none" onClick={handleBackWard}>
         <img className="px-1 hover:opacity-50" src={controlsButtons.backward} alt="" />
       </button>
-      {playSwitch ? (
+      {isPlaySwitch ? (
         <button className="focus:outline-none" onClick={handlePlay}>
           <img className="px-1 hover:opacity-50" src={controlsButtons.play} alt="" />
         </button>
@@ -39,5 +39,5 @@ Controls.propTypes = {
   handlePlay: PropTypes.func.isRequired,
   handleBackWard: PropTypes.func.isRequired,
   handleForWard: PropTypes.func.isRequired,
-  playSwitch: PropTypes.bool.isRequired,
+  isPlaySwitch: PropTypes.bool.isRequired,
 };
