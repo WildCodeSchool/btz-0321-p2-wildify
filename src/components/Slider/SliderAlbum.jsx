@@ -59,4 +59,5 @@ SliderAlbum.propTypes = {
   setCurrentTrack: PropTypes.func.isRequired,
   setSelectedSong: PropTypes.func.isRequired,
   setIsAlbum: PropTypes.func.isRequired,
+  isAlbum: PropTypes.bool.isRequired,
 };
