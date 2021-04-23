@@ -21,15 +21,22 @@ export default function PlayerMobile({
   useEffect(() => {
     updateSong();
   }, [currentTrack]);
+  useEffect(() => {
+    updateSong();
+  }, []);
   const updateSong = () => {
-    if (audio) {
-      setOnListen(item[currentTrack].s3_link);
+    setOnListen(item[currentTrack].s3_link);
+
+    if (audioRef3.current) {
       audioRef3.current.load();
+    }
+    if (audio) {
       audioRef3.current.play();
     }
     setPicture(item[currentTrack].album.picture);
   };
   const audioRef3 = useRef();
+
   const handlePause = () => {
     audioRef3.current.pause();
     setAudio(false);
@@ -37,10 +44,10 @@ export default function PlayerMobile({
   };
 
   const handlePlay = () => {
-    audioRef3.current.play();
     setAudio(true);
-    updateSong();
     setIsPlaySwitch(false);
+    updateSong();
+    audioRef3.current.play();
   };
 
   const handleBackWard = () => {
@@ -71,6 +78,7 @@ export default function PlayerMobile({
   const handleClick = () => {
     setIsPlayerVisible(true);
     setIsMobilePlayerVisible(false);
+    audioRef3.current.pause();
   };
 
   return (
