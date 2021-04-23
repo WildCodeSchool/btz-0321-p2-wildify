@@ -103,7 +103,7 @@ export default function PlayerMobile({
         handlePlay={handlePlay}
         isPlaySwitch={isPlaySwitch}
       />
-      <button onClick={handleClick} className="flex mr-5 items-center justify-center flex-col h-full">
+      <button onClick={handleClick} className="flex mr-5 focus:outline-none items-center justify-center flex-col h-full">
         <img src={Arrow} className="w-8 cursor-pointer" alt="" />
       </button>
     </div>

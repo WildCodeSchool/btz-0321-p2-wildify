@@ -129,7 +129,7 @@ export default function Player({
           Your browser does not support this audio format.
         </audio>
         <div className="flex justify-end items-center w-full">
-          <button onClick={handleClick}>
+          <button onClick={handleClick} className="focus:outline-none">
             <img className="transform rotate-180 w-5" src={Arrow} alt="" />
           </button>
         </div>
