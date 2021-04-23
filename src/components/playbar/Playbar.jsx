@@ -24,6 +24,8 @@ export default function Playbar({
   setArtist,
   isPlaySwitch,
   setIsPlaySwitch,
+  selectedSong,
+  isAlbum,
 }) {
   const [sliderValue, setSliderValue] = useState(0);
   const [sliderPos, setSliderPos] = useState('100');
@@ -56,18 +58,33 @@ export default function Playbar({
   };
 
   const updateSong = () => {
-    setOnListen(item[currentTrack].s3_link);
-    if (audioRef.current) {
-      audioRef.current.load();
+    if (isAlbum) {
+      setOnListen(selectedSong[0].s3_link);
+
+      if (audioRef.current) {
+        audioRef.current.load();
+      }
+      if (audio === true) {
+        audioRef.current.play();
+      }
+      setTitle(selectedSong[0].title);
+      setArtist(selectedSong[0].artist.name);
+      setAlbum(selectedSong[0].album.title);
+      setPicture(selectedSong[0].album.picture);
+    } else {
+      setOnListen(item[currentTrack].s3_link);
+      if (audioRef.current) {
+        audioRef.current.load();
+      }
+      if (audio === true) {
+        audioRef.current.play();
+      }
     }
-    if (audio === true) {
-      audioRef.current.play();
-    }
-    setTitle(item[currentTrack].title);
-    setArtist(item[currentTrack].artist.name);
-    setAlbum(item[currentTrack].album.title);
-    setPicture(item[currentTrack].album.picture);
   };
+
+  useEffect(() => {
+    updateSong();
+  }, [selectedSong]);
 
   const volumeChange = (e) => {
     setSliderPos(e.target.value);
@@ -220,4 +237,6 @@ Playbar.propTypes = {
   setPicture: PropTypes.func.isRequired,
   isPlaySwitch: PropTypes.bool,
   setIsPlaySwitch: PropTypes.func,
+  selectedSong: PropTypes.array.isRequired,
+  isAlbum: PropTypes.bool.isRequired,
 };
