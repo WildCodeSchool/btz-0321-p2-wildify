@@ -6,7 +6,7 @@ import Next from './Next';
 import Previous from './Previous';
 import AlbumTrackList from './AlbumTrackList';
 
-function SliderAlbum({ albums, item }) {
+function SliderAlbum({ albums, item, setCurrentTrack }) {
   const { width } = useWindowDimensions();
   const [index, setIndex] = useState(0);
   const [isTrackList, setIsTrackList] = useState(false);
@@ -29,7 +29,15 @@ function SliderAlbum({ albums, item }) {
         </div>
       ) : (
         <div className="overflow-y-auto">
-          <AlbumTrackList albumChoice={albumChoice} handleClick={handleClick} albums={albums} index={index} item={item} width={width} />
+          <AlbumTrackList
+            albumChoice={albumChoice}
+            handleClick={handleClick}
+            albums={albums}
+            index={index}
+            item={item}
+            width={width}
+            setCurrentTrack={setCurrentTrack}
+          />
         </div>
       )}
     </div>
@@ -41,4 +49,5 @@ export default SliderAlbum;
 SliderAlbum.propTypes = {
   albums: PropTypes.array.isRequired,
   item: PropTypes.array.isRequired,
+  setCurrentTrack: PropTypes.func.isRequired,
 };

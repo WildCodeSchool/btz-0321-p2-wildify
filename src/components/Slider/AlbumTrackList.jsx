@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Backward from '../../img/BackwardArrow.svg';
 
-function AlbumTrackList({ handleClick, item, albumChoice, width }) {
+function AlbumTrackList({ handleClick, item, albumChoice, width, setCurrentTrack }) {
   const [translationTrack, setTranslationTrack] = useState();
+
+  const handleAlbum = () => {
+    setCurrentTrack();
+  };
 
   useEffect(() => {
     if (width < 900) {
@@ -25,7 +29,9 @@ function AlbumTrackList({ handleClick, item, albumChoice, width }) {
               <li
                 key={index}
                 className={`font-cuprum text-base font-regular border-opacity-25 shadow-2xl transform  text-white pl-14 ${translationTrack}`}>
-                {song.title}
+                <button onClick={handleAlbum} type="button">
+                  {song.title}
+                </button>
               </li>
             );
           })}
@@ -42,4 +48,5 @@ AlbumTrackList.propTypes = {
   item: PropTypes.array.isRequired,
   albumChoice: PropTypes.string.isRequired,
   width: PropTypes.number.isRequired,
+  setCurrentTrack: PropTypes.func.isRequired,
 };
