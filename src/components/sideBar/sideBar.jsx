@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import ReturnBtn from '../../img/PlayList/ReturnButton.svg';
+import useWindowDimensions from '../../Hooks/useWindowDimension';
 
-function SideBar({ sideBarClass, albums }) {
+function SideBar({ sideBarClass, albums, handleSideBar }) {
   const [selectFile, setSelectFile] = useState();
   const [imgUrl, setImgUrl] = useState();
   const [albumIndex, setAlbumindex] = useState();
+  const { width } = useWindowDimensions();
   const changeFileHandler = (event) => {
     setSelectFile(event.target.files[0]);
   };
@@ -45,7 +48,16 @@ function SideBar({ sideBarClass, albums }) {
   return (
     <div className={sideBarClass}>
       <div className="w-full h-full p-8">
-        <h1 className="text-white font-scada text-4xl 900:text-3xl">Share your Favorits songs with us</h1>
+        <div className="flex">
+          <h1 className="text-white font-scada text-4xl 900:text-3xl">Share your Favorits songs with us</h1>
+          {width < 768 ? (
+            <button className="focus:outline-none" onClick={handleSideBar}>
+              <img src={ReturnBtn} alt="" />
+            </button>
+          ) : (
+            ''
+          )}
+        </div>
         <form className="sticky flex flex-col">
           <label className="w-full text-white text-xl font-cuprum mt-5" htmlFor="Picture">
             Select Album
@@ -55,11 +67,7 @@ function SideBar({ sideBarClass, albums }) {
             onBlur={handlePictureChange}>
             {albums.map((album, key) => {
               return (
-                <option
-                  className=" bg-bgPlaybar shadow-input text-white font-Orbit focus:outline-none rounded-4xl"
-                  value={key}
-                  id={album.id}
-                  key={album.id}>
+                <option value={key} id={album.id} key={album.id}>
                   {album.title}
                 </option>
               );
@@ -126,6 +134,7 @@ function SideBar({ sideBarClass, albums }) {
 SideBar.propTypes = {
   sideBarClass: PropTypes.string.isRequired,
   albums: PropTypes.array.isRequired,
+  handleSideBar: PropTypes.func.isRequired,
 };
 
 export default SideBar;
