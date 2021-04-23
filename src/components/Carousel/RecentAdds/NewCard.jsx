@@ -3,11 +3,17 @@ import PropTypes from 'prop-types';
 
 export default function Card({ items }) {
   return (
-    <div>
+    <div className="flex flex-row">
       {items.map((item, index) => (
-        <div key={index}>
-          <img src={item.album.picture} alt="" />
-        </div>
+        <div
+          key={index}
+          className="w-64 h-80 mx-3 rounded-2xl"
+          style={{
+            backgroundImage: `url(${item.album.picture})`,
+            backgroundSize: `cover`,
+            backgroundRepeat: `no-repeat`,
+            backgroundPosition: `center`,
+          }}></div>
       ))}
     </div>
   );
