@@ -56,6 +56,7 @@ module.exports = {
       },
       height: {
         plist: '50px',
+        playbarMobile: '88px',
       },
       minWidth: {
         0: '0',
