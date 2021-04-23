@@ -79,6 +79,10 @@ export default function Playbar({
       if (audio === true) {
         audioRef.current.play();
       }
+      setTitle(item[currentTrack].title);
+      setArtist(item[currentTrack].artist.name);
+      setAlbum(item[currentTrack].album.title);
+      setPicture(item[currentTrack].album.picture);
     }
   };
 
