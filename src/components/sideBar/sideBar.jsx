@@ -59,7 +59,7 @@ function SideBar({ sideBarClass, albums, handleSideBar }) {
           )}
         </div>
         <form className="sticky flex flex-col">
-          <label className="w-full text-white text-xl font-cuprum mt-5" htmlFor="Picture">
+          <label className="w-full text-white text-xl font-cuprum mt-8" htmlFor="Picture">
             Select Album
           </label>
           <select
@@ -73,7 +73,7 @@ function SideBar({ sideBarClass, albums, handleSideBar }) {
               );
             })}
           </select>
-          <label className="w-full text-white text-xl font-cuprum mt-5" htmlFor="Picture">
+          <label className="w-full text-white text-xl font-cuprum mt-8" htmlFor="Picture">
             Album image Url :
           </label>
           <input
@@ -82,12 +82,12 @@ function SideBar({ sideBarClass, albums, handleSideBar }) {
             type="text"
             name="Picture"></input>
           <button
-            className="bg-bgPlaybar shadow-input2 focus:outline-none w-5/12 mt-4 rounded-4xl text-sm text-white py-2 font-scada hover:text-mainColor hover:shadow-input"
+            className="bg-bgPlaybar shadow-input2 focus:outline-none w-5/12 mt-5 rounded-4xl text-sm text-white py-2 font-scada hover:text-mainColor hover:shadow-input"
             onClick={handlePictureSubmission}>
             Upload Image
           </button>
         </form>
-        <form className="flex mt-8 flex-col">
+        <form className="flex mt-10 flex-col">
           <label className="text-white text-xl font-cuprum" htmlFor="playlist">
             Select Playlist:
           </label>
@@ -109,7 +109,7 @@ function SideBar({ sideBarClass, albums, handleSideBar }) {
             </option>
           </select>
         </form>
-        <div className="my-4 w-full flex flex-col">
+        <div className="my-8 w-full flex flex-col">
           <label className="text-white text-xl font-cuprum" htmlFor="upload">
             Select Music
           </label>
@@ -121,7 +121,7 @@ function SideBar({ sideBarClass, albums, handleSideBar }) {
             onChange={changeFileHandler}
           />
           <button
-            className="bg-bgPlaybar shadow-input2 focus:outline-none w-5/12 mt-4 rounded-4xl text-sm text-white py-2 font-scada hover:text-mainColor hover:shadow-input"
+            className="bg-bgPlaybar shadow-input2 focus:outline-none w-5/12 mt-5   rounded-4xl text-sm text-white py-2 font-scada hover:text-mainColor hover:shadow-input"
             onClick={handleSubmission}>
             Upload Music
           </button>
