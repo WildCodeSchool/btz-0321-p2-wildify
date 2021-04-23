@@ -50,6 +50,10 @@ function App() {
   }, []);
 
   useEffect(() => {
+    setIsAlbum(false);
+  }, [currentTrack]);
+
+  useEffect(() => {
     if (width < 768) {
       setisSideBarVisible(false);
       setIsMobilePlayerVisible(true);
@@ -104,6 +108,7 @@ function App() {
               albums={albums}
               artists={artists}
               setCurrentTrack={setCurrentTrack}
+              isAlbum={isAlbum}
             />
           )}
         </div>

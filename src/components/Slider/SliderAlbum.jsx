@@ -6,14 +6,18 @@ import Next from './Next';
 import Previous from './Previous';
 import AlbumTrackList from './AlbumTrackList';
 
-function SliderAlbum({ albums, item, setCurrentTrack, setSelectedSong, setIsAlbum }) {
+function SliderAlbum({ albums, item, setCurrentTrack, setSelectedSong, setIsAlbum, isAlbum }) {
   const { width } = useWindowDimensions();
   const [index, setIndex] = useState(0);
   const [isTrackList, setIsTrackList] = useState(false);
   const [albumChoice, setAlbumChoice] = useState('Dondada mixtape');
 
   const handleClick = () => {
-    setIsAlbum(true);
+    if (isAlbum) {
+      setIsAlbum(false);
+    } else {
+      setIsAlbum(true);
+    }
     if (isTrackList) {
       setIsTrackList(false);
     } else {
@@ -39,6 +43,7 @@ function SliderAlbum({ albums, item, setCurrentTrack, setSelectedSong, setIsAlbu
             width={width}
             setCurrentTrack={setCurrentTrack}
             setSelectedSong={setSelectedSong}
+            setIsAlbum={setIsAlbum}
           />
         </div>
       )}
