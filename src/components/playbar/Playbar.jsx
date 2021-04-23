@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Controls from './controls/controls';
 import HiddenPlayer from '../HiddenPlayer/HiddenPlayer';
+import Volume from '../../img/volume.svg';
 import './playbar.css';
 
 export default function Playbar({
@@ -21,12 +22,13 @@ export default function Playbar({
   setTitle,
   setAlbum,
   setArtist,
+  isPlaySwitch,
+  setIsPlaySwitch,
 }) {
   const [sliderValue, setSliderValue] = useState(0);
   const [sliderPos, setSliderPos] = useState('100');
   const [duration, setDuration] = useState('00:00');
   const [currentTime, setCurrentTime] = useState('00:00');
-  const [isPlaySwitch, setIsPlaySwitch] = useState(true);
   const audioRef = useRef(null);
 
   useEffect(() => {
@@ -90,11 +92,19 @@ export default function Playbar({
   };
 
   const handleBackWard = () => {
-    audioRef.current.pause();
-    setAudio(true);
-    setCurrentTrack((currentTrack -= 1));
-    updateSong();
-    handlePlay();
+    if (currentTrack === 0) {
+      setCurrentTrack(item.length - 1);
+      audioRef.current.pause();
+      setAudio(true);
+      updateSong();
+      handlePlay();
+    } else {
+      audioRef.current.pause();
+      setAudio(true);
+      setCurrentTrack((currentTrack -= 1));
+      updateSong();
+      handlePlay();
+    }
   };
 
   const handleForWard = () => {
@@ -108,7 +118,7 @@ export default function Playbar({
   };
 
   return (
-    <div className="w-pbar max-h-40 flex-row fixed bottom-3 left-3 z-50">
+    <div className="w-pbar max-h-40 flex-row fixed bottom-1 left-3 z-50">
       <HiddenPlayer
         currentTrack={currentTrack}
         setCurrentTrack={setCurrentTrack}
@@ -123,7 +133,7 @@ export default function Playbar({
 
       <div
         className="flex 
-       bg-bgPlaybar  items-center h-20 rounded-4xl shadow-playbar">
+       bg-bgPlaybar  items-center h-20 rounded-4xl shadow-playbar mb-1">
         <div className=" flex-row w-2/5 flex h-full items-center ">
           <div
             className="w-2/12 h-16 ml-4 mr-4 rounded-full shadow-ImgPlaybar"
@@ -164,12 +174,12 @@ export default function Playbar({
             handlePause={handlePause}
             handleBackWard={handleBackWard}
             handleForWard={handleForWard}
-            playSwitch={isPlaySwitch}
+            isPlaySwitch={isPlaySwitch}
           />
           <div className="ml-6 mr-3 flex-col align-middle w-5/12">
             <div className="flex h-full w-full align-middle justify-center items-center">
               <div className="h-full mr-2">
-                <img className="w-full" src="src/img/volume.svg" alt="" />
+                <img className="w-full" src={Volume} alt="" />
               </div>
               <div className="h-full  w-full">
                 <div className="endTime"></div>
@@ -208,4 +218,6 @@ Playbar.propTypes = {
   setArtist: PropTypes.func.isRequired,
   setAlbum: PropTypes.func.isRequired,
   setPicture: PropTypes.func.isRequired,
+  isPlaySwitch: PropTypes.bool,
+  setIsPlaySwitch: PropTypes.func,
 };

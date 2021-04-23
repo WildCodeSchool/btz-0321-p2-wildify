@@ -25,8 +25,9 @@ function App() {
   const [artist, setArtist] = useState();
   const [album, setAlbum] = useState();
   const [picture, setPicture] = useState();
+  const [isPlaySwitch, setIsPlaySwitch] = useState(true);
   const [sideBarClass, setSideBarClass] = useState(
-    'flex h-screen fixed right-0 flex-col  900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-black bg-opacity-30 shadow-sideBar',
+    'flex h-screen w-3/12 fixed right-0 flex-col  900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-bgPlaybar  shadow-playbar',
   );
   const [albums, setAlbums] = useState([]);
   const [artists, setArtists] = useState([]);
@@ -63,16 +64,14 @@ function App() {
   const handleSideBar = () => {
     isSideBarVisible ? setisSideBarVisible(false) : setisSideBarVisible(true);
     isSideBarVisible
-      ? setSideBarClass(
-          'flex fixed right-0 h-screen flex-col  900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-black bg-opacity-30 shadow-sideBar',
-        )
+      ? setSideBarClass('flex fixed  h-screen  flex-col  900:col-start-5 900:col-end-6 900:row-start-1 900:row-span-6 bg-bgPlaybar shadow-playbar')
       : setSideBarClass(
-          'flex fixed flex-col h-screen  top-0 right-0 900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-black bg-opacity-30 shadow-sideBar',
+          'flex fixed z-50 flex-col h-screen w-screen  top-0 right-0 900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-bgPlaybar  shadow-playbar',
         );
   };
   return (
     <div
-      className="flex align-middle justify-center pb-24"
+      className="flex align-middle justify-center pb-20"
       style={{
         backgroundImage: `url(${bg})`,
         backgroundSize: 'cover',
@@ -105,7 +104,7 @@ function App() {
         <div className="col-start-1 col-end-3 row-start-6 row-end-7 rounded-20 900:col-end-4 900:row-start-5 900:row-end-6 bg-black bg-opacity-20 shadow-layoutContainer mb-4">
           <Contact />
         </div>
-        {isSideBarVisible && <SideBar sideBarClass={sideBarClass} albums={albums} setSideBarClass={setSideBarClass} />}
+        {isSideBarVisible && <SideBar sideBarClass={sideBarClass} albums={albums} setSideBarClass={setSideBarClass} handleSideBar={handleSideBar} />}
       </div>
       {!isLoading && isMobilePlayerVisible ? (
         <PlayerMobile
@@ -127,11 +126,13 @@ function App() {
           setPicture={setPicture}
           setIsPlayerVisible={setIsPlayerVisible}
           setIsMobilePlayerVisible={setIsMobilePlayerVisible}
+          isPlaySwitch={isPlaySwitch}
+          setIsPlaySwitch={setIsPlaySwitch}
         />
       ) : (
         ''
       )}
-      {!isLoading && isSideBarVisible ? (
+      {!isLoading && width > 900 ? (
         <Playbar
           onListen={onListen}
           audio={audio}
@@ -151,6 +152,8 @@ function App() {
           setPicture={setPicture}
           albums={albums}
           setIsMobilePlayerVisible={setIsMobilePlayerVisible}
+          isPlaySwitch={isPlaySwitch}
+          setIsPlaySwitch={setIsPlaySwitch}
         />
       ) : (
         ''
@@ -174,6 +177,8 @@ function App() {
           onListen={onListen}
           setIsPlayerVisible={setIsPlayerVisible}
           setIsMobilePlayerVisible={setIsMobilePlayerVisible}
+          isPlaySwitch={isPlaySwitch}
+          setIsPlaySwitch={setIsPlaySwitch}
         />
       ) : (
         ''
