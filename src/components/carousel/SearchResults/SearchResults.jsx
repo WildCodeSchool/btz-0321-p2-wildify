@@ -6,7 +6,7 @@ export default function SearchResults({ item, onSearch }) {
     <div className="w-full h-full">
       <ul>
         {item
-          .filter((song) => song.title.includes(onSearch))
+          .filter((song) => song.title.toLowerCase().includes(onSearch))
           .map((song, index) => {
             return <li key={index}>{song.title}</li>;
           })}

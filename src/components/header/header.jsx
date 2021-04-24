@@ -6,6 +6,10 @@ import HeadPhone from '../../img/Icons/HeadPhone.svg';
 function Header({ handleSideBar, setOnSearch }) {
   const { width } = useWindowDimensions();
 
+  const handleChange = (e) => {
+    setOnSearch(e.target.value.toLowerCase());
+  };
+
   return (
     <div className="col-start-1 col-end-3 mt-4 900:col-end-4 flex flex-col">
       <div className="font-scada font-bold text-4xl text-white self-start">
@@ -25,7 +29,7 @@ function Header({ handleSideBar, setOnSearch }) {
           type="text"
           className="text-white font-cuprum  md:w-512 w-80 h-10 px-5 py-2 bg-black bg-opacity-10 rounded-4xl border-none  shadow-searchbar"
           placeholder="Search..."
-          onChange={(e) => setOnSearch(e.target.value)}
+          onChange={handleChange}
         />
       </div>
     </div>
