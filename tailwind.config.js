@@ -10,6 +10,7 @@ module.exports = {
       },
       spacing: {
         80: '21rem',
+        800: '800%',
       },
       boxShadow: {
         input2: '5px 5px 5px rgba(0, 0, 0, 0.5), -5px -5px 5px rgba(68, 68, 68, 0.25)',
