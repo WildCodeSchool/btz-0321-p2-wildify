@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import Controls from '../playbar/controls/controls';
 import PropTypes from 'prop-types';
 import Arrow from '../../img/arrow.svg';
-import Miniature from '../../img/playbar-miniature.png';
 
 export default function PlayerMobile({
   setIsMobilePlayerVisible,
@@ -16,18 +15,28 @@ export default function PlayerMobile({
   setAudio,
   isPlaySwitch,
   setIsPlaySwitch,
+  picture,
+  setPicture,
 }) {
   useEffect(() => {
     updateSong();
   }, [currentTrack]);
+  useEffect(() => {
+    updateSong();
+  }, []);
   const updateSong = () => {
-    if (audio) {
-      setOnListen(item[currentTrack].s3_link);
+    setOnListen(item[currentTrack].s3_link);
+
+    if (audioRef3.current) {
       audioRef3.current.load();
+    }
+    if (audio) {
       audioRef3.current.play();
     }
+    setPicture(item[currentTrack].album.picture);
   };
   const audioRef3 = useRef();
+
   const handlePause = () => {
     audioRef3.current.pause();
     setAudio(false);
@@ -35,10 +44,10 @@ export default function PlayerMobile({
   };
 
   const handlePlay = () => {
-    audioRef3.current.play();
     setAudio(true);
-    updateSong();
     setIsPlaySwitch(false);
+    updateSong();
+    audioRef3.current.play();
   };
 
   const handleBackWard = () => {
@@ -69,16 +78,24 @@ export default function PlayerMobile({
   const handleClick = () => {
     setIsPlayerVisible(true);
     setIsMobilePlayerVisible(false);
+    audioRef3.current.pause();
   };
 
   return (
-    <div className="p-2 w-7/12 h-28 z-50 flex items-center align-middle justify-center rounded-4xl fixed bottom-10 bg-black">
+    <div className="bg-bgPlaybar shadow-player w-mpb h-playbarMobile z-30 p-4 flex items-center align-middle justify-center rounded-full fixed bottom-2 ">
       <audio id="audio" className="hidden" onEnded={handleForWard} ref={audioRef3} controls>
         <source src={onListen} type="audio/mp3"></source>
         <track default kind="captions" />
         Your browser does not support this audio format.
       </audio>
-      <img className="h-full" src={Miniature} alt="" />
+      <div
+        className="h-20 w-28 rounded-full shadow-ImgPlaybar"
+        style={{
+          backgroundImage: `url(${picture})`,
+          backgroundSize: `cover`,
+          backgroundRepeat: `no-repeat`,
+          backgroundPosition: `center`,
+        }}></div>
       <Controls
         handleBackWard={handleBackWard}
         handleForWard={handleForWard}
@@ -86,7 +103,7 @@ export default function PlayerMobile({
         handlePlay={handlePlay}
         isPlaySwitch={isPlaySwitch}
       />
-      <button onClick={handleClick} className="flex items-center justify-center flex-col h-full">
+      <button onClick={handleClick} className="flex mr-5 focus:outline-none items-center justify-center flex-col h-full">
         <img src={Arrow} className="w-8 cursor-pointer" alt="" />
       </button>
     </div>
@@ -105,4 +122,6 @@ PlayerMobile.propTypes = {
   setIsMobilePlayerVisible: PropTypes.func.isRequired,
   isPlaySwitch: PropTypes.bool,
   setIsPlaySwitch: PropTypes.func,
+  picture: PropTypes.string,
+  setPicture: PropTypes.any.isRequired,
 };

@@ -118,7 +118,7 @@ export default function Playbar({
   };
 
   return (
-    <div className="w-pbar max-h-40 flex-row fixed bottom-3 left-3 z-50">
+    <div className="w-pbar max-h-40 flex-row fixed bottom-1 left-3 z-50">
       <HiddenPlayer
         currentTrack={currentTrack}
         setCurrentTrack={setCurrentTrack}
@@ -133,7 +133,7 @@ export default function Playbar({
 
       <div
         className="flex 
-       bg-bgPlaybar  items-center h-20 rounded-4xl shadow-playbar">
+       bg-bgPlaybar  items-center h-20 rounded-4xl shadow-playbar mb-1">
         <div className=" flex-row w-2/5 flex h-full items-center ">
           <div
             className="w-2/12 h-16 ml-4 mr-4 rounded-full shadow-ImgPlaybar"

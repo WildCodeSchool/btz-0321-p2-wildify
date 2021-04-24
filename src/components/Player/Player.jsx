@@ -27,7 +27,6 @@ export default function Player({
   setIsPlaySwitch,
 }) {
   const [sliderValue, setSliderValue] = useState(0);
-  const [sliderPos, setSliderPos] = useState('100');
   const [duration, setDuration] = useState('00:00');
   const [currentTime, setCurrentTime] = useState('00:00');
 
@@ -39,7 +38,7 @@ export default function Player({
 
   const updateSong = () => {
     setOnListen(item[currentTrack].s3_link);
-    setAudio(true);
+
     if (audioRef2.current) {
       audioRef2.current.load();
     }
@@ -50,11 +49,6 @@ export default function Player({
     setArtist(item[currentTrack].artist.name);
     setAlbum(item[currentTrack].album.title);
     setPicture(item[currentTrack].album.picture);
-  };
-
-  const volumeChange = (e) => {
-    setSliderPos(e.target.value);
-    audioRef2.current.volume = sliderPos / 100;
   };
 
   const positionChange = (e) => {
@@ -103,6 +97,7 @@ export default function Player({
   const handleClick = () => {
     setIsPlayerVisible(false);
     setIsMobilePlayerVisible(true);
+    audioRef2.current.pause();
   };
 
   useEffect(() => {
@@ -127,28 +122,34 @@ export default function Player({
 
   return (
     <div className="h-full w-full  absolute">
-      <div className="bg-black fixed flex flex-col  justify-between z-50 align-middle w-full h-full py-20">
+      <div className=" fixed flex justify-around flex-col z-50  w-full h-full py-8 px-8 backGrnd">
         <audio id="audio" className="hidden" onEnded={handleForWard} ref={audioRef2} controls>
           <source src={onListen} type="audio/mp3"></source>
           <track default kind="captions" />
           Your browser does not support this audio format.
         </audio>
-        <div className="flex justify-around items-center w-full align-middle px-10">
-          <input onChange={volumeChange} type="range" min="0" max="100" value={sliderPos} className="w-8/12 h-0.5 slider" id="myRange"></input>
-          <button onClick={handleClick}>
-            <img className="transform rotate-180" src={Arrow} alt="" />
+        <div className="flex justify-end items-center w-full">
+          <button onClick={handleClick} className="focus:outline-none">
+            <img className="transform rotate-180 w-5" src={Arrow} alt="" />
           </button>
         </div>
-        <div className="w-full flex align-middle justify-center px-10">
-          <img className="rounded-full w-2/4 max-w-xl" src={picture ? picture : Miniature} alt="" />
+        <div className="flex justify-center">
+          <div
+            className="rounded-full w-72 h-72  shadow-MobilPlaybar"
+            style={{
+              backgroundImage: `url(${picture ? picture : Miniature})`,
+              backgroundSize: `cover`,
+              backgroundRepeat: `no-repeat`,
+              backgroundPosition: `center`,
+            }}></div>
         </div>
-        <div className="text-white text-3xl font-Orbit flex flex-col items-center w-full align-middle justify-center px-10">
-          <div className="font-Orbit">{title}</div>
-          <div className="font-Orbit">{artist}</div>
-          <div className="font-Orbit">{album}</div>
+        <div className="text-white font-scada flex flex-col mt-5 items-center w-full align-middle justify-center px-10">
+          <div className="text-2xl text-center">{title}</div>
+          <div className="font-scada mt-2 text-center">
+            {artist} - {album}
+          </div>
         </div>
-        <div className="w-full flex align-middle items-center justify-center px-10">
-          <div className="text-white font-Orbit">{audio ? secondsToHms(currentTime) : '00:00'}</div>
+        <div className="w-full flex align-middle  mt-8 w-fullitems-center justify-center">
           <Controls
             handleBackWard={handleBackWard}
             handleForWard={handleForWard}
@@ -156,17 +157,20 @@ export default function Player({
             handlePlay={handlePlay}
             isPlaySwitch={isPlaySwitch}
           />
-          <div className="text-white font-Orbit">{audio ? secondsToHms(duration - currentTime) : '00:00'}</div>
         </div>
-        <div className="w-full flex align-middle items-center justify-center px-10">
-          <input
-            onChange={positionChange}
-            type="range"
-            min="0"
-            max={duration}
-            value={sliderValue}
-            className="w-8/12 mx-14 h-0.5 slider"
-            id="myRange"></input>
+        <div className="w-full flex mt-3 px-4 items-center justify-center">
+          <div className="text-white font-scada mr-5">{audio ? secondsToHms(currentTime) : '00:00'}</div>
+          <div className="w-full flex align-middle items-center justify-center">
+            <input
+              onChange={positionChange}
+              type="range"
+              min="0"
+              max={duration}
+              value={sliderValue}
+              className="w-9/12  h-1.5 rounded slider"
+              id="myRange"></input>
+          </div>
+          <div className="text-white font-scada ml-5">{audio ? secondsToHms(duration - currentTime) : '00:00'}</div>
         </div>
       </div>
     </div>
