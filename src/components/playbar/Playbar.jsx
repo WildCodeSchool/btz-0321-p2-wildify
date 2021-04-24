@@ -56,33 +56,28 @@ export default function Playbar({
     let s = Math.floor((d % 3600) % 60);
     return m + ':' + s;
   };
-
+  console.log(picture);
   const updateSong = () => {
     if (isAlbum) {
       setOnListen(selectedSong[0].s3_link);
 
-      if (audioRef.current) {
-        audioRef.current.load();
-      }
-      if (audio === true) {
-        audioRef.current.play();
-      }
       setTitle(selectedSong[0].title);
       setArtist(selectedSong[0].artist.name);
       setAlbum(selectedSong[0].album.title);
       setPicture(selectedSong[0].album.picture);
     } else {
       setOnListen(item[currentTrack].s3_link);
-      if (audioRef.current) {
-        audioRef.current.load();
-      }
-      if (audio === true) {
-        audioRef.current.play();
-      }
+
       setTitle(item[currentTrack].title);
       setArtist(item[currentTrack].artist.name);
       setAlbum(item[currentTrack].album.title);
       setPicture(item[currentTrack].album.picture);
+    }
+    if (audioRef.current) {
+      audioRef.current.load();
+    }
+    if (audio === true) {
+      audioRef.current.play();
     }
   };
 
