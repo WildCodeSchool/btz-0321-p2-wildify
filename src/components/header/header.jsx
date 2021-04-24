@@ -3,7 +3,7 @@ import useWindowDimensions from '../../Hooks/useWindowDimension';
 import PropTypes from 'prop-types';
 import HeadPhone from '../../img/Icons/HeadPhone.svg';
 
-function Header({ handleSideBar }) {
+function Header({ handleSideBar, setOnSearch }) {
   const { width } = useWindowDimensions();
 
   return (
@@ -25,6 +25,7 @@ function Header({ handleSideBar }) {
           type="text"
           className="text-white font-cuprum  md:w-512 w-80 h-10 px-5 py-2 bg-black bg-opacity-10 rounded-4xl border-none  shadow-searchbar"
           placeholder="Search..."
+          onChange={(e) => setOnSearch(e.target.value)}
         />
       </div>
     </div>

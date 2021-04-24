@@ -31,13 +31,27 @@ function App() {
   );
   const [albums, setAlbums] = useState([]);
   const [artists, setArtists] = useState([]);
-
+  const [onSearch, setOnSearch] = useState();
+  let token =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZvbyIsImlhdCI6MTYxOTI4MDY4OCwiZXhwIjoxNjE5MzY3MDg4fQ.GRtCLMbzOiprEDykbyAGeUR9ptTu8kikLH2FaNJfYBE';
   useEffect(() => {
     const getDatas = async () => {
       const [resSongs, resArtists, resAlbums] = await Promise.all([
-        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs'),
-        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/artists'),
-        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/albums'),
+        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }),
+        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/artists', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }),
+        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/albums', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }),
       ]);
       setItem(resSongs.data);
       setAlbums(resAlbums.data);
@@ -78,11 +92,11 @@ function App() {
         backgroundRepeat: 'no-repeat',
       }}>
       <div className="grid mx-5 gap-5  900:gap-6 grid-cols-mobile grid-rows-mobile 900:grid-cols-desktop 900:ml-6 900:mr-0 900:grid-rows-desktop">
-        <Header handleSideBar={handleSideBar} isSideBarVisible={isSideBarVisible} />
+        <Header handleSideBar={handleSideBar} isSideBarVisible={isSideBarVisible} setOnSearch={setOnSearch} />
 
         <div className="col-start-1 col-end-3 row-start-2 900:col-end-4 rounded-20 bg-black bg-opacity-10 shadow-layoutContainer">
           {/* The Main Component GoHere */}
-          {!isLoading && <Carousel item={item} albums={albums} artists={artists} />}
+          {!isLoading && <Carousel onSearch={onSearch} item={item} albums={albums} artists={artists} />}
         </div>
 
         <div className=" overflow-y-auto col-start-1 col-end-3 row-start-3 row-end-4 900:col-end-2 900:row-end-5 rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
