@@ -33,6 +33,7 @@ function Header({ handleSideBar, setOnSearch }) {
 }
 Header.propTypes = {
   handleSideBar: PropTypes.func.isRequired,
+  setOnSearch: PropTypes.func.isRequired,
 };
 
 export default Header;
