@@ -2,25 +2,13 @@ import React from 'react';
 import Card from './NewCard';
 import PropTypes from 'prop-types';
 
-function RecentAdds({ count, setCount, item }) {
+function RecentAdds({ item }) {
   const itemReversed = [...item];
   itemReversed.reverse();
 
   return (
-    <div className="col-start-1 col-end-2 900:col-end-3 row-start-3 900:row-start-2 row-end-4 900:row-end-3 flex flex-row overflow-x-auto 900:overflow-hidden">
-      <button
-        onClick={() => setCount(count === 0 ? item.length - 1 : (count -= 1))}
-        className="border bg-white rounded-2xl fixed transform translate-y-40">
-        Prev
-      </button>
-
+    <div className="col-start-1 col-end-2 900:col-end-3 row-start-3 900:row-start-2 row-end-4 900:row-end-3 flex flex-row overflow-x-auto">
       <Card items={itemReversed} />
-
-      <button
-        onClick={() => setCount(count === item.length - 1 ? 0 : (count += 1))}
-        className="border bg-white rounded-2xl fixed transform translate-x-800 translate-y-40">
-        Next
-      </button>
     </div>
   );
 }

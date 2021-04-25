@@ -5,8 +5,7 @@ import Playbar from '../src/components/playbar/Playbar';
 import Header from './components/header/header.jsx';
 import SideBar from './components/sideBar/sideBar';
 import Contact from './components/Contact/Contact';
-// import Carousel from './components/carousel/Carousel';
-import NewCarousel from './components/Carousel/NewCarousel';
+import Carousel from './components/Carousel/Carousel';
 import Player from './components/Player/Player';
 import PlaylistSwitch from './components/Playlist/PlaylistSwitch';
 import SliderAlbum from './components/Slider/SliderAlbum';
@@ -85,8 +84,7 @@ function App() {
 
         <div className="col-start-1 col-end-3 row-start-2 900:col-end-4 rounded-20 bg-black bg-opacity-10 shadow-layoutContainer">
           {/* The Main Component GoHere */}
-          {/* {!isLoading && <Carousel item={item} albums={albums} artists={artists} />} */}
-          {!isLoading && <NewCarousel item={item} albums={albums} artists={artists} />}
+          {!isLoading && <Carousel item={item} albums={albums} artists={artists} />}
         </div>
 
         <div className=" overflow-y-auto col-start-1 col-end-3 row-start-3 row-end-4 900:col-end-2 900:row-end-5 rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
