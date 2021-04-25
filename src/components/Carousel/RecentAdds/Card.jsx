@@ -7,7 +7,7 @@ export default function Card({ items }) {
       {items.map((item, index) => (
         <div
           key={index}
-          className="w-64 h-80 mx-3 rounded-2xl"
+          className="w-64 h-80 mx-3 rounded-2xl cursor-pointer"
           style={{
             backgroundImage: `url(${item.album.picture})`,
             backgroundSize: `cover`,

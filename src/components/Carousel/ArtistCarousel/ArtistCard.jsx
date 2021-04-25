@@ -7,7 +7,7 @@ export default function ArtistCard({ artists }) {
       {artists.map((artist, index) => (
         <div
           key={index}
-          className="w-64 h-80 mx-3 rounded-2xl"
+          className="w-64 h-80 mx-3 rounded-2xl cursor-pointer"
           style={{
             backgroundImage: `url(./src/img/defaultAlbumImage.png)`,
             backgroundSize: `cover`,
