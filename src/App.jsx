@@ -11,6 +11,7 @@ import PlaylistSwitch from './components/Playlist/PlaylistSwitch';
 import SliderAlbum from './components/Slider/SliderAlbum';
 import bg from './img/BackGrounds/BackGround1.webp';
 import PlayerMobile from './components/PlayerMobile/PlayerMobile';
+
 function App() {
   const [isSideBarVisible, setisSideBarVisible] = useState(false);
   const [isPlayerVisible, setIsPlayerVisible] = useState(false);
@@ -32,7 +33,7 @@ function App() {
   const [albums, setAlbums] = useState([]);
   const [artists, setArtists] = useState([]);
   const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZvbyIsImlhdCI6MTYxOTI4NDQ5MywiZXhwIjoxNjE5MzcwODkzfQ.eBeqDdnRGKjOmz_QwMFpwrAbrA65TqTdGtrm1SiGZMU';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkpJZGF5eXkiLCJpYXQiOjE2MTkzNzYxMTgsImV4cCI6MTYxOTQ2MjUxOH0.EEug59kq59GOh8xSTslqFUqjB8Uf4CUSr4TefSyDzPg';
 
   useEffect(() => {
     const getDatas = async () => {
@@ -105,6 +106,12 @@ function App() {
 
         <div className="col-start-1 col-end-3 row-start-6 row-end-7 rounded-20 900:col-end-4 900:row-start-5 900:row-end-6 bg-black bg-opacity-20 shadow-layoutContainer mb-4">
           <Contact />
+          <button
+            onClick={() => {
+              window.open('https://bazify-backend.basile.vernouillet.dev/auth/github', '_self');
+            }}>
+            Github Auth
+          </button>
         </div>
         {isSideBarVisible && <SideBar sideBarClass={sideBarClass} albums={albums} setSideBarClass={setSideBarClass} handleSideBar={handleSideBar} />}
       </div>
