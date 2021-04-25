@@ -1,14 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function TrackListCard({ picture }) {
+export default function TrackListCard({ items }) {
   return (
-    <div className="w-6/12 h-4/6">
-      <img src={picture === null ? 'src/img/defaultPicture.png' : picture} alt="TrackListPicture" className="w-full h-full" />
+    <div className="flex flex-row">
+      {items.map((item, index) => (
+        <div
+          key={index}
+          className="w-64 h-80 mx-3 rounded-2xl cursor-pointer"
+          style={{
+            backgroundImage: `url(${item.album.picture})`,
+            backgroundSize: `cover`,
+            backgroundRepeat: `no-repeat`,
+            backgroundPosition: `center`,
+          }}></div>
+      ))}
     </div>
   );
 }
 
 TrackListCard.propTypes = {
-  picture: PropTypes.any.isRequired,
+  items: PropTypes.array.isRequired,
 };

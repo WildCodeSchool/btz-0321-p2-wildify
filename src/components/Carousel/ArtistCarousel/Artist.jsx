@@ -6,6 +6,9 @@ import useScrollBox from '../scroll';
 function Artist({ artists }) {
   const scrollWrapperRef = useRef();
   const { isDragging } = useScrollBox(scrollWrapperRef);
+  if (isDragging) {
+    return '';
+  }
   return (
     <div
       ref={scrollWrapperRef}

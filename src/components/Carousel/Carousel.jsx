@@ -10,7 +10,6 @@ export default function Carousel({ item, albums, artists }) {
   const [isArtistActive, setIsArtistActive] = useState(false);
   const [isAlbumActive, setIsAlbumActive] = useState(false);
   const [isTrackListActive, setIsTrackListActive] = useState(false);
-  console.log(artists);
   function handleArtistChange() {
     setIsRecentAddsActive(false);
     setIsArtistActive(true);
