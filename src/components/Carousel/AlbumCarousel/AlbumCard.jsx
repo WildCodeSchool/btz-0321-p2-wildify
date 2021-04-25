@@ -13,9 +13,7 @@ export default function AlbumCard({ albums }) {
             backgroundSize: `cover`,
             backgroundRepeat: `no-repeat`,
             backgroundPosition: `center`,
-          }}>
-          {console.log(album.picture)}
-        </div>
+          }}></div>
       ))}
     </div>
   );
