@@ -19,7 +19,5 @@ function Artist({ artists }) {
 export default Artist;
 
 Artist.propTypes = {
-  count: PropTypes.number.isRequired,
-  setCount: PropTypes.func.isRequired,
   artists: PropTypes.array.isRequired,
 };
