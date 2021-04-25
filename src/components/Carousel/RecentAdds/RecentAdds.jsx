@@ -1,9 +1,10 @@
 import React, { useRef } from 'react';
-import Card from './NewCard';
+import Card from '../RecentAdds/Card';
+
 import PropTypes from 'prop-types';
 import useScrollBox from '../scroll';
 
-function RecentAdds({ item, children }) {
+function RecentAdds({ item }) {
   const itemReversed = [...item];
   const scrollWrapperRef = useRef();
   const { isDragging } = useScrollBox(scrollWrapperRef);

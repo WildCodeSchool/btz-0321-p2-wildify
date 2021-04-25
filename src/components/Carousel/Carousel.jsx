@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import RecentAdds from './RecentAdds/NewRecentAdds';
-// import Artist from './ArtistCarousel/Artist';
-// import Album from './AlbumCarousel/Album';
-// import TrackList from './TrackListCarousel/Tracklist';
+import RecentAdds from './RecentAdds/RecentAdds';
+import Artist from './ArtistCarousel/Artist';
+import Album from './AlbumCarousel/Album';
+import TrackList from './TrackListCarousel/Tracklist';
 import PropTypes from 'prop-types';
 
-export default function Carousel({ item }) {
+export default function Carousel({ item, albums, artists }) {
   const [count, setCount] = useState(0);
   const [isRecentAddsActive, setIsRecentAddsActive] = useState(true);
   const [isArtistActive, setIsArtistActive] = useState(false);
@@ -58,9 +58,9 @@ export default function Carousel({ item }) {
       </div>
 
       {isRecentAddsActive && <RecentAdds count={count} setCount={setCount} item={item} />}
-      {/* {isArtistActive && <Artist count={count} setCount={setCount} artists={artists} />}
+      {isArtistActive && <Artist count={count} setCount={setCount} artists={artists} />}
       {isAlbumActive && <Album count={count} setCount={setCount} albums={albums} />}
-      {isTrackListActive && <TrackList count={count} setCount={setCount} item={item} />} */}
+      {isTrackListActive && <TrackList count={count} setCount={setCount} item={item} />}
     </div>
   );
 }
