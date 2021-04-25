@@ -6,35 +6,30 @@ import TrackList from './TrackListCarousel/Tracklist';
 import PropTypes from 'prop-types';
 
 export default function Carousel({ item, albums, artists }) {
-  const [count, setCount] = useState(0);
   const [isRecentAddsActive, setIsRecentAddsActive] = useState(true);
   const [isArtistActive, setIsArtistActive] = useState(false);
   const [isAlbumActive, setIsAlbumActive] = useState(false);
   const [isTrackListActive, setIsTrackListActive] = useState(false);
-
+  console.log(artists);
   function handleArtistChange() {
-    setCount(0);
     setIsRecentAddsActive(false);
     setIsArtistActive(true);
     setIsAlbumActive(false);
     setIsTrackListActive(false);
   }
   function handleRecentAddsChange() {
-    setCount(0);
     setIsRecentAddsActive(true);
     setIsArtistActive(false);
     setIsAlbumActive(false);
     setIsTrackListActive(false);
   }
   function handleAlbumChange() {
-    setCount(0);
     setIsRecentAddsActive(false);
     setIsArtistActive(false);
     setIsAlbumActive(true);
     setIsTrackListActive(false);
   }
   function handleTrackListChange() {
-    setCount(0);
     setIsRecentAddsActive(false);
     setIsArtistActive(false);
     setIsAlbumActive(false);
@@ -57,10 +52,10 @@ export default function Carousel({ item, albums, artists }) {
         <button onClick={handleTrackListChange}>TrackList</button>
       </div>
 
-      {isRecentAddsActive && <RecentAdds count={count} setCount={setCount} item={item} />}
-      {isArtistActive && <Artist count={count} setCount={setCount} artists={artists} />}
-      {isAlbumActive && <Album count={count} setCount={setCount} albums={albums} />}
-      {isTrackListActive && <TrackList count={count} setCount={setCount} item={item} />}
+      {isRecentAddsActive && <RecentAdds item={item} />}
+      {isArtistActive && <Artist artists={artists} />}
+      {isAlbumActive && <Album albums={albums} />}
+      {isTrackListActive && <TrackList item={item} />}
     </div>
   );
 }

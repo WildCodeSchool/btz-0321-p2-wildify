@@ -1,14 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function AlbumCard({ picture }) {
+export default function AlbumCard({ albums }) {
   return (
-    <div className="w-6/12 h-4/6">
-      <img src={picture === null ? 'src/img/defaultPicture.png' : picture} alt="AlbumPicture" className="w-full h-full" />
+    <div className="flex flex-row">
+      {albums.map((album, index) => (
+        <div
+          key={index}
+          className="w-64 h-80 mx-3 rounded-2xl"
+          style={{
+            backgroundImage: `url(${album.picture})`,
+            backgroundSize: `cover`,
+            backgroundRepeat: `no-repeat`,
+            backgroundPosition: `center`,
+          }}>
+          {console.log(album.picture)}
+        </div>
+      ))}
     </div>
   );
 }
 
 AlbumCard.propTypes = {
-  picture: PropTypes.string.isRequired,
+  albums: PropTypes.array.isRequired,
 };

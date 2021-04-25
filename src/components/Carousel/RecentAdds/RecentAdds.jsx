@@ -23,7 +23,5 @@ function RecentAdds({ item }) {
 export default RecentAdds;
 
 RecentAdds.propTypes = {
-  count: PropTypes.number.isRequired,
-  setCount: PropTypes.func.isRequired,
   item: PropTypes.array.isRequired,
 };
