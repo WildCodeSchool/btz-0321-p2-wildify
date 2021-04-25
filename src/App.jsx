@@ -31,13 +31,15 @@ function App() {
   );
   const [albums, setAlbums] = useState([]);
   const [artists, setArtists] = useState([]);
-
+  const token = localStorage.getItem('token');
+  const headers = { headers: { Authotization: `Bearer ${token}` } };
+  console.log(token);
   useEffect(() => {
     const getDatas = async () => {
       const [resSongs, resArtists, resAlbums] = await Promise.all([
-        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs'),
-        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/artists'),
-        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/albums'),
+        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs', headers).catch((err) => console.log(err)),
+        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/artists', headers),
+        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/albums', headers),
       ]);
       setItem(resSongs.data);
       setAlbums(resAlbums.data);
