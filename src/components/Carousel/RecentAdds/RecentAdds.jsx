@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from './NewCard';
+import Card from './Card';
 import PropTypes from 'prop-types';
 
 function RecentAdds({ item }) {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import RecentAdds from './RecentAdds/NewRecentAdds';
+import RecentAdds from './RecentAdds/RecentAdds';
 // import Artist from './ArtistCarousel/Artist';
 // import Album from './AlbumCarousel/Album';
 // import TrackList from './TrackListCarousel/Tracklist';
