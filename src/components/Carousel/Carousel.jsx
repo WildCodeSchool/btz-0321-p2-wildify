@@ -5,7 +5,7 @@ import Album from './AlbumCarousel/Album';
 import TrackList from './TrackListCarousel/Tracklist';
 import PropTypes from 'prop-types';
 
-export default function Carousel({ item, albums, artists }) {
+export default function Carousel({ item, albums, artists, setCurrentTrack }) {
   const [isRecentAddsActive, setIsRecentAddsActive] = useState(true);
   const [isArtistActive, setIsArtistActive] = useState(false);
   const [isAlbumActive, setIsAlbumActive] = useState(false);
@@ -51,7 +51,7 @@ export default function Carousel({ item, albums, artists }) {
         <button onClick={handleTrackListChange}>TrackList</button>
       </div>
 
-      {isRecentAddsActive && <RecentAdds item={item} />}
+      {isRecentAddsActive && <RecentAdds setCurrentTrack={setCurrentTrack} item={item} />}
       {isArtistActive && <Artist artists={artists} />}
       {isAlbumActive && <Album albums={albums} />}
       {isTrackListActive && <TrackList item={item} />}

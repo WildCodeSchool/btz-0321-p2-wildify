@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function Card({ items }) {
+export default function Card({ itemReversed, setCurrentTrack }) {
   return (
     <div className="flex flex-row">
-      {items.map((item, index) => (
-        <div
+      {itemReversed.map((song, index) => (
+        <button
+          onClick={() => setCurrentTrack(itemReversed.length - 1 - index)}
           key={index}
           className="w-64 h-80 mx-3 rounded-2xl cursor-pointer"
           style={{
-            backgroundImage: `url(${item.album.picture})`,
+            backgroundImage: `url(${song.album.picture})`,
             backgroundSize: `cover`,
             backgroundRepeat: `no-repeat`,
             backgroundPosition: `center`,
-          }}></div>
+          }}></button>
       ))}
     </div>
   );
@@ -21,4 +22,6 @@ export default function Card({ items }) {
 
 Card.propTypes = {
   items: PropTypes.array.isRequired,
+  itemReversed: PropTypes.array.isRequired,
+  setCurrentTrack: PropTypes.func.isRequired,
 };

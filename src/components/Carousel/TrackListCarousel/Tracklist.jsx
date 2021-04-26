@@ -8,9 +8,6 @@ function RecentAdds({ item }) {
   const scrollWrapperRef = useRef();
   const { isDragging } = useScrollBox(scrollWrapperRef);
 
-  if (isDragging) {
-    return '1';
-  }
   return (
     <div
       ref={scrollWrapperRef}
