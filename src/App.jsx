@@ -5,7 +5,7 @@ import Playbar from '../src/components/playbar/Playbar';
 import Header from './components/header/header.jsx';
 import SideBar from './components/sideBar/sideBar';
 import Contact from './components/Contact/Contact';
-import Carousel from './components/carousel/Carousel';
+import Carousel from './components/Carousel/Carousel';
 import Player from './components/Player/Player';
 import PlaylistSwitch from './components/Playlist/PlaylistSwitch';
 import SliderAlbum from './components/Slider/SliderAlbum';
@@ -32,8 +32,8 @@ function App() {
   );
   const [albums, setAlbums] = useState([]);
   const [artists, setArtists] = useState([]);
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkpJZGF5eXkiLCJpYXQiOjE2MTkzNzE4MTEsImV4cCI6MTYxOTQ1ODIxMX0.tTwdF5jehkEqaEvklHK6woT0NT3hYCTcMjTMwdeN6Hs';
+  const token = localStorage.token;
+  const [onSearch, setOnSearch] = useState();
 
   useEffect(() => {
     const getDatas = async () => {
@@ -81,10 +81,11 @@ function App() {
         backgroundRepeat: 'no-repeat',
       }}>
       <div className="grid mx-5 gap-5  900:gap-6 grid-cols-mobile grid-rows-mobile 900:grid-cols-desktop 900:ml-6 900:mr-0 900:grid-rows-desktop">
-        <Header handleSideBar={handleSideBar} isSideBarVisible={isSideBarVisible} />
+        <Header handleSideBar={handleSideBar} setOnSearch={setOnSearch} isSideBarVisible={isSideBarVisible} />
+
         <div className="col-start-1 col-end-3 row-start-2 900:col-end-4 rounded-20 bg-black bg-opacity-10 shadow-layoutContainer">
           {/* The Main Component GoHere */}
-          {!isLoading && <Carousel item={item} albums={albums} artists={artists} />}
+          {!isLoading && <Carousel setCurrentTrack={setCurrentTrack} onSearch={onSearch} item={item} albums={albums} artists={artists} />}
         </div>
         <div className=" overflow-y-auto col-start-1 col-end-3 row-start-3 row-end-4 900:col-end-2 900:row-end-5 rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
           {!isLoading && <PlaylistSwitch item={item} setCurrentTrack={setCurrentTrack} currentTrack={currentTrack} />}
