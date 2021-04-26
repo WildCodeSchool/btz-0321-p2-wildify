@@ -85,7 +85,7 @@ function App() {
 
         <div className="col-start-1 col-end-3 row-start-2 900:col-end-4 rounded-20 bg-black bg-opacity-10 shadow-layoutContainer">
           {/* The Main Component GoHere */}
-          {!isLoading && <Carousel setCurrentTrack={setCurrentTrack} item={item} albums={albums} artists={artists} />}
+          {!isLoading && <Carousel setCurrentTrack={setCurrentTrack} onSearch={onSearch} item={item} albums={albums} artists={artists} />}
         </div>
 
         <div className=" overflow-y-auto col-start-1 col-end-3 row-start-3 row-end-4 900:col-end-2 900:row-end-5 rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">

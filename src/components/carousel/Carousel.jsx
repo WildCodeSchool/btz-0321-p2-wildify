@@ -82,5 +82,5 @@ Carousel.propTypes = {
   item: PropTypes.array.isRequired,
   albums: PropTypes.array.isRequired,
   artists: PropTypes.array.isRequired,
-  onSearch: PropTypes.string,
+  onSearch: PropTypes.string.isRequired,
 };
