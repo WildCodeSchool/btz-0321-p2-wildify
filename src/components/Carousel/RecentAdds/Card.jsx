@@ -21,7 +21,6 @@ export default function Card({ itemReversed, setCurrentTrack }) {
 }
 
 Card.propTypes = {
-  items: PropTypes.array.isRequired,
   itemReversed: PropTypes.array.isRequired,
   setCurrentTrack: PropTypes.func.isRequired,
 };
