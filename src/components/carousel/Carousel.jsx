@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import RecentAdds from './RecentAdds/RecentAdds';
 import Artist from './ArtistCarousel/Artist';
 import Album from './AlbumCarousel/Album';
 import TrackList from './TrackListCarousel/Tracklist';
 import PropTypes from 'prop-types';
+import SearchResults from './SearchResults/SearchResults';
 
-export default function Carousel({ item, albums, artists }) {
+export default function Carousel({ item, albums, artists, onSearch }) {
   const [count, setCount] = useState(0);
   const [isRecentAddsActive, setIsRecentAddsActive] = useState(true);
   const [isArtistActive, setIsArtistActive] = useState(false);
@@ -41,6 +42,17 @@ export default function Carousel({ item, albums, artists }) {
     setIsTrackListActive(true);
   }
 
+  useEffect(() => {
+    if (onSearch) {
+      setIsAlbumActive(false);
+      setIsArtistActive(false);
+      setIsTrackListActive(false);
+      setIsRecentAddsActive(false);
+    } else {
+      setIsRecentAddsActive(true);
+    }
+  }, [onSearch]);
+
   return (
     <div className="grid grid-cols-1 grid-rows-mobileCarousel 900:grid-cols-2 900:grid-rows-desktopCarousel w-full h-full">
       <div className="col-start-1 col-end-2 row-start-1 row-end-2">
@@ -61,6 +73,7 @@ export default function Carousel({ item, albums, artists }) {
       {isArtistActive && <Artist count={count} setCount={setCount} artists={artists} />}
       {isAlbumActive && <Album count={count} setCount={setCount} albums={albums} />}
       {isTrackListActive && <TrackList count={count} setCount={setCount} item={item} />}
+      {onSearch && <SearchResults onSearch={onSearch} item={item} />}
     </div>
   );
 }
@@ -69,4 +82,5 @@ Carousel.propTypes = {
   item: PropTypes.array.isRequired,
   albums: PropTypes.array.isRequired,
   artists: PropTypes.array.isRequired,
+  onSearch: PropTypes.string.isRequired,
 };
