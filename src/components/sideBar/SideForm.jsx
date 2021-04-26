@@ -17,20 +17,30 @@ function SideForm({ sideBarClass }) {
           <h1 className="font-scada text-white text-lg mt-5 900:text-sm">
             Contribute to Wizic by uploading some good tracks. Please login to acces the upload form.
           </h1>
+          <button
+            className="flex items-center bg-bgPlaybar shadow-input2 focus:outline-none w-8/12 mt-5 rounded-lg text-sm text-white py-2 px-2 font-scada hover:text-mainColor hover:shadow-input"
+            onClick={() => {
+              window.open('https://bazify-backend.basile.vernouillet.dev/auth/github', '_self');
+            }}>
+            <img className="w-6 h-6 mr-3" src="src/img/Icons/github.png" alt="Github" />
+            Log with Github
+          </button>
           <form className="flex flex-col mt-5">
             <label className="font-cuprum text-white text-xl" htmlFor="Pseudo">
               Pseudo
             </label>
-            <input className="px-3 h-12 text-white focus:outline-none border-none bg-bgPlaybar shadow-input rounded-xl mt-1" type="text"></input>
+            <input className="px-4 h-12 text-white focus:outline-none border-none bg-bgPlaybar shadow-input rounded-xl mt-1" type="text"></input>
             <label className="font-cuprum text-white text-xl mt-5" htmlFor="Password">
               Password
             </label>
-            <input className="px-3 h-12 text-white focus:outline-none border-none bg-bgPlaybar shadow-input rounded-xl mt-1" type="password"></input>
-            <button
-              className="bg-bgPlaybar shadow-input2 focus:outline-none w-5/12 mt-5 rounded-4xl text-sm text-white py-2 font-scada hover:text-mainColor hover:shadow-input"
-              type="button">
-              Connect
-            </button>
+            <input className="px-4 h-12 text-white focus:outline-none border-none bg-bgPlaybar shadow-input rounded-xl mt-1" type="password"></input>
+            <div className="flex justify-between">
+              <button
+                className="bg-bgPlaybar shadow-input2 focus:outline-none w-5/12 mt-5 rounded-lg text-sm text-white py-1 font-scada hover:text-mainColor hover:shadow-input"
+                type="button">
+                Connect
+              </button>
+            </div>
           </form>
         </div>
         <div className="flex h-full w-full justify-between items-end  px-8 900:px-8 py-2">
