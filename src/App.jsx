@@ -3,9 +3,7 @@ import axios from 'axios';
 import useWindowDimensions from './Hooks/useWindowDimension';
 import Playbar from '../src/components/playbar/Playbar';
 import Header from './components/header/header.jsx';
-{
-  /*import SideBar from './components/sideBar/sideBar';*/
-}
+import SideBar from './components/sideBar/sideBar';
 import Contact from './components/Contact/Contact';
 import Carousel from './components/carousel/Carousel';
 import Player from './components/Player/Player';
@@ -13,7 +11,7 @@ import PlaylistSwitch from './components/Playlist/PlaylistSwitch';
 import SliderAlbum from './components/Slider/SliderAlbum';
 import bg from './img/BackGrounds/BackGround1.webp';
 import PlayerMobile from './components/PlayerMobile/PlayerMobile';
-import SideForm from './components/sideBar/SideForm';
+// import SideForm from './components/sideBar/SideForm';
 function App() {
   const [isSideBarVisible, setisSideBarVisible] = useState(false);
   const [isPlayerVisible, setIsPlayerVisible] = useState(false);
@@ -35,7 +33,7 @@ function App() {
   const [albums, setAlbums] = useState([]);
   const [artists, setArtists] = useState([]);
   const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZvbyIsImlhdCI6MTYxOTI4NDQ5MywiZXhwIjoxNjE5MzcwODkzfQ.eBeqDdnRGKjOmz_QwMFpwrAbrA65TqTdGtrm1SiGZMU';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkpJZGF5eXkiLCJpYXQiOjE2MTkzNzE4MTEsImV4cCI6MTYxOTQ1ODIxMX0.tTwdF5jehkEqaEvklHK6woT0NT3hYCTcMjTMwdeN6Hs';
 
   useEffect(() => {
     const getDatas = async () => {
@@ -104,8 +102,9 @@ function App() {
         <div className="col-start-1 col-end-3 row-start-6 row-end-7 rounded-20 900:col-end-4 900:row-start-5 900:row-end-6 bg-black bg-opacity-20 shadow-layoutContainer mb-4">
           <Contact />
         </div>
-        {isSideBarVisible && <SideForm sideBarClass={sideBarClass} />}
-        {/*<SideBar sideBarClass={sideBarClass} albums={albums} setSideBarClass={setSideBarClass} handleSideBar={handleSideBar} />*/}
+        {isSideBarVisible /* <SideForm sideBarClass={sideBarClass} />*/ && (
+          <SideBar sideBarClass={sideBarClass} albums={albums} setSideBarClass={setSideBarClass} handleSideBar={handleSideBar} />
+        )}
       </div>
       {!isLoading && isMobilePlayerVisible ? (
         <PlayerMobile
