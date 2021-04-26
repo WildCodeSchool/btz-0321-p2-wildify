@@ -82,7 +82,7 @@ export default function PlayerMobile({
   };
 
   return (
-    <div className="bg-bgPlaybar shadow-player w-mpb h-24 z-50 p-4 flex items-center align-middle justify-center rounded-full fixed bottom-3 ">
+    <div className="bg-bgPlaybar shadow-player w-mpb h-playbarMobile z-30 p-4 flex items-center align-middle justify-center rounded-full fixed bottom-2 ">
       <audio id="audio" className="hidden" onEnded={handleForWard} ref={audioRef3} controls>
         <source src={onListen} type="audio/mp3"></source>
         <track default kind="captions" />
@@ -103,7 +103,7 @@ export default function PlayerMobile({
         handlePlay={handlePlay}
         isPlaySwitch={isPlaySwitch}
       />
-      <button onClick={handleClick} className="flex mr-5 items-center justify-center flex-col h-full">
+      <button onClick={handleClick} className="flex mr-5 focus:outline-none items-center justify-center flex-col h-full">
         <img src={Arrow} className="w-8 cursor-pointer" alt="" />
       </button>
     </div>
@@ -123,5 +123,5 @@ PlayerMobile.propTypes = {
   isPlaySwitch: PropTypes.bool,
   setIsPlaySwitch: PropTypes.func,
   picture: PropTypes.string,
-  setPicture: PropTypes.string,
+  setPicture: PropTypes.any.isRequired,
 };
