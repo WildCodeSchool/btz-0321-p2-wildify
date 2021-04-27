@@ -47,9 +47,16 @@ function SideBar({ sideBarClass, albums, handleSideBar }) {
 
   return (
     <div className={sideBarClass}>
-      <div className="w-full h-full p-8">
+      <div
+        className="w-full h-full py-4 px-10"
+        style={{
+          backgroundImage: `url(src/img/BackGrounds/BgSideBarBG5.png)`,
+          backgroundSize: `cover`,
+          backgroundRepeat: `no-repeat`,
+          backgroundPosition: `center`,
+        }}>
         <div className="flex">
-          <h1 className="text-white font-scada text-4xl 900:text-3xl">Share your Favorits songs with us</h1>
+          <h1 className="text-white font-scada text-3xl 900:text-3xl">Share your Favorits songs with us</h1>
           {width < 768 ? (
             <button className="focus:outline-none" onClick={handleSideBar}>
               <img src={ReturnBtn} alt="" />
@@ -58,40 +65,12 @@ function SideBar({ sideBarClass, albums, handleSideBar }) {
             ''
           )}
         </div>
-        <form className="sticky flex flex-col">
-          <label className="w-full text-white text-xl font-cuprum mt-8" htmlFor="Picture">
-            Select Album
-          </label>
-          <select
-            className="w-full h-10 bg-bgPlaybar mt-1 shadow-input focus:outline-none text-white font-cuprum p-2 rounded-4xl"
-            onBlur={handlePictureChange}>
-            {albums.map((album, key) => {
-              return (
-                <option value={key} id={album.id} key={album.id}>
-                  {album.title}
-                </option>
-              );
-            })}
-          </select>
-          <label className="w-full text-white text-xl font-cuprum mt-8" htmlFor="Picture">
-            Album image Url :
-          </label>
-          <input
-            onChange={handleChange}
-            className="w-full h-10 bg-bgPlaybar shadow-input p-4 focus:outline-none text-white font-cuprum rounded-4xl mt-1"
-            type="text"
-            name="Picture"></input>
-          <button
-            className="bg-bgPlaybar shadow-input2 focus:outline-none w-5/12 mt-5 rounded-4xl text-sm text-white py-2 font-scada hover:text-mainColor hover:shadow-input"
-            onClick={handlePictureSubmission}>
-            Upload Image
-          </button>
-        </form>
-        <form className="flex mt-10 flex-col">
-          <label className="text-white text-xl font-cuprum" htmlFor="playlist">
+        <form className="flex mt-5 flex-col">
+          <h1 className="font-scada text-white text-2xl">1. Uplaod Music</h1>
+          <label className="text-white text-lg font-cuprum mt-3" htmlFor="playlist">
             Select Playlist:
           </label>
-          <select className="w-full h-10 bg-bgPlaybar shadow-input p-2 focus:outline-none text-white font-cuprum rounded-4xl mt-1" id="">
+          <select className="w-full h-10 bg-bgPlaybar shadow-input p-2 focus:outline-none text-white font-cuprum rounded-xl mt-1" id="">
             <option className="" value="1">
               Playlist 1
             </option>
@@ -108,24 +87,57 @@ function SideBar({ sideBarClass, albums, handleSideBar }) {
               Playlist 5
             </option>
           </select>
-        </form>
-        <div className="my-8 w-full flex flex-col">
-          <label className="text-white text-xl font-cuprum" htmlFor="upload">
+
+          <label className="text-white text-lg font-cuprum mt-5" htmlFor="upload">
             Select Music
           </label>
           <input
-            className="w-full h-12 py-2  focus:outline-none text-white font-cuprum rounded-xl mt-1"
+            className="w-full h-12 p-2  shadow-input2 focus:outline-none text-white font-cuprum rounded-xl customFiles "
             type="file"
             id="file"
             name="file"
+            accept=".mp3"
+            multiple
             onChange={changeFileHandler}
           />
           <button
-            className="bg-bgPlaybar shadow-input2 focus:outline-none w-5/12 mt-5   rounded-4xl text-sm text-white py-2 font-scada hover:text-mainColor hover:shadow-input"
+            className="bg-bgPlaybar shadow-input2 focus:outline-none w-5/12 mt-3   rounded-xl text-sm text-white py-1 font-scada hover:text-mainColor hover:shadow-input"
             onClick={handleSubmission}>
             Upload Music
           </button>
-        </div>
+        </form>
+        <form className="sticky flex flex-col mt-8">
+          <h1 className="font-scada text-white text-2xl">2. Upload image</h1>
+          <div className=" w-full flex flex-col mt-3">
+            <label className="w-full text-white text-lg font-cuprum mt-2" htmlFor="Picture">
+              Select Album
+            </label>
+            <select
+              className="w-full h-10 bg-bgPlaybar mt-1 shadow-input focus:outline-none text-white font-cuprum p-2 rounded-xl"
+              onBlur={handlePictureChange}>
+              {albums.map((album, key) => {
+                return (
+                  <option value={key} id={album.id} key={album.id}>
+                    {album.title}
+                  </option>
+                );
+              })}
+            </select>
+            <label className="w-full text-white text-lg font-cuprum mt-3" htmlFor="Picture">
+              Album image Url :
+            </label>
+            <input
+              onChange={handleChange}
+              className="w-full h-10 bg-bgPlaybar shadow-input p-4 focus:outline-none text-white font-cuprum rounded-xl mt-1"
+              type="text"
+              name="Picture"></input>
+            <button
+              className="bg-bgPlaybar shadow-input2 focus:outline-none w-5/12 mt-5 rounded-xl text-sm text-white py-1 font-scada hover:text-mainColor hover:shadow-input"
+              onClick={handlePictureSubmission}>
+              Upload Image
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
