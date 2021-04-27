@@ -29,7 +29,7 @@ function Homepage({ location: { search } }) {
 
   return (
     <div
-      className="flex flex-col w-screen h-screen justify-between py-5 px-8 900:px-8 900:pt-8 900:pb-2"
+      className="overflow-y-auto flex flex-col w-screen h-screen justify-between py-5 px-8 900:px-8 900:pt-8 900:pb-2"
       style={{
         backgroundImage: `url(src/img/BackGrounds/Acceuil.png)`,
         backgroundSize: `cover`,
@@ -42,9 +42,9 @@ function Homepage({ location: { search } }) {
       <div className="w-full 900:w-5/12 900:ml-24 ">
         <h2 className="font-scada text-white font-bold text-3xl 900:text-4xl">Welcome</h2>
         <h1 className="font-cuprum text-white font-bold text-6xl mt-8 900:text-7xl">LET’S LISTEN GOOD MUSIC TOGETHER</h1>
-        <h3 className="font-scada text-white pr-36 text-xl 900:text-xl 900:pr-60 mt-8 ">Here you can listen and share your favorite music</h3>
+        <h3 className="font-scada text-white  text-xl 900:text-xl 900:pr-60 mt-8 ">Here you can listen and share your favorite music</h3>
         <button
-          className="flex items-center bg-bginput shadow-input2 focus:outline-none w-8/12 mt-5 rounded-lg text-sm text-white py-2 px-2 font-scada hover:text-mainColor hover:shadow-input"
+          className="flex items-center bg-bginput shadow-input2 focus:outline-none w-8/12 900:w-4/12 mt-5 rounded-lg text-sm text-white py-2 px-2 font-scada hover:text-mainColor hover:shadow-input"
           onClick={() => {
             window.open('https://bazify-backend.basile.vernouillet.dev/auth/github', '_self');
           }}>
