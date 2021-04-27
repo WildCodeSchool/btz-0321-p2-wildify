@@ -6,7 +6,7 @@ import TrackList from './TrackListCarousel/Tracklist';
 import PropTypes from 'prop-types';
 import SearchResults from './SearchResults/SearchResults';
 
-export default function Carousel({ item, albums, artists, onSearch }) {
+export default function Carousel({ item, albums, artists, onSearch, setCurrentTrack }) {
   const [count, setCount] = useState(0);
   const [isRecentAddsActive, setIsRecentAddsActive] = useState(true);
   const [isArtistActive, setIsArtistActive] = useState(false);
@@ -65,10 +65,10 @@ export default function Carousel({ item, albums, artists, onSearch }) {
         <button onClick={handleTrackListChange}>TrackList</button>
       </div>
 
-      {isRecentAddsActive && <RecentAdds count={count} setCount={setCount} item={item} />}
+      {isRecentAddsActive && <RecentAdds count={count} setCount={setCount} item={item} setCurrentTrack={setCurrentTrack} />}
       {isArtistActive && <Artist count={count} setCount={setCount} artists={artists} />}
       {isAlbumActive && <Album count={count} setCount={setCount} albums={albums} />}
-      {isTrackListActive && <TrackList count={count} setCount={setCount} item={item} />}
+      {isTrackListActive && <TrackList count={count} setCount={setCount} item={item} setCurrentTrack={setCurrentTrack} />}
       {onSearch && <SearchResults onSearch={onSearch} item={item} />}
     </div>
   );

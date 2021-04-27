@@ -14,6 +14,7 @@ import PlayerMobile from '../components/PlayerMobile/PlayerMobile';
 import SideForm from '../components/sideBar/SideForm';
 import authContext from '../context/authContext';
 import { useHistory } from 'react-router';
+
 function App() {
   const [isSideBarVisible, setisSideBarVisible] = useState(false);
   const [isPlayerVisible, setIsPlayerVisible] = useState(false);
