@@ -12,7 +12,6 @@ function AlbumTrackList({ handleClick, item, albumChoice, width, setSelectedSong
       setTranslationTrack('-translate-y-4');
     }
   }, []);
-  console.log(albumChoice);
   return (
     <div className="h-full w-full">
       <button onClick={handleClick}>
