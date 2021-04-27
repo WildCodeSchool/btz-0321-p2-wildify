@@ -33,7 +33,7 @@ function App() {
   const [albums, setAlbums] = useState([]);
   const [artists, setArtists] = useState([]);
   const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkpJZGF5eXkiLCJpYXQiOjE2MTkzNzYxMTgsImV4cCI6MTYxOTQ2MjUxOH0.EEug59kq59GOh8xSTslqFUqjB8Uf4CUSr4TefSyDzPg';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1yeWNrZXdhZXJ0IiwiaWF0IjoxNjE5NDYzMzU4LCJleHAiOjE2MTk1NDk3NTh9.WPmf2ZI5tIsL1OCK7-bnM8LKfl69lxVpSR5N1DB1Jlw';
 
   useEffect(() => {
     const getDatas = async () => {

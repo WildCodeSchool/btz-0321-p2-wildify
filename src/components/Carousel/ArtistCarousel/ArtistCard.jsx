@@ -7,13 +7,15 @@ export default function ArtistCard({ artists }) {
       {artists.map((artist, index) => (
         <div
           key={index}
-          className="w-64 h-80 mx-3 rounded-2xl cursor-pointer"
+          className="w-64 h-80 mx-3 rounded-2xl cursor-pointer text-center text-white"
           style={{
             backgroundImage: `url(./src/img/defaultAlbumImage.png)`,
             backgroundSize: `cover`,
             backgroundRepeat: `no-repeat`,
             backgroundPosition: `center`,
-          }}></div>
+          }}>
+          {artist.name}
+        </div>
       ))}
     </div>
   );

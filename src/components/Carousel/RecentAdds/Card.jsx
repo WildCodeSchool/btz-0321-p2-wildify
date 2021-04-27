@@ -8,13 +8,16 @@ export default function Card({ itemReversed, setCurrentTrack }) {
         <button
           onClick={() => setCurrentTrack(itemReversed.length - 1 - index)}
           key={index}
-          className="w-64 h-80 mx-3 rounded-2xl cursor-pointer"
+          className="w-64 h-80 mx-3 rounded-2xl cursor-pointer text-white flex flex-col justify-center"
           style={{
             backgroundImage: `url(${song.album.picture})`,
             backgroundSize: `cover`,
             backgroundRepeat: `no-repeat`,
             backgroundPosition: `center`,
-          }}></button>
+          }}>
+          <p>{song.title}</p>
+          <p>{song.artist.name}</p>
+        </button>
       ))}
     </div>
   );
