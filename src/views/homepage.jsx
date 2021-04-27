@@ -72,5 +72,5 @@ export default Homepage;
 
 Homepage.propTypes = {
   search: PropTypes.string,
-  location: PropTypes.string.isrequired,
+  location: PropTypes.string.isRequired,
 };
