@@ -4,11 +4,19 @@
 
 * {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
   padding: 0;
   box-sizing: border-box;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(90, 90, 90);
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
 }
