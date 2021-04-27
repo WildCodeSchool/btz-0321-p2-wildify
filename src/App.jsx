@@ -32,6 +32,8 @@ function App() {
   );
   const [albums, setAlbums] = useState([]);
   const [artists, setArtists] = useState([]);
+  const [selectedSong, setSelectedSong] = useState();
+  const [isAlbum, setIsAlbum] = useState(false);
   const token = localStorage.token;
   const [onSearch, setOnSearch] = useState();
 
@@ -49,6 +51,10 @@ function App() {
     };
     getDatas();
   }, []);
+
+  useEffect(() => {
+    setIsAlbum(false);
+  }, [currentTrack]);
 
   useEffect(() => {
     if (width < 768) {
@@ -97,7 +103,17 @@ function App() {
           {/* ArtistComponent GoHere */}{' '}
         </div>
         <div className="overflow-hidden col-start-2 col-end-3 row-start-4 rows-end-5 900:col-start-3 900:col-end-4 900:row-start-3 900:row-end-4 rounded-20 gap-x-1 bg-black bg-opacity-20 shadow-layoutContainer">
-          {!isLoading && <SliderAlbum item={item} albums={albums} artists={artists} />}
+          {!isLoading && (
+            <SliderAlbum
+              setIsAlbum={setIsAlbum}
+              setSelectedSong={setSelectedSong}
+              item={item}
+              albums={albums}
+              artists={artists}
+              setCurrentTrack={setCurrentTrack}
+              isAlbum={isAlbum}
+            />
+          )}
         </div>
 
         <div className="col-start-1 col-end-3 row-start-5 row-end-6 rounded-20 900:col-start-2 900:col-end-4 900:row-start-4 900:row-end-5 bg-black bg-opacity-20 shadow-layoutContainer">
@@ -157,6 +173,8 @@ function App() {
           setIsMobilePlayerVisible={setIsMobilePlayerVisible}
           isPlaySwitch={isPlaySwitch}
           setIsPlaySwitch={setIsPlaySwitch}
+          selectedSong={selectedSong}
+          isAlbum={isAlbum}
         />
       ) : (
         ''
