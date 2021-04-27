@@ -10,7 +10,7 @@ function SliderAlbum({ albums, item, setCurrentTrack, setSelectedSong, setIsAlbu
   const { width } = useWindowDimensions();
   const [index, setIndex] = useState(0);
   const [isTrackList, setIsTrackList] = useState(false);
-  const [albumChoice, setAlbumChoice] = useState('Dondada mixtape');
+  const [albumChoice, setAlbumChoice] = useState(albums[0].title);
 
   const handleClick = () => {
     if (isAlbum) {
