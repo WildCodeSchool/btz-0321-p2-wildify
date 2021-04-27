@@ -79,5 +79,5 @@ Carousel.propTypes = {
   albums: PropTypes.array.isRequired,
   artists: PropTypes.array.isRequired,
   setCurrentTrack: PropTypes.func.isRequired,
-  onSearch: PropTypes.string.isRequired,
+  onSearch: PropTypes.string,
 };

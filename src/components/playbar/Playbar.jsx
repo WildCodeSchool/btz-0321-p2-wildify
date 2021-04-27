@@ -236,6 +236,6 @@ Playbar.propTypes = {
   setPicture: PropTypes.func.isRequired,
   isPlaySwitch: PropTypes.bool,
   setIsPlaySwitch: PropTypes.func,
-  selectedSong: PropTypes.array.isRequired,
+  selectedSong: PropTypes.array,
   isAlbum: PropTypes.bool.isRequired,
 };
