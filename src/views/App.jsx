@@ -3,7 +3,7 @@ import axios from 'axios';
 import useWindowDimensions from '../Hooks/useWindowDimension';
 import Playbar from '../components/playbar/Playbar';
 import Header from '../components/header/header.jsx';
-// import SideBar from './components/sideBar/sideBar';
+import SideBar from '../components/sideBar/sideBar';
 import Contact from '../components/Contact/Contact';
 import Carousel from '../components/Carousel/Carousel';
 import Player from '../components/Player/Player';
@@ -11,7 +11,6 @@ import PlaylistSwitch from '../components/Playlist/PlaylistSwitch';
 import SliderAlbum from '../components/Slider/SliderAlbum';
 import bg from '../img/BackGrounds/BackGround1.webp';
 import PlayerMobile from '../components/PlayerMobile/PlayerMobile';
-import SideForm from '../components/sideBar/SideForm';
 import authContext from '../context/authContext';
 import { useHistory } from 'react-router';
 function App() {
@@ -42,7 +41,7 @@ function App() {
 
   useEffect(() => {
     if (!token) {
-      history.push('/login');
+      history.push('/');
     }
   }, [token]);
 
@@ -128,10 +127,7 @@ function App() {
         <div className="col-start-1 col-end-3 row-start-6 row-end-7 rounded-20 900:col-end-4 900:row-start-5 900:row-end-6 bg-black bg-opacity-20 shadow-layoutContainer mb-4">
           <Contact />
         </div>
-        {
-          isSideBarVisible && <SideForm sideBarClass={sideBarClass} />
-          // <SideBar sideBarClass={sideBarClass} albums={albums} setSideBarClass={setSideBarClass} handleSideBar={handleSideBar} />
-        }
+        {isSideBarVisible && <SideBar sideBarClass={sideBarClass} albums={albums} setSideBarClass={setSideBarClass} handleSideBar={handleSideBar} />}
       </div>
       {!isLoading && isMobilePlayerVisible ? (
         <PlayerMobile

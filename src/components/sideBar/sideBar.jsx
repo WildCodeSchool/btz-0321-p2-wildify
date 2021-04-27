@@ -50,7 +50,7 @@ function SideBar({ sideBarClass, albums, handleSideBar }) {
       <div
         className="w-full h-full py-4 px-10"
         style={{
-          backgroundImage: `url(src/img/BackGrounds/BgSideBarBG5.png)`,
+          backgroundImage: `url(src/img/BackGrounds/BgSideBarBG2.png)`,
           backgroundSize: `cover`,
           backgroundRepeat: `no-repeat`,
           backgroundPosition: `center`,
