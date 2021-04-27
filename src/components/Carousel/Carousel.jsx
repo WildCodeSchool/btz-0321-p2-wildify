@@ -6,7 +6,7 @@ import TrackList from './TrackListCarousel/Tracklist';
 import PropTypes from 'prop-types';
 import SearchResults from './SearchResults/SearchResults';
 
-export default function Carousel({ item, albums, artists, onSearch }) {
+export default function Carousel({ item, albums, artists, onSearch, setCurrentTrack }) {
   const [count, setCount] = useState(0);
   const [isRecentAddsActive, setIsRecentAddsActive] = useState(true);
   const [isArtistActive, setIsArtistActive] = useState(false);
@@ -14,28 +14,24 @@ export default function Carousel({ item, albums, artists, onSearch }) {
   const [isTrackListActive, setIsTrackListActive] = useState(false);
 
   function handleArtistChange() {
-    setCount(0);
     setIsRecentAddsActive(false);
     setIsArtistActive(true);
     setIsAlbumActive(false);
     setIsTrackListActive(false);
   }
   function handleRecentAddsChange() {
-    setCount(0);
     setIsRecentAddsActive(true);
     setIsArtistActive(false);
     setIsAlbumActive(false);
     setIsTrackListActive(false);
   }
   function handleAlbumChange() {
-    setCount(0);
     setIsRecentAddsActive(false);
     setIsArtistActive(false);
     setIsAlbumActive(true);
     setIsTrackListActive(false);
   }
   function handleTrackListChange() {
-    setCount(0);
     setIsRecentAddsActive(false);
     setIsArtistActive(false);
     setIsAlbumActive(false);
@@ -69,10 +65,10 @@ export default function Carousel({ item, albums, artists, onSearch }) {
         <button onClick={handleTrackListChange}>TrackList</button>
       </div>
 
-      {isRecentAddsActive && <RecentAdds count={count} setCount={setCount} item={item} />}
+      {isRecentAddsActive && <RecentAdds count={count} setCount={setCount} item={item} setCurrentTrack={setCurrentTrack} />}
       {isArtistActive && <Artist count={count} setCount={setCount} artists={artists} />}
       {isAlbumActive && <Album count={count} setCount={setCount} albums={albums} />}
-      {isTrackListActive && <TrackList count={count} setCount={setCount} item={item} />}
+      {isTrackListActive && <TrackList count={count} setCount={setCount} item={item} setCurrentTrack={setCurrentTrack} />}
       {onSearch && <SearchResults onSearch={onSearch} item={item} />}
     </div>
   );
@@ -82,5 +78,6 @@ Carousel.propTypes = {
   item: PropTypes.array.isRequired,
   albums: PropTypes.array.isRequired,
   artists: PropTypes.array.isRequired,
+  setCurrentTrack: PropTypes.func.isRequired,
   onSearch: PropTypes.string.isRequired,
 };

@@ -11,6 +11,7 @@ module.exports = {
       },
       spacing: {
         80: '21rem',
+        97: '25rem',
       },
       boxShadow: {
         input3: '-5px -5px 10px rgba(182, 182, 182, 0.11), 5px 5px 10px rgba(0, 0, 0, 0.48)',
@@ -35,8 +36,8 @@ module.exports = {
         almost: '90%',
       },
       gridTemplateRows: {
-        mobileCarousel: '1fr 1fr 3fr',
-        desktopCarousel: '1fr 2fr',
+        mobileCarousel: '20px 20px 3fr',
+        desktopCarousel: '30px 2fr',
         desktop: '1fr 400px 300px 300px 400px',
         mobile: '1fr 400px 550px 220px 300px 690px',
       },
