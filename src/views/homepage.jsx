@@ -2,6 +2,9 @@ import React, { useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import authContext from '../context/authContext';
 import PropTypes from 'prop-types';
+import Homebg from '../img/BackGrounds/Acceuil.png';
+import GHicon from '../img/Icons/github.png';
+import WCSlogo from '../img/LogoWild.png';
 
 function Homepage({ location: { search } }) {
   const history = useHistory();
@@ -31,7 +34,7 @@ function Homepage({ location: { search } }) {
     <div
       className="overflow-y-auto flex flex-col w-screen h-screen justify-between py-5 px-8 900:px-8 900:pt-8 900:pb-2"
       style={{
-        backgroundImage: `url(src/img/BackGrounds/Acceuil.png)`,
+        backgroundImage: `url(${Homebg})`,
         backgroundSize: `cover`,
         backgroundRepeat: `no-repeat`,
         backgroundPosition: `left`,
@@ -48,7 +51,7 @@ function Homepage({ location: { search } }) {
           onClick={() => {
             window.open('https://bazify-backend.basile.vernouillet.dev/auth/github', '_self');
           }}>
-          <img className="w-6 h-6 mr-3" src="src/img/Icons/github.png" alt="Github" />
+          <img className="w-6 h-6 mr-3" src={GHicon} alt="Github" />
           Log with Github
         </button>
       </div>
@@ -59,7 +62,7 @@ function Homepage({ location: { search } }) {
             @WildCodeSchool
           </a>
         </div>
-        <img className="w-16 h-16 900:w-14 900:h-14" src="src/img/LogoWild.png" alt="LogoWild" />
+        <img className="w-16 h-16 900:w-14 900:h-14" src={WCSlogo} alt="LogoWild" />
       </div>
     </div>
   );
