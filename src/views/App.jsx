@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
-import useWindowDimensions from './Hooks/useWindowDimension';
-import Playbar from '../src/components/playbar/Playbar';
-import Header from './components/header/header.jsx';
+import useWindowDimensions from '../Hooks/useWindowDimension';
+import Playbar from '../components/playbar/Playbar';
+import Header from '../components/header/header.jsx';
 // import SideBar from './components/sideBar/sideBar';
-import Contact from './components/Contact/Contact';
-import Carousel from './components/Carousel/Carousel';
-import Player from './components/Player/Player';
-import PlaylistSwitch from './components/Playlist/PlaylistSwitch';
-import SliderAlbum from './components/Slider/SliderAlbum';
-import bg from './img/BackGrounds/BackGround1.webp';
-import PlayerMobile from './components/PlayerMobile/PlayerMobile';
-import SideForm from './components/sideBar/SideForm';
+import Contact from '../components/Contact/Contact';
+import Carousel from '../components/Carousel/Carousel';
+import Player from '../components/Player/Player';
+import PlaylistSwitch from '../components/Playlist/PlaylistSwitch';
+import SliderAlbum from '../components/Slider/SliderAlbum';
+import bg from '../img/BackGrounds/BackGround1.webp';
+import PlayerMobile from '../components/PlayerMobile/PlayerMobile';
+import SideForm from '../components/sideBar/SideForm';
+import authContext from '../context/authContext';
+import { useHistory } from 'react-router';
 function App() {
   const [isSideBarVisible, setisSideBarVisible] = useState(false);
   const [isPlayerVisible, setIsPlayerVisible] = useState(false);
@@ -32,8 +34,15 @@ function App() {
   );
   const [albums, setAlbums] = useState([]);
   const [artists, setArtists] = useState([]);
-  const token = localStorage.token;
   const [onSearch, setOnSearch] = useState();
+  const { token } = useContext(authContext);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (!token) {
+      history.push('/login');
+    }
+  }, [token]);
 
   useEffect(() => {
     const getDatas = async () => {
