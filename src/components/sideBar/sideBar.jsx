@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import ReturnBtn from '../../img/PlayList/ReturnButton.svg';
+import useWindowDimensions from '../../Hooks/useWindowDimension';
 
-function SideBar({ sideBarClass, albums }) {
+function SideBar({ sideBarClass, albums, handleSideBar }) {
   const [selectFile, setSelectFile] = useState();
   const [imgUrl, setImgUrl] = useState();
   const [albumIndex, setAlbumindex] = useState();
+  const { width } = useWindowDimensions();
   const changeFileHandler = (event) => {
     setSelectFile(event.target.files[0]);
   };
@@ -45,9 +48,18 @@ function SideBar({ sideBarClass, albums }) {
   return (
     <div className={sideBarClass}>
       <div className="w-full h-full p-8">
-        <h1 className="text-white font-scada text-4xl 900:text-3xl">Share your Favorits songs with us</h1>
+        <div className="flex">
+          <h1 className="text-white font-scada text-4xl 900:text-3xl">Share your Favorits songs with us</h1>
+          {width < 768 ? (
+            <button className="focus:outline-none" onClick={handleSideBar}>
+              <img src={ReturnBtn} alt="" />
+            </button>
+          ) : (
+            ''
+          )}
+        </div>
         <form className="sticky flex flex-col">
-          <label className="w-full text-white text-xl font-cuprum mt-5" htmlFor="Picture">
+          <label className="w-full text-white text-xl font-cuprum mt-8" htmlFor="Picture">
             Select Album
           </label>
           <select
@@ -55,17 +67,13 @@ function SideBar({ sideBarClass, albums }) {
             onBlur={handlePictureChange}>
             {albums.map((album, key) => {
               return (
-                <option
-                  className=" bg-bgPlaybar shadow-input text-white font-Orbit focus:outline-none rounded-4xl"
-                  value={key}
-                  id={album.id}
-                  key={album.id}>
+                <option value={key} id={album.id} key={album.id}>
                   {album.title}
                 </option>
               );
             })}
           </select>
-          <label className="w-full text-white text-xl font-cuprum mt-5" htmlFor="Picture">
+          <label className="w-full text-white text-xl font-cuprum mt-8" htmlFor="Picture">
             Album image Url :
           </label>
           <input
@@ -74,12 +82,12 @@ function SideBar({ sideBarClass, albums }) {
             type="text"
             name="Picture"></input>
           <button
-            className="bg-bgPlaybar shadow-input2 focus:outline-none w-5/12 mt-4 rounded-4xl text-sm text-white py-2 font-scada hover:text-mainColor hover:shadow-input"
+            className="bg-bgPlaybar shadow-input2 focus:outline-none w-5/12 mt-5 rounded-4xl text-sm text-white py-2 font-scada hover:text-mainColor hover:shadow-input"
             onClick={handlePictureSubmission}>
             Upload Image
           </button>
         </form>
-        <form className="flex mt-8 flex-col">
+        <form className="flex mt-10 flex-col">
           <label className="text-white text-xl font-cuprum" htmlFor="playlist">
             Select Playlist:
           </label>
@@ -101,7 +109,7 @@ function SideBar({ sideBarClass, albums }) {
             </option>
           </select>
         </form>
-        <div className="my-4 w-full flex flex-col">
+        <div className="my-8 w-full flex flex-col">
           <label className="text-white text-xl font-cuprum" htmlFor="upload">
             Select Music
           </label>
@@ -113,7 +121,7 @@ function SideBar({ sideBarClass, albums }) {
             onChange={changeFileHandler}
           />
           <button
-            className="bg-bgPlaybar shadow-input2 focus:outline-none w-5/12 mt-4 rounded-4xl text-sm text-white py-2 font-scada hover:text-mainColor hover:shadow-input"
+            className="bg-bgPlaybar shadow-input2 focus:outline-none w-5/12 mt-5   rounded-4xl text-sm text-white py-2 font-scada hover:text-mainColor hover:shadow-input"
             onClick={handleSubmission}>
             Upload Music
           </button>
@@ -126,6 +134,7 @@ function SideBar({ sideBarClass, albums }) {
 SideBar.propTypes = {
   sideBarClass: PropTypes.string.isRequired,
   albums: PropTypes.array.isRequired,
+  handleSideBar: PropTypes.func.isRequired,
 };
 
 export default SideBar;

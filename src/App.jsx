@@ -5,12 +5,13 @@ import Playbar from '../src/components/playbar/Playbar';
 import Header from './components/header/header.jsx';
 import SideBar from './components/sideBar/sideBar';
 import Contact from './components/Contact/Contact';
-import Carousel from './components/carousel/Carousel';
+import Carousel from './components/Carousel/Carousel';
 import Player from './components/Player/Player';
 import PlaylistSwitch from './components/Playlist/PlaylistSwitch';
 import SliderAlbum from './components/Slider/SliderAlbum';
 import bg from './img/BackGrounds/BackGround1.webp';
 import PlayerMobile from './components/PlayerMobile/PlayerMobile';
+
 function App() {
   const [isSideBarVisible, setisSideBarVisible] = useState(false);
   const [isPlayerVisible, setIsPlayerVisible] = useState(false);
@@ -33,13 +34,15 @@ function App() {
   const [artists, setArtists] = useState([]);
   const [selectedSong, setSelectedSong] = useState();
   const [isAlbum, setIsAlbum] = useState(false);
+  const token = localStorage.token;
+  const [onSearch, setOnSearch] = useState();
 
   useEffect(() => {
     const getDatas = async () => {
       const [resSongs, resArtists, resAlbums] = await Promise.all([
-        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs'),
-        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/artists'),
-        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/albums'),
+        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs', { headers: { Authorization: `Bearer ${token}` } }),
+        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/artists', { headers: { Authorization: `Bearer ${token}` } }),
+        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/albums', { headers: { Authorization: `Bearer ${token}` } }),
       ]);
       setItem(resSongs.data);
       setAlbums(resAlbums.data);
@@ -77,18 +80,18 @@ function App() {
   };
   return (
     <div
-      className="flex align-middle justify-center pb-24"
+      className="flex align-middle justify-center pb-20"
       style={{
         backgroundImage: `url(${bg})`,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
       }}>
       <div className="grid mx-5 gap-5  900:gap-6 grid-cols-mobile grid-rows-mobile 900:grid-cols-desktop 900:ml-6 900:mr-0 900:grid-rows-desktop">
-        <Header handleSideBar={handleSideBar} isSideBarVisible={isSideBarVisible} />
+        <Header handleSideBar={handleSideBar} setOnSearch={setOnSearch} isSideBarVisible={isSideBarVisible} />
 
         <div className="col-start-1 col-end-3 row-start-2 900:col-end-4 rounded-20 bg-black bg-opacity-10 shadow-layoutContainer">
           {/* The Main Component GoHere */}
-          {!isLoading && <Carousel item={item} albums={albums} artists={artists} />}
+          {!isLoading && <Carousel setCurrentTrack={setCurrentTrack} onSearch={onSearch} item={item} albums={albums} artists={artists} />}
         </div>
 
         <div className=" overflow-y-auto col-start-1 col-end-3 row-start-3 row-end-4 900:col-end-2 900:row-end-5 rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
@@ -120,7 +123,7 @@ function App() {
         <div className="col-start-1 col-end-3 row-start-6 row-end-7 rounded-20 900:col-end-4 900:row-start-5 900:row-end-6 bg-black bg-opacity-20 shadow-layoutContainer mb-4">
           <Contact />
         </div>
-        {isSideBarVisible && <SideBar sideBarClass={sideBarClass} albums={albums} setSideBarClass={setSideBarClass} />}
+        {isSideBarVisible && <SideBar sideBarClass={sideBarClass} albums={albums} setSideBarClass={setSideBarClass} handleSideBar={handleSideBar} />}
       </div>
       {!isLoading && isMobilePlayerVisible ? (
         <PlayerMobile
