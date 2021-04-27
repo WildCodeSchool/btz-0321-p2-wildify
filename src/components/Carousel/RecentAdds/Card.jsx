@@ -1,22 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import PlayerButton from '../../../img/Icons/PlayerButton.svg';
 
 export default function Card({ itemReversed, setCurrentTrack }) {
   return (
-    <div className="flex flex-row">
+    <div className="h-full flex flex-row justify-end">
       {itemReversed.map((song, index) => (
         <button
           onClick={() => setCurrentTrack(itemReversed.length - 1 - index)}
           key={index}
-          className="w-64 h-80 mx-3 rounded-2xl cursor-pointer text-white flex flex-col justify-center"
+          className="flex justify-end w-56 h-72 mb-3 mx-3 rounded-2xl cursor-pointer border text-white flex-col shadow-card focus:outline-none hover:border hover:border-mainColor"
           style={{
             backgroundImage: `url(${song.album.picture})`,
             backgroundSize: `cover`,
             backgroundRepeat: `no-repeat`,
             backgroundPosition: `center`,
           }}>
-          <p>{song.title}</p>
-          <p>{song.artist.name}</p>
+          <div className="flex w-full bg-black bg-opacity-30 p-2 rounded-b-2xl">
+            <div className=" w-full flex flex-col items-start  justify-start ">
+              <p className="font-scada leading-5 text-white font-bold text-lg text-left">{song.title}</p>
+              <p className="font-scada text-white text-sm">{song.artist.name}</p>
+            </div>
+            <button
+              className="flex focus:outline-none items-end m-1"
+              type="button"
+              onClick={() => setCurrentTrack(itemReversed.length - 1 - index)}
+              key={index}>
+              <img src={PlayerButton} alt="" />
+            </button>
+          </div>
         </button>
       ))}
     </div>
