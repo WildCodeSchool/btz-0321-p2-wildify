@@ -147,6 +147,8 @@ function App() {
           setIsMobilePlayerVisible={setIsMobilePlayerVisible}
           isPlaySwitch={isPlaySwitch}
           setIsPlaySwitch={setIsPlaySwitch}
+          selectedSong={selectedSong}
+          isAlbum={isAlbum}
         />
       ) : (
         ''
@@ -200,6 +202,8 @@ function App() {
           setIsMobilePlayerVisible={setIsMobilePlayerVisible}
           isPlaySwitch={isPlaySwitch}
           setIsPlaySwitch={setIsPlaySwitch}
+          selectedSong={selectedSong}
+          isAlbum={isAlbum}
         />
       ) : (
         ''
