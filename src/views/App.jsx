@@ -89,7 +89,7 @@ function App() {
   };
   return (
     <div
-      className="flex align-middle justify-center pb-20"
+      className="flex align-middle justify-center pb-24"
       style={{
         backgroundImage: `url(${bg})`,
         backgroundSize: 'cover',
@@ -127,12 +127,6 @@ function App() {
         </div>
         <div className="col-start-1 col-end-3 row-start-6 row-end-7 rounded-20 900:col-end-4 900:row-start-5 900:row-end-6 bg-black bg-opacity-20 shadow-layoutContainer mb-4">
           <Contact />
-          <button
-            onClick={() => {
-              window.open('https://bazify-backend.basile.vernouillet.dev/auth/github', '_self');
-            }}>
-            Github Auth
-          </button>
         </div>
         {isSideBarVisible && <SideBar sideBarClass={sideBarClass} albums={albums} setSideBarClass={setSideBarClass} handleSideBar={handleSideBar} />}
       </div>
