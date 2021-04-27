@@ -68,6 +68,6 @@ function Homepage({ location: { search } }) {
 export default Homepage;
 
 Homepage.propTypes = {
-  search: PropTypes.string.isRequired,
-  location: PropTypes.string.isRequired,
+  search: PropTypes.string,
+  location: PropTypes.object.isRequired,
 };
