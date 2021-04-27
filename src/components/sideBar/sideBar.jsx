@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ReturnBtn from '../../img/PlayList/ReturnButton.svg';
 import useWindowDimensions from '../../Hooks/useWindowDimension';
+import Formbg from '../../img/BackGrounds/BgSideBarBG5.png';
 
 function SideBar({ sideBarClass, albums, handleSideBar }) {
   const [selectFile, setSelectFile] = useState();
@@ -48,15 +49,15 @@ function SideBar({ sideBarClass, albums, handleSideBar }) {
   return (
     <div className={sideBarClass}>
       <div
-        className="w-full h-full py-4 px-10"
+        className="w-full h-full py-4 px-6 900:px-6"
         style={{
-          backgroundImage: `url(src/img/BackGrounds/BgSideBarBG2.png)`,
+          backgroundImage: `url(${Formbg})`,
           backgroundSize: `cover`,
           backgroundRepeat: `no-repeat`,
-          backgroundPosition: `center`,
+          backgroundPosition: `top`,
         }}>
-        <div className="flex">
-          <h1 className="text-white font-scada text-3xl 900:text-3xl">Share your Favorits songs with us</h1>
+        <div className="mt-2 flex items-start">
+          <h1 className="text-white font-scada text-3xl 900:text-3xl mr-5">Share your Favorits songs with us</h1>
           {width < 768 ? (
             <button className="focus:outline-none" onClick={handleSideBar}>
               <img src={ReturnBtn} alt="" />

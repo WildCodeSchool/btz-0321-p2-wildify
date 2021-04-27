@@ -30,7 +30,7 @@ function App() {
   const [picture, setPicture] = useState();
   const [isPlaySwitch, setIsPlaySwitch] = useState(true);
   const [sideBarClass, setSideBarClass] = useState(
-    'flex h-screen w-3/12 fixed right-0 flex-col  900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-bgPlaybar  shadow-playbar',
+    'overflow-y-auto flex h-screen w-3/12 fixed right-0 flex-col  900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-bgPlaybar  shadow-playbar',
   );
   const [albums, setAlbums] = useState([]);
   const [artists, setArtists] = useState([]);
