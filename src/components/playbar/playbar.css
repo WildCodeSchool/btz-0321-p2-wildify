@@ -11,7 +11,7 @@ input[type='range'].slider {
 
 input[type='range'].slider::-webkit-slider-thumb {
   /* également nécessaire sur le curseur */
-  color: #00fbce;
+  color: #ffff;
   width: 20px;
   height: 20px; /* s'adapte à la hauteur de l'input */
   border-radius: 100%;
@@ -20,7 +20,7 @@ input[type='range'].slider::-webkit-slider-thumb {
 
 input[type='range'].slider::-moz-range-thumb {
   /* également nécessaire sur le curseur */
-  color: #00fbce;
+  color: #ffff;
   width: 20px;
   height: 20px; /* s'adapte à la hauteur de l'input */
   border-radius: 100%;

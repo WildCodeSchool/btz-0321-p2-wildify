@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import RecentAdds from './RecentAdds/RecentAdds';
 import Artist from './ArtistCarousel/Artist';
 import Album from './AlbumCarousel/Album';
 import TrackList from './TrackListCarousel/Tracklist';
 import PropTypes from 'prop-types';
-import AlbumTrackList from './AlbumCarousel/AlbumTrackList';
+import SearchResults from './SearchResults/SearchResults';
 
-export default function Carousel({ item, albums, artists, setCurrentTrack }) {
+export default function Carousel({ item, albums, artists, onSearch }) {
+  const [count, setCount] = useState(0);
   const [isRecentAddsActive, setIsRecentAddsActive] = useState(true);
   const [isArtistActive, setIsArtistActive] = useState(false);
   const [isAlbumActive, setIsAlbumActive] = useState(false);
   const [isTrackListActive, setIsTrackListActive] = useState(false);
-  const [isTrackList, setIsTrackList] = useState(false);
-  const [albumChoice, setAlbumChoice] = useState('');
 
   function handleArtistChange() {
     setIsRecentAddsActive(false);
@@ -39,21 +38,16 @@ export default function Carousel({ item, albums, artists, setCurrentTrack }) {
     setIsTrackListActive(true);
   }
 
-  const handleClick = () => {
-    if (isTrackList) {
-      setIsTrackList(false);
-      setIsRecentAddsActive(false);
-      setIsArtistActive(false);
-      setIsAlbumActive(true);
-      setIsTrackListActive(false);
-    } else {
-      setIsTrackList(true);
-      setIsRecentAddsActive(false);
-      setIsArtistActive(false);
+  useEffect(() => {
+    if (onSearch) {
       setIsAlbumActive(false);
+      setIsArtistActive(false);
       setIsTrackListActive(false);
+      setIsRecentAddsActive(false);
+    } else {
+      setIsRecentAddsActive(true);
     }
-  };
+  }, [onSearch]);
 
   return (
     <div className="grid grid-cols-1 grid-rows-mobileCarousel 900:grid-cols-2 900:grid-rows-desktopCarousel w-full h-full">
@@ -71,22 +65,11 @@ export default function Carousel({ item, albums, artists, setCurrentTrack }) {
         <button onClick={handleTrackListChange}>TrackList</button>
       </div>
 
-      {isRecentAddsActive && <RecentAdds setCurrentTrack={setCurrentTrack} item={item} />}
-      {isArtistActive && <Artist artists={artists} />}
-      {isAlbumActive && (
-        <Album
-          albums={albums}
-          setIsTrackList={setIsTrackList}
-          setIsAlbumActive={setIsAlbumActive}
-          setIsArtistActive={setIsArtistActive}
-          setIsRecentAddsActive={setIsRecentAddsActive}
-          setIsTrackListActive={setIsTrackListActive}
-          isTrackList={isTrackList}
-          setAlbumChoice={setAlbumChoice}
-        />
-      )}
-      {isTrackListActive && <TrackList setCurrentTrack={setCurrentTrack} item={item} />}
-      {isTrackList && <AlbumTrackList handleClick={handleClick} albumChoice={albumChoice} item={item} />}
+      {isRecentAddsActive && <RecentAdds count={count} setCount={setCount} item={item} />}
+      {isArtistActive && <Artist count={count} setCount={setCount} artists={artists} />}
+      {isAlbumActive && <Album count={count} setCount={setCount} albums={albums} />}
+      {isTrackListActive && <TrackList count={count} setCount={setCount} item={item} />}
+      {onSearch && <SearchResults onSearch={onSearch} item={item} />}
     </div>
   );
 }
@@ -96,4 +79,5 @@ Carousel.propTypes = {
   albums: PropTypes.array.isRequired,
   artists: PropTypes.array.isRequired,
   setCurrentTrack: PropTypes.func.isRequired,
+  onSearch: PropTypes.string.isRequired,
 };

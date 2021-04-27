@@ -25,6 +25,8 @@ export default function Player({
   setIsMobilePlayerVisible,
   isPlaySwitch,
   setIsPlaySwitch,
+  isAlbum,
+  selectedSong,
 }) {
   const [sliderValue, setSliderValue] = useState(0);
   const [duration, setDuration] = useState('00:00');
@@ -36,19 +38,32 @@ export default function Player({
     updateSong();
   }, [currentTrack]);
 
-  const updateSong = () => {
-    setOnListen(item[currentTrack].s3_link);
+  useEffect(() => {
+    updateSong();
+  }, [selectedSong]);
 
+  const updateSong = () => {
+    if (isAlbum) {
+      setOnListen(selectedSong[0].s3_link);
+
+      setTitle(selectedSong[0].title);
+      setArtist(selectedSong[0].artist.name);
+      setAlbum(selectedSong[0].album.title);
+      setPicture(selectedSong[0].album.picture);
+    } else {
+      setOnListen(item[currentTrack].s3_link);
+
+      setTitle(item[currentTrack].title);
+      setArtist(item[currentTrack].artist.name);
+      setAlbum(item[currentTrack].album.title);
+      setPicture(item[currentTrack].album.picture);
+    }
     if (audioRef2.current) {
       audioRef2.current.load();
     }
-    if (audio) {
+    if (audio === true) {
       audioRef2.current.play();
     }
-    setTitle(item[currentTrack].title);
-    setArtist(item[currentTrack].artist.name);
-    setAlbum(item[currentTrack].album.title);
-    setPicture(item[currentTrack].album.picture);
   };
 
   const positionChange = (e) => {
@@ -197,4 +212,6 @@ Player.propTypes = {
   setIsMobilePlayerVisible: PropTypes.func.isRequired,
   isPlaySwitch: PropTypes.bool.isRequired,
   setIsPlaySwitch: PropTypes.func?.isRequired,
+  isAlbum: PropTypes.func.isRequired,
+  selectedSong: PropTypes.func.isRequired,
 };

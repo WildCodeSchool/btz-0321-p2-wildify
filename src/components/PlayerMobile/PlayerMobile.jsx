@@ -17,24 +17,33 @@ export default function PlayerMobile({
   setIsPlaySwitch,
   picture,
   setPicture,
+  isAlbum,
+  selectedSong,
 }) {
   useEffect(() => {
     updateSong();
   }, [currentTrack]);
+
   useEffect(() => {
     updateSong();
-  }, []);
-  const updateSong = () => {
-    setOnListen(item[currentTrack].s3_link);
+  }, [selectedSong]);
 
+  const updateSong = () => {
+    if (isAlbum) {
+      setPicture(selectedSong[0].album.picture);
+      setOnListen(selectedSong[0].s3_link);
+    } else {
+      setOnListen(item[currentTrack].s3_link);
+      setPicture(item[currentTrack].album.picture);
+    }
     if (audioRef3.current) {
       audioRef3.current.load();
     }
-    if (audio) {
+    if (audio === true) {
       audioRef3.current.play();
     }
-    setPicture(item[currentTrack].album.picture);
   };
+
   const audioRef3 = useRef();
 
   const handlePause = () => {
@@ -123,5 +132,7 @@ PlayerMobile.propTypes = {
   isPlaySwitch: PropTypes.bool,
   setIsPlaySwitch: PropTypes.func,
   picture: PropTypes.string,
+  selectedSong: PropTypes.func.isRequired,
+  isAlbum: PropTypes.bool.isRequired,
   setPicture: PropTypes.any.isRequired,
 };
