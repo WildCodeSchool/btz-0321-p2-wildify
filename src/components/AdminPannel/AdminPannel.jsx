@@ -3,7 +3,10 @@ import React, { useEffect, useState, useContext } from 'react';
 export default function AdminPannel({ item, token, albums }) {
   const [selectFile, setSelectFile] = useState();
   const [albumPicture, setAbumPicture] = useState(albums[0].picture);
-  console.log(item, token);
+  const [playlists, setPLaylist] = useState([]);
+  console.log(item);
+  console.log(playlists);
+
   const changeFileHandler = (event) => {
     setSelectFile(event.target.files[0]);
   };
@@ -19,6 +22,36 @@ export default function AdminPannel({ item, token, albums }) {
       .then((response) => console.log(response.json()))
       .catch((error) => console.log(error));
   };
+
+  useEffect(async () => {
+    const fectPlaylist = await fetch('https://bazify-backend.basile.vernouillet.dev/api/v1/playlists', {
+      methode: 'GET',
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => res.json())
+      .then((res) => setPLaylist(res))
+      .catch((err) => console.log(err));
+  }, []);
+
+  const createPlaylist = () => {
+    fetch('https://bazify-backend.basile.vernouillet.dev/api/v1/playlists', {
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      method: 'POST',
+      body: JSON.stringify({
+        title: 'Work & Code',
+        description: 'Relaxing And Chill Songs for Concentration',
+        picture:
+          'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DJG8oRzleNsU&psig=AOvVaw3H6HnWMIP9KpcO4ZCgztus&ust=1619703009255000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJi_-oaGofACFQAAAAAdAAAAABAD',
+        songs: [],
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => console.log(res));
+  };
+
+  useEffect(() => {
+    console.log('render');
+  }, [playlists]);
 
   const handleSubmission = () => {
     let formData = new FormData();
@@ -90,32 +123,44 @@ export default function AdminPannel({ item, token, albums }) {
               DELETE
             </button>
           </div>
-        </div>
-        <div className="flex flex-col items-center align-middle justify-center">
-          <div className="flex flox-col align-middle justify-center items-center">
-            <label htmlFor="listselect">Album :</label>
-            <select onChange={handleChange} name="listselect" id="trackselect" className="text-gray-900">
-              {albums.map((album, index) => {
-                return (
-                  <option value={index} key={index}>
-                    {album.title}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
+          <div className="flex flex-col items-center align-middle justify-center">
+            <div className="flex flox-col align-middle justify-center items-center">
+              <label htmlFor="listselect">Album :</label>
+              <select onChange={handleChange} name="listselect" id="trackselect" className="text-gray-900">
+                {albums.map((album, index) => {
+                  return (
+                    <option value={index} key={index}>
+                      {album.title}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
 
-          <div className="w-10/12 border-white border-2 relative overflow-y-scroll">
-            <ul className="px-2 w-full h-full flex flex-col">
-              <img className="w-512 min-h-full" src={albumPicture} alt="" />
+            <div className="w-10/12 border-white border-2 relative overflow-y-scroll">
+              <ul className="px-2 w-full h-full flex flex-col">
+                <img className="w-512 min-h-full" src={albumPicture} alt="" />
+              </ul>
+            </div>
+            <div className="flex flex-row align-middle justify-center items-center">
+              <button className="mx-2 py-1 px-2 border-white border-2 my-3 text-xs">ADD</button>
+              <button className="mx-2 py-1 px-2 border-white border-2 my-3 text-xs">DELETE</button>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center align-middle justify-center">
+          <div className="w-10/12 h-97 bg-gray-700 text-gray-400 flex flex-col items-center justify-center align-middle">
+            <ul>
+              {playlists.map((playlist, index) => {
+                return <li key={index}>{playlist.title}</li>;
+              })}
             </ul>
           </div>
-          <div className="flex flex-row align-middle justify-center items-center">
-            <button className="mx-2 py-1 px-2 border-white border-2 my-3 text-xs">ADD</button>
-            <button className="mx-2 py-1 px-2 border-white border-2 my-3 text-xs">DELETE</button>
-          </div>
+          <button onClick={createPlaylist} className="text-white">
+            CREATE PLAYLIST
+          </button>
         </div>
-        <div className="flex flex-col items-center align-middle justify-center"></div>
       </div>
     </div>
   );
