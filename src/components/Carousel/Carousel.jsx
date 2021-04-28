@@ -5,6 +5,7 @@ import Album from './AlbumCarousel/Album';
 import TrackList from './TrackListCarousel/Tracklist';
 import PropTypes from 'prop-types';
 import SearchResults from './SearchResults/SearchResults';
+import AlbumTrackList from './AlbumCarousel/AlbumTrackList';
 
 export default function Carousel({ item, albums, artists, onSearch, setCurrentTrack }) {
   const [count, setCount] = useState(0);
@@ -12,6 +13,8 @@ export default function Carousel({ item, albums, artists, onSearch, setCurrentTr
   const [isArtistActive, setIsArtistActive] = useState(false);
   const [isAlbumActive, setIsAlbumActive] = useState(false);
   const [isTrackListActive, setIsTrackListActive] = useState(false);
+  const [isAlbumTrackList, setIsAlBumTrackList] = useState(false);
+  const [albumChoice, setAlbumChoice] = useState('');
 
   function handleArtistChange() {
     setIsRecentAddsActive(false);
@@ -49,6 +52,26 @@ export default function Carousel({ item, albums, artists, onSearch, setCurrentTr
     }
   }, [onSearch]);
 
+  useEffect(() => {
+    if (isAlbumTrackList) {
+      setIsAlbumActive(false);
+      setIsArtistActive(false);
+      setIsTrackListActive(false);
+      setIsRecentAddsActive(false);
+    } else {
+      setIsAlbumActive(true);
+    }
+  }, [isAlbumTrackList]);
+
+  const handleClick = (e) => {
+    setAlbumChoice(e.target.innerHTML);
+    if (isAlbumTrackList) {
+      setIsAlBumTrackList(false);
+    } else {
+      setIsAlBumTrackList(true);
+    }
+  };
+
   return (
     <div className="grid grid-cols-1 grid-rows-mobileCarousel 900:grid-cols-2 900:grid-rows-desktopCarousel w-full h-full">
       <div className="col-start-1 col-end-2 row-start-1 row-end-2">
@@ -67,8 +90,9 @@ export default function Carousel({ item, albums, artists, onSearch, setCurrentTr
 
       {isRecentAddsActive && <RecentAdds count={count} setCount={setCount} item={item} setCurrentTrack={setCurrentTrack} />}
       {isArtistActive && <Artist count={count} setCount={setCount} artists={artists} />}
-      {isAlbumActive && <Album count={count} setCount={setCount} albums={albums} />}
+      {isAlbumActive && <Album handleClick={handleClick} albums={albums} />}
       {isTrackListActive && <TrackList count={count} setCount={setCount} item={item} setCurrentTrack={setCurrentTrack} />}
+      {isAlbumTrackList && <AlbumTrackList albumChoice={albumChoice} handleClick={handleClick} item={item} />}
       {onSearch && <SearchResults onSearch={onSearch} item={item} />}
     </div>
   );
