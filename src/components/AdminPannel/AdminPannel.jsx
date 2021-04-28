@@ -39,7 +39,7 @@ export default function AdminPannel({ item, token, albums }) {
 
   return (
     <div className="w-full h-screen fixed flex flex-row align-middle justify-center items-center  bg-black z-50">
-      <div className=" w-full h-full grid-cols-3 grid-rows-2 grid text-white font-scada">
+      <div className=" w-full h-full grid-cols-2 grid-rows-2 grid text-white font-scada">
         <div className="flex flex-col items-center align-middle justify-center">WIZIC ADMIN MEC</div>
         <div className="flex flex-col items-center align-middle justify-center"></div>
         <div className="flex flex-col items-center align-middle justify-center"></div>
