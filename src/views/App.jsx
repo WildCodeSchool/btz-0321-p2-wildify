@@ -9,6 +9,7 @@ import Carousel from '../components/Carousel/Carousel';
 import Player from '../components/Player/Player';
 import PlaylistSwitch from '../components/Playlist/PlaylistSwitch';
 import SliderAlbum from '../components/Slider/SliderAlbum';
+import SliderArtist from '../components/Artist-Slider/SliderArtist';
 import bg from '../img/BackGrounds/BackGround1.webp';
 import PlayerMobile from '../components/PlayerMobile/PlayerMobile';
 import authContext from '../context/authContext';
@@ -36,6 +37,8 @@ function App() {
   const [artists, setArtists] = useState([]);
   const [selectedSong, setSelectedSong] = useState();
   const [isAlbum, setIsAlbum] = useState(false);
+  const [isArtist, setIsArtist] = useState(false);
+
   const [onSearch, setOnSearch] = useState();
   const { token } = useContext(authContext);
   const history = useHistory();
@@ -65,6 +68,7 @@ function App() {
 
   useEffect(() => {
     setIsAlbum(false);
+    setIsArtist(false);
   }, [currentTrack]);
 
   useEffect(() => {
@@ -100,7 +104,7 @@ function App() {
       <div className="grid mx-5 gap-5  900:gap-6 grid-cols-mobile grid-rows-mobile 900:grid-cols-desktop 900:ml-6 900:mr-0 900:grid-rows-desktop">
         <Header handleSideBar={handleSideBar} setOnSearch={setOnSearch} isSideBarVisible={isSideBarVisible} />
 
-        <div className="col-start-1 col-end-3 row-start-2 900:col-end-4 rounded-20 bg-black bg-opacity-10 shadow-layoutContainer">
+        <div className="col-start-1 col-end-3 row-start-2 900:col-end-4 rounded-20 bg-black bg-opacity-10 shadow-layoutContainer overflow-x-auto">
           {/* The Main Component GoHere */}
           {!isLoading && (
             <Carousel
@@ -121,8 +125,17 @@ function App() {
           {!isLoading && <PlaylistSwitch item={item} setCurrentTrack={setCurrentTrack} currentTrack={currentTrack} />}
           {/* />*/}
         </div>
-        <div className="col-start-1 col-end-2 row-start-4 row-end-5 gap-x-1 900:col-start-2 900:col-end-3 900:row-start-3 900:row-end-4  rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
-          {/* ArtistComponent GoHere */}{' '}
+        <div className="overflow-hidden col-start-1 col-end-2 row-start-4 row-end-5 gap-x-1 900:col-start-2 900:col-end-3 900:row-start-3 900:row-end-4  rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
+          {!isLoading && (
+            <SliderArtist
+              setIsArtist={setIsArtist}
+              setSelectedSong={setSelectedSong}
+              item={item}
+              artists={artists}
+              setCurrentTrack={setCurrentTrack}
+              isArtist={isArtist}
+            />
+          )}
         </div>
         <div className="overflow-hidden col-start-2 col-end-3 row-start-4 rows-end-5 900:col-start-3 900:col-end-4 900:row-start-3 900:row-end-4 rounded-20 gap-x-1 bg-black bg-opacity-20 shadow-layoutContainer">
           {!isLoading && (
@@ -131,7 +144,6 @@ function App() {
               setSelectedSong={setSelectedSong}
               item={item}
               albums={albums}
-              artists={artists}
               setCurrentTrack={setCurrentTrack}
               isAlbum={isAlbum}
             />
@@ -169,6 +181,7 @@ function App() {
           setIsPlaySwitch={setIsPlaySwitch}
           selectedSong={selectedSong}
           isAlbum={isAlbum}
+          isArtist={isArtist}
         />
       ) : (
         ''
@@ -199,6 +212,7 @@ function App() {
           setIsPlaySwitch={setIsPlaySwitch}
           selectedSong={selectedSong}
           isAlbum={isAlbum}
+          isArtist={isArtist}
         />
       ) : (
         ''

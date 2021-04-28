@@ -9,12 +9,12 @@ import PropTypes from 'prop-types';
 
 function ListPlaylist({ setIsChange }) {
   const WizicPlaylist = [
-    { title: 'Work and Code', desc: 'Relaxing and chill songs fot concentration', img: WorkingPlaylist, id: 1 },
-    { title: 'Relax and Chill', desc: 'Be chill, be calm, be Cool, be Wizic', img: SportPlaylist, id: 2 },
-    { title: 'Sport Motivation', desc: 'Listen Good music for help you to run !', img: ChillPlaylist, id: 3 },
-    { title: 'Party and fun', desc: 'Let’s get the best sound for a party with your friends', img: PartyPlaylist, id: 4 },
-    { title: 'Old School', desc: 'Find the best old School Music', img: OldSchoolPlaylist, id: 5 },
-    { title: 'Gaming', desc: 'Check ours gamer’s selection', img: GamingPlaylist, id: 6 },
+    { title: 'Work and Code', description: 'Relaxing and chill songs for concentration', picture: WorkingPlaylist, id: 1 },
+    { title: 'Relax and Chill', description: 'Be chill, be calm, be Cool, be Wizic', picture: SportPlaylist, id: 2 },
+    { title: 'Sport Motivation', description: 'Listen Good music for help you to run !', picture: ChillPlaylist, id: 3 },
+    { title: 'Party and fun', description: 'Let’s get the best sound for a party with your friends', picture: PartyPlaylist, id: 4 },
+    { title: 'Old School', description: 'Find the best old School Music', picture: OldSchoolPlaylist, id: 5 },
+    { title: 'Gaming', description: 'Check ours gamer’s selection', picture: GamingPlaylist, id: 6 },
   ];
 
   return (
@@ -26,10 +26,10 @@ function ListPlaylist({ setIsChange }) {
           key={key}
           type="button"
           className="rounded-3xl w-full flex 900:mt-5 mt-3 items-center p-2 bg-black bg-opacity-20 shadow-searchbar focus:outline-none cursor-pointer hover:border-mainColor hover:text-mainColor transform hover:scale-105">
-          <img src={playlist.img} alt="Playlist1" className="w-plist h-pl border-2 border-green-300 rounded-fullist rounded-3xl" />
+          <img src={playlist.picture} alt="Playlist1" className="w-plist h-pl border-2 border-green-300 rounded-fullist rounded-3xl" />
           <div className="flex-col ml-3 text-left">
             <h3 className="text-white font-scada font-medium ">{playlist.title}</h3>
-            <p className="text-white font-cuprum text-xs font-thin">{playlist.desc}</p>
+            <p className="text-white font-cuprum text-xs font-thin">{playlist.description}</p>
           </div>
         </button>
       ))}

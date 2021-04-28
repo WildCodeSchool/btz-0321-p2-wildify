@@ -18,6 +18,7 @@ export default function PlayerMobile({
   picture,
   setPicture,
   isAlbum,
+  isArtist,
   selectedSong,
 }) {
   useEffect(() => {
@@ -29,7 +30,7 @@ export default function PlayerMobile({
   }, [selectedSong]);
 
   const updateSong = () => {
-    if (isAlbum) {
+    if (isAlbum || isArtist) {
       setPicture(selectedSong[0].album.picture);
       setOnListen(selectedSong[0].s3_link);
     } else {
@@ -134,5 +135,6 @@ PlayerMobile.propTypes = {
   picture: PropTypes.string,
   selectedSong: PropTypes.func,
   isAlbum: PropTypes.bool.isRequired,
+  isArtist: PropTypes.bool.isRequired,
   setPicture: PropTypes.any.isRequired,
 };
