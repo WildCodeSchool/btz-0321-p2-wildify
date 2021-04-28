@@ -2,19 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Backward from '../../../img/BackwardArrow.svg';
 
-function AlbumTrackList({ handleAlbumClick, item, albumChoice, setSelectedSong }) {
+function ArtistTrackList({ handleArtistClick, item, artistChoice, setSelectedSong }) {
   const handleClick = (e) => {
     const mySong = item.filter((song) => song.title.includes(e.target.value));
     setSelectedSong(mySong);
   };
   return (
     <div className="h-full w-full">
-      <button onClick={handleAlbumClick}>
+      <button onClick={handleArtistClick}>
         <img src={Backward} alt="BackwardArrow" />
       </button>
       <ul className="w-full h-full bg-center bg-no-repeat bg-cover rounded-3xl bg-blend-lighten">
         {item
-          .filter((song) => song.album.title.includes(albumChoice))
+          .filter((song) => song.artist.name.includes(artistChoice))
           .map((song, index) => {
             return (
               <button key={index} value={song.title} onClick={handleClick} className={`font-cuprum text-base font-regular text-white`}>
@@ -27,11 +27,11 @@ function AlbumTrackList({ handleAlbumClick, item, albumChoice, setSelectedSong }
   );
 }
 
-export default AlbumTrackList;
+export default ArtistTrackList;
 
-AlbumTrackList.propTypes = {
-  handleAlbumClick: PropTypes.func.isRequired,
+ArtistTrackList.propTypes = {
+  handleArtistClick: PropTypes.func.isRequired,
   item: PropTypes.array.isRequired,
-  albumChoice: PropTypes.string.isRequired,
+  artistChoice: PropTypes.string.isRequired,
   setSelectedSong: PropTypes.func.isRequired,
 };

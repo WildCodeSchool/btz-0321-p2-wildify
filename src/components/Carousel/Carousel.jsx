@@ -5,13 +5,27 @@ import Album from './AlbumCarousel/Album';
 import TrackList from './TrackListCarousel/Tracklist';
 import PropTypes from 'prop-types';
 import SearchResults from './SearchResults/SearchResults';
+import AlbumTrackList from './AlbumCarousel/AlbumTrackList';
+import ArtistTrackList from './ArtistCarousel/ArtistTrackList';
 
-export default function Carousel({ item, albums, artists, onSearch, setCurrentTrack }) {
-  const [count, setCount] = useState(0);
+export default function Carousel({
+  item,
+  albums,
+  artists,
+  onSearch,
+  isAlbumTrackList,
+  setIsAlBumTrackList,
+  setCurrentTrack,
+  setSelectedSong,
+  setIsArtistTrackList,
+  isArtistTrackList,
+}) {
   const [isRecentAddsActive, setIsRecentAddsActive] = useState(true);
   const [isArtistActive, setIsArtistActive] = useState(false);
   const [isAlbumActive, setIsAlbumActive] = useState(false);
   const [isTrackListActive, setIsTrackListActive] = useState(false);
+  const [albumChoice, setAlbumChoice] = useState('');
+  const [artistChoice, setArtistChoice] = useState('');
 
   function handleArtistChange() {
     setIsRecentAddsActive(false);
@@ -48,6 +62,35 @@ export default function Carousel({ item, albums, artists, onSearch, setCurrentTr
       setIsRecentAddsActive(true);
     }
   }, [onSearch]);
+
+  const handleAlbumClick = (e) => {
+    if (!isAlbumTrackList) {
+      setAlbumChoice(e.target.innerHTML);
+      setIsAlBumTrackList(true);
+      setIsAlbumActive(false);
+      setIsArtistActive(false);
+      setIsTrackListActive(false);
+      setIsRecentAddsActive(false);
+    } else {
+      setIsAlBumTrackList(false);
+      setIsAlbumActive(true);
+    }
+  };
+
+  const handleArtistClick = (e) => {
+    if (!isArtistTrackList) {
+      setArtistChoice(e.target.innerHTML);
+      setIsAlBumTrackList(false);
+      setIsAlbumActive(false);
+      setIsArtistActive(false);
+      setIsArtistTrackList(true);
+      setIsTrackListActive(false);
+      setIsRecentAddsActive(false);
+    } else {
+      setIsArtistTrackList(false);
+      setIsArtistActive(true);
+    }
+  };
 
   return (
     <div className="flex flex-col w-full h-full p-2">
@@ -97,10 +140,16 @@ export default function Carousel({ item, albums, artists, onSearch, setCurrentTr
         </button>
       </div>
       <div className="overflow-x-auto">
-        {isRecentAddsActive && <RecentAdds count={count} setCount={setCount} item={item} setCurrentTrack={setCurrentTrack} />}
-        {isArtistActive && <Artist count={count} setCount={setCount} artists={artists} />}
-        {isAlbumActive && <Album count={count} setCount={setCount} albums={albums} />}
-        {isTrackListActive && <TrackList count={count} setCount={setCount} item={item} setCurrentTrack={setCurrentTrack} />}
+        {isRecentAddsActive && <RecentAdds item={item} setCurrentTrack={setCurrentTrack} />}
+        {isArtistActive && <Artist handleArtistClick={handleArtistClick} artists={artists} />}
+        {isAlbumActive && <Album handleAlbumClick={handleAlbumClick} albums={albums} />}
+        {isTrackListActive && <TrackList item={item} setCurrentTrack={setCurrentTrack} />}
+        {isAlbumTrackList && (
+          <AlbumTrackList setSelectedSong={setSelectedSong} albumChoice={albumChoice} handleAlbumClick={handleAlbumClick} item={item} />
+        )}
+        {isArtistTrackList && (
+          <ArtistTrackList setSelectedSong={setSelectedSong} artistChoice={artistChoice} handleArtistClick={handleArtistClick} item={item} />
+        )}
         {onSearch && <SearchResults onSearch={onSearch} item={item} />}
       </div>
     </div>
@@ -112,5 +161,10 @@ Carousel.propTypes = {
   albums: PropTypes.array.isRequired,
   artists: PropTypes.array.isRequired,
   setCurrentTrack: PropTypes.func.isRequired,
+  isAlbumTrackList: PropTypes.bool.isRequired,
+  setIsAlBumTrackList: PropTypes.func.isRequired,
+  setSelectedSong: PropTypes.func.isRequired,
+  setIsArtistTrackList: PropTypes.func.isRequired,
+  isArtistTrackList: PropTypes.bool.isRequired,
   onSearch: PropTypes.string,
 };
