@@ -40,7 +40,7 @@ module.exports = {
       gridTemplateRows: {
         mobileCarousel: '20px 20px 3fr',
         desktopCarousel: '30px 2fr',
-        desktop: '1fr 450px 300px 300px 400px',
+        desktop: '1fr 470px 300px 300px 400px',
         mobile: '1fr 430px 550px 220px 300px 690px',
       },
       borderRadius: {

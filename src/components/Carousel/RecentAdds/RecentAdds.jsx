@@ -11,7 +11,7 @@ function RecentAdds({ item, setCurrentTrack }) {
   itemReversed.reverse();
 
   return (
-    <div ref={scrollWrapperRef} role="list" className="flex flex-row">
+    <div ref={scrollWrapperRef} role="list" className="flex flex-row overflow-x-auto">
       <Card item={item} itemReversed={itemReversed} setCurrentTrack={setCurrentTrack} />
       <div className="hidden">{isDragging}</div>
     </div>
