@@ -103,7 +103,7 @@ function SideBar({ sideBarClass, albums, handleSideBar }) {
               onChange={changeFileHandler}
             />
             <button
-              className="bg-bgPlaybar shadow-input2 focus:outline-none w-5/12 mt-3   rounded-xl text-sm text-white py-1 font-scada hover:text-mainColor hover:shadow-input"
+              className="bg-bgPlaybar shadow-input2 focus:outline-none w-5/12 mt-5 rounded-xl text-sm text-white py-1 font-scada hover:text-mainColor hover:shadow-input"
               onClick={handleSubmission}>
               Upload Music
             </button>
