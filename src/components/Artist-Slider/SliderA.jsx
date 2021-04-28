@@ -4,18 +4,11 @@ import PropTypes from 'prop-types';
 
 function SliderA({ artists, index, width, handleClick }) {
   const [translationSlide, setTranslationSlide] = useState();
-  const [translationTitle, setTranslationTitle] = useState();
-  const [translationArtist, setTranslationArtist] = useState();
-
   useEffect(() => {
     if (width < 900) {
       setTranslationSlide(-13.75);
-      setTranslationTitle('translate-y-6');
-      setTranslationArtist('translate-y-36');
     } else {
       setTranslationSlide(-18.75);
-      setTranslationTitle('translate-y-8');
-      setTranslationArtist('translate-y-56');
     }
   }, [width]);
   return (
@@ -23,19 +16,19 @@ function SliderA({ artists, index, width, handleClick }) {
       className="h-full w-full"
       style={{
         transform: `translateY(${translationSlide * index}rem)`,
-        transition: `transform 0.5s ease-in-out`,
       }}>
       {artists.map((artist, index) => (
         <button
           onClick={handleClick}
           key={index}
           type="button"
-          className="w-full h-full bg-center bg-no-repeat bg-cover rounded-3xl bg-blend-lighten"
-          style={{ backgroundImage: `url(${artist.picture})` }}
-          alt={ImgDefault}>
-          <div className={`absolute font-scada font-bold transform shadow-2xl text-white pl-4 ${translationTitle}`}>{artist.name}</div>
-          <div className={`absolute font-cuprum text-xs font-thin border-opacity-25 shadow-2xl transform  text-white pl-4 ${translationArtist}`}>
-            {artist.artist}
+          className="flex flex-col w-full h-full bg-center bg-no-repeat bg-cover rounded-3xl transform hover:scale-105"
+          style={{ backgroundImage: `url(${artist.picture})` }}>
+          <div className="flex flex-col justify-end w-full h-full">
+            <div className="text-left flex flex-col justify-between pl-2 pt-8 900:py-12 900:px-3 h-full w-full bg-black bg-opacity-30 hover:bg-opacity-10">
+              <div className="font-scada text-white font-bold text-2xl 900:text-3xl">{artist.name}</div>
+              <img classwName="bg-center bg-cover" src={ImgDefault} alt={ImgDefault} />
+            </div>
           </div>
         </button>
       ))}
