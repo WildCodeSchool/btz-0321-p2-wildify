@@ -95,7 +95,6 @@ function App() {
     } else {
       setIsAdmin(true);
     }
-    console.log(isAdmin);
   };
   return (
     <div
@@ -105,7 +104,7 @@ function App() {
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
       }}>
-      {isAdmin && <AdminPannel item={item} token={token} albums={albums} />}
+      {isAdmin && <AdminPannel item={item} token={token} albums={albums} artists={artist} />}
       <button onClick={handleAdmin}>ADMIN PANNEL</button>
       <div className="grid mx-5 gap-5  900:gap-6 grid-cols-mobile grid-rows-mobile 900:grid-cols-desktop 900:ml-6 900:mr-0 900:grid-rows-desktop">
         <Header handleSideBar={handleSideBar} setOnSearch={setOnSearch} isSideBarVisible={isSideBarVisible} />

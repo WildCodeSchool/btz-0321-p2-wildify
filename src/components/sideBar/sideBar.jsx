@@ -5,10 +5,11 @@ import useWindowDimensions from '../../Hooks/useWindowDimension';
 import Formbg from '../../img/BackGrounds/BgSideBarBG5.png';
 
 function SideBar({ sideBarClass, albums, handleSideBar }) {
-  const [selectFile, setSelectFile] = useState();
   const [imgUrl, setImgUrl] = useState();
   const [albumIndex, setAlbumindex] = useState();
   const { width } = useWindowDimensions();
+  const [selectFile, setSelectFile] = useState();
+
   const changeFileHandler = (event) => {
     setSelectFile(event.target.files[0]);
   };
