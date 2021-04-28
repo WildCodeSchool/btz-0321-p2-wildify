@@ -19,7 +19,7 @@ export default function Contact() {
   return (
     <div className="w-full h-full p-6 900:flex 900:flex-row 900:p-10">
       <div className="flex flex-col pr-12">
-        <h2 className="text-white text-4xl 900:text-6xl md:font-scada">Help us to make Wizic better</h2>
+        <h2 className="text-white text-4xl md:font-scada">Help us to make Wizic better</h2>
         <p className="mt-3 text-white text-2xl md:font-scada">Your opinion remain for us, please give a feedback</p>
       </div>
       <form className=" w-full flex flex-col mt-10 900:my-1 900:w-4/5 " onSubmit={sendEmail}>
