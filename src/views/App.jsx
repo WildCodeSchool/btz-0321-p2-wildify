@@ -40,6 +40,7 @@ function App() {
   const { token } = useContext(authContext);
   const history = useHistory();
   const [isAlbumTrackList, setIsAlBumTrackList] = useState(false);
+  const [isArtistTrackList, setIsArtistTrackList] = useState(false);
 
   useEffect(() => {
     if (!token) {
@@ -105,7 +106,8 @@ function App() {
             <Carousel
               setIsAlBumTrackList={setIsAlBumTrackList}
               isAlbumTrackList={isAlbumTrackList}
-              setOnListen={setOnListen}
+              setIsArtistTrackList={setIsArtistTrackList}
+              isArtistTrackList={isArtistTrackList}
               setSelectedSong={setSelectedSong}
               setCurrentTrack={setCurrentTrack}
               onSearch={onSearch}
@@ -174,6 +176,7 @@ function App() {
       {!isLoading && width > 900 ? (
         <Playbar
           isAlbumTrackList={isAlbumTrackList}
+          isArtistTrackList={isArtistTrackList}
           onListen={onListen}
           audio={audio}
           currentTrack={currentTrack}
