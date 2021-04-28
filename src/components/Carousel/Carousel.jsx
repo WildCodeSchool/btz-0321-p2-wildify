@@ -7,13 +7,23 @@ import PropTypes from 'prop-types';
 import SearchResults from './SearchResults/SearchResults';
 import AlbumTrackList from './AlbumCarousel/AlbumTrackList';
 
-export default function Carousel({ item, albums, artists, onSearch, setCurrentTrack }) {
+export default function Carousel({
+  item,
+  albums,
+  artists,
+  onSearch,
+  isAlbumTrackList,
+  setIsAlBumTrackList,
+  setCurrentTrack,
+  setOnListen,
+  setSelectedSong,
+}) {
   const [count, setCount] = useState(0);
   const [isRecentAddsActive, setIsRecentAddsActive] = useState(true);
   const [isArtistActive, setIsArtistActive] = useState(false);
   const [isAlbumActive, setIsAlbumActive] = useState(false);
   const [isTrackListActive, setIsTrackListActive] = useState(false);
-  const [isAlbumTrackList, setIsAlBumTrackList] = useState(false);
+
   const [albumChoice, setAlbumChoice] = useState('');
 
   function handleArtistChange() {
@@ -52,23 +62,17 @@ export default function Carousel({ item, albums, artists, onSearch, setCurrentTr
     }
   }, [onSearch]);
 
-  useEffect(() => {
-    if (isAlbumTrackList) {
+  const handleClick = (e) => {
+    if (!isAlbumTrackList) {
+      setAlbumChoice(e.target.innerHTML);
+      setIsAlBumTrackList(true);
       setIsAlbumActive(false);
       setIsArtistActive(false);
       setIsTrackListActive(false);
       setIsRecentAddsActive(false);
     } else {
-      setIsAlbumActive(true);
-    }
-  }, [isAlbumTrackList]);
-
-  const handleClick = (e) => {
-    setAlbumChoice(e.target.innerHTML);
-    if (isAlbumTrackList) {
       setIsAlBumTrackList(false);
-    } else {
-      setIsAlBumTrackList(true);
+      setIsAlbumActive(true);
     }
   };
 
@@ -92,7 +96,15 @@ export default function Carousel({ item, albums, artists, onSearch, setCurrentTr
       {isArtistActive && <Artist count={count} setCount={setCount} artists={artists} />}
       {isAlbumActive && <Album handleClick={handleClick} albums={albums} />}
       {isTrackListActive && <TrackList count={count} setCount={setCount} item={item} setCurrentTrack={setCurrentTrack} />}
-      {isAlbumTrackList && <AlbumTrackList albumChoice={albumChoice} handleClick={handleClick} item={item} />}
+      {isAlbumTrackList && (
+        <AlbumTrackList
+          setCurrentTrack={setCurrentTrack}
+          setSelectedSong={setSelectedSong}
+          albumChoice={albumChoice}
+          handleClick={handleClick}
+          item={item}
+        />
+      )}
       {onSearch && <SearchResults onSearch={onSearch} item={item} />}
     </div>
   );

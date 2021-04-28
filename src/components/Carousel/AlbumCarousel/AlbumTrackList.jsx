@@ -2,7 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Backward from '../../../img/BackwardArrow.svg';
 
-function AlbumTrackList({ handleClick, item, albumChoice }) {
+function AlbumTrackList({ handleClick, item, albumChoice, setSelectedSong, setCurrentTrack }) {
+  console.log(item);
+  console.log(setCurrentTrack);
+
+  const handleClick2 = (e) => {
+    const mySong = item.filter((song) => song.title.includes(e.target.value));
+    console.log(mySong);
+    setSelectedSong(mySong);
+    // console.log(item.indexOf(item.filter((song) => song.title.includes(mySong[0].title))[0].title));
+    // console.log(item.filter((song) => song.title.includes(mySong[0].title))[0].title);
+  };
   return (
     <div className="h-full w-full">
       <button onClick={handleClick}>
@@ -13,9 +23,9 @@ function AlbumTrackList({ handleClick, item, albumChoice }) {
           .filter((song) => song.album.title.includes(albumChoice))
           .map((song, index) => {
             return (
-              <li key={index} className={`font-cuprum text-base font-regular text-white`}>
+              <button key={index} value={song.title} onClick={handleClick2} className={`font-cuprum text-base font-regular text-white`}>
                 {song.title}
-              </li>
+              </button>
             );
           })}
       </ul>
