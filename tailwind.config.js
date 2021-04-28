@@ -40,6 +40,7 @@ module.exports = {
         desktopCarousel: '30px 2fr',
         desktop: '1fr 400px 300px 300px 400px',
         mobile: '1fr 400px 550px 220px 300px 690px',
+        adminDesk: '150px 800px 800px',
       },
       borderRadius: {
         20: '1.25rem',
