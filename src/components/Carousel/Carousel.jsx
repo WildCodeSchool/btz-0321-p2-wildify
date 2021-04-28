@@ -96,12 +96,13 @@ export default function Carousel({ item, albums, artists, onSearch, setCurrentTr
           TrackList
         </button>
       </div>
-
-      {isRecentAddsActive && <RecentAdds count={count} setCount={setCount} item={item} setCurrentTrack={setCurrentTrack} />}
-      {isArtistActive && <Artist count={count} setCount={setCount} artists={artists} />}
-      {isAlbumActive && <Album count={count} setCount={setCount} albums={albums} />}
-      {isTrackListActive && <TrackList count={count} setCount={setCount} item={item} setCurrentTrack={setCurrentTrack} />}
-      {onSearch && <SearchResults onSearch={onSearch} item={item} />}
+      <div className="overflow-x-auto">
+        {isRecentAddsActive && <RecentAdds count={count} setCount={setCount} item={item} setCurrentTrack={setCurrentTrack} />}
+        {isArtistActive && <Artist count={count} setCount={setCount} artists={artists} />}
+        {isAlbumActive && <Album count={count} setCount={setCount} albums={albums} />}
+        {isTrackListActive && <TrackList count={count} setCount={setCount} item={item} setCurrentTrack={setCurrentTrack} />}
+        {onSearch && <SearchResults onSearch={onSearch} item={item} />}
+      </div>
     </div>
   );
 }

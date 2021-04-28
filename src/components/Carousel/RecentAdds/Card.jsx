@@ -9,7 +9,7 @@ export default function Card({ itemReversed, setCurrentTrack }) {
         <button
           onClick={() => setCurrentTrack(itemReversed.length - 1 - index)}
           key={index}
-          className="flex justify-end w-56 h-72 mb-3 mx-3 rounded-2xl cursor-pointer border text-white flex-col shadow-card focus:outline-none hover:border hover:border-mainColor"
+          className="flex justify-end w-56 h-72 my-3 mx-3 rounded-2xl cursor-pointer border text-white flex-col shadow-card focus:outline-none hover:border hover:border-mainColor transform hover:scale-105"
           style={{
             backgroundImage: `url(${song.album.picture})`,
             backgroundSize: `cover`,

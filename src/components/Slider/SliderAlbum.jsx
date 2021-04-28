@@ -25,7 +25,7 @@ function SliderAlbum({ albums, item, setCurrentTrack, setSelectedSong, setIsAlbu
     }
   };
   return (
-    <div className="w-full h-full flex flex-col align-middle justify-center items-center">
+    <div className="w-full h-full flex flex-col align-middle items-end">
       {!isTrackList ? (
         <div className="w-full h-full flex flex-col align-middle justify-center items-center">
           <Previous className="" width={width} albums={albums} index={index} setIndex={setIndex} setAlbumChoice={setAlbumChoice} />
@@ -33,7 +33,7 @@ function SliderAlbum({ albums, item, setCurrentTrack, setSelectedSong, setIsAlbu
           <Slider handleClick={handleClick} width={width} albums={albums} index={index} />
         </div>
       ) : (
-        <div className="overflow-y-auto">
+        <div className="overflow-y-auto w-full">
           <AlbumTrackList
             albumChoice={albumChoice}
             handleClick={handleClick}
