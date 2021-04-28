@@ -17,7 +17,7 @@ function Previous({ albums, index, setIndex, width, setAlbumChoice }) {
     setAlbumChoice(albums[index === 0 ? albums.length - 1 : index - 1].title);
   };
   return (
-    <button className={`absolute cursor-pointer transform ${translationTopArrow} focus:outline-none z-10`} onClick={handleClick}>
+    <button className={`absolute cursor-pointer transform ${translationTopArrow} focus:outline-none z-10 `} onClick={handleClick}>
       <img src={Prev} alt="previous" />
     </button>
   );
