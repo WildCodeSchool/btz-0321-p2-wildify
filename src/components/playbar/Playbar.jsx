@@ -26,6 +26,7 @@ export default function Playbar({
   setIsPlaySwitch,
   selectedSong,
   isAlbum,
+  isArtist,
 }) {
   const [sliderValue, setSliderValue] = useState(0);
   const [sliderPos, setSliderPos] = useState('100');
@@ -58,7 +59,7 @@ export default function Playbar({
   };
 
   const updateSong = () => {
-    if (isAlbum) {
+    if (isAlbum || isArtist) {
       setOnListen(selectedSong[0].s3_link);
 
       setTitle(selectedSong[0].title);
@@ -238,4 +239,5 @@ Playbar.propTypes = {
   setIsPlaySwitch: PropTypes.func,
   selectedSong: PropTypes.array,
   isAlbum: PropTypes.bool.isRequired,
+  isArtist: PropTypes.bool.isRequired,
 };
