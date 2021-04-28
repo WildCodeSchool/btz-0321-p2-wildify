@@ -50,26 +50,59 @@ export default function Carousel({ item, albums, artists, onSearch, setCurrentTr
   }, [onSearch]);
 
   return (
-    <div className="grid grid-cols-1 grid-rows-mobileCarousel 900:grid-cols-2 900:grid-rows-desktopCarousel w-full h-full">
+    <div className="flex flex-col w-full h-full p-2">
       <div className="col-start-1 col-end-2 row-start-1 row-end-2">
-        <p className={isRecentAddsActive ? 'text-white px-2' : 'hidden'}>Recent adds</p>
-        <p className={isArtistActive ? 'text-white px-2' : 'hidden'}>Artist</p>
-        <p className={isAlbumActive ? 'text-white px-2' : 'hidden'}>Album</p>
-        <p className={isTrackListActive ? 'text-white px-2' : 'hidden'}>TrackList</p>
+        <p className={isRecentAddsActive ? ' p-3 font-cuprum text-4xl font-bold text-mainColor px-2' : 'hidden'}>Recent adds</p>
+        <p className={isArtistActive ? ' p-3 font-cuprum text-4xl font-bold text-mainColor px-2' : 'hidden'}>Artist</p>
+        <p className={isAlbumActive ? ' p-3 font-cuprum text-4xl font-bold text-mainColor px-2' : 'hidden'}>Album</p>
+        <p className={isTrackListActive ? ' p-3 font-cuprum text-4xl font-bold text-mainColor px-2' : 'hidden'}>TrackList</p>
       </div>
 
-      <div className="col-start-1 900:col-start-2 col-end-2 900:col-end-3 row-start-2 900:row-start-1 row-end-3 900:row-end-2 flex flex-row justify-around items-start text-white">
-        <button onClick={handleRecentAddsChange}>Recent adds</button>
-        <button onClick={handleArtistChange}>Artists</button>
-        <button onClick={handleAlbumChange}>Album</button>
-        <button onClick={handleTrackListChange}>TrackList</button>
+      <div className="pb-4 flex flex-row justify-around  900:w-full 900:justify-end ">
+        <button
+          className={
+            isRecentAddsActive
+              ? '900:mr-8 900:mb-2 focus:outline-none text-mainColor'
+              : '900:mr-8 900:mb-2 focus:outline-none font-scada text-white font-bold '
+          }
+          onClick={handleRecentAddsChange}>
+          Recent adds
+        </button>
+        <button
+          className={
+            isArtistActive
+              ? '900:mr-8 900:mb-2 focus:outline-none text-mainColor'
+              : '900:mr-8 900:mb-2 focus:outline-none font-scada text-white font-bold'
+          }
+          onClick={handleArtistChange}>
+          Artists
+        </button>
+        <button
+          className={
+            isAlbumActive
+              ? '900:mr-8 900:mb-2 focus:outline-none text-mainColor'
+              : '900:mr-8 900:mb-2 focus:outline-none font-scada text-white font-bold'
+          }
+          onClick={handleAlbumChange}>
+          Album
+        </button>
+        <button
+          className={
+            isTrackListActive
+              ? '900:mr-8 900:mb-2 focus:outline-none text-mainColor'
+              : '900:mr-8 900:mb-2 focus:outline-none font-scada text-white font-bold'
+          }
+          onClick={handleTrackListChange}>
+          TrackList
+        </button>
       </div>
-
-      {isRecentAddsActive && <RecentAdds count={count} setCount={setCount} item={item} setCurrentTrack={setCurrentTrack} />}
-      {isArtistActive && <Artist count={count} setCount={setCount} artists={artists} />}
-      {isAlbumActive && <Album count={count} setCount={setCount} albums={albums} />}
-      {isTrackListActive && <TrackList count={count} setCount={setCount} item={item} setCurrentTrack={setCurrentTrack} />}
-      {onSearch && <SearchResults onSearch={onSearch} item={item} />}
+      <div className="overflow-x-auto">
+        {isRecentAddsActive && <RecentAdds count={count} setCount={setCount} item={item} setCurrentTrack={setCurrentTrack} />}
+        {isArtistActive && <Artist count={count} setCount={setCount} artists={artists} />}
+        {isAlbumActive && <Album count={count} setCount={setCount} albums={albums} />}
+        {isTrackListActive && <TrackList count={count} setCount={setCount} item={item} setCurrentTrack={setCurrentTrack} />}
+        {onSearch && <SearchResults onSearch={onSearch} item={item} />}
+      </div>
     </div>
   );
 }
