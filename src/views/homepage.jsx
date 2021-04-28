@@ -39,6 +39,7 @@ function Homepage({ location: { search } }) {
         backgroundRepeat: `no-repeat`,
         backgroundPosition: `left`,
       }}>
+      <button>ADMIN PANNEL</button>
       <div className="flex items-center justify-between ">
         <h1 className="font-scada text-white font-bold text-4xl">WIZIC</h1>
       </div>

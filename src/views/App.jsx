@@ -13,6 +13,7 @@ import bg from '../img/BackGrounds/BackGround1.webp';
 import PlayerMobile from '../components/PlayerMobile/PlayerMobile';
 import authContext from '../context/authContext';
 import { useHistory } from 'react-router';
+import AdminPannel from '../components/AdminPannel/AdminPannel';
 
 function App() {
   const [isSideBarVisible, setisSideBarVisible] = useState(false);
@@ -38,6 +39,7 @@ function App() {
   const [isAlbum, setIsAlbum] = useState(false);
   const [onSearch, setOnSearch] = useState();
   const { token } = useContext(authContext);
+  const [isAdmin, setIsAdmin] = useState('');
   const history = useHistory();
 
   useEffect(() => {
@@ -87,6 +89,14 @@ function App() {
           'flex fixed z-50 flex-col h-screen w-screen  top-0 right-0 900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-bgPlaybar  shadow-playbar',
         );
   };
+  const handleAdmin = () => {
+    if (isAdmin) {
+      setIsAdmin(false);
+    } else {
+      setIsAdmin(true);
+    }
+    console.log(isAdmin);
+  };
   return (
     <div
       className="flex align-middle justify-center pb-24"
@@ -95,6 +105,8 @@ function App() {
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
       }}>
+      {isAdmin && <AdminPannel item={item} token={token} albums={albums} />}
+      <button onClick={handleAdmin}>ADMIN PANNEL</button>
       <div className="grid mx-5 gap-5  900:gap-6 grid-cols-mobile grid-rows-mobile 900:grid-cols-desktop 900:ml-6 900:mr-0 900:grid-rows-desktop">
         <Header handleSideBar={handleSideBar} setOnSearch={setOnSearch} isSideBarVisible={isSideBarVisible} />
 
