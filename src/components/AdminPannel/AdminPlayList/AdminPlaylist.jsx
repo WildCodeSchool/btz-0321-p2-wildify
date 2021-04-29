@@ -59,11 +59,11 @@ export default function AdminPlaylist({ playList, playListFetch }) {
     <div className="text-white w-full h-full flex flex-col items-center align-middle justify-center">
       <div className="grid grid-cols-2 grid-rows-2 w-full h-full">
         <form onSubmit={createPlayList} className="flex flex-col items-center justify-center align-middle w-full h-full">
-          <label htmlFor="">Create A PlayList : </label>
+          <label htmlFor="playList">Create A PlayList : </label>
           <input
             onChange={(e) => setPlayListTitle(e.target.value)}
             type="text"
-            name="playList[title]"
+            name="playList"
             className="bg-black opacity-50 h-8 rounded-xl w-4/5 px-4 my-2"
             placeholder="PlayList Title"
           />
@@ -87,8 +87,8 @@ export default function AdminPlaylist({ playList, playListFetch }) {
           </button>
         </form>
         <form onSubmit={updatePlayList} className="flex flex-col items-center justify-center align-middle">
-          <label htmlFor="">Update PlayList :</label>
-          <select onChange={(e) => setPlayListId(e.target.value)} name="" id="" className="bg-black px-4 rounded-xl w-52 w-4/5 opacity-50 h-8">
+          <label htmlFor="update">Update PlayList :</label>
+          <select onChange={(e) => setPlayListId(e.target.value)} name="update" id="" className="bg-black px-4 rounded-xl w-52 w-4/5 opacity-50 h-8">
             {playList.map((playList, index) => {
               return (
                 <option key={index} value={playList.id}>
