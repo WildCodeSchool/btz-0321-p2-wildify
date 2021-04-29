@@ -88,7 +88,7 @@ export default function AdminPlaylist({ playList, playListFetch }) {
         </form>
         <form onSubmit={updatePlayList} className="flex flex-col items-center justify-center align-middle">
           <label htmlFor="">Update PlayList :</label>
-          <select onChange={(e) => setPlayListId(e.target.value)} name="" id="" className="bg-black px-4 rounded-xl opacity-50 h-8">
+          <select onChange={(e) => setPlayListId(e.target.value)} name="" id="" className="bg-black px-4 rounded-xl w-52 opacity-50 h-8">
             {playList.map((playList, index) => {
               return (
                 <option key={index} value={playList.id}>
@@ -124,12 +124,14 @@ export default function AdminPlaylist({ playList, playListFetch }) {
           </button>
         </form>
         <div className="flex flex-col items-center justify-center align-middle">a</div>
-        <div className="flex flex-row items-center justify-center align-middle">
-          <div className="h-5/6 w-full bg-black text-yellow-500 flex flex-col rounded-xl p-4 justify-center">
+
+        <div className="flex flex-col items-center justify-center align-middle px-6 ">
+          <h1>PlayLists:</h1>
+          <div className="h-5/6 w-full bg-black text-white border-white border-4 flex flex-col rounded-xl p-4 justify-center">
             <ul className="overflow-y-auto">
               {playList.map((playList, index) => {
                 return (
-                  <li className="border-b-2 flex items-center justify-center border-yellow-400 py-2 w-full" key={index}>
+                  <li className="border-b-2 flex items-center justify-center border-white py-2 w-full" key={index}>
                     {playList.title}
                     <img className="w-24 mx-3 rounded-full" src={playList.picture} alt="" />
                   </li>
