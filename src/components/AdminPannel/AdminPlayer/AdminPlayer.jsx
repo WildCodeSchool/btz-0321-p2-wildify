@@ -22,7 +22,7 @@ export default function AdminPlayer({ item }) {
 
   return (
     <div>
-      <select onChange={handleChange} name="" id="">
+      <select onChange={handleChange} name="Track" className="text-white bg-black bg-opacity-50 " id="">
         {item.map((song, index) => {
           return (
             <option key={index} value={song.s3_link}>
