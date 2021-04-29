@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-
+import PropTypes from 'prop-types';
 export default function AdminPlayer({ item }) {
   const audioRef = useRef(null);
 
@@ -7,7 +7,6 @@ export default function AdminPlayer({ item }) {
 
   const updateSong = () => {
     audioRef.current.load();
-    console.log(audioRef.current);
   };
 
   const handleChange = (e) => {
@@ -37,3 +36,7 @@ export default function AdminPlayer({ item }) {
     </div>
   );
 }
+
+AdminPlayer.propTypes = {
+  item: PropTypes.array.isRequired,
+};

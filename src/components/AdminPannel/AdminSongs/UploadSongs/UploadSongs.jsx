@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import authContext from '../../../../context/authContext';
 
 export default function UploadSongs({ playList, albums }) {
-  console.log(albums);
   const [albumId, setAlbumId] = useState();
   const [imgUrl, setImgUrl] = useState();
   const [selectFile, setSelectFile] = useState();
@@ -62,8 +61,12 @@ export default function UploadSongs({ playList, albums }) {
         })}
       </select>
       <select className="my-2 w-4/5 px-4 h-14 bg-black bg-opacity-50 rounded-xl" name="" id="">
-        {playList.map((playList) => {
-          return <option value="">{playList.title}</option>;
+        {playList.map((playList, index) => {
+          return (
+            <option key={index} value="">
+              {playList.title}
+            </option>
+          );
         })}
       </select>
       <button className="border-2 border-white px-4 py-2 rounded-xl focus:outline-none hover:bg-gray-800 active:bg-gray-600" onClick={handleSubmit}>

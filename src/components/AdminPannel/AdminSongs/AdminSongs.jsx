@@ -3,8 +3,9 @@ import AdminPlayer from '../AdminPlayer/AdminPlayer';
 import UpdateSongs from './UpdateSongs/UpdateSongs';
 import UploadSongs from './UploadSongs/UploadSongs';
 import authContext from '../../../context/authContext';
+import PropTypes from 'prop-types';
 
-export default function AdminSongs({ item, artists, albums, playList }) {
+export default function AdminSongs({ item, albums, playList }) {
   const { token } = useContext(authContext);
 
   return (
@@ -24,3 +25,9 @@ export default function AdminSongs({ item, artists, albums, playList }) {
     </div>
   );
 }
+
+AdminSongs.propTypes = {
+  item: PropTypes.array.isRequired,
+  albums: PropTypes.array.isRequired,
+  playList: PropTypes.array.isRequired,
+};

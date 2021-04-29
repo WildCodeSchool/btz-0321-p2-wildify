@@ -27,7 +27,7 @@ function SliderA({ artists, index, width, handleClick }) {
           <div className="flex flex-col justify-end w-full h-full">
             <div className="text-left flex flex-col justify-between pl-2 pt-8 900:py-12 900:px-3 h-full w-full bg-black bg-opacity-30 hover:bg-opacity-10">
               <div className="font-scada text-white font-bold text-2xl 900:text-3xl">{artist.name}</div>
-              <img classwName="bg-center bg-cover" src={ImgDefault} alt={ImgDefault} />
+              <img className="bg-center bg-cover" src={ImgDefault} alt={ImgDefault} />
             </div>
           </div>
         </button>

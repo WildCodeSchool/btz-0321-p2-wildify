@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState, useRef } from 'react';
+import React, { useContext, useState } from 'react';
 import authContext from '../../../context/authContext';
 export default function AdminPlaylist({ playList, playListFetch }) {
   const [playListTitle, setPlayListTitle] = useState();
@@ -12,7 +12,7 @@ export default function AdminPlaylist({ playList, playListFetch }) {
   const [playListId, setPlayListId] = useState();
 
   const { token } = useContext(authContext);
-  console.log(updateTitle, updateDescription, updatePicture, updateSongs);
+
   const playListData = {
     title: playListTitle,
     description: playListDescription,
@@ -28,7 +28,7 @@ export default function AdminPlaylist({ playList, playListFetch }) {
 
   const createPlayList = (e) => {
     e.preventDefault();
-    console.log(playListData);
+
     fetch('https://bazify-backend.basile.vernouillet.dev/api/v1/playlists', {
       method: 'POST',
       headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
@@ -36,14 +36,13 @@ export default function AdminPlaylist({ playList, playListFetch }) {
       body: JSON.stringify(playListData),
     })
       .then((res) => res.json())
-      .then((res) => console.log(res));
+      .then((res) => res);
     playListFetch();
   };
 
   const updatePlayList = (e) => {
     e.preventDefault();
 
-    console.log(playListData);
     fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/playlists/${playListId}`, {
       method: 'PUT',
       headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
@@ -51,7 +50,7 @@ export default function AdminPlaylist({ playList, playListFetch }) {
       body: JSON.stringify(playListUpdate),
     })
       .then((res) => res.json())
-      .then((res) => console.log(res));
+      .then((res) => res);
     playListFetch();
   };
 
