@@ -38,7 +38,7 @@ export default function UploadSongs({ playList, albums }) {
       body: JSON.stringify({ picture: imgUrl }),
     })
       .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .catch((err) => err);
   };
 
   return (
