@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import authContext from '../../../context/authContext';
+import PropTypes from 'prop-types';
 export default function AdminPlaylist({ playList, playListFetch }) {
   const [playListTitle, setPlayListTitle] = useState();
   const [playListDescription, setPlayListDescription] = useState();
@@ -143,3 +144,8 @@ export default function AdminPlaylist({ playList, playListFetch }) {
     </div>
   );
 }
+
+AdminPlaylist.propTypes = {
+  playList: PropTypes.array.isRequired,
+  playListFetch: PropTypes.func.isRequired,
+};

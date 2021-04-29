@@ -6,7 +6,7 @@ export default function Card({ itemReversed, setCurrentTrack }) {
   return (
     <div className="h-full flex flex-row justify-end">
       {itemReversed.map((song, index) => (
-        <button
+        <div
           onClick={() => setCurrentTrack(itemReversed.length - 1 - index)}
           key={index}
           className="flex justify-end w-56 h-72 my-3 mx-3 rounded-2xl cursor-pointer border text-white flex-col shadow-card focus:outline-none hover:border hover:border-mainColor transform hover:scale-105"
@@ -29,7 +29,7 @@ export default function Card({ itemReversed, setCurrentTrack }) {
               <img src={PlayerButton} alt="" />
             </button>
           </div>
-        </button>
+        </div>
       ))}
     </div>
   );
