@@ -65,7 +65,7 @@ export default function Carousel({
 
   const handleAlbumClick = (e) => {
     if (!isAlbumTrackList) {
-      setAlbumChoice(e.target.innerHTML);
+      setAlbumChoice(e.target.value);
       setIsAlBumTrackList(true);
       setIsAlbumActive(false);
       setIsArtistActive(false);
@@ -79,7 +79,7 @@ export default function Carousel({
 
   const handleArtistClick = (e) => {
     if (!isArtistTrackList) {
-      setArtistChoice(e.target.innerHTML);
+      setArtistChoice(e.target.value);
       setIsAlBumTrackList(false);
       setIsAlbumActive(false);
       setIsArtistActive(false);

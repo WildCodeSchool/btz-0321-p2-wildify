@@ -19,7 +19,7 @@ export default function Card({ itemReversed, setCurrentTrack }) {
           <div className="flex w-full bg-black bg-opacity-30 p-2 rounded-b-2xl">
             <div className=" w-full flex flex-col items-start  justify-start ">
               <p className="font-scada leading-5 text-white font-bold text-lg text-left">{song.title}</p>
-              <p className="font-scada text-white text-sm">{song.artist.name}</p>
+              <p className="font-scada text-white text-sm text-left">{song.artist.name}</p>
             </div>
             <button
               className="flex focus:outline-none items-end m-1"

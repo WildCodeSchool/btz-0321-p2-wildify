@@ -6,7 +6,7 @@ export default function AlbumCard({ albums, handleAlbumClick }) {
     <div className="flex flex-row">
       {albums.map((album, index) => (
         <button
-          value={index}
+          value={album.title}
           onClick={handleAlbumClick}
           key={index}
           className="w-64 h-80 mx-3 rounded-2xl cursor-pointer text-center"
@@ -16,7 +16,7 @@ export default function AlbumCard({ albums, handleAlbumClick }) {
             backgroundRepeat: `no-repeat`,
             backgroundPosition: `center`,
           }}>
-          {album.title}
+          <div>{album.title}</div>
         </button>
       ))}
     </div>
