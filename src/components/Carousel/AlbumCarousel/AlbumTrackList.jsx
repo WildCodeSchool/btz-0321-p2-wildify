@@ -13,8 +13,22 @@ function AlbumTrackList({ item, albumChoice, setSelectedSong }) {
           .filter((song) => song.album.title.includes(albumChoice))
           .map((song, index) => {
             return (
-              <button key={index} value={song.title} onClick={handleClick} className={`font-cuprum text-base font-regular text-white`}>
-                {song.title}
+              <button
+                className="focus:outline-none  mb-4 text-white flex flex-col text-left pb-2 border-b w-full hover:border-mainColor hover:text-mainColor"
+                key={index}
+                value={song.title}
+                onClick={handleClick}>
+                <div className="flex items-center">
+                  <div
+                    className="flex h-12 w-12 mr-2 rounded-full"
+                    style={{
+                      backgroundImage: `url(${song.album.picture})`,
+                      backgroundSize: `cover`,
+                      backgroundRepeat: `no-repeat`,
+                      backgroundPosition: `center`,
+                    }}></div>
+                  {song.title}
+                </div>
               </button>
             );
           })}
