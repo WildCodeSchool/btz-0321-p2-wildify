@@ -39,7 +39,7 @@ export default function AdminSongs({ item, albums, playList, artists }) {
               return <option value={artist.id}>{artist.name}</option>;
             })}
           </select>
-          <input onChange={(e) => setImgUrl(e.target.value)} placeholder="Album picture URL" type="text" />
+          <input onChange={(e) => setImgUrl(e.target.value)} className="bg-black opacity-50 text-white" placeholder="Album picture URL" type="text" />
           <button onClick={handlePictureSubmission}>SUBMIT ALBUM PICTURE</button>
           <div className="h-72 w-60"></div>
         </div>

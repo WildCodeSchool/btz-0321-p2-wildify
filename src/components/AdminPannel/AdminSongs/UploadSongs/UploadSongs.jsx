@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import authContext from '../../../../context/authContext';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+var jsmediatags = require('jsmediatags');
 export default function UploadSongs({ playList, albums }) {
   const [albumId, setAlbumId] = useState();
   const [imgUrl, setImgUrl] = useState();
@@ -12,6 +13,14 @@ export default function UploadSongs({ playList, albums }) {
     setSelectFile(e.target.files[0]);
   };
 
+  jsmediatags.read(selectFile, {
+    onSuccess: function (tag) {
+      console.log(tag);
+    },
+    onError: function (error) {
+      console.log(':(', error.type, error.info);
+    },
+  });
   const handleSubmit = () => {
     const formData = new FormData();
     formData.append('file', selectFile);
