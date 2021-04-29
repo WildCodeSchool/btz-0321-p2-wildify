@@ -1,7 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import authContext from '../../../context/authContext';
-import PropTypes from 'prop-types';
-export default function AdminPlaylist({ playList, playListFetch }) {
+import PropTypes, { resetWarningCache } from 'prop-types';
+export default function AdminPlaylist({ playList, playListFetch, item }) {
   const [playListTitle, setPlayListTitle] = useState();
   const [playListDescription, setPlayListDescription] = useState();
   const [playListPicture, setPlayListPicture] = useState();
@@ -11,7 +11,7 @@ export default function AdminPlaylist({ playList, playListFetch }) {
   const [updatePicture, setUpdatePicture] = useState();
   const [updateSongs, setUpdateSongs] = useState([]);
   const [playListId, setPlayListId] = useState();
-
+  console.log(item);
   const { token } = useContext(authContext);
 
   const playListData = {
@@ -56,7 +56,7 @@ export default function AdminPlaylist({ playList, playListFetch }) {
   };
 
   return (
-    <div className="text-white w-full h-full flex flex-col items-center align-middle justify-center">
+    <div className=" text-white w-full h-full flex flex-col items-center align-middle justify-center">
       <div className="grid grid-cols-2 grid-rows-2 w-full h-full">
         <form onSubmit={createPlayList} className="flex flex-col items-center justify-center align-middle w-full h-full">
           <label htmlFor="playList">Create A PlayList : </label>
@@ -123,7 +123,28 @@ export default function AdminPlaylist({ playList, playListFetch }) {
             UPDATE PLAYLIST
           </button>
         </form>
-        <div className="flex flex-col items-center justify-center align-middle">a</div>
+        <div className="flex flex-col  py-8 px-10 items-center justify-center align-middle">
+          <label htmlFor="">Add a song to a playlist :</label>
+          <select
+            className="w-64 my-2 bg-black text-white opacity-50 rounded-xl py-2 px-4
+          "
+            name=""
+            id="">
+            {item.map((song) => {
+              return <option>{song.title}</option>;
+            })}
+          </select>
+          <select
+            className="w-64 my-2 bg-black text-white opacity-50 rounded-xl py-2 px-4
+          "
+            name=""
+            id="">
+            {playList.map((playList) => {
+              return <option>{playList.title}</option>;
+            })}
+          </select>
+          <div className="w-full h-full bg-black border-white border-2 rounded-xl">{}</div>
+        </div>
 
         <div className="flex flex-col items-center justify-center align-middle px-6 ">
           <h1>PlayLists:</h1>

@@ -5,7 +5,7 @@ import AdminSongs from './AdminSongs/AdminSongs';
 import authContext from '../../context/authContext';
 import PropTypes from 'prop-types';
 
-export default function AdminPannel({ item, albums }) {
+export default function AdminPannel({ item, albums, hideAdmin }) {
   const [isAdminSong, setIsAdminSong] = useState(false);
 
   const [isAdminPlayList, setIsAdminPlayList] = useState(false);
@@ -26,7 +26,7 @@ export default function AdminPannel({ item, albums }) {
       });
 
   useEffect(async () => {
-    await playListFetch();
+    playListFetch();
   }, []);
 
   const showAdminPlayList = () => {
@@ -43,13 +43,16 @@ export default function AdminPannel({ item, albums }) {
     <div className=" w-full h-screen z-50 fixed bg-gray-700 ">
       <div className="h-44 w-full text-5xl text-gray-500 flex flex-col items-center align-middle justify-center  border-white border-b-2 ">
         {' '}
+        <button onClick={hideAdmin} className="w-24 h-24">
+          XXX
+        </button>
         <h1 className="border-white border-2 py-2 px-4 rounded-xl text-white">ADMIN PANNEL</h1>
         <p className="text-white">Take control on what U ear !</p>
       </div>
       <div className="h-4/5 w-full flex  flex-row">
         <AdminSidebar showAdminSongs={showAdminSongs} showAdminPlayList={showAdminPlayList} />
         {isAdminSong && <AdminSongs albums={albums} playList={playList} item={item} />}
-        {isAdminPlayList && <AdminPlaylist playListFetch={playListFetch} playList={playList} />}
+        {isAdminPlayList && <AdminPlaylist playListFetch={playListFetch} playList={playList} item={item} />}
       </div>
     </div>
   );
