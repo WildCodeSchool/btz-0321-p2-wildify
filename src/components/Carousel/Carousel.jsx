@@ -99,12 +99,16 @@ export default function Carousel({
         <p className={isArtistActive ? ' p-3 font-cuprum text-4xl font-bold text-mainColor px-2' : 'hidden'}>Artist</p>
         <p className={isAlbumActive ? ' p-3 font-cuprum text-4xl font-bold text-mainColor px-2' : 'hidden'}>Album</p>
         <p className={isTrackListActive ? ' p-3 font-cuprum text-4xl font-bold text-mainColor px-2' : 'hidden'}>TrackList</p>
+        <p className={isArtistTrackList ? ' p-3 font-cuprum text-4xl font-bold text-mainColor px-2' : 'hidden'}>{artistChoice}</p>
+        <p className={isAlbumTrackList ? ' p-3 font-cuprum text-4xl font-bold text-mainColor px-2' : 'hidden'}>{albumChoice}</p>
       </div>
 
       <div className="pb-4 flex flex-row justify-around  900:w-full 900:justify-end ">
         <button
           className={
-            isRecentAddsActive
+            isAlbumTrackList || isArtistTrackList
+              ? 'hidden'
+              : isRecentAddsActive
               ? '900:mr-8 900:mb-2 focus:outline-none text-mainColor'
               : '900:mr-8 900:mb-2 focus:outline-none font-scada text-white font-bold '
           }
@@ -113,7 +117,9 @@ export default function Carousel({
         </button>
         <button
           className={
-            isArtistActive
+            isAlbumTrackList || isArtistTrackList
+              ? 'hidden'
+              : isArtistActive
               ? '900:mr-8 900:mb-2 focus:outline-none text-mainColor'
               : '900:mr-8 900:mb-2 focus:outline-none font-scada text-white font-bold'
           }
@@ -122,7 +128,9 @@ export default function Carousel({
         </button>
         <button
           className={
-            isAlbumActive
+            isAlbumTrackList || isArtistTrackList
+              ? 'hidden'
+              : isAlbumActive
               ? '900:mr-8 900:mb-2 focus:outline-none text-mainColor'
               : '900:mr-8 900:mb-2 focus:outline-none font-scada text-white font-bold'
           }
@@ -131,7 +139,9 @@ export default function Carousel({
         </button>
         <button
           className={
-            isTrackListActive
+            isAlbumTrackList || isArtistTrackList
+              ? 'hidden'
+              : isTrackListActive
               ? '900:mr-8 900:mb-2 focus:outline-none text-mainColor'
               : '900:mr-8 900:mb-2 focus:outline-none font-scada text-white font-bold'
           }
