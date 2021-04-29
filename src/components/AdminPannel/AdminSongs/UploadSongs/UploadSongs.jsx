@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import authContext from '../../../../context/authContext';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-var jsmediatags = require('jsmediatags');
 export default function UploadSongs({ playList, albums }) {
   const [albumId, setAlbumId] = useState();
   const [imgUrl, setImgUrl] = useState();
