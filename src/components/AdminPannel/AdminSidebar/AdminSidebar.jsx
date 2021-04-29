@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default function AdminSidebar({ showAdminSongs, showAdminPlayList, showAdminUsers, showAdminSettings }) {
-  console.log(showAdminSongs);
   return (
     <div className="w-44 h-full justify-center text-white border-r-2 border-white">
       <ul>

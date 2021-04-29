@@ -12,7 +12,7 @@ export default function AdminPannel({ item, artists, albums }) {
   const { token } = useContext(authContext);
   const [playList, setPlayList] = useState();
 
-  useEffect(() => {
+  const playListFetch = () =>
     fetch('https://bazify-backend.basile.vernouillet.dev/api/v1/playlists', {
       method: 'GET',
       headers: { Authorization: `Bearer ${token}` },
@@ -24,8 +24,10 @@ export default function AdminPannel({ item, artists, albums }) {
       .catch((error) => {
         error;
       });
+
+  useEffect(async () => {
+    await playListFetch();
   }, []);
-  console.log(playList);
 
   const showAdminPlayList = () => {
     setIsAdminSong(false);
@@ -74,7 +76,7 @@ export default function AdminPannel({ item, artists, albums }) {
           showAdminPlayList={showAdminPlayList}
         />
         {isAdminSong && <AdminSongs playList={playList} item={item} artist={artists} albums={albums} />}
-        {isAdminPlayList && <AdminPlaylist playList={playList} />}
+        {isAdminPlayList && <AdminPlaylist playListFetch={playListFetch} playList={playList} />}
       </div>
     </div>
   );
