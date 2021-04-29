@@ -99,7 +99,7 @@ export default function PlayerMobile({
         Your browser does not support this audio format.
       </audio>
       <div
-        className="h-20 w-28 rounded-full shadow-ImgPlaybar"
+        className="h-16 w-24 rounded-full shadow-ImgPlaybar"
         style={{
           backgroundImage: `url(${picture})`,
           backgroundSize: `cover`,

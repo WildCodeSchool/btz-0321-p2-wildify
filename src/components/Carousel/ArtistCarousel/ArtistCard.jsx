@@ -8,14 +8,16 @@ export default function ArtistCard({ artists, handleArtistClick }) {
         <button
           onClick={handleArtistClick}
           key={index}
-          className="w-64 h-80 mx-3 rounded-2xl cursor-pointer text-center text-white"
+          className="flex justify-end w-56 h-72 my-3 mx-3 rounded-2xl cursor-pointer border text-white flex-col shadow-card focus:outline-none hover:border hover:border-mainColor transform hover:scale-105"
           style={{
             backgroundImage: `url(./src/img/defaultAlbumImage.png)`,
             backgroundSize: `cover`,
             backgroundRepeat: `no-repeat`,
             backgroundPosition: `center`,
           }}>
-          {artist.name}
+          <div className=" w-full flex  items-start  justify-start bg-black bg-opacity-30 p-4 rounded-b-2xl">
+            <p className="font-scada text-white text-xl">{artist.name}</p>
+          </div>
         </button>
       ))}
     </div>
