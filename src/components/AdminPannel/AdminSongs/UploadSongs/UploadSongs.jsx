@@ -12,14 +12,6 @@ export default function UploadSongs({ playList, albums }) {
     setSelectFile(e.target.files[0]);
   };
 
-  jsmediatags.read(selectFile, {
-    onSuccess: function (tag) {
-      console.log(tag);
-    },
-    onError: function (error) {
-      console.log(':(', error.type, error.info);
-    },
-  });
   const handleSubmit = () => {
     const formData = new FormData();
     formData.append('file', selectFile);
