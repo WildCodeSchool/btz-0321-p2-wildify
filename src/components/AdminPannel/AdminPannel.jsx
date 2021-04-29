@@ -1,13 +1,31 @@
-import React, { useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import AdminPlaylist from './AdminPlayList/AdminPlaylist';
 import AdminSidebar from './AdminSidebar/AdminSidebar';
 import AdminSongs from './AdminSongs/AdminSongs';
+import authContext from '../../context/authContext';
 
 export default function AdminPannel({ item, artists, albums }) {
   const [isAdminSong, setIsAdminSong] = useState(false);
   const [isAdminUsers, setIsAdminUsers] = useState(false);
   const [isAdminSettings, setIsAdminSettings] = useState(false);
   const [isAdminPlayList, setIsAdminPlayList] = useState(false);
+  const { token } = useContext(authContext);
+  const [playList, setPlayList] = useState();
+
+  useEffect(() => {
+    fetch('https://bazify-backend.basile.vernouillet.dev/api/v1/playlists', {
+      method: 'GET',
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        setPlayList(result);
+      })
+      .catch((error) => {
+        error;
+      });
+  }, []);
+  console.log(playList);
 
   const showAdminPlayList = () => {
     setIsAdminSong(false);
@@ -42,10 +60,11 @@ export default function AdminPannel({ item, artists, albums }) {
   };
 
   return (
-    <div className=" w-full h-screen z-50 fixed bg-adminBG">
-      <div className="h-44 w-full text-5xl text-gray-500 flex items-center align-middle justify-center  ">
+    <div className=" w-full h-screen z-50 fixed bg-gray-700 ">
+      <div className="h-44 w-full text-5xl text-gray-500 flex items-center align-middle justify-center flex flex-col items-center align-middle justify-center  border-white border-b-2 ">
         {' '}
-        <h1 className="border-white border-b-2">Admin Pannel</h1>{' '}
+        <h1 className="border-white border-2 py-2 px-4 rounded-xl text-white">ADMIN PANNEL</h1>
+        <p className="text-white">Take control on what U ear !</p>
       </div>
       <div className="h-4/5 w-full flex  flex-row">
         <AdminSidebar
@@ -54,8 +73,8 @@ export default function AdminPannel({ item, artists, albums }) {
           showAdminUsers={showAdminUsers}
           showAdminPlayList={showAdminPlayList}
         />
-        {isAdminSong && <AdminSongs item={item} artist={artists} albums={albums} />}
-        {isAdminPlayList && <AdminPlaylist />}
+        {isAdminSong && <AdminSongs playList={playList} item={item} artist={artists} albums={albums} />}
+        {isAdminPlayList && <AdminPlaylist playList={playList} />}
       </div>
     </div>
   );

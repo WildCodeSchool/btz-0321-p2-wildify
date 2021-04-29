@@ -5,8 +5,6 @@ export default function AdminPlayer({ item }) {
 
   const [onListen, setOnlisten] = useState();
 
-  console.log(audioRef);
-
   const updateSong = () => {
     audioRef.current.load();
     console.log(audioRef.current);
@@ -21,8 +19,8 @@ export default function AdminPlayer({ item }) {
   }, [onListen]);
 
   return (
-    <div>
-      <select onChange={handleChange} name="Track" className="text-white bg-black bg-opacity-50 " id="">
+    <div className="flex flex-col items-center justify-center align-middle">
+      <select onChange={handleChange} name="Track" className="text-white bg-black bg-opacity-50 my-4 h-11 w-48 rounded-xl " id="">
         {item.map((song, index) => {
           return (
             <option key={index} value={song.s3_link}>
