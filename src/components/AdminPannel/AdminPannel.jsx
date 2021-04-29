@@ -5,7 +5,7 @@ import AdminSongs from './AdminSongs/AdminSongs';
 import authContext from '../../context/authContext';
 import PropTypes from 'prop-types';
 
-export default function AdminPannel({ item, albums, hideAdmin }) {
+export default function AdminPannel({ item, albums, hideAdmin, artists }) {
   const [isAdminSong, setIsAdminSong] = useState(false);
 
   const [isAdminPlayList, setIsAdminPlayList] = useState(false);
@@ -51,7 +51,7 @@ export default function AdminPannel({ item, albums, hideAdmin }) {
       </div>
       <div className="h-4/5 w-full flex  flex-row">
         <AdminSidebar showAdminSongs={showAdminSongs} showAdminPlayList={showAdminPlayList} />
-        {isAdminSong && <AdminSongs albums={albums} playList={playList} item={item} />}
+        {isAdminSong && <AdminSongs artists={artists} albums={albums} playList={playList} item={item} />}
         {isAdminPlayList && <AdminPlaylist playListFetch={playListFetch} playList={playList} item={item} />}
       </div>
     </div>
