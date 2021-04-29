@@ -75,7 +75,7 @@ export default function AdminPannel({ item, artists, albums }) {
           showAdminUsers={showAdminUsers}
           showAdminPlayList={showAdminPlayList}
         />
-        {isAdminSong && <AdminSongs playList={playList} item={item} artist={artists} albums={albums} />}
+        {isAdminSong && <AdminSongs albums={albums} playList={playList} item={item} artist={artists} albums={albums} />}
         {isAdminPlayList && <AdminPlaylist playListFetch={playListFetch} playList={playList} />}
       </div>
     </div>

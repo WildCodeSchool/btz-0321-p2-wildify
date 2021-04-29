@@ -64,7 +64,7 @@ export default function AdminPlaylist({ playList, playListFetch }) {
             onChange={(e) => setPlayListTitle(e.target.value)}
             type="text"
             name="playList[title]"
-            className="bg-black opacity-50 h-8 rounded-xl px-4 my-2"
+            className="bg-black opacity-50 h-8 rounded-xl w-4/5 px-4 my-2"
             placeholder="PlayList Title"
           />
 
@@ -72,23 +72,23 @@ export default function AdminPlaylist({ playList, playListFetch }) {
             onChange={(e) => setPlayListDescription(e.target.value)}
             type="text"
             name="playList[Description]"
-            className="bg-black opacity-50 h-8 rounded-xl px-4 my-2"
+            className="bg-black opacity-50 h-8 rounded-xl w-4/5 px-4 my-2"
             placeholder="PlayList Description"
           />
           <input
             onChange={(e) => setPlayListPicture(e.target.value)}
             type="text"
             name="playList[Picture Url]"
-            className="bg-black opacity-50 h-8 rounded-xl px-4 my-2"
+            className="bg-black opacity-50 h-8 rounded-xl w-4/5 px-4 my-2"
             placeholder="PlayList Picture URL"
           />
-          <button type="submit" className="bg-black opacity-50  rounded-xl border-2 border-<hite py-2 px-4">
+          <button type="submit" className="border-2 border-white px-4 py-2 rounded-xl focus:outline-none hover:bg-gray-800 active:bg-gray-600">
             SUBMIT PLAYLIST
           </button>
         </form>
         <form onSubmit={updatePlayList} className="flex flex-col items-center justify-center align-middle">
           <label htmlFor="">Update PlayList :</label>
-          <select onChange={(e) => setPlayListId(e.target.value)} name="" id="" className="bg-black px-4 rounded-xl w-52 opacity-50 h-8">
+          <select onChange={(e) => setPlayListId(e.target.value)} name="" id="" className="bg-black px-4 rounded-xl w-52 w-4/5 opacity-50 h-8">
             {playList.map((playList, index) => {
               return (
                 <option key={index} value={playList.id}>
@@ -101,7 +101,7 @@ export default function AdminPlaylist({ playList, playListFetch }) {
             onChange={(e) => setUpdateTitle(e.target.value)}
             type="text"
             name="playList[title]"
-            className="bg-black opacity-50 h-8 rounded-xl px-4 my-2"
+            className="bg-black opacity-50 h-8 rounded-xl w-4/5 px-4 my-2"
             placeholder="PlayList Title"
           />
 
@@ -109,17 +109,17 @@ export default function AdminPlaylist({ playList, playListFetch }) {
             onChange={(e) => setUpdateDescription(e.target.value)}
             type="text"
             name="playList[Description]"
-            className="bg-black opacity-50 h-8 rounded-xl px-4 my-2"
+            className="bg-black opacity-50 h-8 rounded-xl w-4/5 px-4 my-2"
             placeholder="PlayList Description"
           />
           <input
             onChange={(e) => setUpdatePicture(e.target.value)}
             type="text"
             name="playList[Picture Url]"
-            className="bg-black opacity-50 h-8 rounded-xl px-4 my-2"
+            className="bg-black opacity-50 h-8 rounded-xl px-4 w-4/5 my-2"
             placeholder="PlayList Picture URL"
           />
-          <button type="submit" className="bg-black opacity-50  rounded-xl border-2 border-white py-2 px-4">
+          <button type="submit" className="border-2 border-white px-4 py-2 rounded-xl focus:outline-none hover:bg-gray-800 active:bg-gray-600">
             UPDATE PLAYLIST
           </button>
         </form>
@@ -131,7 +131,7 @@ export default function AdminPlaylist({ playList, playListFetch }) {
             <ul className="overflow-y-auto">
               {playList.map((playList, index) => {
                 return (
-                  <li className="border-b-2 flex items-center justify-center border-white py-2 w-full" key={index}>
+                  <li className="border-b-2 flex text-xl items-center justify-center border-white py-2 w-full" key={index}>
                     {playList.title}
                     <img className="w-24 mx-3 rounded-full" src={playList.picture} alt="" />
                   </li>
