@@ -85,7 +85,6 @@ function App() {
   }, [width]);
 
   const hideAdmin = () => {
-    console.log('ok');
     setIsAdmin(false);
   };
 
