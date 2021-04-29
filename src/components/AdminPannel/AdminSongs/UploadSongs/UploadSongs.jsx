@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import authContext from '../../../../context/authContext';
-
+import PropTypes from 'prop-types';
 export default function UploadSongs({ playList, albums }) {
   const [albumId, setAlbumId] = useState();
   const [imgUrl, setImgUrl] = useState();
@@ -80,3 +80,8 @@ export default function UploadSongs({ playList, albums }) {
     </div>
   );
 }
+
+UploadSongs.propTypes = {
+  playList: PropTypes.array.isRequired,
+  albums: PropTypes.array.isRequired,
+};

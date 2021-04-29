@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function UpdateSongs({ item }) {
   return (
@@ -18,3 +19,6 @@ export default function UpdateSongs({ item }) {
     </div>
   );
 }
+UpdateSongs.propTypes = {
+  item: PropTypes.array.isRequired,
+};

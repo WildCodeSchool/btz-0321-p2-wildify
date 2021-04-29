@@ -1,30 +1,30 @@
 import React from 'react';
-
-export default function AdminSidebar({ showAdminSongs, showAdminPlayList, showAdminUsers, showAdminSettings }) {
+import PropTypes from 'prop-types';
+export default function AdminSidebar({ showAdminSongs, showAdminPlayList }) {
   return (
     <div className="w-44 h-full justify-center text-white border-r-2 border-white">
       <ul>
-        <li
+        <button
           onClick={showAdminSongs}
-          className="py-2 px-4 hover:opacity-50 active:bg-black flex justify-center align-middle items-center border-white   cursor-pointer">
+          className="py-2 px-4 w-full hover:opacity-50 active:bg-black flex justify-center align-middle items-center border-white   cursor-pointer">
           Songs
-        </li>
-        <li
+        </button>
+        <button
           onClick={showAdminPlayList}
-          className="py-2 px-4 hover:opacity-50 active:bg-black  flex justify-center align-middle items-center border-white  border-t-2 cursor-pointer">
+          className="py-2 px-4 w-full  hover:opacity-50 active:bg-black  flex justify-center align-middle items-center border-white  border-t-2 cursor-pointer">
           Playlists
-        </li>
-        <li
-          onClick={showAdminUsers}
-          className="py-2 px-4 active:bg-black hover:opacity-50 flex justify-center align-middle items-center border-white  border-t-2 cursor-pointer">
+        </button>
+        <button className="py-2 w-full  px-4 active:bg-black hover:opacity-50 flex justify-center align-middle items-center border-white  border-t-2 cursor-pointer">
           Users
-        </li>
-        <li
-          onClick={showAdminSettings}
-          className="py-2 px-4  flex justify-center hover:opacity-50 active:bg-black align-middle items-center border-white border-b-2 border-t-2 cursor-pointer">
+        </button>
+        <button className="py-2 px-4 w-full   flex justify-center hover:opacity-50 active:bg-black align-middle items-center border-white border-b-2 border-t-2 cursor-pointer">
           Settings
-        </li>
+        </button>
       </ul>
     </div>
   );
 }
+AdminSidebar.propTypes = {
+  showAdminSongs: PropTypes.func.isRequired,
+  showAdminPlayList: PropTypes.func.isRequired,
+};
