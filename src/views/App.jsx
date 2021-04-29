@@ -200,6 +200,8 @@ function App() {
           selectedSong={selectedSong}
           isAlbum={isAlbum}
           isArtist={isArtist}
+          isArtistTrackList={isArtistTrackList}
+          isAlbumTrackList={isAlbumTrackList}
         />
       ) : (
         ''
@@ -258,6 +260,8 @@ function App() {
           setIsPlaySwitch={setIsPlaySwitch}
           selectedSong={selectedSong}
           isAlbum={isAlbum}
+          isArtistTrackList={isArtistTrackList}
+          isArtistTrackList={isArtistTrackList}
         />
       ) : (
         ''
