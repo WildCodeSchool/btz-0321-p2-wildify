@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function AlbumCard({ albums }) {
+export default function AlbumCard({ albums, handleAlbumClick }) {
   return (
     <div className="flex flex-row">
       {albums.map((album, index) => (
         <button
+          value={index}
+          onClick={handleAlbumClick}
           key={index}
           className="w-64 h-80 mx-3 rounded-2xl cursor-pointer text-center"
           style={{
@@ -23,4 +25,5 @@ export default function AlbumCard({ albums }) {
 
 AlbumCard.propTypes = {
   albums: PropTypes.array.isRequired,
+  handleAlbumClick: PropTypes.func.isRequired,
 };

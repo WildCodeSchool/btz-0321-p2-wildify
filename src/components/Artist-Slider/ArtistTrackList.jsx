@@ -1,31 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import Backward from '../../img/BackwardArrow.svg';
+import ReturnBtn from '../../img/PlayList/ReturnButton.svg';
 
-function ArtistTrackList({ handleClick, item, artistChoice, width, setSelectedSong }) {
-  const [translationTrack, setTranslationTrack] = useState();
-
-  useEffect(() => {
-    if (width < 900) {
-      setTranslationTrack('translate-y-6');
-    } else {
-      setTranslationTrack('-translate-y-4');
-    }
-  }, []);
+function ArtistTrackList({ handleClick, item, artistChoice, setSelectedSong }) {
   return (
-    <div className="h-full w-full">
-      <button onClick={handleClick}>
-        <img src={Backward} alt="BackwardArrow" />
+    <div className="flex flex-col p-3 h-full w-full">
+      <button
+        className="focus:outline-none w-full flex items-center justify-end pt-1 pr-2 font-scada text-white  transform hover:scale-105 "
+        onClick={handleClick}>
+        <img className="h-5 w-5" src={ReturnBtn} alt="BackwardArrow" />
       </button>
-      <ul className="w-full h-full bg-center bg-no-repeat bg-cover rounded-3xl bg-blend-lighten">
+      <ul className="w-full h-full rounded-3xl bg-blend-lighten text-left">
         {item
           .filter((song) => song.artist.name.includes(artistChoice))
           .map((song, index) => {
             return (
-              <li
-                key={index}
-                className={`font-cuprum text-base font-regular border-opacity-25 shadow-2xl transform  text-white pl-14 ${translationTrack}`}>
-                <button onClick={() => setSelectedSong(item.filter((track) => track.title.includes(song.title)))} type="button">
+              <li key={index} className="font-cuprum pb-3 pt-1 900:px-3  text-white">
+                <button
+                  className="focus:outline-none text-left pb-1 border-b w-full hover:border-mainColor hover:text-mainColor transform hover:scale-105"
+                  onClick={() => setSelectedSong(item.filter((track) => track.title.includes(song.title)))}
+                  type="button">
                   {song.title}
                 </button>
               </li>
@@ -43,7 +37,6 @@ ArtistTrackList.propTypes = {
   artists: PropTypes.array.isRequired,
   item: PropTypes.array.isRequired,
   artistChoice: PropTypes.string.isRequired,
-  width: PropTypes.number.isRequired,
   setCurrentTrack: PropTypes.func.isRequired,
   setSelectedSong: PropTypes.func.isRequired,
 };

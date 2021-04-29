@@ -22,7 +22,7 @@ function Slider({ albums, index, width, handleClick }) {
           onClick={handleClick}
           key={index}
           type="button"
-          className="flex flex-col w-full h-full  bg-center bg-no-repeat bg-cover rounded-3xl transform hover:scale-105  "
+          className="flex flex-col w-full h-full bg-center bg-no-repeat bg-cover rounded-3xl transform hover:scale-105"
           style={{ backgroundImage: `url(${album.picture})` }}>
           <div className="flex flex-col justify-end w-full h-full">
             <div className="text-left flex flex-col justify-between pl-2 pt-8 900:py-12 900:px-3 h-full w-full bg-black bg-opacity-30 hover:bg-opacity-10">

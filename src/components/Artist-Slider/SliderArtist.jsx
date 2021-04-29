@@ -33,7 +33,7 @@ function SliderArtist({ artists, item, setCurrentTrack, setSelectedSong, setIsAr
           <SliderA handleClick={handleClick} width={width} artists={artists} index={index} />
         </div>
       ) : (
-        <div className="overflow-y-auto">
+        <div className="overflow-y-auto w-full">
           <ArtistTrackList
             artistChoice={artistChoice}
             handleClick={handleClick}
