@@ -15,18 +15,7 @@ export default function UploadSongs({ playList, albums }) {
   const handleSubmit = () => {
     const formData = new FormData();
     formData.append('file', selectFile);
-    // axios({
-    //   method: 'POST',
-    //   headers: { Authorization: `Bearer ${token}` },
-    //   url: 'https://bazify-backend.basile.vernouillet.dev/api/v1/songs',
-    //   data: formData,
-    //   onUploadProgress: (p) => {
-    //     setProgress((p.loaded / p.total) * 100);
-    //   },
-    // }).then((res) => console.log(res)),
-    //   (error) => {
-    //     console.log(error);
-    //   };
+
     axios
       .post('https://bazify-backend.basile.vernouillet.dev/api/v1/songs', formData, {
         headers: { Authorization: `Bearer ${token}` },
@@ -42,12 +31,11 @@ export default function UploadSongs({ playList, albums }) {
     e.preventDefault();
     fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/albums/${albumId}`, {
       method: 'PUT',
-      headers: { Authorization: `Bearer ${token}` },
-
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({ picture: imgUrl }),
     })
-      .then((res) => res)
-      .catch((err) => err);
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -56,7 +44,7 @@ export default function UploadSongs({ playList, albums }) {
         <div style={{ width: `${progress}%` }} className=" h-full bg-white text-center rounded-full"></div>
       </div>
       <label htmlFor="">Upload :{progress ? Math.floor(progress) : '00'}% </label>
-      <input onChange={handleFile} className="my-2 w-4/5   bg-black bg-opacity-50 rounded-xl" type="file" />
+      <input onChange={handleFile} className="my-2 w-4/5 h-9  bg-black bg-opacity-50 rounded-xl" type="file" />
       <input
         onChange={(e) => setImgUrl(e.target.value)}
         className="my-2 w-4/5 px-4 h-14 bg-black bg-opacity-50 rounded-xl"
@@ -81,11 +69,13 @@ export default function UploadSongs({ playList, albums }) {
           );
         })}
       </select>
-      <button className="border-2 border-white px-4 py-2 rounded-xl focus:outline-none hover:bg-gray-800 active:bg-gray-600" onClick={handleSubmit}>
+      <button
+        className="border-2 my-2 text-xs border-white px-4  rounded-xl focus:outline-none hover:bg-gray-800 active:bg-gray-600"
+        onClick={handleSubmit}>
         UPLOAD
       </button>
       <button
-        className="border-2 border-white px-4 py-2 rounded-xl focus:outline-none hover:bg-gray-800 active:bg-gray-600"
+        className="border-2 border-white px-4  rounded-xl focus:outline-none hover:bg-gray-800 active:bg-gray-600"
         onClick={handlePictureSubmission}>
         UPLOAD IMG
       </button>

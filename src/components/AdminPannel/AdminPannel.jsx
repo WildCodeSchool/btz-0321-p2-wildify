@@ -61,5 +61,5 @@ export default function AdminPannel({ item, albums, hideAdmin }) {
 AdminPannel.propTypes = {
   item: PropTypes.array.isRequired,
   albums: PropTypes.array.isRequired,
-  artists: PropTypes.string.isRequired,
+  hideAdmin: PropTypes.func.isRequired,
 };
