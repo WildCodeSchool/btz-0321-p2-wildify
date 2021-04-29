@@ -150,8 +150,8 @@ export default function Playbar({
 
       <div
         className="flex 
-       bg-bgPlaybar  items-center h-20 rounded-4xl shadow-playbar mb-1">
-        <div className=" flex-row w-2/5 flex h-full items-center ">
+       bg-bgPlaybar  items-center h-20 rounded-4xl shadow-playbar overflow-hidden mb-1">
+        <div className=" flex-row w-2/5 flex h-full items-center overflow-hidden ">
           <div
             className="w-16 h-16 ml-4 mr-4 rounded-full shadow-ImgPlaybar"
             style={{
@@ -160,10 +160,15 @@ export default function Playbar({
               backgroundRepeat: `no-repeat`,
               backgroundPosition: `center`,
             }}></div>
-          <div className="flex-col w-4/5 flex justify-start items-left ">
-            <div className="text-white font-scada text-lg font-bold">{title}</div>
-            <div className="text-white font-cuprum text-sm">
-              {album} - {artist}
+          <div className="flex-row w-6/12 flex justify-center overflow-hidden item-center align-middle ">
+            <div className="flex w-full overflow-hidden ">
+              <div className="text-white whitespace-nowrap text-lg   txt font-cuprum  ">
+                {album} - {artist} - {title}&nbsp;
+              </div>
+
+              <div className="text-white whitespace-nowrap text-lg txt font-cuprum   ">
+                {album} - {artist} -{title}&nbsp;
+              </div>
             </div>
           </div>
         </div>
