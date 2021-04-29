@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 
 function ListPlaylist({ setIsChange }) {
   const WizicPlaylist = [
-    { title: 'Work and Code', description: 'Relaxing and chill songs fot concentration', picture: WorkingPlaylist, id: 1 },
+    { title: 'Work and Code', description: 'Relaxing and chill songs for concentration', picture: WorkingPlaylist, id: 1 },
     { title: 'Relax and Chill', description: 'Be chill, be calm, be Cool, be Wizic', picture: SportPlaylist, id: 2 },
     { title: 'Sport Motivation', description: 'Listen Good music for help you to run !', picture: ChillPlaylist, id: 3 },
     { title: 'Party and fun', description: 'Let’s get the best sound for a party with your friends', picture: PartyPlaylist, id: 4 },

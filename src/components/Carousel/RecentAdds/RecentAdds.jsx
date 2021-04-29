@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import Card from '../RecentAdds/Card';
+import './sidebar.css';
 
 import PropTypes from 'prop-types';
 import useScrollBox from '../scroll';
@@ -11,7 +12,7 @@ function RecentAdds({ item, setCurrentTrack }) {
   itemReversed.reverse();
 
   return (
-    <div ref={scrollWrapperRef} role="list" className="flex flex-row overflow-x-auto">
+    <div ref={scrollWrapperRef} role="list" className="h-full pb-3 flex flex-row overflow-x-auto sidebar">
       <Card item={item} itemReversed={itemReversed} setCurrentTrack={setCurrentTrack} />
       <div className="hidden">{isDragging}</div>
     </div>

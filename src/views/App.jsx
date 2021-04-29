@@ -42,6 +42,8 @@ function App() {
   const [onSearch, setOnSearch] = useState();
   const { token } = useContext(authContext);
   const history = useHistory();
+  const [isAlbumTrackList, setIsAlBumTrackList] = useState(false);
+  const [isArtistTrackList, setIsArtistTrackList] = useState(false);
 
   useEffect(() => {
     if (!token) {
@@ -104,7 +106,20 @@ function App() {
 
         <div className="col-start-1 col-end-3 row-start-2 900:col-end-4 rounded-20 bg-black bg-opacity-10 shadow-layoutContainer overflow-x-auto">
           {/* The Main Component GoHere */}
-          {!isLoading && <Carousel setCurrentTrack={setCurrentTrack} onSearch={onSearch} item={item} albums={albums} artists={artists} />}
+          {!isLoading && (
+            <Carousel
+              setIsAlBumTrackList={setIsAlBumTrackList}
+              isAlbumTrackList={isAlbumTrackList}
+              setIsArtistTrackList={setIsArtistTrackList}
+              isArtistTrackList={isArtistTrackList}
+              setSelectedSong={setSelectedSong}
+              setCurrentTrack={setCurrentTrack}
+              onSearch={onSearch}
+              item={item}
+              albums={albums}
+              artists={artists}
+            />
+          )}
         </div>
         <div className=" overflow-y-auto col-start-1 col-end-3 row-start-3 row-end-4 900:col-end-2 900:row-end-5 rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
           {!isLoading && <PlaylistSwitch item={item} setCurrentTrack={setCurrentTrack} currentTrack={currentTrack} />}
@@ -173,6 +188,8 @@ function App() {
       )}
       {!isLoading && width > 900 ? (
         <Playbar
+          isAlbumTrackList={isAlbumTrackList}
+          isArtistTrackList={isArtistTrackList}
           onListen={onListen}
           audio={audio}
           currentTrack={currentTrack}
