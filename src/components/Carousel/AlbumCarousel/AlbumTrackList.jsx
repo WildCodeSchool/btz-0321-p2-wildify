@@ -1,18 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Backward from '../../../img/PlayList/ReturnButton.svg';
 
-function AlbumTrackList({ handleAlbumClick, item, albumChoice, setSelectedSong }) {
+function AlbumTrackList({ item, albumChoice, setSelectedSong }) {
   const handleClick = (e) => {
     const mySong = item.filter((song) => song.title.includes(e.target.value));
     setSelectedSong(mySong);
   };
   return (
-    <div className="flex flex-row-reverse h-full w-full p-4 900:px-8">
-      <button className="focus:outline-none flex justify-start ml-4 mr-2 900:ml-8" onClick={handleAlbumClick}>
-        <img src={Backward} alt="BackwardArrow" />
-      </button>
-      <ul className=" flex flex-col w-full items-start h-full">
+    <div className="h-full w-full">
+      <ul className="w-full h-full bg-center bg-no-repeat bg-cover rounded-3xl bg-blend-lighten">
         {item
           .filter((song) => song.album.title.includes(albumChoice))
           .map((song, index) => {
@@ -44,7 +40,6 @@ function AlbumTrackList({ handleAlbumClick, item, albumChoice, setSelectedSong }
 export default AlbumTrackList;
 
 AlbumTrackList.propTypes = {
-  handleAlbumClick: PropTypes.func.isRequired,
   item: PropTypes.array.isRequired,
   albumChoice: PropTypes.string.isRequired,
   setSelectedSong: PropTypes.func.isRequired,
