@@ -26,6 +26,7 @@ export default function Player({
   isPlaySwitch,
   setIsPlaySwitch,
   isAlbum,
+  isArtist,
   selectedSong,
 }) {
   const [sliderValue, setSliderValue] = useState(0);
@@ -43,7 +44,7 @@ export default function Player({
   }, [selectedSong]);
 
   const updateSong = () => {
-    if (isAlbum) {
+    if (isAlbum || isArtist) {
       setOnListen(selectedSong[0].s3_link);
 
       setTitle(selectedSong[0].title);
@@ -213,5 +214,6 @@ Player.propTypes = {
   isPlaySwitch: PropTypes.bool.isRequired,
   setIsPlaySwitch: PropTypes.func?.isRequired,
   isAlbum: PropTypes.func.isRequired,
+  isArtist: PropTypes.func.isRequired,
   selectedSong: PropTypes.func.isRequired,
 };
