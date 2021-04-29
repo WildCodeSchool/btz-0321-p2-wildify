@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Defaultimg from '../../../img/defaultPicture.png';
 
 function AlbumTrackList({ item, albumChoice, setSelectedSong }) {
   const handleClick = (e) => {
     const mySong = item.filter((song) => song.title.includes(e.target.value));
     setSelectedSong(mySong);
   };
+
   return (
-    <div className="h-full w-full">
+    <div className="h-full w-full p-4">
       <ul className="w-full h-full bg-center bg-no-repeat bg-cover rounded-3xl bg-blend-lighten">
         {item
           .filter((song) => song.album.title.includes(albumChoice))
@@ -22,7 +24,7 @@ function AlbumTrackList({ item, albumChoice, setSelectedSong }) {
                   <div
                     className="flex h-12 w-12 mr-2 rounded-full"
                     style={{
-                      backgroundImage: `url(${song.album.picture})`,
+                      backgroundImage: `url(${song.album.picture === null ? Defaultimg : song.album.picture})`,
                       backgroundSize: `cover`,
                       backgroundRepeat: `no-repeat`,
                       backgroundPosition: `center`,

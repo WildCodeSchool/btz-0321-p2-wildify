@@ -103,7 +103,7 @@ export default function Carousel({
         {isArtistTrackList && (
           <div className="flex flex-row justify-between">
             <p className="p-3 font-cuprum text-4xl font-bold text-mainColor px-2">{artistChoice}</p>
-            <button className="focus:outline-none flex justify-start ml-4 mr-2 900:ml-8" onClick={handleArtistClick}>
+            <button className="focus:outline-none flex justify-start m-4 900:ml-8" onClick={handleArtistClick}>
               <img src={Backward} alt="BackwardArrow" />
             </button>
           </div>
@@ -111,7 +111,7 @@ export default function Carousel({
         {isAlbumTrackList && (
           <div className="flex flex-row justify-between">
             <p className={isAlbumTrackList ? ' p-3 font-cuprum text-4xl font-bold text-mainColor px-2' : 'hidden'}>{albumChoice}</p>
-            <button className="focus:outline-none flex justify-start ml-4 mr-2 900:ml-8" onClick={handleAlbumClick}>
+            <button className="focus:outline-none flex justify-start m-4 900:ml-8" onClick={handleAlbumClick}>
               <img src={Backward} alt="BackwardArrow" />
             </button>
           </div>

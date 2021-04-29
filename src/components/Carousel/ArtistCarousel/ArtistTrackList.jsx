@@ -1,46 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import Defaultimg from '../../img/defaultPicture.png';
 
-function ArtistTrackList({ item, artistChoice, setSelectedSong }) {
-  const handleClick = (e) => {
-    const mySong = item.filter((song) => song.title.includes(e.target.value));
-    setSelectedSong(mySong);
-  };
+function SliderA({ artists, index, width, handleClick }) {
+  const [translationSlide, setTranslationSlide] = useState();
+  useEffect(() => {
+    if (width < 900) {
+      setTranslationSlide(-13.75);
+    } else {
+      setTranslationSlide(-18.75);
+    }
+  }, [width]);
   return (
-    <div className="flex flex-row-reverse h-full w-full p-4 900:p-8">
-      <ul className=" flex flex-col w-full items-start h-full">
-        {item
-          .filter((song) => song.artist.name.includes(artistChoice))
-          .map((song, index) => {
-            return (
-              <button
-                className="focus:outline-none  mb-4 text-white flex flex-col text-left pb-2 border-b w-full hover:border-mainColor hover:text-mainColor"
-                key={index}
-                value={song.title}
-                onClick={handleClick}>
-                <div className="flex items-center">
-                  <div
-                    className="flex h-12 w-12 mr-2 rounded-full"
-                    style={{
-                      backgroundImage: `url(${song.album.picture})`,
-                      backgroundSize: `cover`,
-                      backgroundRepeat: `no-repeat`,
-                      backgroundPosition: `center`,
-                    }}></div>
-                  {song.title}
-                </div>
-              </button>
-            );
-          })}
-      </ul>
+    <div
+      className="h-full w-full"
+      style={{
+        transform: `translateY(${translationSlide * index}rem)`,
+      }}>
+      {artists.map((artist, index) => (
+        <button
+          onClick={handleClick}
+          key={index}
+          type="button"
+          className="flex flex-col w-full h-full bg-center bg-no-repeat bg-cover rounded-3xl transform hover:scale-105"
+          style={{ backgroundImage: `url(${artist.picture === null ? Defaultimg : artist.picture})` }}>
+          <div className="flex flex-col justify-end w-full h-full">
+            <div className="text-left flex flex-col justify-between pl-2 pt-8 900:py-12 900:px-3 h-full w-full bg-black bg-opacity-30 hover:bg-opacity-10">
+              <div className="font-scada text-white font-bold text-2xl 900:text-3xl">{artist.name}</div>
+            </div>
+          </div>
+        </button>
+      ))}
     </div>
   );
 }
 
-export default ArtistTrackList;
+export default SliderA;
 
-ArtistTrackList.propTypes = {
-  item: PropTypes.array.isRequired,
-  artistChoice: PropTypes.string.isRequired,
-  setSelectedSong: PropTypes.func.isRequired,
+SliderA.propTypes = {
+  artists: PropTypes.array.isRequired,
+  index: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
+  handleClick: PropTypes.func.isRequired,
 };

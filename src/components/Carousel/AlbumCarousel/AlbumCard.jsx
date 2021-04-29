@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Defaultimg from '../../../img/defaultPicture.png';
 
 export default function AlbumCard({ albums, handleAlbumClick }) {
   return (
@@ -11,7 +12,7 @@ export default function AlbumCard({ albums, handleAlbumClick }) {
           key={index}
           className="flex justify-end w-56 h-72 my-3 mx-3 rounded-xl cursor-pointer border text-white flex-col shadow-card focus:outline-none hover:border hover:border-mainColor transform hover:scale-105"
           style={{
-            backgroundImage: `url(${album.picture})`,
+            backgroundImage: `url(${album.picture === null ? Defaultimg : album.picture})`,
             backgroundSize: `cover`,
             backgroundRepeat: `no-repeat`,
             backgroundPosition: `center`,

@@ -3,7 +3,7 @@ import Controls from '../playbar/controls/controls';
 import './Player.css';
 import PropTypes from 'prop-types';
 import Arrow from '../../img/arrow.svg';
-import Miniature from '../../img/playbar-miniature.png';
+import Defaultimg from '../../img/defaultPicture.png';
 
 export default function Player({
   setPicture,
@@ -153,7 +153,7 @@ export default function Player({
           <div
             className="rounded-full w-72 h-72  shadow-MobilPlaybar"
             style={{
-              backgroundImage: `url(${picture ? picture : Miniature})`,
+              backgroundImage: `url(${picture === null ? Defaultimg : picture})`,
               backgroundSize: `cover`,
               backgroundRepeat: `no-repeat`,
               backgroundPosition: `center`,

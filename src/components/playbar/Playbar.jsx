@@ -4,6 +4,7 @@ import Controls from './controls/controls';
 import HiddenPlayer from '../HiddenPlayer/HiddenPlayer';
 import Volume from '../../img/volume.svg';
 import './playbar.css';
+import Defaultimg from '../../img/defaultPicture.png';
 
 export default function Playbar({
   title,
@@ -155,7 +156,7 @@ export default function Playbar({
           <div
             className="w-16 h-16 ml-4 mr-4 rounded-full shadow-ImgPlaybar"
             style={{
-              backgroundImage: `url(${picture})`,
+              backgroundImage: `url(${picture === null ? Defaultimg : picture})`,
               backgroundSize: `cover`,
               backgroundRepeat: `no-repeat`,
               backgroundPosition: `center`,

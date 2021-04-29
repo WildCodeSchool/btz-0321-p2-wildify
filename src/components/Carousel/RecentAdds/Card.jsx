@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PlayerButton from '../../../img/Icons/PlayerButton.svg';
+import Defaultimg from '../../../img/defaultPicture.png';
 
 export default function Card({ itemReversed, setCurrentTrack }) {
   return (
@@ -11,7 +12,7 @@ export default function Card({ itemReversed, setCurrentTrack }) {
           key={index}
           className="flex justify-end w-56 h-72 my-3 mx-3 rounded-2xl cursor-pointer border text-white flex-col shadow-card focus:outline-none hover:border hover:border-mainColor transform hover:scale-105"
           style={{
-            backgroundImage: `url(${song.album.picture})`,
+            backgroundImage: `url(${song.album.picture === null ? Defaultimg : song.album.picture})`,
             backgroundSize: `cover`,
             backgroundRepeat: `no-repeat`,
             backgroundPosition: `center`,

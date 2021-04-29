@@ -13,7 +13,7 @@ export default function ArtistCard({ artists, handleArtistClick }) {
           key={index}
           className="flex justify-end w-56 h-72 my-3 mx-3 rounded-xl cursor-pointer border text-white flex-col shadow-card focus:outline-none hover:border hover:border-mainColor transform hover:scale-105"
           style={{
-            backgroundImage: `url(${Defaultimg})`,
+            backgroundImage: `url(${artist.picture === null ? Defaultimg : artist.picture})`,
             backgroundSize: `cover`,
             backgroundRepeat: `no-repeat`,
             backgroundPosition: `center`,
