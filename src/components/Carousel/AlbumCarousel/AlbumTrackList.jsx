@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Backward from '../../../img/BackwardArrow.svg';
+import Backward from '../../../img/PlayList/ReturnButton.svg';
 
 function AlbumTrackList({ handleAlbumClick, item, albumChoice, setSelectedSong }) {
   const handleClick = (e) => {
@@ -8,17 +8,31 @@ function AlbumTrackList({ handleAlbumClick, item, albumChoice, setSelectedSong }
     setSelectedSong(mySong);
   };
   return (
-    <div className="h-full w-full">
-      <button onClick={handleAlbumClick}>
+    <div className="flex flex-row-reverse h-full w-full p-4 900:px-8">
+      <button className="focus:outline-none flex justify-start ml-4 mr-2 900:ml-8" onClick={handleAlbumClick}>
         <img src={Backward} alt="BackwardArrow" />
       </button>
-      <ul className="w-full h-full bg-center bg-no-repeat bg-cover rounded-3xl bg-blend-lighten">
+      <ul className=" flex flex-col w-full items-start h-full">
         {item
           .filter((song) => song.album.title.includes(albumChoice))
           .map((song, index) => {
             return (
-              <button key={index} value={song.title} onClick={handleClick} className={`font-cuprum text-base font-regular text-white`}>
-                {song.title}
+              <button
+                className="focus:outline-none  mb-4 text-white flex flex-col text-left pb-2 border-b w-full hover:border-mainColor hover:text-mainColor"
+                key={index}
+                value={song.title}
+                onClick={handleClick}>
+                <div className="flex items-center">
+                  <div
+                    className="flex h-12 w-12 mr-2 rounded-full"
+                    style={{
+                      backgroundImage: `url(${song.album.picture})`,
+                      backgroundSize: `cover`,
+                      backgroundRepeat: `no-repeat`,
+                      backgroundPosition: `center`,
+                    }}></div>
+                  {song.title}
+                </div>
               </button>
             );
           })}

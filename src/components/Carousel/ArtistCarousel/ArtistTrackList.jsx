@@ -8,7 +8,7 @@ function ArtistTrackList({ handleArtistClick, item, artistChoice, setSelectedSon
     setSelectedSong(mySong);
   };
   return (
-    <div className="flex flex-row-reverse h-full w-full p-4 900:p-8">
+    <div className="flex flex-row-reverse h-full w-full p-4 900:px-8">
       <button className="focus:outline-none flex justify-start ml-4 mr-2 900:ml-8" onClick={handleArtistClick}>
         <img src={Backward} alt="BackwardArrow" />
       </button>

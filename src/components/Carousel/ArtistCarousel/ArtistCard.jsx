@@ -18,7 +18,7 @@ export default function ArtistCard({ artists, handleArtistClick }) {
             backgroundRepeat: `no-repeat`,
             backgroundPosition: `center`,
           }}>
-          <div className="w-full flex  items-start  justify-start bg-black bg-opacity-30 p-4 rounded-b-2xl">
+          <div className="w-full  flex  items-start  justify-start bg-black bg-opacity-30 p-4 rounded-b-xl">
             <p className="font-scada text-white text-xl">{artist.name}</p>
           </div>
         </button>
