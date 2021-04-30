@@ -5,7 +5,7 @@ import useWindowDimensions from '../../Hooks/useWindowDimension';
 import Formbg from '../../img/BackGrounds/BgSideBarBG5.png';
 import WCSlogo from '../../img/LogoWild.png';
 
-function SideBar({ sideBarClass, albums, handleSideBar }) {
+function SideBar({ sideBarClass, albums, handleSideBar, handleAdmin }) {
   const [imgUrl, setImgUrl] = useState();
   const [albumIndex, setAlbumindex] = useState();
   const { width } = useWindowDimensions();
@@ -148,6 +148,9 @@ function SideBar({ sideBarClass, albums, handleSideBar }) {
             <a className="font-cuprum text-white text-sm" href="https://www.wildcodeschool.com/fr-FR">
               @WildCodeSchool
             </a>
+            <button className="opacity-0" onClick={handleAdmin}>
+              ADMIN PANNEL
+            </button>
           </div>
           <img className="w-16 h-16 900:w-14 900:h-14" src={WCSlogo} alt="LogoWild" />
         </div>
@@ -160,6 +163,7 @@ SideBar.propTypes = {
   sideBarClass: PropTypes.string.isRequired,
   albums: PropTypes.array.isRequired,
   handleSideBar: PropTypes.func.isRequired,
+  handleAdmin: PropTypes.func.isRequired,
 };
 
 export default SideBar;

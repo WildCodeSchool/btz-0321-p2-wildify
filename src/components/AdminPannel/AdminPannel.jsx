@@ -11,7 +11,7 @@ export default function AdminPannel({ item, albums, hideAdmin, artists }) {
   const [isLogged, setIsLogged] = useState(false);
   const [isAdminPlayList, setIsAdminPlayList] = useState(false);
   const { token } = useContext(authContext);
-  const [playList, setPlayList] = useState();
+  const [myPlayList, setMyPlayList] = useState();
 
   const playListFetch = () =>
     fetch('https://bazify-backend.basile.vernouillet.dev/api/v1/playlists', {
@@ -20,14 +20,14 @@ export default function AdminPannel({ item, albums, hideAdmin, artists }) {
     })
       .then((response) => response.json())
       .then((result) => {
-        setPlayList(result);
+        setMyPlayList(result);
       })
       .catch((error) => {
         error;
       });
 
   useEffect(async () => {
-    playListFetch();
+    await playListFetch();
   }, []);
 
   const showAdminPlayList = () => {
@@ -62,8 +62,8 @@ export default function AdminPannel({ item, albums, hideAdmin, artists }) {
         <AdminSidebar showAdminSongs={showAdminSongs} showAdminPlayList={showAdminPlayList} />
         <div className="w-full flex flex-col justify-center items-center align-middle h-full">
           {!isLogged && <LogginPannel handleLoggin={handleLoggin} />}
-          {isAdminSong && <AdminSongs artists={artists} albums={albums} playList={playList} item={item} />}
-          {isAdminPlayList && <AdminPlaylist playListFetch={playListFetch} playList={playList} item={item} />}
+          {isAdminSong && <AdminSongs artists={artists} albums={albums} myPlayList={myPlayList} item={item} />}
+          {isAdminPlayList && <AdminPlaylist playListFetch={playListFetch} myPlayList={myPlayList} item={item} />}
         </div>
       </div>
     </div>

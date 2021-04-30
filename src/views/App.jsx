@@ -38,11 +38,11 @@ function App() {
   const [artists, setArtists] = useState([]);
   const [selectedSong, setSelectedSong] = useState();
   const [isAlbum, setIsAlbum] = useState(false);
-  const [isArtist, setIsArtist] = useState(false);
+  const [isArtist, setIsArtist] = useState(true);
 
   const [onSearch, setOnSearch] = useState();
   const { token } = useContext(authContext);
-  const [isAdmin, setIsAdmin] = useState('');
+  const [isAdmin, setIsAdmin] = useState(false);
   const history = useHistory();
   const [isAlbumTrackList, setIsAlBumTrackList] = useState(false);
   const [isArtistTrackList, setIsArtistTrackList] = useState(false);
@@ -115,7 +115,7 @@ function App() {
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
       }}>
-      {isAdmin && <AdminPannel artists={artists} hideAdmin={hideAdmin} item={item} token={token} albums={albums} />}
+      {isAdmin && <AdminPannel playLists={playLists} artists={artists} hideAdmin={hideAdmin} item={item} token={token} albums={albums} />}
 
       <div className="grid mx-5 gap-5  900:gap-6 grid-cols-mobile grid-rows-mobile 900:grid-cols-desktop 900:ml-6 900:mr-0 900:grid-rows-desktop">
         <Header handleSideBar={handleSideBar} setOnSearch={setOnSearch} isSideBarVisible={isSideBarVisible} />
@@ -170,11 +170,16 @@ function App() {
         </div>
         <div className="col-start-1 col-end-3 row-start-6 row-end-7 rounded-20 900:col-end-4 900:row-start-5 900:row-end-6 bg-black bg-opacity-20 shadow-layoutContainer mb-4">
           <Contact />
-          <button onClick={handleAdmin} suppressHydrationWarning={hideAdmin}>
-            ADMIN PANNEL
-          </button>
         </div>
-        {isSideBarVisible && <SideBar sideBarClass={sideBarClass} albums={albums} setSideBarClass={setSideBarClass} handleSideBar={handleSideBar} />}
+        {isSideBarVisible && (
+          <SideBar
+            handleAdmin={handleAdmin}
+            sideBarClass={sideBarClass}
+            albums={albums}
+            setSideBarClass={setSideBarClass}
+            handleSideBar={handleSideBar}
+          />
+        )}
       </div>
       {!isLoading && isMobilePlayerVisible ? (
         <PlayerMobile

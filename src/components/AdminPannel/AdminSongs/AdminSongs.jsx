@@ -1,11 +1,11 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import AdminPlayer from '../AdminPlayer/AdminPlayer';
 import UpdateSongs from './UpdateSongs/UpdateSongs';
 import UploadSongs from './UploadSongs/UploadSongs';
 import authContext from '../../../context/authContext';
 import PropTypes from 'prop-types';
 
-export default function AdminSongs({ item, albums, playList, artists }) {
+export default function AdminSongs({ item, albums, myPlayList, artists }) {
   const { token } = useContext(authContext);
   const [imgUrl, setImgUrl] = useState();
   const [artistId, setArtistId] = useState();
@@ -24,7 +24,7 @@ export default function AdminSongs({ item, albums, playList, artists }) {
     <div className="w-full h-full flex items-center justify-center align-middle text-xs   text-white">
       <div className="w-full h-full grid-rows-2 grid-cols-2 grid">
         <div className="flex justify-center align-middle items-center py-6 ">
-          <UploadSongs albums={albums} playList={playList} />
+          <UploadSongs albums={albums} myPlayList={myPlayList} />
         </div>
         <div className="flex justify-center align-middle items-center py-6 ">
           <UpdateSongs item={item} />

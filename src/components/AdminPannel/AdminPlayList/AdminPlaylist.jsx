@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import authContext from '../../../context/authContext';
 import PropTypes from 'prop-types';
-export default function AdminPlaylist({ playList, playListFetch, item }) {
+export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
   const [playListTitle, setPlayListTitle] = useState();
   const [playListDescription, setPlayListDescription] = useState();
   const [playListPicture, setPlayListPicture] = useState();
@@ -11,6 +11,7 @@ export default function AdminPlaylist({ playList, playListFetch, item }) {
   const [updatePicture, setUpdatePicture] = useState();
   const [updateSongs] = useState([]);
   const [playListId, setPlayListId] = useState();
+  const [onSelect, setOnSelect] = useState();
 
   const { token } = useContext(authContext);
 
@@ -26,7 +27,6 @@ export default function AdminPlaylist({ playList, playListFetch, item }) {
     picture: updatePicture,
     songs: updateSongs,
   };
-  console.log(token);
 
   const createPlayList = (e) => {
     e.preventDefault();
@@ -88,10 +88,10 @@ export default function AdminPlaylist({ playList, playListFetch, item }) {
         </form>
         <form onSubmit={updatePlayList} className="flex flex-col items-center justify-center align-middle">
           <label htmlFor="update">Update PlayList :</label>
-          <select onBlur={(e) => setPlayListId(e.target.value)} name="update" id="" className="bg-black px-4 rounded-xl  opacity-50 h-8">
-            {playList.map((playList, index) => {
+          <select onBlur={(e) => setOnSelect(e.target.value)} name="update" id="" className="bg-black px-4 rounded-xl  opacity-50 h-8">
+            {myPlayList.map((playList, index) => {
               return (
-                <option key={index} value={playList.id}>
+                <option key={index} value={index}>
                   {playList.title}
                 </option>
               );
@@ -102,7 +102,7 @@ export default function AdminPlaylist({ playList, playListFetch, item }) {
             type="text"
             name="playList[title]"
             className="bg-black opacity-50 h-8 rounded-xl w-4/5 px-4 my-2"
-            placeholder="PlayList Title"
+            placeholder={onSelect ? myPlayList[onSelect].title : 'PlayList Title'}
           />
 
           <input
@@ -110,14 +110,14 @@ export default function AdminPlaylist({ playList, playListFetch, item }) {
             type="text"
             name="playList[Description]"
             className="bg-black opacity-50 h-8 rounded-xl w-4/5 px-4 my-2"
-            placeholder="PlayList Description"
+            placeholder={onSelect ? myPlayList[onSelect].description : 'PlayList Description'}
           />
           <input
             onChange={(e) => setUpdatePicture(e.target.value)}
             type="text"
             name="playList[Picture Url]"
             className="bg-black opacity-50 h-8 rounded-xl px-4 w-4/5 my-2"
-            placeholder="PlayList Picture URL"
+            placeholder={onSelect ? myPlayList[onSelect].picture : 'PlayList Picture'}
           />
           <button type="submit" className="border-2 border-white px-4 py-2 rounded-xl focus:outline-none hover:bg-gray-800 active:bg-gray-600">
             UPDATE PLAYLIST
@@ -126,6 +126,7 @@ export default function AdminPlaylist({ playList, playListFetch, item }) {
         <div className="flex flex-col  py-8 px-10 items-center justify-center align-middle">
           <label htmlFor="add-song">Add a song to a playlist :</label>
           <select
+            onBlur={(e) => setOnSelect(e.target.value)}
             className="w-64 my-2 bg-black text-white opacity-50 rounded-xl py-2 px-4
           "
             name="add-song"
@@ -139,7 +140,7 @@ export default function AdminPlaylist({ playList, playListFetch, item }) {
           "
             name=""
             id="">
-            {playList.map((playList, index) => {
+            {myPlayList.map((playList, index) => {
               return <option key={index}>{playList.title}</option>;
             })}
           </select>
@@ -150,7 +151,7 @@ export default function AdminPlaylist({ playList, playListFetch, item }) {
           <h1>PlayLists:</h1>
           <div className="h-5/6 w-full bg-black text-white border-white border-4 flex flex-col rounded-xl p-4 justify-center">
             <ul className="overflow-y-auto">
-              {playList.map((playList, index) => {
+              {myPlayList.map((playList, index) => {
                 return (
                   <li className="border-b-2 flex text-xl items-center justify-center border-white py-2 w-full" key={index}>
                     <div className="text-xs">
@@ -169,7 +170,7 @@ export default function AdminPlaylist({ playList, playListFetch, item }) {
 }
 
 AdminPlaylist.propTypes = {
-  playList: PropTypes.array.isRequired,
+  myPlayList: PropTypes.array.isRequired,
   playListFetch: PropTypes.func.isRequired,
   item: PropTypes.array.isRequired,
 };

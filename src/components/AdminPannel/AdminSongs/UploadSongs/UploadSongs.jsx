@@ -3,7 +3,7 @@ import authContext from '../../../../context/authContext';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-export default function UploadSongs({ playList, albums }) {
+export default function UploadSongs({ myPlayList, albums }) {
   const [albumId, setAlbumId] = useState();
   const [imgUrl, setImgUrl] = useState();
   const [selectFile, setSelectFile] = useState();
@@ -62,7 +62,7 @@ export default function UploadSongs({ playList, albums }) {
         })}
       </select>
       <select className="my-2 w-72 px-4 h-14 bg-black bg-opacity-50 rounded-xl" name="" id="">
-        {playList.map((playList, index) => {
+        {myPlayList.map((playList, index) => {
           return (
             <option key={index} value="">
               {playList.title}
@@ -88,6 +88,6 @@ export default function UploadSongs({ playList, albums }) {
 }
 
 UploadSongs.propTypes = {
-  playList: PropTypes.array.isRequired,
+  myPlayList: PropTypes.array.isRequired,
   albums: PropTypes.array.isRequired,
 };
