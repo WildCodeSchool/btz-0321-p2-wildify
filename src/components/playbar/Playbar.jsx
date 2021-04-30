@@ -85,7 +85,6 @@ export default function Playbar({
 
   useEffect(() => {
     updateSong();
-    console.log(selectedSong);
   }, [selectedSong]);
 
   const volumeChange = (e) => {

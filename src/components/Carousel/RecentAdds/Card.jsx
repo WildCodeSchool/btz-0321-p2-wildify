@@ -22,7 +22,7 @@ export default function Card({ itemReversed, setCurrentTrack }) {
               <p className="font-scada leading-5 text-white font-bold text-lg text-left">{song.title}</p>
               <p className="font-scada text-white text-sm text-left">{song.artist.name}</p>
             </div>
-            <div className="pointer-events-none flex focus:outline-none items-end m-1" type="button" key={index}>
+            <div className="flex focus:outline-none items-end m-1">
               <img src={PlayerButton} alt="" />
             </div>
           </div>
