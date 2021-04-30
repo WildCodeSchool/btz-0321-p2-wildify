@@ -81,10 +81,10 @@ export default function Carousel({
   const handleArtistClick = (e) => {
     if (!isArtistTrackList) {
       setArtistChoice(e.target.value);
+      setIsArtistTrackList(true);
       setIsAlBumTrackList(false);
       setIsAlbumActive(false);
       setIsArtistActive(false);
-      setIsArtistTrackList(true);
       setIsTrackListActive(false);
       setIsRecentAddsActive(false);
     } else {
@@ -92,7 +92,7 @@ export default function Carousel({
       setIsArtistActive(true);
     }
   };
-  console.log(artistChoice);
+
   return (
     <div className="flex flex-col w-full h-full p-2">
       <div className="col-start-1 col-end-2 row-start-1 row-end-2">

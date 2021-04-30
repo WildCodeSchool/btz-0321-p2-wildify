@@ -74,4 +74,5 @@ AdminPannel.propTypes = {
   item: PropTypes.array.isRequired,
   albums: PropTypes.array.isRequired,
   hideAdmin: PropTypes.func.isRequired,
+  artists: PropTypes.array.isRequired,
 };

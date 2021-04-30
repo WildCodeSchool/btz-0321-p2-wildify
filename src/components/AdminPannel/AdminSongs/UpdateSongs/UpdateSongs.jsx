@@ -24,8 +24,8 @@ export default function UpdateSongs({ item }) {
 
   return (
     <div className="flex flex-col  items-center align-middle justify-center w-full">
-      <label htmlFor="">Update :</label>
-      <select onChange={(e) => setOnSelect(e.target.value)} className="w-72 my-2 h-6 text-white rounded-xl px-4 bg-black bg-opacity-50" name="" id="">
+      <label htmlFor="song">Update :</label>
+      <select onBlur={(e) => setOnSelect(e.target.value)} className="w-72 my-2 h-6 text-white rounded-xl px-4 bg-black bg-opacity-50" name="song">
         {item.map((song, index) => {
           return (
             <option value={index} key={index}>

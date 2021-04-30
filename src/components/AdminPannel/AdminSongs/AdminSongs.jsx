@@ -60,4 +60,5 @@ AdminSongs.propTypes = {
   item: PropTypes.array.isRequired,
   albums: PropTypes.array.isRequired,
   playList: PropTypes.array.isRequired,
+  artists: PropTypes.array.isRequired,
 };

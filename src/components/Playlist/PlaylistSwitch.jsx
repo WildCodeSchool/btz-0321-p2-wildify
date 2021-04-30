@@ -22,7 +22,6 @@ function PlaylistSwitch({ item, setCurrentTrack }) {
           <ListPlaylistOnClick item={item} setIsChange={ReturnBtn} setCurrentTrack={setCurrentTrack} />
         )}
       </div>
-      ;
     </div>
   );
 }
