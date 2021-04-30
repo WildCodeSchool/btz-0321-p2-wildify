@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReturnBtn from '../../img/PlayList/ReturnButton.svg';
+import Defaultimg from '../../img/defaultPicture.png';
 
 function ListPlaylistOnClick({ setIsChange, setCurrentTrack, playLists }) {
   return (
@@ -18,7 +19,7 @@ function ListPlaylistOnClick({ setIsChange, setCurrentTrack, playLists }) {
               <div
                 className="h-10 w-10 mr-2 rounded-full"
                 style={{
-                  backgroundImage: `url(${song.album.picture})`,
+                  backgroundImage: `url(${song.album.picture === null ? Defaultimg : song.album.picture})`,
                   backgroundSize: `cover`,
                   backgroundRepeat: `no-repeat`,
                   backgroundPosition: `center`,
