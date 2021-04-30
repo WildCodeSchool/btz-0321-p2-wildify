@@ -34,5 +34,5 @@ export default ListPlaylist;
 
 ListPlaylist.propTypes = {
   setIsChange: PropTypes.func.isRequired,
-  playLists: PropTypes.func.isRequired,
+  playLists: PropTypes.array.isRequired,
 };
