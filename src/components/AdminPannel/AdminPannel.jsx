@@ -50,11 +50,11 @@ export default function AdminPannel({ item, albums, hideAdmin, artists }) {
 
   return (
     <div className=" w-full h-screen z-50 fixed bg-gray-700 ">
+      <button onClick={hideAdmin} className="border-2 text-white border-white rounded-xl py-2 px-4  whitespace-nowrap  ">
+        RETURN TO WIZIC
+      </button>
       <div className="h-44 w-full text-5xl text-gray-500 flex flex-col items-center align-middle justify-center  border-white border-b-2 ">
         {' '}
-        <button onClick={hideAdmin} className="w-24 h-24">
-          XXX
-        </button>
         <h1 className="border-white border-2 py-2 px-4 rounded-xl text-white">ADMIN PANNEL</h1>
         <p className="text-white">Take control on what U ear !</p>
       </div>

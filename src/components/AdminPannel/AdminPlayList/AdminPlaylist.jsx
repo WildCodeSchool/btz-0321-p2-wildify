@@ -88,7 +88,7 @@ export default function AdminPlaylist({ playList, playListFetch, item }) {
         </form>
         <form onSubmit={updatePlayList} className="flex flex-col items-center justify-center align-middle">
           <label htmlFor="update">Update PlayList :</label>
-          <select onChange={(e) => setPlayListId(e.target.value)} name="update" id="" className="bg-black px-4 rounded-xl w-52 w-4/5 opacity-50 h-8">
+          <select onBlur={(e) => setPlayListId(e.target.value)} name="update" id="" className="bg-black px-4 rounded-xl w-52 w-4/5 opacity-50 h-8">
             {playList.map((playList, index) => {
               return (
                 <option key={index} value={playList.id}>
@@ -130,8 +130,8 @@ export default function AdminPlaylist({ playList, playListFetch, item }) {
           "
             name=""
             id="">
-            {item.map((song) => {
-              return <option>{song.title}</option>;
+            {item.map((song, index) => {
+              return <option key={index}>{song.title}</option>;
             })}
           </select>
           <select
@@ -139,8 +139,8 @@ export default function AdminPlaylist({ playList, playListFetch, item }) {
           "
             name=""
             id="">
-            {playList.map((playList) => {
-              return <option>{playList.title}</option>;
+            {playList.map((playList, index) => {
+              return <option key={index}>{playList.title}</option>;
             })}
           </select>
           <div className="w-full h-full bg-black border-white border-2 rounded-xl">{}</div>
@@ -171,4 +171,5 @@ export default function AdminPlaylist({ playList, playListFetch, item }) {
 AdminPlaylist.propTypes = {
   playList: PropTypes.array.isRequired,
   playListFetch: PropTypes.func.isRequired,
+  item: PropTypes.array.isRequired,
 };

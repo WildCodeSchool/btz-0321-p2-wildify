@@ -3,7 +3,25 @@ import PropTypes from 'prop-types';
 
 export default function UpdateSongs({ item }) {
   const [onSelect, setOnSelect] = useState();
-  console.log(onSelect);
+
+  // const songData = {
+  //   title:
+  //   artist:
+  //   album:
+  //   duration:
+  // }
+
+  // const songUpdate = (e) => {
+  //   e.preventDefault();
+  //   fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/songs/${item[onSelect].id}`, {
+  //     method: 'PUT',
+  //     headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({ songData }),
+  //   })
+  //     .then((res) => console.log(res))
+  //     .catch((err) => console.log(err));
+  // };
+
   return (
     <div className="flex flex-col  items-center align-middle justify-center w-full">
       <label htmlFor="">Update :</label>
