@@ -20,7 +20,7 @@ function ListPlaylistOnClick({ setIsChange, setCurrentTrack, playLists }) {
                 <div
                   className="h-10 w-10 mr-2 rounded-full"
                   style={{
-                    backgroundImage: `url(${song.picture})`,
+                    backgroundImage: `url(${song.picture === null ? Defaultimg : song.picture})`,
                     backgroundSize: `cover`,
                     backgroundRepeat: `no-repeat`,
                     backgroundPosition: `center`,
