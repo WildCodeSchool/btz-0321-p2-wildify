@@ -25,7 +25,8 @@ function SliderA({ artists, index, width, handleClick }) {
           className="flex flex-col w-full h-full bg-center bg-no-repeat bg-cover rounded-3xl transform hover:scale-105"
           style={{ backgroundImage: `url(${artist.picture === null ? Defaultimg : artist.picture})` }}>
           <div className="flex flex-col justify-end w-full h-full">
-            <div className="text-left flex flex-col justify-between pl-2 pt-8 900:py-12 900:px-3 h-full w-full bg-black bg-opacity-30 hover:bg-opacity-10">
+            <div className="text-left flex flex-col justify-between pt-6 pb-8 px-2 900:py-12 900:px-3 h-full w-full bg-black bg-opacity-40 hover:bg-opacity-10">
+              <h1 className="font-scada text-mainColor font-bold text-2xl 900:text-3xl">Artist</h1>
               <div className="font-scada text-white font-bold text-2xl 900:text-3xl">{artist.name}</div>
             </div>
           </div>
