@@ -68,7 +68,7 @@ function SideBar({ sideBarClass, albums, handleSideBar }) {
             )}
           </div>
           <form className="w-full flex  flex-col">
-            <h1 className="font-scada text-white text-2xl">1. Uplaod Music</h1>
+            <h1 className="font-scada text-white text-2xl">1. Upload Music</h1>
             <label className="text-white text-lg font-cuprum mt-3" htmlFor="playlist">
               Select Playlist:
             </label>

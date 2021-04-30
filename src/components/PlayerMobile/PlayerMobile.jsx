@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import Controls from '../playbar/controls/controls';
 import PropTypes from 'prop-types';
 import Arrow from '../../img/arrow.svg';
+import Defaultimg from '../../img/defaultPicture.png';
 
 export default function PlayerMobile({
   setIsMobilePlayerVisible,
@@ -97,9 +98,9 @@ export default function PlayerMobile({
         Your browser does not support this audio format.
       </audio>
       <div
-        className="h-20 w-28 rounded-full shadow-ImgPlaybar"
+        className="h-16 w-24 rounded-full shadow-ImgPlaybar"
         style={{
-          backgroundImage: `url(${picture})`,
+          backgroundImage: `url(${picture === null ? Defaultimg : picture})`,
           backgroundSize: `cover`,
           backgroundRepeat: `no-repeat`,
           backgroundPosition: `center`,

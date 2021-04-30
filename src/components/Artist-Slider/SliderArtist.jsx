@@ -25,7 +25,7 @@ function SliderArtist({ artists, item, setCurrentTrack, setSelectedSong, setIsAr
     }
   };
   return (
-    <div className="w-full h-full flex flex-col align-middle justify-center items-center">
+    <div className="w-full h-full flex flex-col">
       {!isTrackList ? (
         <div className="w-full h-full flex flex-col align-middle justify-center items-center">
           <PreviousA className="" width={width} artists={artists} index={index} setIndex={setIndex} setArtistChoice={setArtistChoice} />
