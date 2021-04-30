@@ -14,6 +14,7 @@ import bg from '../img/BackGrounds/BackGround1.webp';
 import PlayerMobile from '../components/PlayerMobile/PlayerMobile';
 import authContext from '../context/authContext';
 import { useHistory } from 'react-router';
+import AdminPannel from '../components/AdminPannel/AdminPannel';
 
 function App() {
   const [isSideBarVisible, setisSideBarVisible] = useState(false);
@@ -41,10 +42,11 @@ function App() {
 
   const [onSearch, setOnSearch] = useState();
   const { token } = useContext(authContext);
+  const [isAdmin, setIsAdmin] = useState('');
   const history = useHistory();
   const [isAlbumTrackList, setIsAlBumTrackList] = useState(false);
   const [isArtistTrackList, setIsArtistTrackList] = useState(false);
-
+  const [playLists, setPlayLists] = useState([]);
   useEffect(() => {
     if (!token) {
       history.push('/');
@@ -53,14 +55,16 @@ function App() {
 
   useEffect(() => {
     const getDatas = async () => {
-      const [resSongs, resArtists, resAlbums] = await Promise.all([
+      const [resSongs, resArtists, resAlbums, resPlayLists] = await Promise.all([
         axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs', { headers: { Authorization: `Bearer ${token}` } }),
         axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/artists', { headers: { Authorization: `Bearer ${token}` } }),
         axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/albums', { headers: { Authorization: `Bearer ${token}` } }),
+        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/playlists', { headers: { Authorization: `Bearer ${token}` } }),
       ]);
       setItem(resSongs.data);
       setAlbums(resAlbums.data);
       setArtists(resArtists.data);
+      setPlayLists(resPlayLists.data);
       setIsLoading(false);
     };
     getDatas();
@@ -82,6 +86,10 @@ function App() {
     }
   }, [width]);
 
+  const hideAdmin = () => {
+    setIsAdmin(false);
+  };
+
   const handleSong = () => {
     setOnListen(item[currentTrack].s3_link);
   };
@@ -93,6 +101,13 @@ function App() {
           'flex fixed z-50 flex-col h-screen w-screen  top-0 right-0 900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-bgPlaybar  shadow-playbar',
         );
   };
+  const handleAdmin = () => {
+    if (isAdmin) {
+      setIsAdmin(false);
+    } else {
+      setIsAdmin(true);
+    }
+  };
   return (
     <div
       className="flex align-middle justify-center pb-24"
@@ -101,6 +116,8 @@ function App() {
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
       }}>
+      {isAdmin && <AdminPannel artists={artists} hideAdmin={hideAdmin} item={item} token={token} albums={albums} />}
+
       <div className="grid mx-5 gap-5  900:gap-6 grid-cols-mobile grid-rows-mobile 900:grid-cols-desktop 900:ml-6 900:mr-0 900:grid-rows-desktop">
         <Header handleSideBar={handleSideBar} setOnSearch={setOnSearch} isSideBarVisible={isSideBarVisible} />
 
@@ -122,7 +139,7 @@ function App() {
           )}
         </div>
         <div className=" overflow-y-auto col-start-1 col-end-3 row-start-3 row-end-4 900:col-end-2 900:row-end-5 rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
-          {!isLoading && <PlaylistSwitch item={item} setCurrentTrack={setCurrentTrack} currentTrack={currentTrack} />}
+          {!isLoading && <PlaylistSwitch playLists={playLists} item={item} setCurrentTrack={setCurrentTrack} currentTrack={currentTrack} />}
           {/* />*/}
         </div>
         <div className="overflow-hidden col-start-1 col-end-2 row-start-4 row-end-5 gap-x-1 900:col-start-2 900:col-end-3 900:row-start-3 900:row-end-4  rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
@@ -154,6 +171,9 @@ function App() {
         </div>
         <div className="col-start-1 col-end-3 row-start-6 row-end-7 rounded-20 900:col-end-4 900:row-start-5 900:row-end-6 bg-black bg-opacity-20 shadow-layoutContainer mb-4">
           <Contact />
+          <button onClick={handleAdmin} suppressHydrationWarning={hideAdmin}>
+            ADMIN PANNEL
+          </button>
         </div>
         {isSideBarVisible && <SideBar sideBarClass={sideBarClass} albums={albums} setSideBarClass={setSideBarClass} handleSideBar={handleSideBar} />}
       </div>

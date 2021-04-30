@@ -10,6 +10,7 @@ module.exports = {
         bgPlaybar: '#1F1F1F',
         bgPlayerMobile: 'linear-gradient(346.15deg, rgba(0, 0, 0, 1), rgba(54, 56, 57, 0.89) 124.64%)',
       },
+
       spacing: {
         80: '21rem',
         97: '25rem',
@@ -72,6 +73,10 @@ module.exports = {
       },
     },
   },
-  variants: {},
+  variants: {
+    extend: {
+      backgroundColor: ['active'],
+    },
+  },
   plugins: [],
 };

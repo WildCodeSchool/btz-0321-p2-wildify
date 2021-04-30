@@ -19,11 +19,11 @@ function ArtistTrackList({ item, artistChoice, setSelectedSong }) {
                 key={index}
                 value={song.title}
                 onClick={handleClick}>
-                <div className="flex items-center">
+                <div className="flex pointer-events-none items-center">
                   <div
-                    className="flex h-12 w-12 mr-2 rounded-full"
+                    className="pointer-events-none flex h-12 w-12 mr-2 rounded-full"
                     style={{
-                      backgroundImage: `url(${song.album.picture === null ? Defaultimg : song.album.picture})`,
+                      backgroundImage: `url(${song.artist.picture === null ? Defaultimg : song.artist.picture})`,
                       backgroundSize: `cover`,
                       backgroundRepeat: `no-repeat`,
                       backgroundPosition: `center`,
@@ -41,7 +41,6 @@ function ArtistTrackList({ item, artistChoice, setSelectedSong }) {
 export default ArtistTrackList;
 
 ArtistTrackList.propTypes = {
-  handleArtistClick: PropTypes.func.isRequired,
   item: PropTypes.array.isRequired,
   artistChoice: PropTypes.string.isRequired,
   setSelectedSong: PropTypes.func.isRequired,
