@@ -16,11 +16,10 @@ export default function AdminSongs({ item, albums, playList, artists }) {
       headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({ picture: imgUrl }),
     })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => res)
+      .catch((err) => err);
   };
 
-  console.log(artists);
   return (
     <div className="w-full h-full flex items-center justify-center align-middle text-xs   text-white">
       <div className="w-full h-full grid-rows-2 grid-cols-2 grid">
@@ -34,13 +33,13 @@ export default function AdminSongs({ item, albums, playList, artists }) {
           <AdminPlayer item={item} />
         </div>
         <div className="flex justify-center align-middle items-center flex-col  py-6 ">
-          <select
-            onChange={(e) => setArtistId(e.target.value)}
-            className="bg-black opacity-50 text-white w-72 rounded-xl h-8 py-2 px-4"
-            name=""
-            id="">
-            {artists.map((artist) => {
-              return <option value={artist.id}>{artist.name}</option>;
+          <select onBlur={(e) => setArtistId(e.target.value)} className="bg-black opacity-50 text-white w-72 rounded-xl h-8 py-2 px-4" name="" id="">
+            {artists.map((artist, index) => {
+              return (
+                <option key={index} value={artist.id}>
+                  {artist.name}
+                </option>
+              );
             })}
           </select>
           <input

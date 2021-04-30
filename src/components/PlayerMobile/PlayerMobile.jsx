@@ -17,7 +17,7 @@ export default function PlayerMobile({
   isPlaySwitch,
   setIsPlaySwitch,
   picture,
-
+  setPicture,
   isAlbum,
   isArtist,
   selectedSong,
@@ -36,8 +36,10 @@ export default function PlayerMobile({
   const updateSong = () => {
     if (isAlbum || isAlbumTrackList || isArtistTrackList || isArtist) {
       setOnListen(selectedSong[0].s3_link);
+      setPicture(selectedSong[0].album.picture);
     } else {
       setOnListen(item[currentTrack].s3_link);
+      setPicture(item[currentTrack].album.picture);
     }
     if (audioRef3.current) {
       audioRef3.current.load();

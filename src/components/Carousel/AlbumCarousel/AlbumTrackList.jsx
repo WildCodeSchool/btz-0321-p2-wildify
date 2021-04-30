@@ -20,9 +20,9 @@ function AlbumTrackList({ item, albumChoice, setSelectedSong }) {
                 key={index}
                 value={song.title}
                 onClick={handleClick}>
-                <div className="flex items-center">
+                <div className="flex pointer-events-none items-center">
                   <div
-                    className="flex h-12 w-12 mr-2 rounded-full"
+                    className="pointer-events-none flex h-12 w-12 mr-2 rounded-full"
                     style={{
                       backgroundImage: `url(${song.album.picture === null ? Defaultimg : song.album.picture})`,
                       backgroundSize: `cover`,
