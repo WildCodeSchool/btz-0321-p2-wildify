@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReturnBtn from '../../img/PlayList/ReturnButton.svg';
+import Defaultimg from '../../img/defaultPicture.png';
 
 function ListPlaylistOnClick({ setIsChange, setCurrentTrack, playLists }) {
   return (

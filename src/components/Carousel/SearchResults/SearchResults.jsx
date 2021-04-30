@@ -3,12 +3,16 @@ import PropTypes from 'prop-types';
 
 export default function SearchResults({ item, onSearch }) {
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full py-2 pl-2 pr-4 900:px-8">
       <ul>
         {item
           .filter((song) => song.title.toLowerCase().includes(onSearch))
           .map((song, index) => {
-            return <li key={index}>{song.title}</li>;
+            return (
+              <li className="font-scada text-white text-sm border-b-2 pb-1 mb-5 hover:text-mainColor hover:border-mainColor" key={index}>
+                {song.title}
+              </li>
+            );
           })}
       </ul>
     </div>

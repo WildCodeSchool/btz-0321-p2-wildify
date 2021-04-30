@@ -110,18 +110,19 @@ export default function Carousel({
         )}
         {isAlbumTrackList && (
           <div className="flex flex-row justify-between">
-            <p className={isAlbumTrackList ? ' p-3 font-cuprum text-4xl font-bold text-mainColor px-2' : 'hidden'}>{albumChoice}</p>
+            <p className="p-3 font-cuprum text-4xl font-bold text-mainColor px-2">{albumChoice}</p>
             <button className="focus:outline-none flex justify-start m-4 900:ml-8" onClick={handleAlbumClick}>
               <img src={Backward} alt="BackwardArrow" />
             </button>
           </div>
         )}
+        {onSearch && <p className="p-3 font-cuprum text-4xl font-bold text-mainColor px-2">Search Results</p>}
       </div>
 
       <div className="pb-4 flex flex-row justify-around  900:w-full 900:justify-end ">
         <button
           className={
-            isAlbumTrackList || isArtistTrackList
+            isAlbumTrackList || isArtistTrackList || onSearch
               ? 'hidden'
               : isRecentAddsActive
               ? '900:mr-8 900:mb-2 focus:outline-none text-mainColor'
@@ -132,7 +133,7 @@ export default function Carousel({
         </button>
         <button
           className={
-            isAlbumTrackList || isArtistTrackList
+            isAlbumTrackList || isArtistTrackList || onSearch
               ? 'hidden'
               : isArtistActive
               ? '900:mr-8 900:mb-2 focus:outline-none text-mainColor'
@@ -143,7 +144,7 @@ export default function Carousel({
         </button>
         <button
           className={
-            isAlbumTrackList || isArtistTrackList
+            isAlbumTrackList || isArtistTrackList || onSearch
               ? 'hidden'
               : isAlbumActive
               ? '900:mr-8 900:mb-2 focus:outline-none text-mainColor'
@@ -154,7 +155,7 @@ export default function Carousel({
         </button>
         <button
           className={
-            isAlbumTrackList || isArtistTrackList
+            isAlbumTrackList || isArtistTrackList || onSearch
               ? 'hidden'
               : isTrackListActive
               ? '900:mr-8 900:mb-2 focus:outline-none text-mainColor'
