@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import ImgDefault from '../../img/defaultAlbumImage.png';
 import PropTypes from 'prop-types';
+import Defaultimg from '../../img/defaultPicture.png';
 
 function SliderA({ artists, index, width, handleClick }) {
   const [translationSlide, setTranslationSlide] = useState();
@@ -23,11 +23,14 @@ function SliderA({ artists, index, width, handleClick }) {
           key={index}
           type="button"
           className="flex flex-col w-full h-full bg-center bg-no-repeat bg-cover rounded-3xl transform hover:scale-105"
-          style={{ backgroundImage: `url(${artist.picture})` }}>
+          style={{ backgroundImage: `url(${artist.picture === null ? Defaultimg : artist.picture})` }}>
           <div className="flex flex-col justify-end w-full h-full">
             <div className="text-left flex flex-col justify-between pl-2 pt-8 900:py-12 900:px-3 h-full w-full bg-black bg-opacity-30 hover:bg-opacity-10">
               <div className="font-scada text-white font-bold text-2xl 900:text-3xl">{artist.name}</div>
+<<<<<<< HEAD
               <img className="bg-center bg-cover" src={ImgDefault} alt={ImgDefault} />
+=======
+>>>>>>> Dev
             </div>
           </div>
         </button>

@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import SearchResults from './SearchResults/SearchResults';
 import AlbumTrackList from './AlbumCarousel/AlbumTrackList';
 import ArtistTrackList from './ArtistCarousel/ArtistTrackList';
+import Backward from '../../img/PlayList/ReturnButton.svg';
 
 export default function Carousel({
   item,
@@ -65,7 +66,7 @@ export default function Carousel({
 
   const handleAlbumClick = (e) => {
     if (!isAlbumTrackList) {
-      setAlbumChoice(e.target.innerHTML);
+      setAlbumChoice(e.target.value);
       setIsAlBumTrackList(true);
       setIsAlbumActive(false);
       setIsArtistActive(false);
@@ -79,7 +80,7 @@ export default function Carousel({
 
   const handleArtistClick = (e) => {
     if (!isArtistTrackList) {
-      setArtistChoice(e.target.innerHTML);
+      setArtistChoice(e.target.value);
       setIsAlBumTrackList(false);
       setIsAlbumActive(false);
       setIsArtistActive(false);
@@ -99,12 +100,30 @@ export default function Carousel({
         <p className={isArtistActive ? ' p-3 font-cuprum text-4xl font-bold text-mainColor px-2' : 'hidden'}>Artist</p>
         <p className={isAlbumActive ? ' p-3 font-cuprum text-4xl font-bold text-mainColor px-2' : 'hidden'}>Album</p>
         <p className={isTrackListActive ? ' p-3 font-cuprum text-4xl font-bold text-mainColor px-2' : 'hidden'}>TrackList</p>
+        {isArtistTrackList && (
+          <div className="flex flex-row justify-between">
+            <p className="p-3 font-cuprum text-4xl font-bold text-mainColor px-2">{artistChoice}</p>
+            <button className="focus:outline-none flex justify-start m-4 900:ml-8" onClick={handleArtistClick}>
+              <img src={Backward} alt="BackwardArrow" />
+            </button>
+          </div>
+        )}
+        {isAlbumTrackList && (
+          <div className="flex flex-row justify-between">
+            <p className={isAlbumTrackList ? ' p-3 font-cuprum text-4xl font-bold text-mainColor px-2' : 'hidden'}>{albumChoice}</p>
+            <button className="focus:outline-none flex justify-start m-4 900:ml-8" onClick={handleAlbumClick}>
+              <img src={Backward} alt="BackwardArrow" />
+            </button>
+          </div>
+        )}
       </div>
 
       <div className="pb-4 flex flex-row justify-around  900:w-full 900:justify-end ">
         <button
           className={
-            isRecentAddsActive
+            isAlbumTrackList || isArtistTrackList
+              ? 'hidden'
+              : isRecentAddsActive
               ? '900:mr-8 900:mb-2 focus:outline-none text-mainColor'
               : '900:mr-8 900:mb-2 focus:outline-none font-scada text-white font-bold '
           }
@@ -113,7 +132,9 @@ export default function Carousel({
         </button>
         <button
           className={
-            isArtistActive
+            isAlbumTrackList || isArtistTrackList
+              ? 'hidden'
+              : isArtistActive
               ? '900:mr-8 900:mb-2 focus:outline-none text-mainColor'
               : '900:mr-8 900:mb-2 focus:outline-none font-scada text-white font-bold'
           }
@@ -122,7 +143,9 @@ export default function Carousel({
         </button>
         <button
           className={
-            isAlbumActive
+            isAlbumTrackList || isArtistTrackList
+              ? 'hidden'
+              : isAlbumActive
               ? '900:mr-8 900:mb-2 focus:outline-none text-mainColor'
               : '900:mr-8 900:mb-2 focus:outline-none font-scada text-white font-bold'
           }
@@ -131,7 +154,9 @@ export default function Carousel({
         </button>
         <button
           className={
-            isTrackListActive
+            isAlbumTrackList || isArtistTrackList
+              ? 'hidden'
+              : isTrackListActive
               ? '900:mr-8 900:mb-2 focus:outline-none text-mainColor'
               : '900:mr-8 900:mb-2 focus:outline-none font-scada text-white font-bold'
           }
@@ -144,12 +169,8 @@ export default function Carousel({
         {isArtistActive && <Artist handleArtistClick={handleArtistClick} artists={artists} />}
         {isAlbumActive && <Album handleAlbumClick={handleAlbumClick} albums={albums} />}
         {isTrackListActive && <TrackList item={item} setCurrentTrack={setCurrentTrack} />}
-        {isAlbumTrackList && (
-          <AlbumTrackList setSelectedSong={setSelectedSong} albumChoice={albumChoice} handleAlbumClick={handleAlbumClick} item={item} />
-        )}
-        {isArtistTrackList && (
-          <ArtistTrackList setSelectedSong={setSelectedSong} artistChoice={artistChoice} handleArtistClick={handleArtistClick} item={item} />
-        )}
+        {isAlbumTrackList && <AlbumTrackList setSelectedSong={setSelectedSong} albumChoice={albumChoice} item={item} />}
+        {isArtistTrackList && <ArtistTrackList setSelectedSong={setSelectedSong} artistChoice={artistChoice} item={item} />}
         {onSearch && <SearchResults onSearch={onSearch} item={item} />}
       </div>
     </div>
