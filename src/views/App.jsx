@@ -262,6 +262,8 @@ function App() {
           selectedSong={selectedSong}
           isAlbum={isAlbum}
           isArtistTrackList={isArtistTrackList}
+          isArtist={isArtist}
+          isAlbumTrackList={isAlbumTrackList}
         />
       ) : (
         ''
