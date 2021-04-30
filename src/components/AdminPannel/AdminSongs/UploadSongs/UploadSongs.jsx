@@ -40,18 +40,18 @@ export default function UploadSongs({ playList, albums }) {
 
   return (
     <div className="w-512 h-full flex-col  flex items-center  ">
-      <div className=" bg-black w-60  h-6 rounded-full">
+      <div className=" bg-black w-72  h-6 rounded-full">
         <div style={{ width: `${progress}%` }} className=" h-full bg-white text-center rounded-full"></div>
       </div>
       <label htmlFor="">Upload :{progress ? Math.floor(progress) : '00'}% </label>
-      <input onChange={handleFile} className="my-2 w-4/5 h-9  bg-black bg-opacity-50 rounded-xl" type="file" />
+      <input onChange={handleFile} className="my-2 w-72 h-9  bg-black bg-opacity-50 rounded-xl" type="file" />
       <input
         onChange={(e) => setImgUrl(e.target.value)}
-        className="my-2 w-4/5 px-4 h-14 bg-black bg-opacity-50 rounded-xl"
+        className="my-2 w-72 px-4 h-14 bg-black bg-opacity-50 rounded-xl"
         type="text"
         placeholder="Picture URL"
       />
-      <select onChange={(e) => setAlbumId(e.target.value)} className="text-white bg-black bg-opacity-50 px-4  rounded-xl h-16 w-96" name="" id="">
+      <select onChange={(e) => setAlbumId(e.target.value)} className="text-white bg-black bg-opacity-50 px-4  rounded-xl h-16 w-72" name="" id="">
         {albums.map((album, index) => {
           return (
             <option key={index} value={album.id}>
@@ -60,7 +60,7 @@ export default function UploadSongs({ playList, albums }) {
           );
         })}
       </select>
-      <select className="my-2 w-4/5 px-4 h-14 bg-black bg-opacity-50 rounded-xl" name="" id="">
+      <select className="my-2 w-72 px-4 h-14 bg-black bg-opacity-50 rounded-xl" name="" id="">
         {playList.map((playList, index) => {
           return (
             <option key={index} value="">
@@ -69,16 +69,19 @@ export default function UploadSongs({ playList, albums }) {
           );
         })}
       </select>
-      <button
-        className="border-2 my-2 text-xs border-white px-4  rounded-xl focus:outline-none hover:bg-gray-800 active:bg-gray-600"
-        onClick={handleSubmit}>
-        UPLOAD
-      </button>
-      <button
-        className="border-2 border-white px-4  rounded-xl focus:outline-none hover:bg-gray-800 active:bg-gray-600"
-        onClick={handlePictureSubmission}>
-        UPLOAD IMG
-      </button>
+      <div className="flex items-center align-middle justify-center">
+        {' '}
+        <button
+          className="border-2 my-2 w-26 text-xs border-white px-4  rounded-xl focus:outline-none hover:bg-gray-800 active:bg-gray-600"
+          onClick={handleSubmit}>
+          UPLOAD TRACK
+        </button>
+        <button
+          className="border-2 border-white px-2 w-26 rounded-xl   focus:outline-none hover:bg-gray-800 active:bg-gray-600"
+          onClick={handlePictureSubmission}>
+          UPLOAD IMG
+        </button>
+      </div>
     </div>
   );
 }

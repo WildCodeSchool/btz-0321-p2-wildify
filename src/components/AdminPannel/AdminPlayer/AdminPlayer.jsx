@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import LogginPannel from '../LogginPage/LogginPage';
 export default function AdminPlayer({ item }) {
   const audioRef = useRef(null);
 
@@ -29,7 +30,7 @@ export default function AdminPlayer({ item }) {
           );
         })}
       </select>
-      <audio id="audio" ref={audioRef} controls>
+      <audio id="audio" ref={audioRef} controls className="w-72">
         <source src={onListen} type="audio/mp3"></source>
         <track default kind="captions" />
       </audio>

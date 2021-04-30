@@ -34,14 +34,23 @@ export default function AdminSongs({ item, albums, playList, artists }) {
           <AdminPlayer item={item} />
         </div>
         <div className="flex justify-center align-middle items-center flex-col  py-6 ">
-          <select onChange={(e) => setArtistId(e.target.value)} className="bg-black opacity-50 text-white" name="" id="">
+          <select
+            onChange={(e) => setArtistId(e.target.value)}
+            className="bg-black opacity-50 text-white w-72 rounded-xl h-8 py-2 px-4"
+            name=""
+            id="">
             {artists.map((artist) => {
               return <option value={artist.id}>{artist.name}</option>;
             })}
           </select>
-          <input onChange={(e) => setImgUrl(e.target.value)} className="bg-black opacity-50 text-white" placeholder="Album picture URL" type="text" />
+          <input
+            onChange={(e) => setImgUrl(e.target.value)}
+            className="bg-black opacity-50 text-white w-72 rounded-xl my-2 h-6 py-2 px-4"
+            placeholder="Album picture URL"
+            type="text"
+          />
           <button onClick={handlePictureSubmission}>SUBMIT ALBUM PICTURE</button>
-          <div className="h-72 w-60"></div>
+          <div className="h-72 w-72"></div>
         </div>
       </div>
     </div>

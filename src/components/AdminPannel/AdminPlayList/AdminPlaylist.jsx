@@ -11,7 +11,7 @@ export default function AdminPlaylist({ playList, playListFetch, item }) {
   const [updatePicture, setUpdatePicture] = useState();
   const [updateSongs, setUpdateSongs] = useState([]);
   const [playListId, setPlayListId] = useState();
-  console.log(item);
+
   const { token } = useContext(authContext);
 
   const playListData = {
@@ -153,8 +153,10 @@ export default function AdminPlaylist({ playList, playListFetch, item }) {
               {playList.map((playList, index) => {
                 return (
                   <li className="border-b-2 flex text-xl items-center justify-center border-white py-2 w-full" key={index}>
-                    {playList.title}
-                    <img className="w-24 mx-3 rounded-full" src={playList.picture} alt="" />
+                    <div className="text-xs">
+                      {playList.title} - {playList.description}
+                    </div>
+                    <img className="w-14 mx-3 rounded-full" src={playList.picture} alt="" />
                   </li>
                 );
               })}
