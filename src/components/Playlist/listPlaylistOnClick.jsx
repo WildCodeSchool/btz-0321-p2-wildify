@@ -13,20 +13,22 @@ function ListPlaylistOnClick({ setIsChange, setCurrentTrack, playLists }) {
       </div>
       {playLists.map((playList, key) =>
         playList.songs.map((song) => {
-          <button key={key} onClick={() => setCurrentTrack(key)} type="button" className="bg p-1 w-full focus:outline-none">
-            <div className="flex flex-wrap items-center text-white mt-4 border-b border-gra border-white pb-1 mb-2 hover:border-mainColor hover:text-mainColor transform hover:scale-105">
-              <div
-                className="h-10 w-10 mr-2 rounded-full"
-                style={{
-                  backgroundImage: `url(${song.album.picture})`,
-                  backgroundSize: `cover`,
-                  backgroundRepeat: `no-repeat`,
-                  backgroundPosition: `center`,
-                }}></div>
-              <div className=" font-scada text-xs font-bold mr-2 900:text-base">{song.title} -</div>
-              <div className=" font-scada text-xs ">{song.artist.name}</div>
-            </div>
-          </button>;
+          return (
+            <button key={key} onClick={() => setCurrentTrack(key)} type="button" className="bg p-1 w-full focus:outline-none">
+              <div className="flex flex-wrap items-center text-white mt-4 border-b border-gra border-white pb-1 mb-2 hover:border-mainColor hover:text-mainColor transform hover:scale-105">
+                <div
+                  className="h-10 w-10 mr-2 rounded-full"
+                  style={{
+                    backgroundImage: `url(${song.picture})`,
+                    backgroundSize: `cover`,
+                    backgroundRepeat: `no-repeat`,
+                    backgroundPosition: `center`,
+                  }}></div>
+                <div className=" font-scada text-xs font-bold mr-2 900:text-base">{song.title} -</div>
+                <div className=" font-scada text-xs ">{song.artist.name}</div>
+              </div>
+            </button>
+          );
         }),
       )}
     </div>

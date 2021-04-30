@@ -26,10 +26,10 @@ export default function AdminPlaylist({ playList, playListFetch, item }) {
     picture: updatePicture,
     songs: updateSongs,
   };
+  console.log(token);
 
   const createPlayList = (e) => {
     e.preventDefault();
-
     fetch('https://bazify-backend.basile.vernouillet.dev/api/v1/playlists', {
       method: 'POST',
       headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
