@@ -21,7 +21,9 @@ export default function TrackListCard({ items, setCurrentTrack }) {
               <p className="font-scada leading-5 text-white font-bold text-lg text-left">{item.title}</p>
               <p className="font-scada text-white text-sm">{item.artist.name}</p>
             </div>
-            <img src={PlayerButton} alt="" />
+            <div className="flex focus:outline-none items-end m-1">
+              <img src={PlayerButton} alt="" />
+            </div>
           </div>
         </button>
       ))}

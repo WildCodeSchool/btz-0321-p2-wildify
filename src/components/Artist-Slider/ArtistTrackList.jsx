@@ -13,9 +13,9 @@ function ArtistTrackList({ handleClick, item, artistChoice, setSelectedSong }) {
           .filter((song) => song.artist.name.includes(artistChoice))
           .map((song, index) => {
             return (
-              <li key={index} className="font-cuprum pb-3 pt-1 900:px-3  text-white">
+              <li key={index} className="font-cuprum pb-3 pt-1 900:px-3  text-white ">
                 <button
-                  className="focus:outline-none text-left pb-1 border-b w-full hover:border-mainColor hover:text-mainColor transform hover:scale-105"
+                  className="focus:outline-none text-left pb-1 border-b w-full hover:border-mainColor hover:text-mainColor transform hover:scale-105 mb-2"
                   onClick={() => setSelectedSong(item.filter((track) => track.title.includes(song.title)))}
                   type="button">
                   {song.title}
