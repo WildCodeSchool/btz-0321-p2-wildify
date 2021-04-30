@@ -52,7 +52,6 @@ function App() {
       history.push('/');
     }
   }, [token]);
-  console.log(playLists);
   useEffect(() => {
     const getDatas = async () => {
       const [resSongs, resArtists, resAlbums, resPlayLists] = await Promise.all([
