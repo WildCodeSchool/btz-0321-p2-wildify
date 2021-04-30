@@ -55,5 +55,5 @@ export default function LogginPannel({ handleLoggin }) {
 }
 
 LogginPannel.propTypes = {
-  handleLoggin: PropTypes.array.isRequired,
+  handleLoggin: PropTypes.func.isRequired,
 };
