@@ -7,7 +7,7 @@ import OldSchoolPlaylist from '../../img/PlayList/OldSchool.webp';
 import GamingPlaylist from '../../img/PlayList/Gaming.webp';
 import PropTypes from 'prop-types';
 
-function ListPlaylist({ setIsChange }) {
+function ListPlaylist({ setIsChange, playLists }) {
   const WizicPlaylist = [
     { title: 'Work and Code', description: 'Relaxing and chill songs for concentration', picture: WorkingPlaylist, id: 1 },
     { title: 'Relax and Chill', description: 'Be chill, be calm, be Cool, be Wizic', picture: SportPlaylist, id: 2 },
@@ -20,7 +20,7 @@ function ListPlaylist({ setIsChange }) {
   return (
     <div className="w-full h-full  p-6">
       <h1 className="text-white font-scada text-3xl font-bold">WizicPlaylist</h1>
-      {WizicPlaylist.map((playlist, key) => (
+      {playLists.map((playlist, key) => (
         <button
           onClick={setIsChange}
           key={key}

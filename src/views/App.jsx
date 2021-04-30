@@ -46,7 +46,7 @@ function App() {
   const history = useHistory();
   const [isAlbumTrackList, setIsAlBumTrackList] = useState(false);
   const [isArtistTrackList, setIsArtistTrackList] = useState(false);
-
+  const [playLists, setPlayLists] = useState([]);
   useEffect(() => {
     if (!token) {
       history.push('/');
@@ -55,14 +55,16 @@ function App() {
 
   useEffect(() => {
     const getDatas = async () => {
-      const [resSongs, resArtists, resAlbums] = await Promise.all([
+      const [resSongs, resArtists, resAlbums, resPlayLists] = await Promise.all([
         axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs', { headers: { Authorization: `Bearer ${token}` } }),
         axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/artists', { headers: { Authorization: `Bearer ${token}` } }),
         axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/albums', { headers: { Authorization: `Bearer ${token}` } }),
+        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/playlists', { headers: { Authorization: `Bearer ${token}` } }),
       ]);
       setItem(resSongs.data);
       setAlbums(resAlbums.data);
       setArtists(resArtists.data);
+      setPlayLists(resPlayLists.data);
       setIsLoading(false);
     };
     getDatas();
@@ -137,7 +139,7 @@ function App() {
           )}
         </div>
         <div className=" overflow-y-auto col-start-1 col-end-3 row-start-3 row-end-4 900:col-end-2 900:row-end-5 rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
-          {!isLoading && <PlaylistSwitch item={item} setCurrentTrack={setCurrentTrack} currentTrack={currentTrack} />}
+          {!isLoading && <PlaylistSwitch playLists={playLists} item={item} setCurrentTrack={setCurrentTrack} currentTrack={currentTrack} />}
           {/* />*/}
         </div>
         <div className="overflow-hidden col-start-1 col-end-2 row-start-4 row-end-5 gap-x-1 900:col-start-2 900:col-end-3 900:row-start-3 900:row-end-4  rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
