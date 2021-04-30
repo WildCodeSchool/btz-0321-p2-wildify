@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import LogginPannel from '../LogginPage/LogginPage';
+
 export default function AdminPlayer({ item }) {
   const audioRef = useRef(null);
 

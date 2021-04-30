@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function LogginPannel({ handleLoggin }) {
   return (
@@ -8,7 +9,7 @@ export default function LogginPannel({ handleLoggin }) {
           <form className="max-w-sm m-4 p-10 bg-white bg-opacity-25 rounded shadow-xl">
             <p className="text-white  text-center text-lg font-bold">LOGIN</p>
             <div className="">
-              <label className="block text-sm text-white" for="email">
+              <label className="block text-sm text-white" htmlFor="email">
                 Pseudo :
               </label>
               <input
@@ -20,7 +21,9 @@ export default function LogginPannel({ handleLoggin }) {
                 required></input>
             </div>
             <div className="mt-2">
-              <label className="block  text-sm text-white">Password :</label>
+              <label className="block  text-sm text-white" htmlFor="Pass">
+                Password :
+              </label>
               <input
                 className="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white"
                 type="password"
@@ -37,16 +40,20 @@ export default function LogginPannel({ handleLoggin }) {
                 type="submit">
                 OK !
               </button>
-              <a className="inline-block right-0 align-baseline font-bold text-sm text-500 text-white hover:text-red-400" href="#">
+              {/* <a className="inline-block right-0 align-baseline font-bold text-sm text-500 text-white hover:text-red-400" href="#">
                 Mot de passe oublié ?
-              </a>
+              </a> */}
             </div>
-            <div className="text-center">
+            {/* <div className="text-center">
               <a className="inline-block right-0 align-baseline font-light text-sm text-500 hover:text-red-400">Signaler un probleme</a>
-            </div>
+            </div> */}
           </form>
         </div>
       </div>
     </div>
   );
 }
+
+LogginPannel.propTypes = {
+  handleLoggin: PropTypes.array.isRequired,
+};

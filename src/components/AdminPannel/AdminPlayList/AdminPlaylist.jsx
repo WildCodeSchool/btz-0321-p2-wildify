@@ -1,15 +1,15 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import authContext from '../../../context/authContext';
-import PropTypes, { resetWarningCache } from 'prop-types';
+import PropTypes from 'prop-types';
 export default function AdminPlaylist({ playList, playListFetch, item }) {
   const [playListTitle, setPlayListTitle] = useState();
   const [playListDescription, setPlayListDescription] = useState();
   const [playListPicture, setPlayListPicture] = useState();
-  const [songs, setSongs] = useState([]);
+  const [songs] = useState([]);
   const [updateTitle, setUpdateTitle] = useState();
   const [updateDescription, setUpdateDescription] = useState();
   const [updatePicture, setUpdatePicture] = useState();
-  const [updateSongs, setUpdateSongs] = useState([]);
+  const [updateSongs] = useState([]);
   const [playListId, setPlayListId] = useState();
 
   const { token } = useContext(authContext);
@@ -88,7 +88,7 @@ export default function AdminPlaylist({ playList, playListFetch, item }) {
         </form>
         <form onSubmit={updatePlayList} className="flex flex-col items-center justify-center align-middle">
           <label htmlFor="update">Update PlayList :</label>
-          <select onBlur={(e) => setPlayListId(e.target.value)} name="update" id="" className="bg-black px-4 rounded-xl w-52 w-4/5 opacity-50 h-8">
+          <select onBlur={(e) => setPlayListId(e.target.value)} name="update" id="" className="bg-black px-4 rounded-xl  opacity-50 h-8">
             {playList.map((playList, index) => {
               return (
                 <option key={index} value={playList.id}>
@@ -124,11 +124,11 @@ export default function AdminPlaylist({ playList, playListFetch, item }) {
           </button>
         </form>
         <div className="flex flex-col  py-8 px-10 items-center justify-center align-middle">
-          <label htmlFor="">Add a song to a playlist :</label>
+          <label htmlFor="add-song">Add a song to a playlist :</label>
           <select
             className="w-64 my-2 bg-black text-white opacity-50 rounded-xl py-2 px-4
           "
-            name=""
+            name="add-song"
             id="">
             {item.map((song, index) => {
               return <option key={index}>{song.title}</option>;
