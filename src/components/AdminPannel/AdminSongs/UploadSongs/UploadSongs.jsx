@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import authContext from '../../../../context/authContext';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+
 export default function UploadSongs({ playList, albums }) {
   const [albumId, setAlbumId] = useState();
   const [imgUrl, setImgUrl] = useState();
@@ -23,8 +24,8 @@ export default function UploadSongs({ playList, albums }) {
           setProgress((p.loaded / p.total) * 100);
         },
       })
-      .then((res) => console.log(res))
-      .catch((res) => console.log(res));
+      .then((res) => res)
+      .catch((res) => res);
   };
 
   const handlePictureSubmission = (e) => {
@@ -34,8 +35,8 @@ export default function UploadSongs({ playList, albums }) {
       headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({ picture: imgUrl }),
     })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => res)
+      .catch((err) => err);
   };
 
   return (
@@ -51,7 +52,7 @@ export default function UploadSongs({ playList, albums }) {
         type="text"
         placeholder="Picture URL"
       />
-      <select onChange={(e) => setAlbumId(e.target.value)} className="text-white bg-black bg-opacity-50 px-4  rounded-xl h-16 w-72" name="" id="">
+      <select onBlur={(e) => setAlbumId(e.target.value)} className="text-white bg-black bg-opacity-50 px-4  rounded-xl h-16 w-72" name="" id="">
         {albums.map((album, index) => {
           return (
             <option key={index} value={album.id}>
