@@ -13,6 +13,7 @@ import SliderArtist from '../components/Artist-Slider/SliderArtist';
 import bg from '../img/BackGrounds/BackGround1.webp';
 import PlayerMobile from '../components/PlayerMobile/PlayerMobile';
 import authContext from '../context/authContext';
+
 import { useHistory } from 'react-router';
 import AdminPannel from '../components/AdminPannel/AdminPannel';
 
