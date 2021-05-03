@@ -215,7 +215,7 @@ Player.propTypes = {
   setIsPlaySwitch: PropTypes.func?.isRequired,
   isAlbum: PropTypes.bool.isRequired,
   isArtist: PropTypes.bool.isRequired,
-  selectedSong: PropTypes.string,
+  selectedSong: PropTypes.array,
   isAlbumTrackList: PropTypes.bool.isRequired,
   isArtistTrackList: PropTypes.bool.isRequired,
 };

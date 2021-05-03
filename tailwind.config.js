@@ -4,7 +4,6 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        bgcard: 'rgba(255, 255, 255, 0.08)',
         bginput: '#28292A',
         mainColor: '#00FBCE',
         bgPlaybar: '#1F1F1F',
@@ -23,7 +22,6 @@ module.exports = {
         player: '5px 5px 15px rgba(0, 0, 0, 0.5), 10px 10px 15px rgba(255, 255, 255, 0.08)inset, -10px -10px 15px rgba(0, 0, 0, 0.5)inset',
         layoutContainer: '10px 10px 10px rgba(0, 0, 0, 0.5)',
         searchbar: '5px 5px 10px rgba(0, 0, 0, 0.8)',
-        card: '5px 5px 20px rgba(0, 0, 0, 0.2)',
         sideBar: '10px 10px 10px rgba(0, 0, 0, 0.49), -10px -10px 10px rgba(5, 5, 5, 0.25)',
         ImgPlaybar: '-5px -5px 15px rgba(255, 255, 255, 0.10), 5px 5px 10px rgba(0, 0, 0, 0.8)',
         MobilPlaybar: '-10px -10px 15px rgba(255, 255, 255, 0.10), 10px 10px 10px rgba(0, 0, 0, 0.9)',
