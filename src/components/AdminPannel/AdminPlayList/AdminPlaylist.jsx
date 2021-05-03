@@ -50,7 +50,7 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
       body: JSON.stringify(playListUpdate),
     })
       .then((res) => res.json())
-      .then((res) => console.log(res));
+      .then((res) => res);
     playListFetch();
   };
 
@@ -87,7 +87,7 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
         </form>
         <form onSubmit={updatePlayList} className="flex flex-col items-center justify-center align-middle">
           <label htmlFor="update">Update PlayList :</label>
-          <select onChange={(e) => setOnSelect(e.target.value)} name="update" id="" className="bg-black px-4 rounded-xl  opacity-50 h-8">
+          <select onBlur={(e) => setOnSelect(e.target.value)} name="update" id="" className="bg-black px-4 rounded-xl  opacity-50 h-8">
             {myPlayList.map((playList, index) => {
               return (
                 <option key={index} value={index}>
