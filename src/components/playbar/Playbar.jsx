@@ -4,6 +4,7 @@ import Controls from './controls/controls';
 import HiddenPlayer from '../HiddenPlayer/HiddenPlayer';
 import Volume from '../../img/volume.svg';
 import './playbar.css';
+import Defaultimg from '../../img/defaultPicture.png';
 
 export default function Playbar({
   title,
@@ -26,6 +27,9 @@ export default function Playbar({
   setIsPlaySwitch,
   selectedSong,
   isAlbum,
+  isAlbumTrackList,
+  isArtistTrackList,
+  isArtist,
 }) {
   const [sliderValue, setSliderValue] = useState(0);
   const [sliderPos, setSliderPos] = useState('100');
@@ -58,16 +62,14 @@ export default function Playbar({
   };
 
   const updateSong = () => {
-    if (isAlbum) {
+    if (isAlbum || isAlbumTrackList || isArtistTrackList || isArtist) {
       setOnListen(selectedSong[0].s3_link);
-
       setTitle(selectedSong[0].title);
       setArtist(selectedSong[0].artist.name);
       setAlbum(selectedSong[0].album.title);
       setPicture(selectedSong[0].album.picture);
     } else {
       setOnListen(item[currentTrack].s3_link);
-
       setTitle(item[currentTrack].title);
       setArtist(item[currentTrack].artist.name);
       setAlbum(item[currentTrack].album.title);
@@ -134,7 +136,7 @@ export default function Playbar({
   };
 
   return (
-    <div className="w-pbar max-h-40 flex-row fixed bottom-1 left-3 z-50">
+    <div className="w-pbar max-h-40 flex-row fixed bottom-1 left-3 z-40">
       <HiddenPlayer
         currentTrack={currentTrack}
         setCurrentTrack={setCurrentTrack}
@@ -149,20 +151,25 @@ export default function Playbar({
 
       <div
         className="flex 
-       bg-bgPlaybar  items-center h-20 rounded-4xl shadow-playbar mb-1">
-        <div className=" flex-row w-2/5 flex h-full items-center ">
+       bg-bgPlaybar  items-center h-20 rounded-4xl shadow-playbar overflow-hidden mb-1">
+        <div className=" flex-row w-2/5 flex h-full items-center overflow-hidden ">
           <div
             className="w-16 h-16 ml-4 mr-4 rounded-full shadow-ImgPlaybar"
             style={{
-              backgroundImage: `url(${picture})`,
+              backgroundImage: `url(${picture === null ? Defaultimg : picture})`,
               backgroundSize: `cover`,
               backgroundRepeat: `no-repeat`,
               backgroundPosition: `center`,
             }}></div>
-          <div className="flex-col w-4/5 flex justify-start items-left ">
-            <div className="text-white font-scada text-lg font-bold">{title}</div>
-            <div className="text-white font-cuprum text-sm">
-              {album} - {artist}
+          <div className="flex-row w-6/12 flex justify-center overflow-hidden item-center align-middle ">
+            <div className="flex w-full overflow-hidden ">
+              <div className="text-white whitespace-nowrap text-lg   txt font-cuprum  ">
+                {album} - {artist} - {title}&nbsp;
+              </div>
+
+              <div className="text-white whitespace-nowrap text-lg txt font-cuprum   ">
+                {album} - {artist} -{title}&nbsp;
+              </div>
             </div>
           </div>
         </div>
@@ -238,4 +245,7 @@ Playbar.propTypes = {
   setIsPlaySwitch: PropTypes.func,
   selectedSong: PropTypes.array,
   isAlbum: PropTypes.bool.isRequired,
+  isAlbumTrackList: PropTypes.bool.isRequired,
+  isArtistTrackList: PropTypes.bool.isRequired,
+  isArtist: PropTypes.bool.isRequired,
 };

@@ -1,15 +1,15 @@
-input[type='range'].slider {
+input[type="range"].slider {
   width: 100%;
   -webkit-appearance: none; /*nécessaire pour Chrome */
   padding: 0; /* nécessaire pour IE */
-  font-family: 'Scada', sans-serif; /* même rendu suivant font document */
+  font-family: "Scada", sans-serif; /* même rendu suivant font document */
   outline: none;
   background: rgb(255, 255, 255); /* sert pour couleur de fond de la zone de déplacement */
   box-sizing: border-box; /* même modèle de boîte pour tous */
   cursor: pointer;
 }
 
-input[type='range'].slider::-webkit-slider-thumb {
+input[type="range"].slider::-webkit-slider-thumb {
   /* également nécessaire sur le curseur */
   color: #ffff;
   width: 20px;
@@ -18,7 +18,7 @@ input[type='range'].slider::-webkit-slider-thumb {
   background: currentColor; /* pris en compte sur Webkit only */
 }
 
-input[type='range'].slider::-moz-range-thumb {
+input[type="range"].slider::-moz-range-thumb {
   /* également nécessaire sur le curseur */
   color: #ffff;
   width: 20px;
@@ -27,7 +27,20 @@ input[type='range'].slider::-moz-range-thumb {
   background: currentColor; /* pris en compte sur Webkit only */
 }
 
-input[type='range'].slider::-moz-range-progress {
+input[type="range"].slider::-moz-range-progress {
   border: none;
   background: #00fbce; /* supprime barre progression avant */
+}
+
+.txt {
+  animation: scrollTxt 20s linear infinite;
+}
+
+@keyframes scrollTxt {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
 }

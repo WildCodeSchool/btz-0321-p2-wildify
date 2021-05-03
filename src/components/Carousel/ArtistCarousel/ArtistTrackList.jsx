@@ -2,17 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Defaultimg from '../../../img/defaultPicture.png';
 
-function AlbumTrackList({ item, albumChoice, setSelectedSong }) {
+function ArtistTrackList({ item, artistChoice, setSelectedSong }) {
   const handleClick = (e) => {
     const mySong = item.filter((song) => song.title.includes(e.target.value));
     setSelectedSong(mySong);
   };
-
   return (
-    <div className="h-full w-full p-4">
+    <div className="h-full w-full px-4 900:px-6">
       <ul className="w-full h-full bg-center bg-no-repeat bg-cover rounded-3xl bg-blend-lighten">
         {item
-          .filter((song) => song.album.title.includes(albumChoice))
+          .filter((song) => song.artist.name.includes(artistChoice))
           .map((song, index) => {
             return (
               <button
@@ -24,7 +23,7 @@ function AlbumTrackList({ item, albumChoice, setSelectedSong }) {
                   <div
                     className="pointer-events-none flex h-12 w-12 mr-2 rounded-full"
                     style={{
-                      backgroundImage: `url(${song.album.picture === null ? Defaultimg : song.album.picture})`,
+                      backgroundImage: `url(${song.artist.picture === null ? Defaultimg : song.artist.picture})`,
                       backgroundSize: `cover`,
                       backgroundRepeat: `no-repeat`,
                       backgroundPosition: `center`,
@@ -39,10 +38,10 @@ function AlbumTrackList({ item, albumChoice, setSelectedSong }) {
   );
 }
 
-export default AlbumTrackList;
+export default ArtistTrackList;
 
-AlbumTrackList.propTypes = {
+ArtistTrackList.propTypes = {
   item: PropTypes.array.isRequired,
-  albumChoice: PropTypes.string.isRequired,
+  artistChoice: PropTypes.string.isRequired,
   setSelectedSong: PropTypes.func.isRequired,
 };

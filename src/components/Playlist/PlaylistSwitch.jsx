@@ -3,7 +3,7 @@ import ListPlaylist from './listPlaylist';
 import ListPlaylistOnClick from './listPlaylistOnClick';
 import PropTypes from 'prop-types';
 
-function PlaylistSwitch({ item, setCurrentTrack }) {
+function PlaylistSwitch({ setCurrentTrack, playLists }) {
   const [ischange, setIsChange] = useState(true);
   const handleClick = () => {
     setIsChange(false);
@@ -17,12 +17,11 @@ function PlaylistSwitch({ item, setCurrentTrack }) {
     <div>
       <div>
         {ischange ? (
-          <ListPlaylist setIsChange={handleClick} />
+          <ListPlaylist playLists={playLists} setIsChange={handleClick} />
         ) : (
-          <ListPlaylistOnClick item={item} setIsChange={ReturnBtn} setCurrentTrack={setCurrentTrack} />
+          <ListPlaylistOnClick playLists={playLists} setIsChange={ReturnBtn} setCurrentTrack={setCurrentTrack} />
         )}
       </div>
-      ;
     </div>
   );
 }
@@ -30,6 +29,6 @@ function PlaylistSwitch({ item, setCurrentTrack }) {
 export default PlaylistSwitch;
 
 PlaylistSwitch.propTypes = {
-  item: PropTypes.array.isRequired,
+  playLists: PropTypes.array.isRequired,
   setCurrentTrack: PropTypes.func.isRequired,
 };

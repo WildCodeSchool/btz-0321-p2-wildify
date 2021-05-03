@@ -3,7 +3,7 @@ import Controls from '../playbar/controls/controls';
 import './Player.css';
 import PropTypes from 'prop-types';
 import Arrow from '../../img/arrow.svg';
-import Miniature from '../../img/playbar-miniature.png';
+import Defaultimg from '../../img/defaultPicture.png';
 
 export default function Player({
   setPicture,
@@ -26,7 +26,10 @@ export default function Player({
   isPlaySwitch,
   setIsPlaySwitch,
   isAlbum,
+  isArtist,
   selectedSong,
+  isAlbumTrackList,
+  isArtistTrackList,
 }) {
   const [sliderValue, setSliderValue] = useState(0);
   const [duration, setDuration] = useState('00:00');
@@ -43,16 +46,14 @@ export default function Player({
   }, [selectedSong]);
 
   const updateSong = () => {
-    if (isAlbum) {
+    if (isAlbum || isAlbumTrackList || isArtistTrackList || isArtist) {
       setOnListen(selectedSong[0].s3_link);
-
       setTitle(selectedSong[0].title);
       setArtist(selectedSong[0].artist.name);
       setAlbum(selectedSong[0].album.title);
       setPicture(selectedSong[0].album.picture);
     } else {
       setOnListen(item[currentTrack].s3_link);
-
       setTitle(item[currentTrack].title);
       setArtist(item[currentTrack].artist.name);
       setAlbum(item[currentTrack].album.title);
@@ -152,7 +153,7 @@ export default function Player({
           <div
             className="rounded-full w-72 h-72  shadow-MobilPlaybar"
             style={{
-              backgroundImage: `url(${picture ? picture : Miniature})`,
+              backgroundImage: `url(${picture === null ? Defaultimg : picture})`,
               backgroundSize: `cover`,
               backgroundRepeat: `no-repeat`,
               backgroundPosition: `center`,
@@ -212,6 +213,9 @@ Player.propTypes = {
   setIsMobilePlayerVisible: PropTypes.func.isRequired,
   isPlaySwitch: PropTypes.bool.isRequired,
   setIsPlaySwitch: PropTypes.func?.isRequired,
-  isAlbum: PropTypes.func.isRequired,
-  selectedSong: PropTypes.func.isRequired,
+  isAlbum: PropTypes.bool.isRequired,
+  isArtist: PropTypes.bool.isRequired,
+  selectedSong: PropTypes.array,
+  isAlbumTrackList: PropTypes.bool.isRequired,
+  isArtistTrackList: PropTypes.bool.isRequired,
 };

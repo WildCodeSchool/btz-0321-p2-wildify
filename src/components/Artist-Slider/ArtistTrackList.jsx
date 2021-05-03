@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReturnBtn from '../../img/PlayList/ReturnButton.svg';
 
-function AlbumTrackList({ handleClick, item, albumChoice, setSelectedSong }) {
+function ArtistTrackList({ handleClick, item, artistChoice, setSelectedSong }) {
   return (
     <div className="flex flex-col p-3 h-full w-full">
-      <button className="focus:outline-none w-full flex items-center justify-end pt-1 pr-2 font-scada text-white transform" onClick={handleClick}>
+      <button className="focus:outline-none w-full flex items-center justify-end pt-1 pr-2 font-scada text-white" onClick={handleClick}>
         <img className="h-5 w-5" src={ReturnBtn} alt="BackwardArrow" />
       </button>
       <ul className="w-full h-full rounded-3xl bg-blend-lighten text-left">
         {item
-          .filter((song) => song.album.title.includes(albumChoice))
+          .filter((song) => song.artist.name.includes(artistChoice))
           .map((song, index) => {
             return (
               <li key={index} className="font-cuprum pb-3 pt-1 900:px-3  text-white">
@@ -28,13 +28,13 @@ function AlbumTrackList({ handleClick, item, albumChoice, setSelectedSong }) {
   );
 }
 
-export default AlbumTrackList;
+export default ArtistTrackList;
 
-AlbumTrackList.propTypes = {
+ArtistTrackList.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  albums: PropTypes.array.isRequired,
+  artists: PropTypes.array.isRequired,
   item: PropTypes.array.isRequired,
-  albumChoice: PropTypes.string.isRequired,
+  artistChoice: PropTypes.string.isRequired,
   setCurrentTrack: PropTypes.func.isRequired,
   setSelectedSong: PropTypes.func.isRequired,
 };

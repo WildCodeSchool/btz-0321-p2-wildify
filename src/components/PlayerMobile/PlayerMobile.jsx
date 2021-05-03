@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import Controls from '../playbar/controls/controls';
 import PropTypes from 'prop-types';
 import Arrow from '../../img/arrow.svg';
+import Defaultimg from '../../img/defaultPicture.png';
 
 export default function PlayerMobile({
   setIsMobilePlayerVisible,
@@ -18,8 +19,12 @@ export default function PlayerMobile({
   picture,
   setPicture,
   isAlbum,
+  isArtist,
   selectedSong,
+  isAlbumTrackList,
+  isArtistTrackList,
 }) {
+  const audioRef3 = useRef();
   useEffect(() => {
     updateSong();
   }, [currentTrack]);
@@ -29,9 +34,9 @@ export default function PlayerMobile({
   }, [selectedSong]);
 
   const updateSong = () => {
-    if (isAlbum) {
-      setPicture(selectedSong[0].album.picture);
+    if (isAlbum || isAlbumTrackList || isArtistTrackList || isArtist) {
       setOnListen(selectedSong[0].s3_link);
+      setPicture(selectedSong[0].album.picture);
     } else {
       setOnListen(item[currentTrack].s3_link);
       setPicture(item[currentTrack].album.picture);
@@ -43,9 +48,6 @@ export default function PlayerMobile({
       audioRef3.current.play();
     }
   };
-
-  const audioRef3 = useRef();
-
   const handlePause = () => {
     audioRef3.current.pause();
     setAudio(false);
@@ -98,9 +100,9 @@ export default function PlayerMobile({
         Your browser does not support this audio format.
       </audio>
       <div
-        className="h-20 w-28 rounded-full shadow-ImgPlaybar"
+        className="h-16 w-24 rounded-full shadow-ImgPlaybar"
         style={{
-          backgroundImage: `url(${picture})`,
+          backgroundImage: `url(${picture === null ? Defaultimg : picture})`,
           backgroundSize: `cover`,
           backgroundRepeat: `no-repeat`,
           backgroundPosition: `center`,
@@ -132,7 +134,10 @@ PlayerMobile.propTypes = {
   isPlaySwitch: PropTypes.bool,
   setIsPlaySwitch: PropTypes.func,
   picture: PropTypes.string,
-  selectedSong: PropTypes.func,
+  selectedSong: PropTypes.array,
   isAlbum: PropTypes.bool.isRequired,
+  isArtist: PropTypes.bool.isRequired,
   setPicture: PropTypes.any.isRequired,
+  isAlbumTrackList: PropTypes.bool.isRequired,
+  isArtistTrackList: PropTypes.bool.isRequired,
 };
