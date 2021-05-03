@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import Card from '../RecentAdds/Card';
-import './sidebar.css';
+import '../scrollbarwebkit.css';
 
 import PropTypes from 'prop-types';
 import useScrollBox from '../scroll';
