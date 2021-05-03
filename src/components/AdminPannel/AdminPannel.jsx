@@ -49,16 +49,18 @@ export default function AdminPannel({ item, albums, hideAdmin, artists }) {
   };
 
   return (
-    <div className=" w-full h-screen z-50 fixed bg-gray-700 overflow-y-auto ">
-      <button onClick={hideAdmin} className="border-2 text-white border-white rounded-xl py-2 px-4  whitespace-nowrap  ">
+
+    <div className="w-full h-screen z-50 fixed bg-gray-700 overflow-y-auto">
+      <button onClick={hideAdmin} className="border-2 text-white border-white rounded-xl py-2 px-4  whitespace-nowrap">
+
         RETURN TO WIZIC
       </button>
-      <div className="h-44 w-full text-5xl text-gray-500 flex flex-col items-center align-middle justify-center  border-white border-b-2 ">
+      <div className="h-44 w-full text-5xl text-gray-500 flex flex-col items-center align-middle justify-center border-white border-b-2">
         {' '}
         <h1 className="border-white border-2 py-2 px-4 rounded-xl text-white">ADMIN PANNEL</h1>
         <p className="text-white">Take control on what U ear !</p>
       </div>
-      <div className="h-4/5 w-full flex  flex-row">
+      <div className="h-4/5 w-full flex flex-row">
         <AdminSidebar showAdminSongs={showAdminSongs} showAdminPlayList={showAdminPlayList} />
         <div className="w-full flex flex-col justify-center items-center align-middle h-full ">
           {!isLogged && <LogginPannel handleLoggin={handleLoggin} />}

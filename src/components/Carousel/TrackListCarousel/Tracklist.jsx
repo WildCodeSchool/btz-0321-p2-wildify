@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import TrackListCard from '../TrackListCarousel/TrackListCard';
-
+import '../scrollbarwebkit.css';
 import PropTypes from 'prop-types';
 import useScrollBox from '../scroll';
 
@@ -12,7 +12,7 @@ function RecentAdds({ item, setCurrentTrack }) {
     <div
       ref={scrollWrapperRef}
       role="list"
-      className="col-start-1 col-end-2 900:col-end-3 row-start-3 900:row-start-2 row-end-4 900:row-end-3 flex flex-row overflow-x-auto">
+      className="sidebar col-start-1 col-end-2 900:col-end-3 row-start-3 900:row-start-2 row-end-4 900:row-end-3 flex flex-row overflow-x-auto">
       <TrackListCard items={item} setCurrentTrack={setCurrentTrack} />
       <div className="hidden">{isDragging}</div>
     </div>
