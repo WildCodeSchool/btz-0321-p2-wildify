@@ -49,7 +49,7 @@ export default function AdminPannel({ item, albums, hideAdmin, artists }) {
   };
 
   return (
-    <div className=" w-full h-screen z-50 fixed bg-gray-700 ">
+    <div className=" w-full h-screen z-50 fixed bg-gray-700 overflow-y-auto ">
       <button onClick={hideAdmin} className="border-2 text-white border-white rounded-xl py-2 px-4  whitespace-nowrap  ">
         RETURN TO WIZIC
       </button>
@@ -60,7 +60,7 @@ export default function AdminPannel({ item, albums, hideAdmin, artists }) {
       </div>
       <div className="h-4/5 w-full flex  flex-row">
         <AdminSidebar showAdminSongs={showAdminSongs} showAdminPlayList={showAdminPlayList} />
-        <div className="w-full flex flex-col justify-center items-center align-middle h-full">
+        <div className="w-full flex flex-col justify-center items-center align-middle h-full ">
           {!isLogged && <LogginPannel handleLoggin={handleLoggin} />}
           {isAdminSong && <AdminSongs artists={artists} albums={albums} myPlayList={myPlayList} item={item} />}
           {isAdminPlayList && <AdminPlaylist playListFetch={playListFetch} myPlayList={myPlayList} item={item} />}
