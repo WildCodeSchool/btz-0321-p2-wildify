@@ -1,26 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
+import authContext from '../../../../context/authContext';
 
 export default function UpdateSongs({ item }) {
+  const { token } = useContext(authContext);
   const [onSelect, setOnSelect] = useState();
+  const [title, setTitle] = useState();
+  const [artist, setArtist] = useState();
+  const [album, setAlbum] = useState();
+  const [duration, setDuration] = useState();
 
-  // const songData = {
-  //   title:
-  //   artist:
-  //   album:
-  //   duration:
-  // }
+  const songData = {
+    title: 'title',
+    artist: 'artist',
+    album: 'album',
+    duration: 'duration',
+    playlists: 'playlist',
+  };
 
-  // const songUpdate = (e) => {
-  //   e.preventDefault();
-  //   fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/songs/${item[onSelect].id}`, {
-  //     method: 'PUT',
-  //     headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-  //     body: JSON.stringify({ songData }),
-  //   })
-  //     .then((res) => console.log(res))
-  //     .catch((err) => console.log(err));
-  // };
+  const songUpdate = (e) => {
+    e.preventDefault();
+    fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/songs/${item[onSelect].id}`, {
+      method: 'PUT',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(songData),
+    })
+      .then((res) => res.json())
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
+
+  const songDelete = () => {};
 
   return (
     <div className="flex flex-col  items-center align-middle justify-center w-full">
@@ -59,7 +69,14 @@ export default function UpdateSongs({ item }) {
         type="text"
         placeholder={onSelect ? item[onSelect].artist.name : 'Track Title'}
       />
-      <button className="border-2 border-white px-4 py-2 rounded-xl focus:outline-none hover:bg-gray-800 active:bg-gray-600">SUBMIT</button>
+      <div>
+        <button onClick={songUpdate} className="border-2 border-white px-4 py-2 rounded-xl focus:outline-none hover:bg-gray-800 active:bg-gray-600">
+          SUBMIT
+        </button>
+        <button onClick={songDelete} className="border-2 border-white px-4 py-2 rounded-xl focus:outline-none hover:bg-gray-800 active:bg-gray-600">
+          DELETE
+        </button>
+      </div>
     </div>
   );
 }

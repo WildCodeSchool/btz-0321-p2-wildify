@@ -25,7 +25,6 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
     title: updateTitle,
     description: updateDescription,
     picture: updatePicture,
-    songs: updateSongs,
   };
 
   const createPlayList = (e) => {
@@ -44,7 +43,7 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
   const updatePlayList = (e) => {
     e.preventDefault();
 
-    fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/playlists/${playListId}`, {
+    fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/playlists/${myPlayList[onSelect].id}`, {
       method: 'PUT',
       headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
 
@@ -98,6 +97,7 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
             })}
           </select>
           <input
+            value={updateTitle}
             onChange={(e) => setUpdateTitle(e.target.value)}
             type="text"
             name="playList[title]"
@@ -106,6 +106,7 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
           />
 
           <input
+            value={updateDescription}
             onChange={(e) => setUpdateDescription(e.target.value)}
             type="text"
             name="playList[Description]"
@@ -113,6 +114,7 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
             placeholder={onSelect ? myPlayList[onSelect].description : 'PlayList Description'}
           />
           <input
+            value={updatePicture}
             onChange={(e) => setUpdatePicture(e.target.value)}
             type="text"
             name="playList[Picture Url]"
