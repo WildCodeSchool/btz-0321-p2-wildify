@@ -134,7 +134,7 @@ PlayerMobile.propTypes = {
   isPlaySwitch: PropTypes.bool,
   setIsPlaySwitch: PropTypes.func,
   picture: PropTypes.string,
-  selectedSong: PropTypes.func,
+  selectedSong: PropTypes.array,
   isAlbum: PropTypes.bool.isRequired,
   isArtist: PropTypes.bool.isRequired,
   setPicture: PropTypes.any.isRequired,
