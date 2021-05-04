@@ -18,18 +18,20 @@ function SideBar({ sideBarClass, albums, handleSideBar, handleAdmin, playLists }
     setSelectFile(event.target.files[0]);
   };
 
-  const handleSubmission = (e) => {
+  const handleSubmission = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('file', selectFile);
-    axios
+    await axios
       .post('https://bazify-backend.basile.vernouillet.dev/api/v1/songs', formData, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((res) => res)
-      .catch((error) => {
-        error;
-      });
+      .then((res) => res);
+    await fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/albums/${albums[albumIndex].id}`, {
+      method: 'PUT',
+      headers: { Autorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ picture: imgUrl }),
+    }).then((res) => res);
   };
 
   const handlePictureSubmission = (e) => {
