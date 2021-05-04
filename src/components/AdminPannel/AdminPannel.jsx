@@ -5,6 +5,7 @@ import AdminSongs from './AdminSongs/AdminSongs';
 import authContext from '../../context/authContext';
 import PropTypes from 'prop-types';
 import LogginPannel from './LogginPage/LogginPage';
+import BackGround from '../../img/BackGrounds/PanelBG.png';
 
 export default function AdminPannel({ item, albums, hideAdmin, artists }) {
   const [isAdminSong, setIsAdminSong] = useState(false);
@@ -49,18 +50,25 @@ export default function AdminPannel({ item, albums, hideAdmin, artists }) {
   };
 
   return (
-
-    <div className="w-full h-screen z-50 fixed bg-gray-700 overflow-y-auto">
-      <button onClick={hideAdmin} className="border-2 text-white border-white rounded-xl py-2 px-4  whitespace-nowrap">
-
-        RETURN TO WIZIC
-      </button>
-      <div className="h-44 w-full text-5xl text-gray-500 flex flex-col items-center align-middle justify-center border-white border-b-2">
-        {' '}
-        <h1 className="border-white border-2 py-2 px-4 rounded-xl text-white">ADMIN PANNEL</h1>
-        <p className="text-white">Take control on what U ear !</p>
+    <div
+      className="w-screen h-screen z-50 fixed overflow-y-auto"
+      style={{
+        backgroundImage: `url(${BackGround})`,
+        backgroundSize: `cover`,
+        backgroundRepeat: `no-repeat`,
+        backgroundPosition: `top`,
+      }}>
+      <div className="flex">
+        <div className="w-full text-5xl text-gray-500 flex flex-col justify-center">
+          {' '}
+          <h1 className="rounded-xl text-white">ADMIN PANNEL</h1>
+          <p className="text-white">Take control on what you ear !</p>
+        </div>
+        <button onClick={hideAdmin} className="focus:outline-none text-white border-white rounded-xl  whitespace-nowrap">
+          Back To WIZIC
+        </button>
       </div>
-      <div className="h-4/5 w-full flex flex-row">
+      <div className="">
         <AdminSidebar showAdminSongs={showAdminSongs} showAdminPlayList={showAdminPlayList} />
         <div className="w-full flex flex-col justify-center items-center align-middle h-full ">
           {!isLogged && <LogginPannel handleLoggin={handleLoggin} />}

@@ -21,7 +21,7 @@ export default function AdminPlayer({ item }) {
   return (
     <div className="flex flex-col items-center justify-center align-middle">
       <h1>Track Preview (API RESULTS ):</h1>
-      <select onChange={handleChange} name="Track" className="text-white bg-black bg-opacity-50 my-4 h-11 w-48 rounded-xl " id="">
+      <select onBlur={handleChange} name="Track" className="text-white bg-black bg-opacity-50 my-4 h-11 w-48 rounded-xl " id="">
         {item.map((song, index) => {
           return (
             <option key={index} value={song.s3_link}>
