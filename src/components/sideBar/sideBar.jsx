@@ -7,9 +7,8 @@ import WCSlogo from '../../img/LogoWild.png';
 import authContext from '../../context/authContext';
 import axios from 'axios';
 
-function SideBar({ sideBarClass, albums, handleSideBar, handleAdmin, playLists }) {
+function SideBar({ sideBarClass, handleSideBar, handleAdmin, playLists }) {
   const [imgUrl, setImgUrl] = useState();
-  const [albumIndex, setAlbumindex] = useState();
   const { width } = useWindowDimensions();
   const { token } = useContext(authContext);
   const [selectFile, setSelectFile] = useState();
@@ -26,29 +25,13 @@ function SideBar({ sideBarClass, albums, handleSideBar, handleAdmin, playLists }
       .post('https://bazify-backend.basile.vernouillet.dev/api/v1/songs', formData, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((res) => res);
-    await fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/albums/${albums[albumIndex].id}`, {
-      method: 'PUT',
-      headers: { Autorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ picture: imgUrl }),
-    }).then((res) => res);
-  };
-
-  const handlePictureSubmission = (e) => {
-    e.preventDefault();
-    fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/albums/${albums[albumIndex].id}`, {
-      method: 'PUT',
-      headers: { Autorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ picture: imgUrl }),
-    }).then((res) => res);
-  };
-
-  const handleChange = (e) => {
-    setImgUrl(e.target.value);
-  };
-
-  const handlePictureChange = (e) => {
-    setAlbumindex(e.target.value);
+      .then((res) => {
+        fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/albums/${res.data.albumId}`, {
+          method: 'PUT',
+          headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ picture: imgUrl }),
+        }).then((res) => res);
+      });
   };
 
   return (
@@ -109,33 +92,7 @@ function SideBar({ sideBarClass, albums, handleSideBar, handleAdmin, playLists }
           <form className="mt-5 flex flex-col">
             <h1 className="font-scada text-white text-2xl">2. Upload image</h1>
             <div className=" w-full flex flex-col mt-3">
-              <label className="w-full text-white text-lg font-cuprum mt-2" htmlFor="Picture">
-                Select Album
-              </label>
-              <select
-                className="w-full h-10 bg-bgPlaybar mt-1 shadow-input focus:outline-none text-white font-cuprum p-2 rounded-xl"
-                onBlur={handlePictureChange}>
-                {albums.map((album, key) => {
-                  return (
-                    <option value={key} id={album.id} key={album.id}>
-                      {album.title}
-                    </option>
-                  );
-                })}
-              </select>
-              <label className="w-full text-white text-lg font-cuprum mt-3" htmlFor="Picture">
-                Album image Url :
-              </label>
-              <input
-                onChange={handleChange}
-                className="w-full h-10 bg-bgPlaybar shadow-input p-4 focus:outline-none text-white font-cuprum rounded-xl mt-1"
-                type="text"
-                name="Picture"></input>
-              <button
-                className="bg-bgPlaybar shadow-input2 focus:outline-none w-5/12 mt-5 rounded-xl text-sm text-white py-1 font-scada hover:text-mainColor hover:shadow-input"
-                onClick={handlePictureSubmission}>
-                Upload Image
-              </button>
+              <input type="text" onChange={(e) => setImgUrl(e.target.value)} />
             </div>
           </form>
         </div>
