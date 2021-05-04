@@ -172,7 +172,7 @@ export default function Carousel({
         {isTrackListActive && <TrackList item={item} setCurrentTrack={setCurrentTrack} />}
         {isAlbumTrackList && <AlbumTrackList setSelectedSong={setSelectedSong} albumChoice={albumChoice} item={item} />}
         {isArtistTrackList && <ArtistTrackList setSelectedSong={setSelectedSong} artistChoice={artistChoice} item={item} />}
-        {onSearch && <SearchResults onSearch={onSearch} item={item} />}
+        {onSearch && <SearchResults onSearch={onSearch} item={item} setSelectedSong={setSelectedSong} />}
       </div>
     </div>
   );
