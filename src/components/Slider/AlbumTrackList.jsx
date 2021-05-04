@@ -32,9 +32,7 @@ export default AlbumTrackList;
 
 AlbumTrackList.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  albums: PropTypes.array.isRequired,
   item: PropTypes.array.isRequired,
   albumChoice: PropTypes.string.isRequired,
-  setCurrentTrack: PropTypes.func.isRequired,
   setSelectedSong: PropTypes.func.isRequired,
 };
