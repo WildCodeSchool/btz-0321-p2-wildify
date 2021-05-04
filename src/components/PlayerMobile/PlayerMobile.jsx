@@ -23,6 +23,7 @@ export default function PlayerMobile({
   selectedSong,
   isAlbumTrackList,
   isArtistTrackList,
+  isOnSearch,
 }) {
   const audioRef3 = useRef();
   useEffect(() => {
@@ -34,7 +35,7 @@ export default function PlayerMobile({
   }, [selectedSong]);
 
   const updateSong = () => {
-    if (isAlbum || isAlbumTrackList || isArtistTrackList || isArtist) {
+    if (isAlbum || isAlbumTrackList || isArtistTrackList || isArtist || isOnSearch) {
       setOnListen(selectedSong[0].s3_link);
       setPicture(selectedSong[0].album.picture);
     } else {
@@ -140,4 +141,5 @@ PlayerMobile.propTypes = {
   setPicture: PropTypes.any.isRequired,
   isAlbumTrackList: PropTypes.bool.isRequired,
   isArtistTrackList: PropTypes.bool.isRequired,
+  isOnSearch: PropTypes.bool.isRequired,
 };

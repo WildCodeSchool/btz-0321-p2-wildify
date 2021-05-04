@@ -30,6 +30,7 @@ export default function Player({
   selectedSong,
   isAlbumTrackList,
   isArtistTrackList,
+  isOnSearch,
 }) {
   const [sliderValue, setSliderValue] = useState(0);
   const [duration, setDuration] = useState('00:00');
@@ -46,7 +47,7 @@ export default function Player({
   }, [selectedSong]);
 
   const updateSong = () => {
-    if (isAlbum || isAlbumTrackList || isArtistTrackList || isArtist) {
+    if (isAlbum || isAlbumTrackList || isArtistTrackList || isArtist || isOnSearch) {
       setOnListen(selectedSong[0].s3_link);
       setTitle(selectedSong[0].title);
       setArtist(selectedSong[0].artist.name);
@@ -218,4 +219,5 @@ Player.propTypes = {
   selectedSong: PropTypes.array,
   isAlbumTrackList: PropTypes.bool.isRequired,
   isArtistTrackList: PropTypes.bool.isRequired,
+  isOnSearch: PropTypes.bool.isRequired,
 };
