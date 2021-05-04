@@ -3,11 +3,17 @@ import PropTypes from 'prop-types';
 import PlayerButton from '../../../img/Icons/PlayerButton.svg';
 
 export default function TrackListCard({ items, setCurrentTrack, setMyPlaylist }) {
+  const handleClick = (e) => {
+    let myPlaylist = localStorage.getItem('myPlaylist');
+    myPlaylist = myPlaylist ? myPlaylist.split(',') : [];
+    myPlaylist.push(e.target.value);
+    localStorage.setItem('myPlaylist', myPlaylist.toString());
+    setMyPlaylist(localStorage.getItem('myPlaylist').split(','));
+  };
   return (
     <div className="flex flex-row">
       {items.map((item, index) => (
-        <button
-          onClick={() => setCurrentTrack(index)}
+        <div
           key={index}
           className="flex justify-end w-56 h-72 my-3 mx-3 rounded-2xl cursor-pointer border text-white flex-col shadow-card focus:outline-none hover:border hover:border-mainColor transform hover:scale-105"
           style={{
@@ -22,13 +28,16 @@ export default function TrackListCard({ items, setCurrentTrack, setMyPlaylist })
               <p className="font-scada text-white text-sm">{item.artist.name}</p>
             </div>
             <div className="flex focus:outline-none items-end m-1">
-              <img src={PlayerButton} alt="" />
-              <button value={index} className="text-white">
+              <button onClick={() => setCurrentTrack(index)}>
+                <img src={PlayerButton} alt="" />
+              </button>
+
+              <button value={item.title} className="text-white" onClick={handleClick}>
                 XX
               </button>
             </div>
           </div>
-        </button>
+        </div>
       ))}
     </div>
   );

@@ -47,7 +47,7 @@ function App() {
   const [isAlbumTrackList, setIsAlBumTrackList] = useState(false);
   const [isArtistTrackList, setIsArtistTrackList] = useState(false);
   const [playLists, setPlayLists] = useState([]);
-  const [myPlaylist, setMyplaylist] = useState();
+  const [myPlaylist, setMyPlaylist] = useState(localStorage.getItem('myPlaylist').split(','));
 
   useEffect(() => {
     if (!token) {
@@ -130,13 +130,13 @@ function App() {
               setIsAlBumTrackList={setIsAlBumTrackList}
               setIsArtistTrackList={setIsArtistTrackList}
               setCurrentTrack={setCurrentTrack}
-              setMyplaylist={setMyplaylist}
               isAlbumTrackList={isAlbumTrackList}
               isArtistTrackList={isArtistTrackList}
               onSearch={onSearch}
               item={item}
               albums={albums}
               artists={artists}
+              setMyPlaylist={setMyPlaylist}
             />
           )}
         </div>
@@ -170,7 +170,7 @@ function App() {
         </div>
         <div className="col-start-1 col-end-3 row-start-5 row-end-6 rounded-20 900:col-start-2 900:col-end-4 900:row-start-4 900:row-end-5 bg-black bg-opacity-20 shadow-layoutContainer">
           {/* MixtapesComponent GoHere */}
-          <MyPlaylist />
+          <MyPlaylist setMyPlaylist={setMyPlaylist} myPlaylist={myPlaylist} />
         </div>
         <div className="col-start-1 col-end-3 row-start-6 row-end-7 rounded-20 900:col-end-4 900:row-start-5 900:row-end-6 bg-black bg-opacity-20 shadow-layoutContainer mb-4">
           <Contact />

@@ -2,10 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Defaultimg from '../../../img/defaultPicture.png';
 
-function AlbumTrackList({ item, albumChoice, setSelectedSong }) {
+function AlbumTrackList({ item, albumChoice, setSelectedSong, setMyPlaylist }) {
   const handleClick = (e) => {
     const mySong = item.filter((song) => song.title.includes(e.target.value));
     setSelectedSong(mySong);
+  };
+
+  const handleClick2 = (e) => {
+    let myPlaylist = localStorage.getItem('myPlaylist');
+    myPlaylist = myPlaylist ? myPlaylist.split(',') : [];
+    myPlaylist.push(e.target.value);
+    localStorage.setItem('myPlaylist', myPlaylist.toString());
+    setMyPlaylist(localStorage.getItem('myPlaylist').split(','));
   };
 
   return (
@@ -31,6 +39,9 @@ function AlbumTrackList({ item, albumChoice, setSelectedSong }) {
                     }}></div>
                   {song.title}
                 </div>
+                <button value={song.title} className="text-white" onClick={handleClick2}>
+                  XX
+                </button>
               </button>
             );
           })}

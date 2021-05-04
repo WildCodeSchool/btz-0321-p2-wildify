@@ -167,13 +167,15 @@ export default function Carousel({
         </button>
       </div>
       <div className="overflow-x-auto">
-        {isRecentAddsActive && <RecentAdds item={item} setCurrentTrack={setCurrentTrack} />}
-        {isArtistActive && <Artist handleArtistClick={handleArtistClick} artists={artists} />}
-        {isAlbumActive && <Album handleAlbumClick={handleAlbumClick} albums={albums} />}
-        {isTrackListActive && <TrackList setMyPlaylist={setMyPlaylist} item={item} setCurrentTrack={setCurrentTrack} />}
-        {isAlbumTrackList && <AlbumTrackList setSelectedSong={setSelectedSong} albumChoice={albumChoice} item={item} />}
-        {isArtistTrackList && <ArtistTrackList setSelectedSong={setSelectedSong} artistChoice={artistChoice} item={item} />}
-        {onSearch && <SearchResults onSearch={onSearch} item={item} />}
+        {isRecentAddsActive && <RecentAdds setMyPlaylist={setMyPlaylist} item={item} setCurrentTrack={setCurrentTrack} />}
+        {isArtistActive && <Artist setMyPlaylist={setMyPlaylist} handleArtistClick={handleArtistClick} artists={artists} />}
+        {isAlbumActive && <Album setMyPlaylist={setMyPlaylist} handleAlbumClick={handleAlbumClick} albums={albums} />}
+        {isTrackListActive && <TrackList setMyPlaylist={setMyPlaylist} setMyPlaylist={setMyPlaylist} item={item} setCurrentTrack={setCurrentTrack} />}
+        {isAlbumTrackList && <AlbumTrackList setMyPlaylist={setMyPlaylist} setSelectedSong={setSelectedSong} albumChoice={albumChoice} item={item} />}
+        {isArtistTrackList && (
+          <ArtistTrackList setMyPlaylist={setMyPlaylist} setSelectedSong={setSelectedSong} artistChoice={artistChoice} item={item} />
+        )}
+        {onSearch && <SearchResults setMyPlaylist={setMyPlaylist} onSearch={onSearch} item={item} />}
       </div>
     </div>
   );
