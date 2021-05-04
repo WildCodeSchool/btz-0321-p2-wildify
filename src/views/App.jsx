@@ -95,9 +95,11 @@ function App() {
   const handleSideBar = () => {
     isSideBarVisible ? setisSideBarVisible(false) : setisSideBarVisible(true);
     isSideBarVisible
-      ? setSideBarClass('flex fixed  h-screen  flex-col  900:col-start-5 900:col-end-6 900:row-start-1 900:row-span-6 bg-bgPlaybar shadow-playbar')
+      ? setSideBarClass(
+          'flex fixed  h-screen  flex-col  900:col-start-5 900:col-end-6 900:row-start-1 900:row-span-6 bg-bgPlaybar shadow-playbar overflow-y-auto',
+        )
       : setSideBarClass(
-          'flex fixed z-50 flex-col h-screen w-screen  top-0 right-0 900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-bgPlaybar  shadow-playbar',
+          'flex fixed z-50 flex-col h-screen w-screen  top-0 right-0 900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-bgPlaybar  shadow-playbar overflow-y-auto',
         );
   };
   const handleAdmin = () => {
@@ -173,6 +175,7 @@ function App() {
         </div>
         {isSideBarVisible && (
           <SideBar
+            playLists={playLists}
             handleAdmin={handleAdmin}
             sideBarClass={sideBarClass}
             albums={albums}
