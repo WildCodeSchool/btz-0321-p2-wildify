@@ -9,8 +9,6 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
   const [updateTitle, setUpdateTitle] = useState();
   const [updateDescription, setUpdateDescription] = useState();
   const [updatePicture, setUpdatePicture] = useState();
-  const [updateSongs] = useState([]);
-  const [playListId, setPlayListId] = useState();
   const [onSelect, setOnSelect] = useState();
 
   const { token } = useContext(authContext);
