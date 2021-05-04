@@ -15,6 +15,7 @@ import PlayerMobile from '../components/PlayerMobile/PlayerMobile';
 import authContext from '../context/authContext';
 import { useHistory } from 'react-router';
 import AdminPannel from '../components/AdminPannel/AdminPannel';
+import MyPlaylist from '../components/MyPlaylist/MyPlaylist';
 
 function App() {
   const [isSideBarVisible, setisSideBarVisible] = useState(false);
@@ -39,7 +40,6 @@ function App() {
   const [selectedSong, setSelectedSong] = useState();
   const [isAlbum, setIsAlbum] = useState(false);
   const [isArtist, setIsArtist] = useState(true);
-
   const [onSearch, setOnSearch] = useState();
   const { token } = useContext(authContext);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -47,6 +47,8 @@ function App() {
   const [isAlbumTrackList, setIsAlBumTrackList] = useState(false);
   const [isArtistTrackList, setIsArtistTrackList] = useState(false);
   const [playLists, setPlayLists] = useState([]);
+  const [myPlaylist, setMyplaylist] = useState();
+
   useEffect(() => {
     if (!token) {
       history.push('/');
@@ -124,12 +126,13 @@ function App() {
           {/* The Main Component GoHere */}
           {!isLoading && (
             <Carousel
-              setIsAlBumTrackList={setIsAlBumTrackList}
-              isAlbumTrackList={isAlbumTrackList}
-              setIsArtistTrackList={setIsArtistTrackList}
-              isArtistTrackList={isArtistTrackList}
               setSelectedSong={setSelectedSong}
+              setIsAlBumTrackList={setIsAlBumTrackList}
+              setIsArtistTrackList={setIsArtistTrackList}
               setCurrentTrack={setCurrentTrack}
+              setMyplaylist={setMyplaylist}
+              isAlbumTrackList={isAlbumTrackList}
+              isArtistTrackList={isArtistTrackList}
               onSearch={onSearch}
               item={item}
               albums={albums}
@@ -167,6 +170,7 @@ function App() {
         </div>
         <div className="col-start-1 col-end-3 row-start-5 row-end-6 rounded-20 900:col-start-2 900:col-end-4 900:row-start-4 900:row-end-5 bg-black bg-opacity-20 shadow-layoutContainer">
           {/* MixtapesComponent GoHere */}
+          <MyPlaylist />
         </div>
         <div className="col-start-1 col-end-3 row-start-6 row-end-7 rounded-20 900:col-end-4 900:row-start-5 900:row-end-6 bg-black bg-opacity-20 shadow-layoutContainer mb-4">
           <Contact />

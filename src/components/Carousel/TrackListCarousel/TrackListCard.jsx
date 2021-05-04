@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PlayerButton from '../../../img/Icons/PlayerButton.svg';
 
-export default function TrackListCard({ items, setCurrentTrack }) {
+export default function TrackListCard({ items, setCurrentTrack, setMyPlaylist }) {
   return (
     <div className="flex flex-row">
       {items.map((item, index) => (
@@ -23,6 +23,9 @@ export default function TrackListCard({ items, setCurrentTrack }) {
             </div>
             <div className="flex focus:outline-none items-end m-1">
               <img src={PlayerButton} alt="" />
+              <button value={index} className="text-white">
+                XX
+              </button>
             </div>
           </div>
         </button>
