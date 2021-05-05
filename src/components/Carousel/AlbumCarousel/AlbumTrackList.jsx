@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Defaultimg from '../../../img/defaultPicture.png';
+import Wave from '../../../img/wavegreen.gif';
 
 function AlbumTrackList({ item, albumChoice, setSelectedSong }) {
   const handleClick = (e) => {
@@ -30,6 +31,7 @@ function AlbumTrackList({ item, albumChoice, setSelectedSong }) {
                       backgroundPosition: `center`,
                     }}></div>
                   {song.title}
+                  <img className="h-12 w-12 opacity-50" src={Wave} alt="" />
                 </div>
               </button>
             );
