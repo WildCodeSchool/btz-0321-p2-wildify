@@ -6,8 +6,9 @@ import Formbg from '../../img/BackGrounds/BgSideBarBG5.png';
 import WCSlogo from '../../img/LogoWild.png';
 import authContext from '../../context/authContext';
 import axios from 'axios';
+import UploadImg from '../../img/Icons/Uploadfile.svg';
 
-function SideBar({ sideBarClass, handleSideBar, handleAdmin, playLists }) {
+function SideBar({ sideBarClass, handleSideBar, handleAdmin }) {
   const [imgUrl, setImgUrl] = useState();
   const { width } = useWindowDimensions();
   const { token } = useContext(authContext);
@@ -37,7 +38,7 @@ function SideBar({ sideBarClass, handleSideBar, handleAdmin, playLists }) {
   return (
     <div className={sideBarClass}>
       <div
-        className="flex flex-col justify-between w-full h-full py-2 px-6 900:px-6"
+        className="flex flex-col justify-between w-full h-full py-2 px-4 900:px-8"
         style={{
           backgroundImage: `url(${Formbg})`,
           backgroundSize: `cover`,
@@ -56,25 +57,22 @@ function SideBar({ sideBarClass, handleSideBar, handleAdmin, playLists }) {
               )}
             </div>
             <form className="w-full flex  flex-col">
-              <h1 className="font-scada text-white text-2xl">1. Upload Music</h1>
-              <label className="text-white text-lg font-cuprum mt-3" htmlFor="playlist">
-                Select Playlist:
-              </label>
-              <select className="w-full h-10 bg-bgPlaybar shadow-input p-2 focus:outline-none text-white font-cuprum rounded-xl mt-1" id="">
-                {playLists.map((playlists, key) => {
-                  return (
-                    <option value={key} id={playlists.id} key={playlists.id}>
-                      {playlists.title}
-                    </option>
-                  );
-                })}
-              </select>
-
-              <label className="text-white text-lg font-cuprum mt-5" htmlFor="upload">
-                Select Music
+              <h1 className="mt-4 mr-10 font-scada text-white text-4xl 900:text-3xl 900:mt-0">Share your Favorits songs with us</h1>
+              <h1 className="mt-8  font-scada text-white text-2xl 900:text-xl">Upload Music</h1>
+              <label
+                className="mt-3 flex text-ls items-center hover:text-mainColor hover:shadow-input justify-between focus:outline-none p-2 900:p-2  900:px-4 text-white font-cuprum bg-bgPlaybar rounded-xl shadow-input2"
+                htmlFor="file">
+                Upload Your music files<img className="w-8 h-8" src={UploadImg} alt=""></img>
               </label>
               <input
-                className="w-full h-12 p-2  shadow-input2 focus:outline-none text-white font-cuprum rounded-xl customFiles "
+                style={{
+                  width: `0.1px`,
+                  height: `0.1px`,
+                  opacity: 0,
+                  overflow: `hidden`,
+                  position: `absolute`,
+                  zIndex: `-1`,
+                }}
                 type="file"
                 id="file"
                 name="file"
@@ -82,19 +80,20 @@ function SideBar({ sideBarClass, handleSideBar, handleAdmin, playLists }) {
                 multiple
                 onChange={changeFileHandler}
               />
+              <h1 className="text-white text-2xl font-cuprum mt-8 900:text-xl">Import the album image</h1>
+              <input
+                className="mt-3 focus:outline-none p-3  text-white font-cuprum bg-bgPlaybar rounded-xl shadow-input"
+                type="text"
+                onChange={(e) => setImgUrl(e.target.value)}
+                placeholder="Url Album Image...."
+              />
               <button
-                className="bg-bgPlaybar shadow-input2 focus:outline-none w-5/12 mt-5 rounded-xl text-sm text-white py-1 font-scada hover:text-mainColor hover:shadow-input"
+                className="bg-bgPlaybar shadow-input2 focus:outline-none w-6/12 mt-8 rounded-xl text-sm text-white py-2 font-scada hover:text-mainColor hover:shadow-input"
                 onClick={handleSubmission}>
                 Upload Music
               </button>
             </form>
           </div>
-          <form className="mt-5 flex flex-col">
-            <h1 className="font-scada text-white text-2xl">2. Upload image</h1>
-            <div className=" w-full flex flex-col mt-3">
-              <input type="text" onChange={(e) => setImgUrl(e.target.value)} />
-            </div>
-          </form>
         </div>
         <div className=" flex w-full justify-between items-end ">
           <div className="h-16 900:h-14">
@@ -118,7 +117,6 @@ SideBar.propTypes = {
   albums: PropTypes.array.isRequired,
   handleSideBar: PropTypes.func.isRequired,
   handleAdmin: PropTypes.func.isRequired,
-  playLists: PropTypes.array.isRequired,
 };
 
 export default SideBar;
