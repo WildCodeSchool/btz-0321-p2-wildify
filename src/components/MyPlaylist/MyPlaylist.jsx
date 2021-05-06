@@ -20,7 +20,7 @@ export default function MyPlaylist({ setIsPlaylist, setCurrentTrack, setMyPlayli
         </button>
       </div>
       {localStorage.getItem('myPlaylist') ? (
-        <Tracklist setIsPlaylist={setIsPlaylist} setCurrentTrac={setCurrentTrack} myPlaylist={myPlaylist} />
+        <Tracklist setIsPlaylist={setIsPlaylist} setCurrentTrack={setCurrentTrack} myPlaylist={myPlaylist} />
       ) : (
         <div>
           <h1>Hello world</h1>
