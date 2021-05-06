@@ -4,33 +4,7 @@ import Defaultimg from '../../img/defaultPicture.png';
 import authContext from '../../context/authContext';
 import axios from 'axios';
 
-function ListPlaylist({ handleClick, setIsLoading, playLists, playlistId, myPlaylist, setMyPlaylist }) {
-  const { token } = useContext(authContext);
-
-  // useEffect(async () => {
-  //   await fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/playlists/${playlistId}`, {
-  //     method: 'GET',
-  //     headers: { Authorization: `Bearer ${token}` },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((res) => setMyPlaylist(res))
-  //     .catch((err) => console.log(err));
-  //   setIsLoading(false);
-  //   console.log(myPlaylist);
-  // }, [playlistId]);
-
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const [resPlaylist] = await Promise.all([
-  //       axios.get(`https://bazify-backend.basile.vernouillet.dev/api/v1/playlists/${playlistId}`, { headers: { Authorization: `Bearer ${token}` } }),
-  //     ]);
-  //     console.log(resPlaylist.data);
-  //     setMyPlaylist(resPlaylist.data);
-  //     setIsLoading(false);
-  //   };
-  //   getData();
-  // }, []);
-
+function ListPlaylist({ handleClick, playLists }) {
   return (
     <div className="w-full h-full  p-4 900:p-6">
       <h1 className="text-white font-scada text-3xl font-bold">WizicPlaylist</h1>

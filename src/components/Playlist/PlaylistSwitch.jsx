@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import authContext from '../../context/authContext';
 
-function PlaylistSwitch({ setCurrentTrack, playLists }) {
+function PlaylistSwitch({ setCurrentTrack, playLists, setSelectedSong }) {
   const { token } = useContext(authContext);
   const [myPlaylist, setMyPlaylist] = useState();
   const [ischange, setIsChange] = useState(true);
@@ -48,6 +48,7 @@ function PlaylistSwitch({ setCurrentTrack, playLists }) {
           />
         ) : (
           <ListPlaylistOnClick
+            setSelectedSong={setSelectedSong}
             isLoading={isLoading}
             myPlaylist={myPlaylist}
             playlistId={playlistId}
