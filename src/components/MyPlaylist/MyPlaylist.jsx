@@ -4,12 +4,9 @@ import PropTypes from 'prop-types';
 import Tracklist from './tracklist';
 
 export default function MyPlaylist({ setIsPlaylist, setCurrentTrack, setMyPlaylist, myPlaylist }) {
-  const [isactive, setIsActive] = useState(true);
-
   const handleClick = () => {
     localStorage.setItem('myPlaylist', '');
     setMyPlaylist([]);
-    setIsActive(false);
   };
 
   return (
@@ -22,7 +19,7 @@ export default function MyPlaylist({ setIsPlaylist, setCurrentTrack, setMyPlayli
           Clear
         </button>
       </div>
-      {isactive ? (
+      {localStorage.getItem('myPlaylist') ? (
         <Tracklist setIsPlaylist={setIsPlaylist} setCurrentTrac={setCurrentTrack} myPlaylist={myPlaylist} />
       ) : (
         <div>
