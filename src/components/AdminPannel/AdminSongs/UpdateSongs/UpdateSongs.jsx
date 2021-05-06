@@ -11,7 +11,6 @@ export default function UpdateSongs({ item }) {
     artist: 'artist',
     album: 'album',
     duration: 'duration',
-    playlists: 'playlist',
   };
 
   const songUpdate = (e) => {
