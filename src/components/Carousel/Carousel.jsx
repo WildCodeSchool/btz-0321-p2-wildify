@@ -21,6 +21,7 @@ export default function Carousel({
   setIsArtistTrackList,
   isArtistTrackList,
   setMyPlaylist,
+  setIsPlaylist,
 }) {
   const [isRecentAddsActive, setIsRecentAddsActive] = useState(true);
   const [isArtistActive, setIsArtistActive] = useState(false);
@@ -167,7 +168,9 @@ export default function Carousel({
         </button>
       </div>
       <div className="overflow-x-auto">
-        {isRecentAddsActive && <RecentAdds setMyPlaylist={setMyPlaylist} item={item} setCurrentTrack={setCurrentTrack} />}
+        {isRecentAddsActive && (
+          <RecentAdds setIsPlaylist={setIsPlaylist} setMyPlaylist={setMyPlaylist} item={item} setCurrentTrack={setCurrentTrack} />
+        )}
         {isArtistActive && <Artist setMyPlaylist={setMyPlaylist} handleArtistClick={handleArtistClick} artists={artists} />}
         {isAlbumActive && <Album setMyPlaylist={setMyPlaylist} handleAlbumClick={handleAlbumClick} albums={albums} />}
         {isTrackListActive && <TrackList setMyPlaylist={setMyPlaylist} setMyPlaylist={setMyPlaylist} item={item} setCurrentTrack={setCurrentTrack} />}

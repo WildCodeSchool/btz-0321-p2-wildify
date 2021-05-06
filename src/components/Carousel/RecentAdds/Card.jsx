@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import PlayerButton from '../../../img/Icons/PlayerButton.svg';
 import Defaultimg from '../../../img/defaultPicture.png';
 
-export default function Card({ itemReversed, setCurrentTrack, setMyPlaylist }) {
+export default function Card({ itemReversed, setCurrentTrack, setMyPlaylist, myPlaylist }) {
+  // const [myResult, setMyResult] = useState(localStorage.getItem('myPlaylist'));
+  // const handleClick = (e) => {
+  //   let result = myResult ? myResult : [];
+  //   console.log(myResult);
+  //   if (myResult === '') {
+  //     result = [];
+  //   } else {
+  //     result = myResult;
+  //   }
+  //   result.push(JSON.parse(e.target.value));
+  //   setMyResult(result);
+  //   setMyPlaylist(myResult);
+  //   localStorage.setItem('myPlaylist', JSON.stringify(myResult));
+  // };
+
   const handleClick = (e) => {
-    let myPlaylist = localStorage.getItem('myPlaylist');
-    myPlaylist = myPlaylist ? myPlaylist.split(',') : [];
-    myPlaylist.push(e.target.value);
-    localStorage.setItem('myPlaylist', myPlaylist.toString());
-    setMyPlaylist(localStorage.getItem('myPlaylist').split(','));
+    let result = localStorage.getItem('myPlaylist') ? JSON.parse(localStorage.getItem('myPlaylist')) : [];
+    result.push(JSON.parse(e.target.value));
+    setMyPlaylist(result);
+    localStorage.setItem('myPlaylist', JSON.stringify(result));
   };
 
   return (
@@ -32,7 +46,7 @@ export default function Card({ itemReversed, setCurrentTrack, setMyPlaylist }) {
             <button onClick={() => setCurrentTrack(itemReversed.length - 1 - index)} className="flex focus:outline-none items-end m-1">
               <img src={PlayerButton} alt="" />
             </button>
-            <button value={song.title} onClick={handleClick} className="text-white">
+            <button value={JSON.stringify(song)} onClick={handleClick} className="text-white">
               XX
             </button>
           </div>

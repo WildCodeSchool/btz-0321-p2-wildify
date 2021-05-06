@@ -47,13 +47,19 @@ function App() {
   const [isAlbumTrackList, setIsAlBumTrackList] = useState(false);
   const [isArtistTrackList, setIsArtistTrackList] = useState(false);
   const [playLists, setPlayLists] = useState([]);
-  const [myPlaylist, setMyPlaylist] = useState(localStorage.getItem('myPlaylist').split(','));
+  const [myPlaylist, setMyPlaylist] = useState(localStorage.getItem('myPlaylist') ? JSON.parse(localStorage.getItem('myPlaylist')) : []);
+  const [isPlaylist, setIsPlaylist] = useState(false);
 
   useEffect(() => {
     if (!token) {
       history.push('/');
     }
   }, [token]);
+
+  useEffect(() => {
+    console.log(myPlaylist);
+  }, [myPlaylist]);
+
   useEffect(() => {
     const getDatas = async () => {
       const [resSongs, resArtists, resAlbums, resPlayLists] = await Promise.all([
@@ -109,6 +115,7 @@ function App() {
       setIsAdmin(true);
     }
   };
+
   return (
     <div
       className="flex align-middle justify-center pb-24"
@@ -169,8 +176,17 @@ function App() {
           )}
         </div>
         <div className="col-start-1 col-end-3 row-start-5 row-end-6 rounded-20 900:col-start-2 900:col-end-4 900:row-start-4 900:row-end-5 bg-black bg-opacity-20 shadow-layoutContainer">
-          {/* MixtapesComponent GoHere */}
-          <MyPlaylist setMyPlaylist={setMyPlaylist} myPlaylist={myPlaylist} />
+          {myPlaylist && (
+            <MyPlaylist
+              myPlaylist={myPlaylist}
+              setMyPlaylist={setMyPlaylist}
+              setIsPlaylist={setIsPlaylist}
+              setSelectedSong={setSelectedSong}
+              item={item}
+              setOnListen={setOnListen}
+              setCurrentTrack={setCurrentTrack}
+            />
+          )}
         </div>
         <div className="col-start-1 col-end-3 row-start-6 row-end-7 rounded-20 900:col-end-4 900:row-start-5 900:row-end-6 bg-black bg-opacity-20 shadow-layoutContainer mb-4">
           <Contact />
@@ -243,6 +259,9 @@ function App() {
           selectedSong={selectedSong}
           isAlbum={isAlbum}
           isArtist={isArtist}
+          isPlaylist={isPlaylist}
+          myPlaylist={myPlaylist}
+          setMyPlaylist={setMyPlaylist}
         />
       ) : (
         ''

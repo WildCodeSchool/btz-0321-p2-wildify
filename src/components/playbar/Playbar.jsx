@@ -29,7 +29,8 @@ export default function Playbar({
   isAlbum,
   isAlbumTrackList,
   isArtistTrackList,
-  isArtist,
+  isPlaylist,
+  myPlaylist,
 }) {
   const [sliderValue, setSliderValue] = useState(0);
   const [sliderPos, setSliderPos] = useState('100');
@@ -52,6 +53,8 @@ export default function Playbar({
 
   useEffect(() => {
     updateSong();
+    console.log(currentTrack);
+    console.log(myPlaylist);
   }, [currentTrack]);
 
   const secondsToHms = (d) => {
@@ -62,7 +65,13 @@ export default function Playbar({
   };
 
   const updateSong = () => {
-    if (isAlbum || isAlbumTrackList || isArtistTrackList || isArtist) {
+    if (isPlaylist) {
+      setOnListen(myPlaylist[currentTrack].s3_link);
+      setTitle(myPlaylist[currentTrack].title);
+      setArtist(myPlaylist[currentTrack].artist.name);
+      setAlbum(myPlaylist[currentTrack].album.title);
+      setPicture(myPlaylist[currentTrack].album.picture);
+    } else if (isAlbum || isAlbumTrackList || isArtistTrackList || selectedSong) {
       setOnListen(selectedSong[0].s3_link);
       setTitle(selectedSong[0].title);
       setArtist(selectedSong[0].artist.name);

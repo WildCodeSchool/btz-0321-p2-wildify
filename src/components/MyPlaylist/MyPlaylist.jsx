@@ -2,11 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../Carousel/scrollbarwebkit.css';
 
-export default function MyPlaylist({ setMyPlaylist, myPlaylist }) {
+export default function MyPlaylist({ setIsPlaylist, setCurrentTrack, setMyPlaylist, myPlaylist, setSelectedSong, item }) {
   const handleClick = () => {
     localStorage.setItem('myPlaylist', '');
     setMyPlaylist([]);
   };
+
+  const handleClick2 = (e) => {
+    setIsPlaylist(true);
+    console.log(parseInt(e.target.value));
+
+    setCurrentTrack(parseInt(e.target.value));
+  };
+
   return (
     <div className="w-full h-full text-white bg-black bg-opacity-50 overflow-y-auto sidebar   rounded-20 p-4 ">
       <h1 className="text-white">My Playlist : </h1>
@@ -17,8 +25,8 @@ export default function MyPlaylist({ setMyPlaylist, myPlaylist }) {
         {myPlaylist &&
           myPlaylist.map((song, index) => {
             return (
-              <button className="border-b-2 w-full hover:text-green-500 text-left border-white" value={song} key={index}>
-                {song}
+              <button onClick={handleClick2} className="border-b-2 w-full hover:text-green-500 text-left border-white" value={index} key={index}>
+                {song.title}
               </button>
             );
           })}
@@ -29,4 +37,5 @@ export default function MyPlaylist({ setMyPlaylist, myPlaylist }) {
 
 MyPlaylist.propTypes = {
   myPlaylist: PropTypes.array.isRequired,
+  setMyPlaylist: PropTypes.array.isRequired,
 };
