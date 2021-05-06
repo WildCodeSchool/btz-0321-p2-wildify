@@ -38,4 +38,5 @@ export default function ArtistCard({ artists, handleArtistClick, isDragging }) {
 ArtistCard.propTypes = {
   handleArtistClick: PropTypes.func.isRequired,
   artists: PropTypes.array.isRequired,
+  isDragging: PropTypes.bool.isRequired,
 };

@@ -37,4 +37,5 @@ export default function AlbumCard({ albums, handleAlbumClick, isDragging }) {
 AlbumCard.propTypes = {
   albums: PropTypes.array.isRequired,
   handleAlbumClick: PropTypes.func.isRequired,
+  isDragging: PropTypes.bool.isRequired,
 };
