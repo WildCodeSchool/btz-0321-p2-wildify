@@ -7,15 +7,21 @@ import WCSlogo from '../../img/LogoWild.png';
 import authContext from '../../context/authContext';
 import axios from 'axios';
 import UploadImg from '../../img/Icons/Uploadfile.svg';
+import Popup from './popup';
+import Check from '../../img/Icons/Check.png';
 
 function SideBar({ sideBarClass, handleSideBar, handleAdmin }) {
   const [imgUrl, setImgUrl] = useState();
   const { width } = useWindowDimensions();
   const { token } = useContext(authContext);
   const [selectFile, setSelectFile] = useState();
+  const [uploadOk, setUploadOk] = useState(false);
+  const [popup, setPopup] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const changeFileHandler = (event) => {
     setSelectFile(event.target.files[0]);
+    setUploadOk(true);
   };
 
   const handleSubmission = async (e) => {
@@ -25,18 +31,27 @@ function SideBar({ sideBarClass, handleSideBar, handleAdmin }) {
     await axios
       .post('https://bazify-backend.basile.vernouillet.dev/api/v1/songs', formData, {
         headers: { Authorization: `Bearer ${token}` },
+        onUploadProgress: (p) => {
+          setProgress((p.loaded / p.total) * 100);
+        },
       })
       .then((res) => {
         fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/albums/${res.data.albumId}`, {
           method: 'PUT',
           headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
           body: JSON.stringify({ picture: imgUrl }),
-        }).then((res) => res);
+        }).then((res) => res, setPopup(true));
       });
   };
 
   return (
     <div className={sideBarClass}>
+      {popup && (
+        <div className="absolute h-screen w-screen 900:w-full 900:h-full z-50 flex items-center align-middle justify-center">
+          {' '}
+          <Popup progress={progress} />
+        </div>
+      )}
       <div
         className="flex flex-col justify-between w-full h-full py-2 px-4 900:px-8"
         style={{
@@ -60,9 +75,14 @@ function SideBar({ sideBarClass, handleSideBar, handleAdmin }) {
               <h1 className="mt-4 mr-10 font-scada text-white text-4xl 900:text-3xl 900:mt-0">Share your Favorits songs with us</h1>
               <h1 className="mt-8  font-scada text-white text-2xl 900:text-xl">Upload Music</h1>
               <label
-                className="mt-3 flex text-ls items-center hover:text-mainColor hover:shadow-input justify-between focus:outline-none p-2 900:p-2  900:px-4 text-white font-cuprum bg-bgPlaybar rounded-xl shadow-input2"
+                className="mt-3 flex text-ls items-center hover:text-mainColor hover:shadow-input focus:outline-none p-2 900:p-2  900:px-4 text-white font-cuprum bg-bgPlaybar rounded-xl shadow-input2"
                 htmlFor="file">
-                Upload Your music files<img className="w-8 h-8" src={UploadImg} alt=""></img>
+                <div className="w-full items-center flex justify-between">
+                  <div className="flex items-center">
+                    <img className="w-8 h-8 mx-2" src={UploadImg} alt=""></img> Upload Your music files
+                  </div>
+                  {uploadOk && <img className="w-6 h-6" src={Check} alt="Check"></img>}
+                </div>
               </label>
               <input
                 style={{
