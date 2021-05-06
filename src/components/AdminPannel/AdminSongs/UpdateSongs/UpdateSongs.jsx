@@ -5,10 +5,6 @@ import authContext from '../../../../context/authContext';
 export default function UpdateSongs({ item }) {
   const { token } = useContext(authContext);
   const [onSelect, setOnSelect] = useState();
-  const [title, setTitle] = useState();
-  const [artist, setArtist] = useState();
-  const [album, setAlbum] = useState();
-  const [duration, setDuration] = useState();
 
   const songData = {
     title: 'title',
@@ -25,16 +21,22 @@ export default function UpdateSongs({ item }) {
       body: JSON.stringify(songData),
     })
       .then((res) => res.json())
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => res)
+      .catch((err) => err);
   };
 
   const songDelete = () => {};
 
   return (
-    <div className="flex flex-col  items-center align-middle justify-center w-full">
-      <label htmlFor="song">Update :</label>
-      <select onBlur={(e) => setOnSelect(e.target.value)} className="w-72 my-2 h-6 text-white rounded-xl px-4 bg-black bg-opacity-50" name="song">
+    <div className="bg-white p-5 bg-opacity-10 flex-col shadow-searchbar rounded-lg flex">
+      <h1 className="text-white font-scada text-4xl font-bold">UpdateSong</h1>
+      <label className="mt-2 text-white font-scada text-xl" htmlFor="song">
+        Update :
+      </label>
+      <select
+        onBlur={(e) => setOnSelect(e.target.value)}
+        className="focus:outline-none px-3 py-2 bg-white bg-opacity-10 rounded-lg shadow-input2"
+        name="song">
         {item.map((song, index) => {
           return (
             <option value={index} key={index}>
@@ -44,36 +46,40 @@ export default function UpdateSongs({ item }) {
         })}
       </select>
       <input
-        className="w-72 my-2 px-4 h-6 text-white bg-black bg-opacity-50 rounded-xl"
+        className="focus:outline-none px-3 mt-5 py-2 bg-white bg-opacity-10 rounded-lg shadow-input2"
         type="text"
         placeholder={onSelect ? item[onSelect].title : 'Track Title'}
       />
       <input
-        className="w-72 my-2 px-4 h-6 text-white bg-black bg-opacity-50 rounded-xl"
+        className="focus:outline-none px-3 mt-5 py-2 bg-white bg-opacity-10 rounded-lg shadow-input2"
         type="text"
-        placeholder={onSelect ? item[onSelect].duration : 'Track Title'}
+        placeholder={onSelect ? item[onSelect].duration : 'Duration'}
       />
       <input
-        className="w-72 my-2 px-4 h-6 text-white bg-black bg-opacity-50 rounded-xl"
+        className="focus:outline-none px-3 mt-5 py-2 bg-white bg-opacity-10 rounded-lg shadow-input2"
         type="text"
-        placeholder={onSelect ? item[onSelect].album.picture : 'Track Title'}
+        placeholder={onSelect ? item[onSelect].album.picture : 'Ablbum Picture'}
       />
       <input
-        className="w-72 my-2 px-4 h-6 text-white bg-black bg-opacity-50 rounded-xl"
+        className="focus:outline-none px-3 mt-5 py-2 bg-white bg-opacity-10 rounded-lg shadow-input2"
         type="text"
-        placeholder={onSelect ? item[onSelect].album.title : 'Track Title'}
+        placeholder={onSelect ? item[onSelect].album.title : 'Album Title'}
       />
       <input
-        className="w-72 my-2 px-4 h-6 text-white bg-black bg-opacity-50 rounded-xl"
+        className="focus:outline-none px-3 mt-5 py-2 bg-white bg-opacity-10 rounded-lg shadow-input2"
         type="text"
-        placeholder={onSelect ? item[onSelect].artist.name : 'Track Title'}
+        placeholder={onSelect ? item[onSelect].artist.name : 'Artist Name'}
       />
-      <div>
-        <button onClick={songUpdate} className="border-2 border-white px-4 py-2 rounded-xl focus:outline-none hover:bg-gray-800 active:bg-gray-600">
-          SUBMIT
+      <div className="w-full mt-5">
+        <button
+          onClick={songUpdate}
+          className="h-8 px-8  mr-4 md:font-scada text-white rounded-xl  bg-white bg-opacity-20  shadow-searchbar  focus:outline-none  hover:border-mainColor">
+          Submit
         </button>
-        <button onClick={songDelete} className="border-2 border-white px-4 py-2 rounded-xl focus:outline-none hover:bg-gray-800 active:bg-gray-600">
-          DELETE
+        <button
+          onClick={songDelete}
+          className="h-8 px-8 md:font-scada text-white rounded-xl  bg-white bg-opacity-20  shadow-searchbar  focus:outline-none  hover:border-mainColor">
+          Delete
         </button>
       </div>
     </div>

@@ -42,6 +42,7 @@ function App() {
   const [isAlbum, setIsAlbum] = useState(false);
   const [isArtist, setIsArtist] = useState(true);
   const [onSearch, setOnSearch] = useState();
+  const [isOnSearch, setIsOnSearch] = useState(false);
   const { token } = useContext(authContext);
   const [isAdmin, setIsAdmin] = useState(false);
   const history = useHistory();
@@ -109,9 +110,11 @@ function App() {
   const handleSideBar = () => {
     isSideBarVisible ? setisSideBarVisible(false) : setisSideBarVisible(true);
     isSideBarVisible
-      ? setSideBarClass('flex fixed  h-screen  flex-col  900:col-start-5 900:col-end-6 900:row-start-1 900:row-span-6 bg-bgPlaybar shadow-playbar')
+      ? setSideBarClass(
+          'flex fixed  h-screen  flex-col  900:col-start-5 900:col-end-6 900:row-start-1 900:row-span-6 bg-bgPlaybar shadow-playbar overflow-y-auto',
+        )
       : setSideBarClass(
-          'flex fixed z-50 flex-col h-screen w-screen  top-0 right-0 900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-bgPlaybar  shadow-playbar',
+          'flex fixed z-50 flex-col h-screen w-screen  top-0 right-0 900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-bgPlaybar  shadow-playbar overflow-y-auto',
         );
   };
   const handleAdmin = () => {
@@ -133,8 +136,7 @@ function App() {
       {isAdmin && <AdminPannel playLists={playLists} artists={artists} hideAdmin={hideAdmin} item={item} token={token} albums={albums} />}
 
       <div className="grid mx-5 gap-5  900:gap-6 grid-cols-mobile grid-rows-mobile 900:grid-cols-desktop 900:ml-6 900:mr-0 900:grid-rows-desktop">
-        <Header handleSideBar={handleSideBar} setOnSearch={setOnSearch} isSideBarVisible={isSideBarVisible} />
-
+        <Header handleSideBar={handleSideBar} setOnSearch={setOnSearch} setIsOnSearch={setIsOnSearch} isSideBarVisible={isSideBarVisible} />
         <div className="col-start-1 col-end-3 row-start-2 900:col-end-4 rounded-20 bg-black bg-opacity-10 shadow-layoutContainer overflow-x-auto">
           {/* The Main Component GoHere */}
           {!isLoading && (
@@ -198,11 +200,13 @@ function App() {
             />
           )}
         </div>
+
         <div className="col-start-1 col-end-3 row-start-6 row-end-7 rounded-20 900:col-end-4 900:row-start-5 900:row-end-6 bg-black bg-opacity-20 shadow-layoutContainer mb-4">
           <Contact />
         </div>
         {isSideBarVisible && (
           <SideBar
+            playLists={playLists}
             handleAdmin={handleAdmin}
             sideBarClass={sideBarClass}
             albums={albums}

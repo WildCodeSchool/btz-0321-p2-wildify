@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Defaultimg from '../../../img/defaultPicture.png';
 
-function AlbumTrackList({ item, albumChoice, setSelectedSong, setMyPlaylist }) {
+function AlbumTrackList({ item, albumChoice, setSelectedSong, setMyPlaylist, setIsPlaylist }) {
   const handleClick = (e) => {
     setSelectedSong(JSON.parse(e.target.value));
     setIsPlaylist(false);
@@ -22,11 +22,11 @@ function AlbumTrackList({ item, albumChoice, setSelectedSong, setMyPlaylist }) {
           .filter((song) => song.album.title.includes(albumChoice))
           .map((song, index) => {
             return (
-              <button
+              <div
                 className="focus:outline-none  mb-4 text-white flex flex-col text-left pb-2 border-b w-full hover:border-mainColor hover:text-mainColor"
                 key={index}
                 value={JSON.stringify(song)}
-                onClick={handleClick}>
+                onBlur={handleClick}>
                 <div className="flex pointer-events-none items-center">
                   <div
                     className="pointer-events-none flex h-12 w-12 mr-2 rounded-full"
@@ -41,7 +41,7 @@ function AlbumTrackList({ item, albumChoice, setSelectedSong, setMyPlaylist }) {
                 <button value={JSON.stringify(song)} className="text-white" onClick={handleClick2}>
                   XX
                 </button>
-              </button>
+              </div>
             );
           })}
       </ul>
@@ -56,4 +56,5 @@ AlbumTrackList.propTypes = {
   albumChoice: PropTypes.string.isRequired,
   setSelectedSong: PropTypes.func.isRequired,
   setMyPlaylist: PropTypes.func.isRequired,
+  setIsPlaylist: PropTypes.func.isRequired,
 };

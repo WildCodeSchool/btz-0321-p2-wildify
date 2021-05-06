@@ -195,9 +195,23 @@ export default function Carousel({
             setCurrentTrack={setCurrentTrack}
           />
         )}
-        {isAlbumTrackList && <AlbumTrackList setMyPlaylist={setMyPlaylist} setSelectedSong={setSelectedSong} albumChoice={albumChoice} item={item} />}
+        {isAlbumTrackList && (
+          <AlbumTrackList
+            setIsPlaylist={setIsPlaylist}
+            setMyPlaylist={setMyPlaylist}
+            setSelectedSong={setSelectedSong}
+            albumChoice={albumChoice}
+            item={item}
+          />
+        )}
         {isArtistTrackList && (
-          <ArtistTrackList setMyPlaylist={setMyPlaylist} setSelectedSong={setSelectedSong} artistChoice={artistChoice} item={item} />
+          <ArtistTrackList
+            setIsPlaylist={setIsPlaylist}
+            setMyPlaylist={setMyPlaylist}
+            setSelectedSong={setSelectedSong}
+            artistChoice={artistChoice}
+            item={item}
+          />
         )}
         {onSearch && <SearchResults setMyPlaylist={setMyPlaylist} onSearch={onSearch} item={item} />}
       </div>

@@ -5,11 +5,14 @@ import PropTypes from 'prop-types';
 
 function PlaylistSwitch({ setCurrentTrack, playLists }) {
   const [ischange, setIsChange] = useState(true);
-  const handleClick = () => {
+  const [playlistChoice, setPlaylistChoice] = useState('');
+
+  const handleClick = (e) => {
     setIsChange(false);
+    setPlaylistChoice(e.target.value);
   };
 
-  const ReturnBtn = () => {
+  const Return = () => {
     setIsChange(true);
   };
 
@@ -17,9 +20,9 @@ function PlaylistSwitch({ setCurrentTrack, playLists }) {
     <div>
       <div>
         {ischange ? (
-          <ListPlaylist playLists={playLists} setIsChange={handleClick} />
+          <ListPlaylist playLists={playLists} handleClick={handleClick} />
         ) : (
-          <ListPlaylistOnClick playLists={playLists} setIsChange={ReturnBtn} setCurrentTrack={setCurrentTrack} />
+          <ListPlaylistOnClick playLists={playLists} playlistChoice={playlistChoice} Return={Return} setCurrentTrack={setCurrentTrack} />
         )}
       </div>
     </div>

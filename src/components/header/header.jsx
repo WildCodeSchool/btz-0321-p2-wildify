@@ -3,11 +3,12 @@ import useWindowDimensions from '../../Hooks/useWindowDimension';
 import PropTypes from 'prop-types';
 import HeadPhone from '../../img/Icons/HeadPhone.svg';
 
-function Header({ handleSideBar, setOnSearch }) {
+function Header({ handleSideBar, setOnSearch, setIsOnSearch }) {
   const { width } = useWindowDimensions();
 
   const handleChange = (e) => {
     setOnSearch(e.target.value.toLowerCase());
+    setIsOnSearch(true);
   };
 
   return (
@@ -27,7 +28,7 @@ function Header({ handleSideBar, setOnSearch }) {
       <div className="900:self-end mt-5 900:mt-0">
         <input
           type="text"
-          className="focus:outline-none text-white font-cuprum  md:w-512 w-80 h-10 px-5 py-2 bg-black bg-opacity-10 rounded-4xl border-none  shadow-searchbar"
+          className="focus:outline-none text-white font-cuprum  md:w-512 w-full h-10 px-5 py-2 bg-black bg-opacity-10 rounded-4xl border-none  shadow-searchbar"
           placeholder="Search..."
           onChange={handleChange}
         />
@@ -38,6 +39,7 @@ function Header({ handleSideBar, setOnSearch }) {
 Header.propTypes = {
   handleSideBar: PropTypes.func.isRequired,
   setOnSearch: PropTypes.func.isRequired,
+  setIsOnSearch: PropTypes.func.isRequired,
 };
 
 export default Header;
