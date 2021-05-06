@@ -95,8 +95,8 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
   };
 
   return (
-    <div className=" text-white w-full pr-20 flex">
-      <form onSubmit={createPlayList} className="bg-white p-5 bg-opacity-10 flex-col shadow-searchbar rounded-lg flex w-97 mx-4">
+    <div className=" text-white w-full flex">
+      <form onSubmit={createPlayList} className="bg-white p-5 bg-opacity-10 flex-col shadow-searchbar rounded-lg flex w-80 mx-4">
         <h1 className="text-white font-scada text-4xl font-bold">Update Playlist</h1>
         <label className="mt-4 text-white font-scada text-ls" htmlFor="playList">
           PLaylist Title{' '}
@@ -134,17 +134,17 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
           Submit
         </button>
       </form>
-      <div className="bg-white p-5 bg-opacity-10 flex-col shadow-searchbar rounded-lg flex w-97 mx-4">
+      <div className="bg-white p-5 bg-opacity-10 flex-col shadow-searchbar rounded-lg flex w-80 mx-4">
         <form onSubmit={updatePlayList} className="flex flex-col">
-          <label htmlFor="update" className="text-white font-scada text-ls font-bold">
-            Update PlayList :
+          <label htmlFor="update" className="text-white font-scada text-3xl font-bold">
+            Update PlayList
           </label>
 
           <select
             onBlur={(e) => setOnSelect(e.target.value)}
             name="update"
             id=""
-            className="focus:outline-none px-3 py-2 bg-white bg-opacity-20 rounded-lg shadow-input2">
+            className="focus:outline-none px-3 py-2 mt-5 bg-white bg-opacity-20 rounded-lg shadow-input2">
             {myPlayList.map((playList, index) => {
               return (
                 <option key={index} value={index}>
@@ -185,10 +185,30 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
             Update Playlist
           </button>
         </form>
+      </div>
 
-        <div className="mt-4">
-          <label className=" text-white font-scada text-ls font-bold" htmlFor="add-song">
-            Add a song to a playlist :
+      <div className="bg-white p-5 bg-opacity-10 flex-col shadow-searchbar rounded-lg flex w-97 mx-4">
+        <h1 className="text-white font-scada text-4xl font-bold">PlayLists:</h1>
+        <div className=" text-white  flex flex-col rounded-ls">
+          <ul className="overflow-y-auto">
+            {myPlayList.map((playList, index) => {
+              return (
+                <li className="border-b-2 flex items-center text-ls border-white py-2 w-full" key={index}>
+                  <img className="w-12 mx- rounded-full" src={playList.picture} alt="" />
+                  <div className="ml-2 text-xs">
+                    <div className="font-bold">{playList.title}</div>
+                    <div>{playList.description}</div>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
+      <div className="">
+        <div className="bg-white p-4 bg-opacity-10 flex-col shadow-searchbar rounded-lg flex w-80 mx-4">
+          <label className=" text-white font-scada text-2xl font-bold" htmlFor="add-song">
+            Add a song to a playlist
           </label>
           <select
             onBlur={(e) => setSelectSong(e.target.value)}
@@ -222,35 +242,13 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
               onClick={postSong}
               type="submit"
               className="h-8 px-8 mt-5 w-full  mr-4 md:font-scada text-white rounded-lg  bg-white bg-opacity-20  shadow-searchbar  focus:outline-none  hover:border-mainColor">
-              ADD
+              Add to playlist
             </button>
           </div>
         </div>
-      </div>
-
-      <div className="bg-white p-5 bg-opacity-10 flex-col shadow-searchbar rounded-lg flex w-97 mx-4">
-        <h1 className="text-white font-scada text-4xl font-bold">PlayLists:</h1>
-        <div className=" text-white  flex flex-col rounded-ls">
-          <ul className="overflow-y-auto">
-            {myPlayList.map((playList, index) => {
-              return (
-                <li className="border-b-2 flex items-center text-ls border-white py-2 w-full" key={index}>
-                  <img className="w-12 mx- rounded-full" src={playList.picture} alt="" />
-                  <div className="ml-2 text-xs">
-                    <div className="font-bold">{playList.title}</div>
-                    <div>{playList.description}</div>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      </div>
-
-      <div className="bg-white p-5 bg-opacity-10 flex-col shadow-searchbar rounded-lg flex w-97 mx-4  ">
-        <div className="mt-4">
-          <label className=" text-white font-scada text-ls font-bold" htmlFor="add-song">
-            Delete a song from a playlist :
+        <div className="mt-2 bg-white p-4 bg-opacity-10 flex-col shadow-searchbar rounded-lg flex w-80 mx-4">
+          <label className=" text-white font-scada text-2xl font-bold" htmlFor="add-song">
+            Delete song from a playlist
           </label>
           <select
             onBlur={(e) => setDeleteSongSelect(e.target.value)}
@@ -285,7 +283,7 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
               onClick={deleteSong}
               type="submit"
               className="h-8 px-8 mt-5 w-full  mr-4 md:font-scada text-white rounded-lg  bg-white bg-opacity-20  shadow-searchbar  focus:outline-none  hover:border-mainColor">
-              DELETE
+              Delete from playlist
             </button>
           </div>
         </div>
