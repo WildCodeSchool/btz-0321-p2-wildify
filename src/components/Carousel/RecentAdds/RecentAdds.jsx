@@ -9,13 +9,13 @@ function RecentAdds({ item, setSelectedSong, setMyPlaylist, setIsPlaylist, setIs
   const scrollWrapperRef = useRef();
   const { isDragging } = useScrollBox(scrollWrapperRef);
   itemReversed.reverse();
-
   return (
     <div
       ref={scrollWrapperRef}
       role="list"
       className="sidebar col-start-1 col-end-2 900:col-end-3 row-start-3 900:row-start-2 row-end-4 900:row-end-3 flex flex-row overflow-x-auto">
       <Card
+        isDragging={isDragging}
         item={item}
         setIsRecentAddsActive={setIsRecentAddsActive}
         setMyPlaylist={setMyPlaylist}
@@ -23,7 +23,6 @@ function RecentAdds({ item, setSelectedSong, setMyPlaylist, setIsPlaylist, setIs
         itemReversed={itemReversed}
         setSelectedSong={setSelectedSong}
       />
-      <div className="hidden">{isDragging}</div>
     </div>
   );
 }

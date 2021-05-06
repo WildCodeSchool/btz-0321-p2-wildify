@@ -19,7 +19,7 @@ export default function SearchResults({ item, onSearch, setSelectedSong }) {
           .map((song, index) => {
             return (
               <li className="font-scada text-white border-b-2 pb-1 mb-5 hover:text-mainColor hover:border-mainColor" key={index}>
-                <button value={song.title} onClick={handleClick} className="flex">
+                <button value={song.title} onClick={handleClick} className="flex items-center focus:outline-none">
                   <p className="mr-4 pointer-events-none font-bold">{song.title}</p>-
                   <p className="mx-4 pointer-events-none text-sm">{song.artist.name}</p>-
                   <p className="mx-4 pointer-events-none text-sm">{song.album.title}</p>
@@ -36,4 +36,5 @@ SearchResults.propTypes = {
   item: PropTypes.array.isRequired,
   onSearch: PropTypes.string.isRequired,
   setSelectedSong: PropTypes.func.isRequired,
+  audio: PropTypes.bool.isRequired,
 };

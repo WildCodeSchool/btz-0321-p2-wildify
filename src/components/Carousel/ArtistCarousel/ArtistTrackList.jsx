@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Defaultimg from '../../../img/defaultPicture.png';
 import AddPl from '../../../img/Icons/AddPl.png';
+import PlayerBtn from '../../../img/Icons/PlayerButton.svg';
 
 function ArtistTrackList({ item, artistChoice, setSelectedSong, setMyPlaylist, setIsPlaylist }) {
   const handleClick = (e) => {
@@ -23,9 +24,7 @@ function ArtistTrackList({ item, artistChoice, setSelectedSong, setMyPlaylist, s
             return (
               <div
                 className="focus:outline-none  mb-4 text-white flex justify-between text-left pb-2 border-b w-full hover:border-mainColor hover:text-mainColor"
-                key={index}
-                value={JSON.stringify(song)}
-                onBlur={handleClick}>
+                key={index}>
                 <div className="flex pointer-events-none items-center">
                   <div
                     className="pointer-events-none flex h-12 w-12 mr-4 rounded-full"
@@ -38,12 +37,20 @@ function ArtistTrackList({ item, artistChoice, setSelectedSong, setMyPlaylist, s
                   <h1 className="pointer-events-none font-scada mr-2 font-bold">{song.title}</h1> -{' '}
                   <h1 className="pointer-events-none ml-2 text-xs">{song.artist.name}</h1>
                 </div>
-                <button
-                  value={JSON.stringify(song)}
-                  className="focus:outline-none w-40 flex justify-end items-end pb-2 pr-2 text-white transform hover:scale-105"
-                  onClick={handleClick2}>
-                  <img src={AddPl} className="pointer-events-none w-5 h-5" alt="" />
-                </button>
+                <div className="flex">
+                  <button
+                    className="focus:outline-none w-10 flex justify-end items-end pb-2 pr-2 text-white transform hover:scale-125"
+                    value={JSON.stringify(song)}
+                    onClick={handleClick}>
+                    <img className="pointer-events-none w-5 h-5" src={PlayerBtn} alt="" />
+                  </button>
+                  <button
+                    value={JSON.stringify(song)}
+                    className="focus:outline-none w-10 flex justify-end items-end pb-2 pr-2 text-white transform hover:scale-125"
+                    onClick={handleClick2}>
+                    <img src={AddPl} className="pointer-events-none w-5 h-5" alt="" />
+                  </button>
+                </div>
               </div>
             );
           })}

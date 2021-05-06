@@ -15,9 +15,9 @@ export default function MyPlaylist({ setIsPlaylist, setCurrentTrack, setMyPlayli
   return (
     <div className="w-full h-full text-white  sidebar rounded-20 p-5">
       <div className="flex  w-full justify-between">
-        <h1 className="text-white font-scada text-3xl font-bold">My Playlist : </h1>
+        <h1 className="text-white font-scada text-4xl font-bold">MyPlaylist</h1>
         <button
-          className="focus:outline-none bg-white bg-opacity-10 px-5 rounded-xl shadow-searchbar font-scada text-white hover:text-mainColor transform hover:scale-105"
+          className="focus:outline-none bg-bgPlaybar bg-opacity-10 shadow-input2 px-5 rounded-xl font-scada text-white hover:text-mainColor transform hover:scale-105 hover:shadow-input"
           onClick={handleClick}>
           Clear
         </button>

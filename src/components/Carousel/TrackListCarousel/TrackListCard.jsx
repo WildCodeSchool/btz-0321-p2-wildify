@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import PlayerButton from '../../../img/Icons/PlayerButton.svg';
 import Defaultimg from '../../../img/defaultPicture.png';
 import AddPl from '../../../img/Icons/AddPl.png';
-export default function TrackListCard({ items, setIsRecentAddsActive, setIsPlaylist, setSelectedSong, setMyPlaylist }) {
+export default function TrackListCard({ isDragging, items, setIsRecentAddsActive, setIsPlaylist, setSelectedSong, setMyPlaylist }) {
+  const [pointerEvent, setPointerEvent] = useState();
   const handleClick = (e) => {
     let result = localStorage.getItem('myPlaylist') ? JSON.parse(localStorage.getItem('myPlaylist')) : [];
     result.push(JSON.parse(e.target.value));
@@ -15,8 +16,16 @@ export default function TrackListCard({ items, setIsRecentAddsActive, setIsPlayl
     setSelectedSong(JSON.parse(e.target.value));
     setIsRecentAddsActive(true);
   };
+
+  useEffect(() => {
+    if (isDragging) {
+      setPointerEvent('pointer-events-none');
+    } else {
+      setPointerEvent('');
+    }
+  }, [isDragging]);
   return (
-    <div className="flex flex-row">
+    <div className={`${pointerEvent} flex flex-row justify-end h-full`}>
       {items.map((item, index) => (
         <div
           key={index}
@@ -42,7 +51,10 @@ export default function TrackListCard({ items, setIsRecentAddsActive, setIsPlayl
               </button>
             </div>
             <div className="flex focus:outline-none items-end m-1">
-              <button value={JSON.stringify(item)} onClick={handleClick2} className="flex focus:outline-none items-end m-1 transform hover:scale-110">
+              <button
+                value={JSON.stringify(item)}
+                onClick={handleClick2}
+                className={`${pointerEvent} flex focus:outline-none items-end m-1 transform hover:scale-110`}>
                 <img className="pointer-events-none" src={PlayerButton} alt="" />
               </button>
             </div>
@@ -59,4 +71,5 @@ TrackListCard.propTypes = {
   setIsPlaylist: PropTypes.func.isRequired,
   setSelectedSong: PropTypes.func.isRequired,
   setMyPlaylist: PropTypes.func.isRequired,
+  isDragging: PropTypes.bool.isRequired,
 };
