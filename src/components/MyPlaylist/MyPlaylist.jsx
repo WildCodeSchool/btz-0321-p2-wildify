@@ -23,7 +23,7 @@ export default function MyPlaylist({ setIsPlaylist, setCurrentTrack, setMyPlayli
         <Tracklist setIsPlaylist={setIsPlaylist} setCurrentTrac={setCurrentTrack} myPlaylist={myPlaylist} />
       ) : (
         <div>
-          <h1>Helloworld</h1>
+          <h1>Hello world</h1>
         </div>
       )}
     </div>
