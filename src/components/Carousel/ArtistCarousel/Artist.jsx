@@ -16,7 +16,13 @@ function Artist({ artists, handleArtistClick, setMyPlaylist }) {
   };
   return (
     <div ref={scrollWrapperRef} role="list" className="h-full pb-3 flex flex-row overflow-x-auto sidebar">
-      <ArtistCard setMyPlaylist={setMyPlaylist} onClick={handleClick} artists={artists} handleArtistClick={handleArtistClick} />
+      <ArtistCard
+        isDragging={isDragging}
+        setMyPlaylist={setMyPlaylist}
+        onClick={handleClick}
+        artists={artists}
+        handleArtistClick={handleArtistClick}
+      />
       <div className="hidden">{isDragging}</div>
     </div>
   );

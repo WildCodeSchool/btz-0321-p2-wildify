@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Defaultimg from '../../../img/defaultPicture.png';
 
-export default function ArtistCard({ artists, handleArtistClick }) {
+export default function ArtistCard({ artists, handleArtistClick, isDragging }) {
+  const [pointerEvent, setPointerEvent] = useState();
+  useEffect(() => {
+    if (isDragging) {
+      setPointerEvent('pointer-events-none');
+    } else {
+      setPointerEvent('');
+    }
+  }, [isDragging]);
   return (
     <div className="flex flex-row">
       {artists.map((artist, index) => (
@@ -11,7 +19,7 @@ export default function ArtistCard({ artists, handleArtistClick }) {
           value={artist.name}
           onClick={handleArtistClick}
           key={index}
-          className="flex justify-end w-56 h-72 my-3 mx-3 rounded-xl cursor-pointer border text-white flex-col shadow-card focus:outline-none hover:border hover:border-mainColor transform hover:scale-105"
+          className={`${pointerEvent} flex justify-end w-56 h-72 my-3 mx-3 rounded-xl cursor-pointer border text-white flex-col shadow-card focus:outline-none hover:border hover:border-mainColor transform hover:scale-105`}
           style={{
             backgroundImage: `url(${artist.picture === null ? Defaultimg : artist.picture})`,
             backgroundSize: `cover`,
