@@ -3,7 +3,7 @@ import Card from '../RecentAdds/Card';
 import PropTypes from 'prop-types';
 import useScrollBox from '../scroll';
 import '../scrollbarwebkit.css';
-function RecentAdds({ item, setCurrentTrack, setMyPlaylist, setIsPlaylist, setIsRecentAddsActive }) {
+function RecentAdds({ item, setSelectedSong, setMyPlaylist, setIsPlaylist, setIsRecentAddsActive }) {
   const itemReversed = [...item];
   const scrollWrapperRef = useRef();
   const { isDragging } = useScrollBox(scrollWrapperRef);
@@ -20,7 +20,7 @@ function RecentAdds({ item, setCurrentTrack, setMyPlaylist, setIsPlaylist, setIs
         setMyPlaylist={setMyPlaylist}
         setIsPlaylist={setIsPlaylist}
         itemReversed={itemReversed}
-        setCurrentTrack={setCurrentTrack}
+        setSelectedSong={setSelectedSong}
       />
       <div className="hidden">{isDragging}</div>
     </div>

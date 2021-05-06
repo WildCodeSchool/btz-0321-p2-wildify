@@ -18,6 +18,7 @@ import AdminPannel from '../components/AdminPannel/AdminPannel';
 import MyPlaylist from '../components/MyPlaylist/MyPlaylist';
 
 function App() {
+  const [isRecentAddsActive, setIsRecentAddsActive] = useState(true);
   const [isSideBarVisible, setisSideBarVisible] = useState(false);
   const [isPlayerVisible, setIsPlayerVisible] = useState(false);
   const [isMobilePlayerVisible, setIsMobilePlayerVisible] = useState(true);
@@ -129,6 +130,8 @@ function App() {
           {/* The Main Component GoHere */}
           {!isLoading && (
             <Carousel
+              isRecentAddsActive={isRecentAddsActive}
+              setIsRecentAddsActive={setIsRecentAddsActive}
               setSelectedSong={setSelectedSong}
               setIsAlBumTrackList={setIsAlBumTrackList}
               setIsArtistTrackList={setIsArtistTrackList}
@@ -234,6 +237,7 @@ function App() {
       )}
       {!isLoading && width > 900 ? (
         <Playbar
+          isRecentAddsActive={isRecentAddsActive}
           isAlbumTrackList={isAlbumTrackList}
           isArtistTrackList={isArtistTrackList}
           onListen={onListen}
@@ -261,6 +265,7 @@ function App() {
           isArtist={isArtist}
           isPlaylist={isPlaylist}
           myPlaylist={myPlaylist}
+          setSelectedSong={setSelectedSong}
         />
       ) : (
         ''

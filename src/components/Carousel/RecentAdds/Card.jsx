@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import PlayerButton from '../../../img/Icons/PlayerButton.svg';
 import Defaultimg from '../../../img/defaultPicture.png';
 
-export default function Card({ itemReversed, setIsRecentAddsActive, setCurrentTrack, setIsPlaylist, setMyPlaylist, myPlaylist }) {
+export default function Card({ itemReversed, setIsRecentAddsActive, setSelectedSong, setIsPlaylist, setMyPlaylist, myPlaylist }) {
   const handleClick = (e) => {
     let result = localStorage.getItem('myPlaylist') ? JSON.parse(localStorage.getItem('myPlaylist')) : [];
     result.push(JSON.parse(e.target.value));
@@ -11,9 +11,9 @@ export default function Card({ itemReversed, setIsRecentAddsActive, setCurrentTr
     localStorage.setItem('myPlaylist', JSON.stringify(result));
   };
   const handleClick2 = (e) => {
-    console.log(e.target.value);
+    console.log(JSON.parse(e.target.value));
     setIsPlaylist(false);
-    setCurrentTrack(parseInt(itemReversed.length - 1) - parseInt(e.target.value));
+    setSelectedSong(JSON.parse(e.target.value));
     setIsRecentAddsActive(true);
   };
   return (
@@ -33,7 +33,7 @@ export default function Card({ itemReversed, setIsRecentAddsActive, setCurrentTr
               <p className="font-scada leading-5 text-white font-bold text-lg text-left">{song.title}</p>
               <p className="font-scada text-white text-sm text-left">{song.artist.name}</p>
             </div>
-            <button value={index} onClick={handleClick2} className="flex focus:outline-none items-end m-1">
+            <button value={JSON.stringify(song)} onClick={handleClick2} className="flex focus:outline-none items-end m-1">
               <img className="pointer-events-none" src={PlayerButton} alt="" />
             </button>
             <button value={JSON.stringify(song)} onClick={handleClick} className="text-white">

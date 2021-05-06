@@ -31,6 +31,8 @@ export default function Playbar({
   isArtistTrackList,
   isPlaylist,
   myPlaylist,
+  isRecentAddsActive,
+  setSelectedSong,
 }) {
   const [sliderValue, setSliderValue] = useState(0);
   const [sliderPos, setSliderPos] = useState('100');
@@ -52,7 +54,7 @@ export default function Playbar({
   }, [sliderValue, audioRef]);
 
   useEffect(() => {
-    console.log(currentTrack);
+    setSelectedSong('');
     updateSong();
   }, [currentTrack]);
 
@@ -64,18 +66,20 @@ export default function Playbar({
   };
 
   const updateSong = () => {
-    if (isPlaylist) {
+    if (isPlaylist || !selectedSong) {
       setOnListen(myPlaylist[currentTrack].s3_link);
       setTitle(myPlaylist[currentTrack].title);
       setArtist(myPlaylist[currentTrack].artist.name);
       setAlbum(myPlaylist[currentTrack].album.title);
       setPicture(myPlaylist[currentTrack].album.picture);
-    } else if (isAlbum || isAlbumTrackList || isArtistTrackList || selectedSong) {
-      setOnListen(selectedSong[0].s3_link);
-      setTitle(selectedSong[0].title);
-      setArtist(selectedSong[0].artist.name);
-      setAlbum(selectedSong[0].album.title);
-      setPicture(selectedSong[0].album.picture);
+    } else if (isAlbumTrackList || isArtistTrackList || selectedSong || isRecentAddsActive) {
+      if (selectedSong) {
+        setOnListen(selectedSong.s3_link);
+        setTitle(selectedSong.title);
+        setArtist(selectedSong.artist.name);
+        setAlbum(selectedSong.album.title);
+        setPicture(selectedSong.album.picture);
+      }
     } else {
       setOnListen(item[currentTrack].s3_link);
       setTitle(item[currentTrack].title);

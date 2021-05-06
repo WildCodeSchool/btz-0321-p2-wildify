@@ -4,16 +4,15 @@ import Defaultimg from '../../../img/defaultPicture.png';
 
 function AlbumTrackList({ item, albumChoice, setSelectedSong, setMyPlaylist }) {
   const handleClick = (e) => {
-    const mySong = item.filter((song) => song.title.includes(e.target.value));
-    setSelectedSong(mySong);
+    setSelectedSong(JSON.parse(e.target.value));
+    setIsPlaylist(false);
   };
 
   const handleClick2 = (e) => {
-    let myPlaylist = localStorage.getItem('myPlaylist');
-    myPlaylist = myPlaylist ? myPlaylist.split(',') : [];
-    myPlaylist.push(e.target.value);
-    localStorage.setItem('myPlaylist', myPlaylist.toString());
-    setMyPlaylist(localStorage.getItem('myPlaylist').split(','));
+    let result = localStorage.getItem('myPlaylist') ? JSON.parse(localStorage.getItem('myPlaylist')) : [];
+    result.push(JSON.parse(e.target.value));
+    setMyPlaylist(result);
+    localStorage.setItem('myPlaylist', JSON.stringify(result));
   };
 
   return (
@@ -26,7 +25,7 @@ function AlbumTrackList({ item, albumChoice, setSelectedSong, setMyPlaylist }) {
               <button
                 className="focus:outline-none  mb-4 text-white flex flex-col text-left pb-2 border-b w-full hover:border-mainColor hover:text-mainColor"
                 key={index}
-                value={song.title}
+                value={JSON.stringify(song)}
                 onClick={handleClick}>
                 <div className="flex pointer-events-none items-center">
                   <div
@@ -39,7 +38,7 @@ function AlbumTrackList({ item, albumChoice, setSelectedSong, setMyPlaylist }) {
                     }}></div>
                   {song.title}
                 </div>
-                <button value={song.title} className="text-white" onClick={handleClick2}>
+                <button value={JSON.stringify(song)} className="text-white" onClick={handleClick2}>
                   XX
                 </button>
               </button>
