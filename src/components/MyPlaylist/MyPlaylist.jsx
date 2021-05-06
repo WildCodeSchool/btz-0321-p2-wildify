@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import '../Carousel/scrollbarwebkit.css';
+
 import Tracklist from './tracklist';
 
 export default function MyPlaylist({ setIsPlaylist, setCurrentTrack, setMyPlaylist, myPlaylist }) {
@@ -13,7 +13,7 @@ export default function MyPlaylist({ setIsPlaylist, setCurrentTrack, setMyPlayli
   };
 
   return (
-    <div className="w-full h-full text-white  sidebar rounded-20 p-5">
+    <div className="w-full h-full text-white rounded-20 p-5">
       <div className="flex  w-full justify-between">
         <h1 className="text-white font-scada text-4xl font-bold">MyPlaylist</h1>
         <button

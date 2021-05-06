@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import './scrollbarwebkit.css';
 function Tracklist({ setIsPlaylist, setCurrentTrack, myPlaylist }) {
   const handleClick2 = (e) => {
     setIsPlaylist(true);
@@ -9,7 +9,7 @@ function Tracklist({ setIsPlaylist, setCurrentTrack, myPlaylist }) {
 
   return (
     <div>
-      <ul className="mt-4 h-52 text-white overflow-y-auto flex flex-col">
+      <ul className="mt-4 h-52 sidebar text-white overflow-y-auto flex flex-col">
         {myPlaylist &&
           myPlaylist.map((song, index) => {
             return (

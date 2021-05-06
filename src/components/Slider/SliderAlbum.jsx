@@ -5,7 +5,7 @@ import Slider from './Slider';
 import Next from './Next';
 import Previous from './Previous';
 import AlbumTrackList from './AlbumTrackList';
-
+import './scrollbarwebkit.css';
 function SliderAlbum({ albums, item, setCurrentTrack, setSelectedSong, setIsAlbum, isAlbum }) {
   const { width } = useWindowDimensions();
   const [index, setIndex] = useState(0);
@@ -33,7 +33,7 @@ function SliderAlbum({ albums, item, setCurrentTrack, setSelectedSong, setIsAlbu
           <Slider handleClick={handleClick} width={width} albums={albums} index={index} />
         </div>
       ) : (
-        <div className="overflow-y-auto w-full">
+        <div className="overflow-y-auto sidebar w-full">
           <AlbumTrackList
             albumChoice={albumChoice}
             handleClick={handleClick}

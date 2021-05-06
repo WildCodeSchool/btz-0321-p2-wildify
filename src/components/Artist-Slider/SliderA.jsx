@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Defaultimg from '../../img/defaultPicture.png';
-
 function SliderA({ artists, index, width, handleClick }) {
   const [translationSlide, setTranslationSlide] = useState();
   useEffect(() => {
@@ -13,7 +12,7 @@ function SliderA({ artists, index, width, handleClick }) {
   }, [width]);
   return (
     <div
-      className="h-full w-full"
+      className="h-full  w-full"
       style={{
         transform: `translateY(${translationSlide * index}rem)`,
       }}>

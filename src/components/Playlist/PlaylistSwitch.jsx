@@ -68,4 +68,5 @@ export default PlaylistSwitch;
 PlaylistSwitch.propTypes = {
   playLists: PropTypes.array.isRequired,
   setCurrentTrack: PropTypes.func.isRequired,
+  setSelectedSong: PropTypes.func.isRequired,
 };
