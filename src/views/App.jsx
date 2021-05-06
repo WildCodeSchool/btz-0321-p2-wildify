@@ -110,6 +110,7 @@ function App() {
       setIsAdmin(true);
     }
   };
+
   return (
     <div
       className="flex align-middle justify-center pb-24"
