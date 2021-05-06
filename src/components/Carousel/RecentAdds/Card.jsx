@@ -24,7 +24,6 @@ export default function Card({ itemReversed, isDragging, setIsRecentAddsActive, 
     } else {
       setPointerEvent('');
     }
-    console.log(isDragging);
   }, [isDragging]);
 
   return (
