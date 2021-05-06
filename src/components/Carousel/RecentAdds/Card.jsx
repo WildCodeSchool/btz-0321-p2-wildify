@@ -16,6 +16,7 @@ export default function Card({ itemReversed, isDragging, setIsRecentAddsActive, 
     setSelectedSong(JSON.parse(e.target.value));
     setIsRecentAddsActive(true);
   };
+
   itemReversed.reverse();
   useEffect(() => {
     if (isDragging) {
@@ -23,9 +24,11 @@ export default function Card({ itemReversed, isDragging, setIsRecentAddsActive, 
     } else {
       setPointerEvent('');
     }
+    console.log(isDragging);
   }, [isDragging]);
+
   return (
-    <div className={`${pointerEvent} h-full flex flex-row justify-end`}>
+    <div className={`${pointerEvent}h-full flex flex-row justify-end`}>
       {itemReversed.map((song, index) => (
         <div
           key={index}

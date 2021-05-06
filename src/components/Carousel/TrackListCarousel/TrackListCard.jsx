@@ -15,6 +15,7 @@ export default function TrackListCard({ isDragging, items, setIsRecentAddsActive
     setSelectedSong(JSON.parse(e.target.value));
     setIsRecentAddsActive(true);
   };
+
   useEffect(() => {
     if (isDragging) {
       setPointerEvent('pointer-events-none');
@@ -23,7 +24,7 @@ export default function TrackListCard({ isDragging, items, setIsRecentAddsActive
     }
   }, [isDragging]);
   return (
-    <div className={`${pointerEvent}flex flex-row`}>
+    <div className={`  ${pointerEvent} flex flex-row justify-end h-full`}>
       {items.map((item, index) => (
         <div
           key={index}
