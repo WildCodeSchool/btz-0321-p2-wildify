@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Defaultimg from '../../../img/defaultPicture.png';
 import Wave from '../../../img/wavegreen.gif';
 
 function AlbumTrackList({ item, albumChoice, setSelectedSong }) {
+  const [displayNone, setdisplayNone] = useState('none');
   const handleClick = (e) => {
     const mySong = item.filter((song) => song.title.includes(e.target.value));
     setSelectedSong(mySong);
+    setdisplayNone('flex');
   };
 
   return (
@@ -31,7 +33,7 @@ function AlbumTrackList({ item, albumChoice, setSelectedSong }) {
                       backgroundPosition: `center`,
                     }}></div>
                   {song.title}
-                  <img className="h-12 w-12 opacity-50" src={Wave} alt="" />
+                  <img className="h-12 w-12 opacity-50" style={{ display: `${displayNone}` }} src={Wave} alt="" />
                 </div>
               </button>
             );
