@@ -22,6 +22,7 @@ export default function Carousel({
   isArtistTrackList,
   setMyPlaylist,
   setIsPlaylist,
+  isPlaylist,
 }) {
   const [isRecentAddsActive, setIsRecentAddsActive] = useState(true);
   const [isArtistActive, setIsArtistActive] = useState(false);
@@ -35,24 +36,28 @@ export default function Carousel({
     setIsArtistActive(true);
     setIsAlbumActive(false);
     setIsTrackListActive(false);
+    setIsPlaylist(false);
   }
   function handleRecentAddsChange() {
     setIsRecentAddsActive(true);
     setIsArtistActive(false);
     setIsAlbumActive(false);
     setIsTrackListActive(false);
+    setIsPlaylist(false);
   }
   function handleAlbumChange() {
     setIsRecentAddsActive(false);
     setIsArtistActive(false);
     setIsAlbumActive(true);
     setIsTrackListActive(false);
+    setIsPlaylist(false);
   }
   function handleTrackListChange() {
     setIsRecentAddsActive(false);
     setIsArtistActive(false);
     setIsAlbumActive(false);
     setIsTrackListActive(true);
+    setIsPlaylist(false);
   }
 
   useEffect(() => {
@@ -61,6 +66,7 @@ export default function Carousel({
       setIsArtistActive(false);
       setIsTrackListActive(false);
       setIsRecentAddsActive(false);
+      setIsPlaylist(false);
     } else {
       setIsRecentAddsActive(true);
     }
@@ -169,7 +175,13 @@ export default function Carousel({
       </div>
       <div className="overflow-x-auto">
         {isRecentAddsActive && (
-          <RecentAdds setIsPlaylist={setIsPlaylist} setMyPlaylist={setMyPlaylist} item={item} setCurrentTrack={setCurrentTrack} />
+          <RecentAdds
+            setIsRecentAddsActive={setIsRecentAddsActive}
+            setIsPlaylist={setIsPlaylist}
+            setMyPlaylist={setMyPlaylist}
+            item={item}
+            setCurrentTrack={setCurrentTrack}
+          />
         )}
         {isArtistActive && <Artist setMyPlaylist={setMyPlaylist} handleArtistClick={handleArtistClick} artists={artists} />}
         {isAlbumActive && <Album setMyPlaylist={setMyPlaylist} handleAlbumClick={handleAlbumClick} albums={albums} />}

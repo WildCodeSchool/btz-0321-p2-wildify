@@ -57,10 +57,6 @@ function App() {
   }, [token]);
 
   useEffect(() => {
-    console.log(myPlaylist);
-  }, [myPlaylist]);
-
-  useEffect(() => {
     const getDatas = async () => {
       const [resSongs, resArtists, resAlbums, resPlayLists] = await Promise.all([
         axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs', { headers: { Authorization: `Bearer ${token}` } }),
@@ -144,6 +140,8 @@ function App() {
               albums={albums}
               artists={artists}
               setMyPlaylist={setMyPlaylist}
+              isPlaylist={isPlaylist}
+              setIsPlaylist={setIsPlaylist}
             />
           )}
         </div>
@@ -228,6 +226,8 @@ function App() {
           isArtist={isArtist}
           isArtistTrackList={isArtistTrackList}
           isAlbumTrackList={isAlbumTrackList}
+          isPlaylist={isPlaylist}
+          myPlaylist={myPlaylist}
         />
       ) : (
         ''
@@ -261,7 +261,6 @@ function App() {
           isArtist={isArtist}
           isPlaylist={isPlaylist}
           myPlaylist={myPlaylist}
-          setMyPlaylist={setMyPlaylist}
         />
       ) : (
         ''
@@ -292,6 +291,8 @@ function App() {
           isArtistTrackList={isArtistTrackList}
           isArtist={isArtist}
           isAlbumTrackList={isAlbumTrackList}
+          isPlaylist={isPlaylist}
+          myPlaylist={myPlaylist}
         />
       ) : (
         ''

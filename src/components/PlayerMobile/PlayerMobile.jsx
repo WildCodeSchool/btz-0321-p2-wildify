@@ -19,10 +19,12 @@ export default function PlayerMobile({
   picture,
   setPicture,
   isAlbum,
-  isArtist,
+  setTitle,
   selectedSong,
   isAlbumTrackList,
   isArtistTrackList,
+  myPlaylist,
+  isPlaylist,
 }) {
   const audioRef3 = useRef();
   useEffect(() => {
@@ -34,11 +36,20 @@ export default function PlayerMobile({
   }, [selectedSong]);
 
   const updateSong = () => {
-    if (isAlbum || isAlbumTrackList || isArtistTrackList || isArtist) {
+    if (isPlaylist) {
+      setOnListen(myPlaylist[currentTrack].s3_link);
+      setTitle(myPlaylist[currentTrack].title);
+
+      setPicture(myPlaylist[currentTrack].album.picture);
+    } else if (isAlbum || isAlbumTrackList || isArtistTrackList || selectedSong) {
       setOnListen(selectedSong[0].s3_link);
+      setTitle(selectedSong[0].title);
+
       setPicture(selectedSong[0].album.picture);
     } else {
       setOnListen(item[currentTrack].s3_link);
+      setTitle(item[currentTrack].title);
+
       setPicture(item[currentTrack].album.picture);
     }
     if (audioRef3.current) {
@@ -48,6 +59,7 @@ export default function PlayerMobile({
       audioRef3.current.play();
     }
   };
+
   const handlePause = () => {
     audioRef3.current.pause();
     setAudio(false);
@@ -78,7 +90,15 @@ export default function PlayerMobile({
   };
 
   const handleForWard = () => {
-    if (currentTrack >= item.length - 1) {
+    if (isPlaylist) {
+      if (currentTrack === myPlaylist.length - 1) {
+        setCurrentTrack(0);
+        updateSong();
+      } else {
+        setCurrentTrack((currentTrack += 1));
+        updateSong();
+      }
+    } else if (currentTrack === item.length - 1) {
       setCurrentTrack(0);
       updateSong();
     } else {

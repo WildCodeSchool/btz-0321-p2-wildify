@@ -52,9 +52,8 @@ export default function Playbar({
   }, [sliderValue, audioRef]);
 
   useEffect(() => {
-    updateSong();
     console.log(currentTrack);
-    console.log(myPlaylist);
+    updateSong();
   }, [currentTrack]);
 
   const secondsToHms = (d) => {
@@ -135,7 +134,15 @@ export default function Playbar({
   };
 
   const handleForWard = () => {
-    if (currentTrack === item.length - 1) {
+    if (isPlaylist) {
+      if (currentTrack === myPlaylist.length - 1) {
+        setCurrentTrack(0);
+        updateSong();
+      } else {
+        setCurrentTrack((currentTrack += 1));
+        updateSong();
+      }
+    } else if (currentTrack === item.length - 1) {
       setCurrentTrack(0);
       updateSong();
     } else {
@@ -257,4 +264,6 @@ Playbar.propTypes = {
   isAlbumTrackList: PropTypes.bool.isRequired,
   isArtistTrackList: PropTypes.bool.isRequired,
   isArtist: PropTypes.bool.isRequired,
+  isPlaylist: PropTypes.bool.isRequired,
+  myPlaylist: PropTypes.array.isRequired,
 };

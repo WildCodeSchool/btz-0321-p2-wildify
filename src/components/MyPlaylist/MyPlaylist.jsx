@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../Carousel/scrollbarwebkit.css';
 
-export default function MyPlaylist({ setIsPlaylist, setCurrentTrack, setMyPlaylist, myPlaylist, setSelectedSong, item }) {
+export default function MyPlaylist({ setIsPlaylist, setCurrentTrack, setMyPlaylist, myPlaylist }) {
   const handleClick = () => {
     localStorage.setItem('myPlaylist', '');
     setMyPlaylist([]);
@@ -10,8 +10,6 @@ export default function MyPlaylist({ setIsPlaylist, setCurrentTrack, setMyPlayli
 
   const handleClick2 = (e) => {
     setIsPlaylist(true);
-    console.log(parseInt(e.target.value));
-
     setCurrentTrack(parseInt(e.target.value));
   };
 
@@ -38,4 +36,6 @@ export default function MyPlaylist({ setIsPlaylist, setCurrentTrack, setMyPlayli
 MyPlaylist.propTypes = {
   myPlaylist: PropTypes.array.isRequired,
   setMyPlaylist: PropTypes.array.isRequired,
+  setIsPlaylist: PropTypes.func.isRequired,
+  setCurrentTrack: PropTypes.func.isRequired,
 };
