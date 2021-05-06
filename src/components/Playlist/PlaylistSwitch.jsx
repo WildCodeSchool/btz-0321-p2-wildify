@@ -1,15 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ListPlaylist from './listPlaylist';
 import ListPlaylistOnClick from './listPlaylistOnClick';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+import authContext from '../../context/authContext';
 
 function PlaylistSwitch({ setCurrentTrack, playLists }) {
+  const { token } = useContext(authContext);
+  const [myPlaylist, setMyPlaylist] = useState();
   const [ischange, setIsChange] = useState(true);
   const [playlistChoice, setPlaylistChoice] = useState('');
+  const [playlistId, setPlaylistId] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const getData = async () => {
+      const [resPlaylist] = await Promise.all([
+        axios.get(`https://bazify-backend.basile.vernouillet.dev/api/v1/playlists/${playlistId}`, { headers: { Authorization: `Bearer ${token}` } }),
+      ]);
+
+      setMyPlaylist(resPlaylist.data);
+      setIsLoading(false);
+    };
+    getData();
+  }, [playlistId]);
 
   const handleClick = (e) => {
     setIsChange(false);
     setPlaylistChoice(e.target.value);
+    setPlaylistId(e.target.value);
   };
 
   const Return = () => {
@@ -20,9 +38,24 @@ function PlaylistSwitch({ setCurrentTrack, playLists }) {
     <div>
       <div>
         {ischange ? (
-          <ListPlaylist playLists={playLists} handleClick={handleClick} />
+          <ListPlaylist
+            myPlaylist={myPlaylist}
+            setMyPlaylist={setMyPlaylist}
+            playlistId={playlistId}
+            playLists={playLists}
+            handleClick={handleClick}
+            setIsLoading={setIsLoading}
+          />
         ) : (
-          <ListPlaylistOnClick playLists={playLists} playlistChoice={playlistChoice} Return={Return} setCurrentTrack={setCurrentTrack} />
+          <ListPlaylistOnClick
+            isLoading={isLoading}
+            myPlaylist={myPlaylist}
+            playlistId={playlistId}
+            playLists={playLists}
+            playlistChoice={playlistChoice}
+            Return={Return}
+            setCurrentTrack={setCurrentTrack}
+          />
         )}
       </div>
     </div>
