@@ -35,7 +35,7 @@ export default function MyPlaylist({ setIsPlaylist, setCurrentTrack, setMyPlayli
 
 MyPlaylist.propTypes = {
   myPlaylist: PropTypes.array.isRequired,
-  setMyPlaylist: PropTypes.array.isRequired,
+  setMyPlaylist: PropTypes.func.isRequired,
   setIsPlaylist: PropTypes.func.isRequired,
   setCurrentTrack: PropTypes.func.isRequired,
 };

@@ -10,7 +10,6 @@ export default function TrackListCard({ items, setIsRecentAddsActive, setIsPlayl
     localStorage.setItem('myPlaylist', JSON.stringify(result));
   };
   const handleClick2 = (e) => {
-    console.log(JSON.parse(e.target.value));
     setIsPlaylist(false);
     setSelectedSong(JSON.parse(e.target.value));
     setIsRecentAddsActive(true);
@@ -51,4 +50,8 @@ export default function TrackListCard({ items, setIsRecentAddsActive, setIsPlayl
 TrackListCard.propTypes = {
   items: PropTypes.array.isRequired,
   setCurrentTrack: PropTypes.func.isRequired,
+  setIsRecentAddsActive: PropTypes.func.isRequired,
+  setIsPlaylist: PropTypes.func.isRequired,
+  setSelectedSong: PropTypes.func.isRequired,
+  setMyPlaylist: PropTypes.func.isRequired,
 };

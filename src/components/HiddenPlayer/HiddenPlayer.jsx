@@ -13,7 +13,7 @@ export default function HiddenPlayer({ handleForWard, onListen, audioRef }) {
 }
 
 HiddenPlayer.propTypes = {
-  onListen: PropTypes.string.isRequired,
+  onListen: PropTypes.string,
   audioRef: PropTypes.object.isRequired,
   handleForWard: PropTypes.func.isRequired,
 };

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import PlayerButton from '../../../img/Icons/PlayerButton.svg';
 import Defaultimg from '../../../img/defaultPicture.png';
 
-export default function Card({ itemReversed, setIsRecentAddsActive, setSelectedSong, setIsPlaylist, setMyPlaylist, myPlaylist }) {
+export default function Card({ itemReversed, setIsRecentAddsActive, setSelectedSong, setIsPlaylist, setMyPlaylist }) {
   const handleClick = (e) => {
     let result = localStorage.getItem('myPlaylist') ? JSON.parse(localStorage.getItem('myPlaylist')) : [];
     result.push(JSON.parse(e.target.value));
@@ -11,7 +11,6 @@ export default function Card({ itemReversed, setIsRecentAddsActive, setSelectedS
     localStorage.setItem('myPlaylist', JSON.stringify(result));
   };
   const handleClick2 = (e) => {
-    console.log(JSON.parse(e.target.value));
     setIsPlaylist(false);
     setSelectedSong(JSON.parse(e.target.value));
     setIsRecentAddsActive(true);
@@ -48,6 +47,8 @@ export default function Card({ itemReversed, setIsRecentAddsActive, setSelectedS
 
 Card.propTypes = {
   itemReversed: PropTypes.array.isRequired,
-  setCurrentTrack: PropTypes.func.isRequired,
   setMyPlaylist: PropTypes.func.isRequired,
+  setIsRecentAddsActive: PropTypes.func.isRequired,
+  setSelectedSong: PropTypes.func.isRequired,
+  setIsPlaylist: PropTypes.func.isRequired,
 };

@@ -22,7 +22,6 @@ export default function Carousel({
   isArtistTrackList,
   setMyPlaylist,
   setIsPlaylist,
-  isPlaylist,
   isRecentAddsActive,
   setIsRecentAddsActive,
 }) {
@@ -217,4 +216,9 @@ Carousel.propTypes = {
   setIsArtistTrackList: PropTypes.func.isRequired,
   isArtistTrackList: PropTypes.bool.isRequired,
   onSearch: PropTypes.string,
+  setMyPlaylist: PropTypes.func.isRequired,
+  setIsPlaylist: PropTypes.func.isRequired,
+  isPlaylist: PropTypes.bool.isRequired,
+  isRecentAddsActive: PropTypes.bool.isRequired,
+  setIsRecentAddsActive: PropTypes.func.isRequired,
 };

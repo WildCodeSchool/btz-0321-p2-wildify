@@ -55,4 +55,5 @@ AlbumTrackList.propTypes = {
   item: PropTypes.array.isRequired,
   albumChoice: PropTypes.string.isRequired,
   setSelectedSong: PropTypes.func.isRequired,
+  setMyPlaylist: PropTypes.func.isRequired,
 };

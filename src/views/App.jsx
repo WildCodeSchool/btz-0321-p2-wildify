@@ -240,6 +240,8 @@ function App() {
           isAlbumTrackList={isAlbumTrackList}
           isPlaylist={isPlaylist}
           myPlaylist={myPlaylist}
+          isRecentAddsActive={isRecentAddsActive}
+          setSelectedSong={setSelectedSong}
         />
       ) : (
         ''
@@ -307,6 +309,8 @@ function App() {
           isAlbumTrackList={isAlbumTrackList}
           isPlaylist={isPlaylist}
           myPlaylist={myPlaylist}
+          isRecentAddsActive={isRecentAddsActive}
+          setSelectedSong={setSelectedSong}
         />
       ) : (
         ''

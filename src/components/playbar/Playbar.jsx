@@ -26,7 +26,6 @@ export default function Playbar({
   isPlaySwitch,
   setIsPlaySwitch,
   selectedSong,
-  isAlbum,
   isAlbumTrackList,
   isArtistTrackList,
   isPlaylist,
@@ -122,18 +121,20 @@ export default function Playbar({
   };
 
   const handleBackWard = () => {
-    if (currentTrack === 0) {
-      setCurrentTrack(item.length - 1);
-      audioRef.current.pause();
-      setAudio(true);
+    if (isPlaylist) {
+      if (currentTrack === 0) {
+        setCurrentTrack(myPlaylist.length - 1);
+        updateSong();
+      } else {
+        setCurrentTrack(currentTrack - 1);
+        updateSong();
+      }
+    } else if (currentTrack === item.length - 1) {
+      setCurrentTrack(0);
       updateSong();
-      handlePlay();
     } else {
-      audioRef.current.pause();
-      setAudio(true);
-      setCurrentTrack((currentTrack -= 1));
+      setCurrentTrack((currentTrack += 1));
       updateSong();
-      handlePlay();
     }
   };
 
@@ -247,7 +248,7 @@ export default function Playbar({
 Playbar.propTypes = {
   item: PropTypes.array.isRequired,
   setAudio: PropTypes.func.isRequired,
-  onListen: PropTypes.string.isRequired,
+  onListen: PropTypes.string,
   setOnListen: PropTypes.func.isRequired,
   handleSong: PropTypes.func.isRequired,
   currentTrack: PropTypes.number.isRequired,
@@ -263,11 +264,13 @@ Playbar.propTypes = {
   setPicture: PropTypes.func.isRequired,
   isPlaySwitch: PropTypes.bool,
   setIsPlaySwitch: PropTypes.func,
-  selectedSong: PropTypes.array,
+  selectedSong: PropTypes.any,
   isAlbum: PropTypes.bool.isRequired,
   isAlbumTrackList: PropTypes.bool.isRequired,
   isArtistTrackList: PropTypes.bool.isRequired,
   isArtist: PropTypes.bool.isRequired,
   isPlaylist: PropTypes.bool.isRequired,
   myPlaylist: PropTypes.array.isRequired,
+  isRecentAddsActive: PropTypes.bool.isRequired,
+  setSelectedSong: PropTypes.func.isRequired,
 };
