@@ -7,7 +7,7 @@ function RecentAdds({ item, setSelectedSong, setMyPlaylist, setIsPlaylist, setIs
   const itemReversed = [...item];
   const scrollWrapperRef = useRef();
   const { isDragging } = useScrollBox(scrollWrapperRef);
-
+  itemReversed.reverse();
   return (
     <div
       ref={scrollWrapperRef}
