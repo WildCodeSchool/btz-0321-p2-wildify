@@ -5,6 +5,7 @@ import HiddenPlayer from '../HiddenPlayer/HiddenPlayer';
 import Volume from '../../img/volume.svg';
 import './playbar.css';
 import Defaultimg from '../../img/defaultPicture.png';
+import Wave from '../../img/wavegreen.gif';
 
 export default function Playbar({
   title,
@@ -38,6 +39,7 @@ export default function Playbar({
   const [duration, setDuration] = useState('00:00');
   const [currentTime, setCurrentTime] = useState('00:00');
   const audioRef = useRef(null);
+  const [displayNone, setDisplayNone] = useState('none');
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -118,6 +120,7 @@ export default function Playbar({
     setAudio(true);
     setIsPlaySwitch(false);
     audioRef.current.play();
+    setDisplayNone('flex');
   };
 
   const handleBackWard = () => {
@@ -187,12 +190,12 @@ export default function Playbar({
               <div className="text-white whitespace-nowrap text-lg   txt font-cuprum  ">
                 {album} - {artist} - {title}&nbsp;
               </div>
-
               <div className="text-white whitespace-nowrap text-lg txt font-cuprum   ">
                 {album} - {artist} -{title}&nbsp;
               </div>
             </div>
           </div>
+          {audio ? <img className="h-12 w-14 m-auto" style={{ display: `${displayNone}` }} src={Wave} alt="" /> : ''}
         </div>
         <div className="w-8/12 flex align-middle item-center justify-center mr-3">
           <div className="w-4/5 mr-6 h-full flex align-middle item-center justify-center">

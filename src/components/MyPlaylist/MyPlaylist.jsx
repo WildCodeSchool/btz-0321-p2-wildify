@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../Carousel/scrollbarwebkit.css';
+
+import Tracklist from './tracklist';
 
 export default function MyPlaylist({ setIsPlaylist, setCurrentTrack, setMyPlaylist, myPlaylist }) {
   const handleClick = () => {
@@ -8,27 +9,23 @@ export default function MyPlaylist({ setIsPlaylist, setCurrentTrack, setMyPlayli
     setMyPlaylist([]);
   };
 
-  const handleClick2 = (e) => {
-    setIsPlaylist(true);
-    setCurrentTrack(parseInt(e.target.value));
-  };
-
   return (
-    <div className="w-full h-full text-white bg-black bg-opacity-50 overflow-y-auto sidebar   rounded-20 p-4 ">
-      <h1 className="text-white">My Playlist : </h1>
-      <button className="text-white" onClick={handleClick}>
-        CLEAR PLAYLIST
-      </button>
-      <ul className="w-full h-full text-white overflow-y-auto flex flex-col">
-        {myPlaylist &&
-          myPlaylist.map((song, index) => {
-            return (
-              <button onClick={handleClick2} className="border-b-2 w-full hover:text-green-500 text-left border-white" value={index} key={index}>
-                {song.title}
-              </button>
-            );
-          })}
-      </ul>
+    <div className="w-full h-full text-white rounded-20 p-5">
+      <div className="flex  w-full justify-between">
+        <h1 className="text-white font-scada text-4xl font-bold">MyPlaylist</h1>
+        <button
+          className="focus:outline-none bg-bgPlaybar bg-opacity-10 shadow-input2 px-5 rounded-xl font-scada text-white hover:text-mainColor transform hover:scale-105 hover:shadow-input"
+          onClick={handleClick}>
+          Clear
+        </button>
+      </div>
+      {localStorage.getItem('myPlaylist') ? (
+        <Tracklist setIsPlaylist={setIsPlaylist} setCurrentTrack={setCurrentTrack} myPlaylist={myPlaylist} />
+      ) : (
+        <div>
+          <h1>Hello world</h1>
+        </div>
+      )}
     </div>
   );
 }
