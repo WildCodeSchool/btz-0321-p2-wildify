@@ -5,10 +5,12 @@ import Wave from '../../../img/wavegreen.gif';
 
 function AlbumTrackList({ item, albumChoice, setSelectedSong }) {
   const [displayNone, setdisplayNone] = useState('none');
+  const [songTitle, setSongTitle] = useState();
   const handleClick = (e) => {
     const mySong = item.filter((song) => song.title.includes(e.target.value));
     setSelectedSong(mySong);
     setdisplayNone('flex');
+    setSongTitle(e.target.value);
   };
 
   return (
@@ -33,7 +35,7 @@ function AlbumTrackList({ item, albumChoice, setSelectedSong }) {
                       backgroundPosition: `center`,
                     }}></div>
                   {song.title}
-                  <img className="h-12 w-12 opacity-50" style={{ display: `${displayNone}` }} src={Wave} alt="" />
+                  {songTitle === song.title ? <img className="h-12 w-12 opacity-50" style={{ display: `${displayNone}` }} src={Wave} alt="" /> : ''}
                 </div>
               </button>
             );
