@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import authContext from '../../../../context/authContext';
-import PropTypes from 'prop-types';
+
 import axios from 'axios';
 
 export default function UploadSongs() {

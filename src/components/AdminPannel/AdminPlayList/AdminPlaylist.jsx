@@ -72,9 +72,6 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
   const handleChange = (e) => {
     setDeletePlaylistSelect(e.target.value);
   };
-  useEffect(() => {
-    console.log('ok');
-  }, [choosenP]);
 
   useEffect(() => {
     fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/playlists/${deletePlaylistSelect}`, {
@@ -93,7 +90,6 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
-      .then((res) => console.log(res))
       .catch((err) => err);
     playListFetch();
   };
