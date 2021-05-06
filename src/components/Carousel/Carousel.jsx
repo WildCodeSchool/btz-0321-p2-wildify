@@ -27,8 +27,6 @@ export default function Carousel({
   const [isTrackListActive, setIsTrackListActive] = useState(false);
   const [albumChoice, setAlbumChoice] = useState('');
   const [artistChoice, setArtistChoice] = useState('');
-  const [displayNone, setDisplayNone] = useState('none');
-  const [songTitle, setSongTitle] = useState();
 
   function handleArtistChange() {
     setIsRecentAddsActive(false);
@@ -172,28 +170,8 @@ export default function Carousel({
         {isArtistActive && <Artist handleArtistClick={handleArtistClick} artists={artists} />}
         {isAlbumActive && <Album handleAlbumClick={handleAlbumClick} albums={albums} />}
         {isTrackListActive && <TrackList item={item} setCurrentTrack={setCurrentTrack} />}
-        {isAlbumTrackList && (
-          <AlbumTrackList
-            displayNone={displayNone}
-            setdisplayNone={setDisplayNone}
-            songTitle={songTitle}
-            setSongTitle={setSongTitle}
-            setSelectedSong={setSelectedSong}
-            albumChoice={albumChoice}
-            item={item}
-          />
-        )}
-        {isArtistTrackList && (
-          <ArtistTrackList
-            displayNone={displayNone}
-            setdisplayNone={setDisplayNone}
-            songTitle={songTitle}
-            setSongTitle={setSongTitle}
-            setSelectedSong={setSelectedSong}
-            artistChoice={artistChoice}
-            item={item}
-          />
-        )}
+        {isAlbumTrackList && <AlbumTrackList setSelectedSong={setSelectedSong} albumChoice={albumChoice} item={item} />}
+        {isArtistTrackList && <ArtistTrackList setSelectedSong={setSelectedSong} artistChoice={artistChoice} item={item} />}
         {onSearch && <SearchResults onSearch={onSearch} item={item} setSelectedSong={setSelectedSong} />}
       </div>
     </div>
