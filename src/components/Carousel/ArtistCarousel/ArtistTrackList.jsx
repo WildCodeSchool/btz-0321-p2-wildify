@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Defaultimg from '../../../img/defaultPicture.png';
+import AddPl from '../../../img/Icons/AddPl.png';
 
 function ArtistTrackList({ item, artistChoice, setSelectedSong, setMyPlaylist, setIsPlaylist }) {
   const handleClick = (e) => {
@@ -21,23 +22,27 @@ function ArtistTrackList({ item, artistChoice, setSelectedSong, setMyPlaylist, s
           .map((song, index) => {
             return (
               <div
-                className="focus:outline-none  mb-4 text-white flex flex-col text-left pb-2 border-b w-full hover:border-mainColor hover:text-mainColor"
+                className="focus:outline-none  mb-4 text-white flex justify-between text-left pb-2 border-b w-full hover:border-mainColor hover:text-mainColor"
                 key={index}
                 value={JSON.stringify(song)}
                 onBlur={handleClick}>
                 <div className="flex pointer-events-none items-center">
                   <div
-                    className="pointer-events-none flex h-12 w-12 mr-2 rounded-full"
+                    className="pointer-events-none flex h-12 w-12 mr-4 rounded-full"
                     style={{
                       backgroundImage: `url(${song.artist.picture === null ? Defaultimg : song.artist.picture})`,
                       backgroundSize: `cover`,
                       backgroundRepeat: `no-repeat`,
                       backgroundPosition: `center`,
                     }}></div>
-                  {song.title}
+                  <h1 className="pointer-events-none font-scada mr-2 font-bold">{song.title}</h1> -{' '}
+                  <h1 className="pointer-events-none ml-2 text-xs">{song.artist.name}</h1>
                 </div>
-                <button value={JSON.stringify(song)} className="text-white" onClick={handleClick2}>
-                  XX
+                <button
+                  value={JSON.stringify(song)}
+                  className="focus:outline-none w-40 flex justify-end items-end pb-2 pr-2 text-white transform hover:scale-105"
+                  onClick={handleClick2}>
+                  <img src={AddPl} className="pointer-events-none w-5 h-5" alt="" />
                 </button>
               </div>
             );
