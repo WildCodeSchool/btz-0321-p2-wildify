@@ -49,7 +49,6 @@ export default function TrackListCard({ items, setIsRecentAddsActive, setIsPlayl
 
 TrackListCard.propTypes = {
   items: PropTypes.array.isRequired,
-  setCurrentTrack: PropTypes.func.isRequired,
   setIsRecentAddsActive: PropTypes.func.isRequired,
   setIsPlaylist: PropTypes.func.isRequired,
   setSelectedSong: PropTypes.func.isRequired,

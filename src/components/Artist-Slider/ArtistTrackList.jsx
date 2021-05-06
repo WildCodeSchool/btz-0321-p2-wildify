@@ -36,9 +36,7 @@ export default ArtistTrackList;
 
 ArtistTrackList.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  artists: PropTypes.array.isRequired,
   item: PropTypes.array.isRequired,
   artistChoice: PropTypes.string.isRequired,
-  setCurrentTrack: PropTypes.func.isRequired,
   setSelectedSong: PropTypes.func.isRequired,
 };

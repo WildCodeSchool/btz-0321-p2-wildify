@@ -218,7 +218,6 @@ Carousel.propTypes = {
   onSearch: PropTypes.string,
   setMyPlaylist: PropTypes.func.isRequired,
   setIsPlaylist: PropTypes.func.isRequired,
-  isPlaylist: PropTypes.bool.isRequired,
   isRecentAddsActive: PropTypes.bool.isRequired,
   setIsRecentAddsActive: PropTypes.func.isRequired,
 };

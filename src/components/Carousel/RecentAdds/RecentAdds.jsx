@@ -31,6 +31,8 @@ export default RecentAdds;
 
 RecentAdds.propTypes = {
   item: PropTypes.array.isRequired,
-  setCurrentTrack: PropTypes.func.isRequired,
   setMyPlaylist: PropTypes.func.isRequired,
+  setSelectedSong: PropTypes.func.isRequired,
+  setIsPlaylist: PropTypes.func.isRequired,
+  setIsRecentAddsActive: PropTypes.func.isRequired,
 };
