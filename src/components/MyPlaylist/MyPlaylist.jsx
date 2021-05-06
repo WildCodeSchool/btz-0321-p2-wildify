@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import '../Carousel/scrollbarwebkit.css';
+
 import Tracklist from './tracklist';
 
 export default function MyPlaylist({ setIsPlaylist, setCurrentTrack, setMyPlaylist, myPlaylist }) {
-  const [isactive, setIsActive] = useState(true);
-
   const handleClick = () => {
     localStorage.setItem('myPlaylist', '');
     setMyPlaylist([]);
-    setIsActive(false);
   };
 
   return (
-    <div className="w-full h-full text-white  sidebar rounded-20 p-5">
+    <div className="w-full h-full text-white rounded-20 p-5">
       <div className="flex  w-full justify-between">
         <h1 className="text-white font-scada text-4xl font-bold">MyPlaylist</h1>
         <button
@@ -22,11 +19,11 @@ export default function MyPlaylist({ setIsPlaylist, setCurrentTrack, setMyPlayli
           Clear
         </button>
       </div>
-      {isactive ? (
+      {localStorage.getItem('myPlaylist') ? (
         <Tracklist setIsPlaylist={setIsPlaylist} setCurrentTrac={setCurrentTrack} myPlaylist={myPlaylist} />
       ) : (
         <div>
-          <h1>Helloworld</h1>
+          <h1>Hello world</h1>
         </div>
       )}
     </div>

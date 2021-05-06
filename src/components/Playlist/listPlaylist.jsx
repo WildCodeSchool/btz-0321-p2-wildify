@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Defaultimg from '../../img/defaultPicture.png';
+import authContext from '../../context/authContext';
+import axios from 'axios';
 
 function ListPlaylist({ handleClick, playLists }) {
   return (
@@ -9,7 +11,7 @@ function ListPlaylist({ handleClick, playLists }) {
       {playLists.map((playlist, key) => (
         <button
           onClick={handleClick}
-          value={playlist.title}
+          value={playlist.id}
           key={key}
           type="button"
           className="rounded-3xl w-full flex 900:mt-5 mt-4 items-center p-2 bg-black bg-opacity-20 shadow-searchbar focus:outline-none cursor-pointer hover:border-mainColor hover:text-mainColor transform hover:scale-105">
