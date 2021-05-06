@@ -97,7 +97,7 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
   return (
     <div className=" text-white w-full flex">
       <form onSubmit={createPlayList} className="bg-white p-5 bg-opacity-10 flex-col shadow-searchbar rounded-lg flex w-80 mx-4">
-        <h1 className="text-white font-scada text-4xl font-bold">Update Playlist</h1>
+        <h1 className="text-white font-scada text-4xl font-bold">Upload Playlist</h1>
         <label className="mt-4 text-white font-scada text-ls" htmlFor="playList">
           PLaylist Title{' '}
         </label>
