@@ -4,12 +4,11 @@ import AdminSidebar from './AdminSidebar/AdminSidebar';
 import AdminSongs from './AdminSongs/AdminSongs';
 import authContext from '../../context/authContext';
 import PropTypes from 'prop-types';
-import LogginPannel from './LogginPage/LogginPage';
 import BackGround from '../../img/BackGrounds/PanelBG.png';
+import ReturnBtn from '../../img/PlayList/ReturnButton.svg';
 
 export default function AdminPannel({ item, albums, hideAdmin, artists }) {
-  const [isAdminSong, setIsAdminSong] = useState(false);
-  const [isLogged, setIsLogged] = useState(false);
+  const [isAdminSong, setIsAdminSong] = useState(true);
   const [isAdminPlayList, setIsAdminPlayList] = useState(false);
   const { token } = useContext(authContext);
   const [myPlayList, setMyPlayList] = useState();
@@ -41,40 +40,31 @@ export default function AdminPannel({ item, albums, hideAdmin, artists }) {
     setIsAdminPlayList(false);
   };
 
-  const handleLoggin = () => {
-    if (isLogged) {
-      setIsLogged(false);
-    } else {
-      setIsLogged(true);
-    }
-  };
-
   return (
     <div
-      className="w-screen h-screen z-50 fixed overflow-y-auto"
+      className="w-screen h-screen px-3 z-50 fixed  overflow-y-auto"
       style={{
         backgroundImage: `url(${BackGround})`,
         backgroundSize: `cover`,
         backgroundRepeat: `no-repeat`,
         backgroundPosition: `top`,
       }}>
-      <div className="flex">
-        <div className="w-full text-5xl text-gray-500 flex flex-col justify-center">
-          {' '}
-          <h1 className="rounded-xl text-white">ADMIN PANNEL</h1>
-          <p className="text-white">Take control on what you ear !</p>
+      <div className="pb-2 pt-6  px-4">
+        <div className="w-full text-6xl  flex flex-col">
+          <div className="flex justify-between">
+            <h1 className=" rounded-xl font-sacda text-6xl font-bold text-white">ADMIN PANNEL</h1>
+            <button onClick={hideAdmin} className="flex w-10 mr-24 focus:outline-none text-white text-lg  whitespace-nowrap ">
+              Back to WIZIC <img className="w-6 h-6 ml-2" src={ReturnBtn} alt="ReturnButton" />
+            </button>
+          </div>
+          <p className="mt-5 text-5xl text-white">Take control on what you ear !</p>
         </div>
-        <button onClick={hideAdmin} className="focus:outline-none text-white border-white rounded-xl  whitespace-nowrap">
-          Back To WIZIC
-        </button>
-      </div>
-      <div className="">
         <AdminSidebar showAdminSongs={showAdminSongs} showAdminPlayList={showAdminPlayList} />
-        <div className="w-full flex flex-col justify-center items-center align-middle h-full ">
-          {!isLogged && <LogginPannel handleLoggin={handleLoggin} />}
-          {isAdminSong && <AdminSongs artists={artists} albums={albums} myPlayList={myPlayList} item={item} />}
-          {isAdminPlayList && <AdminPlaylist playListFetch={playListFetch} myPlayList={myPlayList} item={item} />}
-        </div>
+      </div>
+
+      <div className=" mt-2 w-full flex flex-col h-full">
+        {isAdminSong && <AdminSongs artists={artists} albums={albums} myPlayList={myPlayList} item={item} />}
+        {isAdminPlayList && <AdminPlaylist playListFetch={playListFetch} myPlayList={myPlayList} item={item} />}
       </div>
     </div>
   );

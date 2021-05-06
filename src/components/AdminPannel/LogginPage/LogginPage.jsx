@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 export default function LogginPannel({ handleLoggin }) {
   return (
-    <div className="container mx-auto h-full flex flex-1 absolute justify-center items-center">
+    <div className="flex absolut">
       <div className="w-full max-w-lg">
         <div className="leading-loose">
-          <form className="max-w-sm m-4 p-10 bg-white bg-opacity-25 rounded shadow-xl">
+          <form className="bg-white bg-opacity-25 rounded shadow-xl">
             <p className="text-white  text-center text-lg font-bold">LOGIN</p>
             <div className="">
               <label className="block text-sm text-white" htmlFor="email">

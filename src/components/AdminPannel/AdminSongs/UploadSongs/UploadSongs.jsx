@@ -48,26 +48,30 @@ export default function UploadSongs() {
   };
 
   return (
-    <div className="w-512 h-full flex-col  flex items-center  ">
-      <div className=" bg-black w-72  h-6 rounded-full">
-        <div style={{ width: `${progress}%` }} className=" h-full bg-white text-center rounded-full"></div>
-      </div>
-      <label htmlFor="">Upload :{progress ? Math.floor(progress) : '00'}% </label>
-      <input onChange={handleFile} className="my-2 w-72 h-9  bg-black bg-opacity-50 rounded-xl" type="file" />
+    <div className="bg-white w-full  p-5 bg-opacity-10 flex-col shadow-searchbar rounded-lg  flex">
+      <h1 className="text-white font-scada text-4xl font-bold">Upload Song</h1>
+      <h2 className="mt-5 text-white font-scada text-xl">MusicFiles</h2>
+      <input onChange={handleFile} className="px-3 py-5 bg-white bg-opacity-10 rounded-lg shadow-input2" type="file" />
+      <h2 className="mt-5 text-white font-scada text-xl">Ablum Picture</h2>
       <input
         onChange={(e) => setImgUrl(e.target.value)}
-        className="my-2 w-72 px-4 h-14 bg-black bg-opacity-50 rounded-xl"
+        className="px-3 py-5 bg-white bg-opacity-10 rounded-lg shadow-input2"
         type="text"
         placeholder="Picture URL"
       />
-
-      <div className="flex items-center align-middle justify-center">
+      <div className="flex items-center">
         {' '}
         <button
-          className="border-2 my-2 w-26 text-xs border-white px-4  rounded-xl focus:outline-none hover:bg-gray-800 active:bg-gray-600"
+          className="mt-5 w-full h-8 px-8 md:font-scada text-white rounded-xl  bg-white bg-opacity-20  shadow-searchbar  focus:outline-none  hover:border-mainColor"
           onClick={handleSubmit}>
-          UPLOAD TRACK
+          Upload Song
         </button>
+      </div>
+      <label className="mt-8" htmlFor="">
+        Upload :{progress ? Math.floor(progress) : '00'}%{' '}
+      </label>
+      <div className=" mt-2 bg-white bg-opacity-10 h-6 rounded-full shadow-input2">
+        <div style={{ width: `${progress}%` }} className=" h-full bg-mainColor text-center rounded-full"></div>
       </div>
     </div>
   );
