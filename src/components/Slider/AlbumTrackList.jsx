@@ -1,15 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import ReturnBtn from '../../img/PlayList/ReturnButton.svg';
-import Wave from '../../img/wavegreen.gif';
 
 function AlbumTrackList({ handleClick, item, albumChoice, setSelectedSong }) {
-  const [displayNone, setDisplayNone] = useState('none');
-  const [songTitle, setSongTitle] = useState();
   const handleButton = (e) => {
     setSelectedSong(item.filter((track) => track.title.includes(e.target.value)));
-    setDisplayNone('flex');
-    setSongTitle(e.target.value);
   };
   return (
     <div className="flex flex-col p-3 h-full w-full">
@@ -28,7 +23,6 @@ function AlbumTrackList({ handleClick, item, albumChoice, setSelectedSong }) {
                   onClick={handleButton}
                   type="button">
                   {song.title}
-                  {songTitle === song.title ? <img className="h-8 w-8" style={{ display: `${displayNone}` }} src={Wave} alt="" /> : ''}
                 </button>
               </li>
             );

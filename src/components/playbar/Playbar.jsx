@@ -175,7 +175,7 @@ export default function Playbar({
               </div>
             </div>
           </div>
-          {audio ? <img className="h-12 w-12 m-auto" style={{ display: `${displayNone}` }} src={Wave} alt="" /> : ''}
+          {audio ? <img className="h-12 w-14 m-auto" style={{ display: `${displayNone}` }} src={Wave} alt="" /> : ''}
         </div>
         <div className="w-8/12 flex align-middle item-center justify-center mr-3">
           <div className="w-4/5 mr-6 h-full flex align-middle item-center justify-center">
