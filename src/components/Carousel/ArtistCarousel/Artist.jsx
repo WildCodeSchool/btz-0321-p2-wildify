@@ -27,4 +27,5 @@ export default Artist;
 Artist.propTypes = {
   handleArtistClick: PropTypes.func.isRequired,
   artists: PropTypes.array.isRequired,
+  setMyPlaylist: PropTypes.func.isRequired,
 };
