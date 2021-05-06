@@ -23,7 +23,7 @@ export default function MyPlaylist({ setIsPlaylist, setCurrentTrack, setMyPlayli
         <Tracklist setIsPlaylist={setIsPlaylist} setCurrentTrack={setCurrentTrack} myPlaylist={myPlaylist} />
       ) : (
         <div>
-          <h1>Hello world</h1>
+          <h1 className="text-white text-3xl mt-5 opacity-30">Select Music to add with the +</h1>
         </div>
       )}
     </div>
