@@ -27,11 +27,12 @@ export default function Playbar({
   isPlaySwitch,
   setIsPlaySwitch,
   selectedSong,
-  isAlbum,
   isAlbumTrackList,
   isArtistTrackList,
-  isArtist,
-  isOnSearch,
+  isPlaylist,
+  myPlaylist,
+  isRecentAddsActive,
+  setSelectedSong,
 }) {
   const [sliderValue, setSliderValue] = useState(0);
   const [sliderPos, setSliderPos] = useState('100');
@@ -54,6 +55,7 @@ export default function Playbar({
   }, [sliderValue, audioRef]);
 
   useEffect(() => {
+    setSelectedSong('');
     updateSong();
   }, [currentTrack]);
 
@@ -65,12 +67,20 @@ export default function Playbar({
   };
 
   const updateSong = () => {
-    if (isAlbum || isAlbumTrackList || isArtistTrackList || isArtist || isOnSearch) {
-      setOnListen(selectedSong[0].s3_link);
-      setTitle(selectedSong[0].title);
-      setArtist(selectedSong[0].artist.name);
-      setAlbum(selectedSong[0].album.title);
-      setPicture(selectedSong[0].album.picture);
+    if (isPlaylist && !selectedSong) {
+      setOnListen(myPlaylist[currentTrack].s3_link);
+      setTitle(myPlaylist[currentTrack].title);
+      setArtist(myPlaylist[currentTrack].artist.name);
+      setAlbum(myPlaylist[currentTrack].album.title);
+      setPicture(myPlaylist[currentTrack].album.picture);
+    } else if (isAlbumTrackList || isArtistTrackList || selectedSong || (isRecentAddsActive && !isPlaylist)) {
+      if (selectedSong) {
+        setOnListen(selectedSong.s3_link);
+        setTitle(selectedSong.title);
+        setArtist(selectedSong.artist.name);
+        setAlbum(selectedSong.album.title);
+        setPicture(selectedSong.album.picture);
+      }
     } else {
       setOnListen(item[currentTrack].s3_link);
       setTitle(item[currentTrack].title);
@@ -114,23 +124,33 @@ export default function Playbar({
   };
 
   const handleBackWard = () => {
-    if (currentTrack === 0) {
-      setCurrentTrack(item.length - 1);
-      audioRef.current.pause();
-      setAudio(true);
+    if (isPlaylist) {
+      if (currentTrack === 0) {
+        setCurrentTrack(myPlaylist.length - 1);
+        updateSong();
+      } else {
+        setCurrentTrack(currentTrack - 1);
+        updateSong();
+      }
+    } else if (currentTrack === item.length - 1) {
+      setCurrentTrack(0);
       updateSong();
-      handlePlay();
     } else {
-      audioRef.current.pause();
-      setAudio(true);
-      setCurrentTrack((currentTrack -= 1));
+      setCurrentTrack((currentTrack += 1));
       updateSong();
-      handlePlay();
     }
   };
 
   const handleForWard = () => {
-    if (currentTrack === item.length - 1) {
+    if (isPlaylist) {
+      if (currentTrack === myPlaylist.length - 1) {
+        setCurrentTrack(0);
+        updateSong();
+      } else {
+        setCurrentTrack((currentTrack += 1));
+        updateSong();
+      }
+    } else if (currentTrack === item.length - 1) {
       setCurrentTrack(0);
       updateSong();
     } else {
@@ -231,7 +251,7 @@ export default function Playbar({
 Playbar.propTypes = {
   item: PropTypes.array.isRequired,
   setAudio: PropTypes.func.isRequired,
-  onListen: PropTypes.string.isRequired,
+  onListen: PropTypes.string,
   setOnListen: PropTypes.func.isRequired,
   handleSong: PropTypes.func.isRequired,
   currentTrack: PropTypes.number.isRequired,
@@ -247,10 +267,11 @@ Playbar.propTypes = {
   setPicture: PropTypes.func.isRequired,
   isPlaySwitch: PropTypes.bool,
   setIsPlaySwitch: PropTypes.func,
-  selectedSong: PropTypes.array,
-  isAlbum: PropTypes.bool.isRequired,
+  selectedSong: PropTypes.any,
   isAlbumTrackList: PropTypes.bool.isRequired,
   isArtistTrackList: PropTypes.bool.isRequired,
-  isArtist: PropTypes.bool.isRequired,
-  isOnSearch: PropTypes.bool.isRequired,
+  isPlaylist: PropTypes.bool.isRequired,
+  myPlaylist: PropTypes.array.isRequired,
+  isRecentAddsActive: PropTypes.bool.isRequired,
+  setSelectedSong: PropTypes.func.isRequired,
 };

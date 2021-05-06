@@ -20,8 +20,11 @@ export default function Carousel({
   setSelectedSong,
   setIsArtistTrackList,
   isArtistTrackList,
+  setMyPlaylist,
+  setIsPlaylist,
+  isRecentAddsActive,
+  setIsRecentAddsActive,
 }) {
-  const [isRecentAddsActive, setIsRecentAddsActive] = useState(true);
   const [isArtistActive, setIsArtistActive] = useState(false);
   const [isAlbumActive, setIsAlbumActive] = useState(false);
   const [isTrackListActive, setIsTrackListActive] = useState(false);
@@ -33,24 +36,28 @@ export default function Carousel({
     setIsArtistActive(true);
     setIsAlbumActive(false);
     setIsTrackListActive(false);
+    setIsPlaylist(false);
   }
   function handleRecentAddsChange() {
     setIsRecentAddsActive(true);
     setIsArtistActive(false);
     setIsAlbumActive(false);
     setIsTrackListActive(false);
+    setIsPlaylist(false);
   }
   function handleAlbumChange() {
     setIsRecentAddsActive(false);
     setIsArtistActive(false);
     setIsAlbumActive(true);
     setIsTrackListActive(false);
+    setIsPlaylist(false);
   }
   function handleTrackListChange() {
     setIsRecentAddsActive(false);
     setIsArtistActive(false);
     setIsAlbumActive(false);
     setIsTrackListActive(true);
+    setIsPlaylist(false);
   }
 
   useEffect(() => {
@@ -59,6 +66,7 @@ export default function Carousel({
       setIsArtistActive(false);
       setIsTrackListActive(false);
       setIsRecentAddsActive(false);
+      setIsPlaylist(false);
     } else {
       setIsRecentAddsActive(true);
     }
@@ -166,13 +174,46 @@ export default function Carousel({
         </button>
       </div>
       <div className="overflow-x-auto">
-        {isRecentAddsActive && <RecentAdds item={item} setCurrentTrack={setCurrentTrack} />}
-        {isArtistActive && <Artist handleArtistClick={handleArtistClick} artists={artists} />}
-        {isAlbumActive && <Album handleAlbumClick={handleAlbumClick} albums={albums} />}
-        {isTrackListActive && <TrackList item={item} setCurrentTrack={setCurrentTrack} />}
-        {isAlbumTrackList && <AlbumTrackList setSelectedSong={setSelectedSong} albumChoice={albumChoice} item={item} />}
-        {isArtistTrackList && <ArtistTrackList setSelectedSong={setSelectedSong} artistChoice={artistChoice} item={item} />}
-        {onSearch && <SearchResults onSearch={onSearch} item={item} setSelectedSong={setSelectedSong} />}
+        {isRecentAddsActive && (
+          <RecentAdds
+            setIsRecentAddsActive={setIsRecentAddsActive}
+            setIsPlaylist={setIsPlaylist}
+            setMyPlaylist={setMyPlaylist}
+            item={item}
+            setCurrentTrack={setCurrentTrack}
+            setSelectedSong={setSelectedSong}
+          />
+        )}
+        {isArtistActive && <Artist setMyPlaylist={setMyPlaylist} handleArtistClick={handleArtistClick} artists={artists} />}
+        {isAlbumActive && <Album setMyPlaylist={setMyPlaylist} handleAlbumClick={handleAlbumClick} albums={albums} />}
+        {isTrackListActive && (
+          <TrackList
+            setIsPlaylist={setIsPlaylist}
+            setSelectedSong={setSelectedSong}
+            setMyPlaylist={setMyPlaylist}
+            item={item}
+            setCurrentTrack={setCurrentTrack}
+          />
+        )}
+        {isAlbumTrackList && (
+          <AlbumTrackList
+            setIsPlaylist={setIsPlaylist}
+            setMyPlaylist={setMyPlaylist}
+            setSelectedSong={setSelectedSong}
+            albumChoice={albumChoice}
+            item={item}
+          />
+        )}
+        {isArtistTrackList && (
+          <ArtistTrackList
+            setIsPlaylist={setIsPlaylist}
+            setMyPlaylist={setMyPlaylist}
+            setSelectedSong={setSelectedSong}
+            artistChoice={artistChoice}
+            item={item}
+          />
+        )}
+        {onSearch && <SearchResults setMyPlaylist={setMyPlaylist} onSearch={onSearch} item={item} />}
       </div>
     </div>
   );
@@ -189,4 +230,8 @@ Carousel.propTypes = {
   setIsArtistTrackList: PropTypes.func.isRequired,
   isArtistTrackList: PropTypes.bool.isRequired,
   onSearch: PropTypes.string,
+  setMyPlaylist: PropTypes.func.isRequired,
+  setIsPlaylist: PropTypes.func.isRequired,
+  isRecentAddsActive: PropTypes.bool.isRequired,
+  setIsRecentAddsActive: PropTypes.func.isRequired,
 };

@@ -6,9 +6,10 @@ import useScrollBox from '../scroll';
 function Album({ albums, handleAlbumClick }) {
   const scrollWrapperRef = useRef();
   const { isDragging } = useScrollBox(scrollWrapperRef);
+
   return (
     <div ref={scrollWrapperRef} role="list" className="h-full pb-3 flex flex-row overflow-x-auto sidebar">
-      <AlbumCard handleAlbumClick={handleAlbumClick} albums={albums} />
+      <AlbumCard handleAlbumClick={handleAlbumClick} albums={albums} isDragging={isDragging} />
       <div className="hidden">{isDragging}</div>
     </div>
   );

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import ReturnBtn from '../../img/PlayList/ReturnButton.svg';
 
 function AlbumTrackList({ handleClick, item, albumChoice, setSelectedSong }) {
-  const handleButton = (e) => {
-    setSelectedSong(item.filter((track) => track.title.includes(e.target.value)));
+  const handleClick2 = (e) => {
+    setSelectedSong(JSON.parse(e.target.value));
   };
   return (
     <div className="flex flex-col p-3 h-full w-full">
@@ -18,9 +18,9 @@ function AlbumTrackList({ handleClick, item, albumChoice, setSelectedSong }) {
             return (
               <li key={index} className="font-cuprum pb-3 pt-1 900:px-3  text-white">
                 <button
-                  value={song.title}
-                  className="focus:outline-none text-left pb-1 border-b w-full hover:border-mainColor hover:text-mainColor transform hover:scale-105 flex items-center"
-                  onClick={handleButton}
+                  value={JSON.stringify(song)}
+                  className="focus:outline-none text-left pb-1 border-b w-full hover:border-mainColor hover:text-mainColor transform hover:scale-105"
+                  onClick={handleClick2}
                   type="button">
                   {song.title}
                 </button>

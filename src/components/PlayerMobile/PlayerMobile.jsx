@@ -18,12 +18,14 @@ export default function PlayerMobile({
   setIsPlaySwitch,
   picture,
   setPicture,
-  isAlbum,
-  isArtist,
+  isArtistTrackList,
   selectedSong,
   isAlbumTrackList,
-  isArtistTrackList,
-  isOnSearch,
+  setTitle,
+  myPlaylist,
+  isPlaylist,
+  isRecentAddsActive,
+  setSelectedSong,
 }) {
   const audioRef3 = useRef();
   useEffect(() => {
@@ -34,12 +36,25 @@ export default function PlayerMobile({
     updateSong();
   }, [selectedSong]);
 
+  useEffect(() => {
+    setSelectedSong('');
+    updateSong();
+  }, [currentTrack]);
+
   const updateSong = () => {
-    if (isAlbum || isAlbumTrackList || isArtistTrackList || isArtist || isOnSearch) {
-      setOnListen(selectedSong[0].s3_link);
-      setPicture(selectedSong[0].album.picture);
+    if (isPlaylist && !selectedSong) {
+      setOnListen(myPlaylist[currentTrack].s3_link);
+      setTitle(myPlaylist[currentTrack].title);
+      setPicture(myPlaylist[currentTrack].album.picture);
+    } else if (isAlbumTrackList || isArtistTrackList || selectedSong || (isRecentAddsActive && !isPlaylist)) {
+      if (selectedSong) {
+        setOnListen(selectedSong.s3_link);
+        setTitle(selectedSong.title);
+        setPicture(selectedSong.album.picture);
+      }
     } else {
       setOnListen(item[currentTrack].s3_link);
+      setTitle(item[currentTrack].title);
       setPicture(item[currentTrack].album.picture);
     }
     if (audioRef3.current) {
@@ -49,6 +64,7 @@ export default function PlayerMobile({
       audioRef3.current.play();
     }
   };
+
   const handlePause = () => {
     audioRef3.current.pause();
     setAudio(false);
@@ -63,23 +79,33 @@ export default function PlayerMobile({
   };
 
   const handleBackWard = () => {
-    if (currentTrack === 0) {
-      setCurrentTrack(item.length - 1);
-      audioRef3.current.pause();
-      setAudio(true);
+    if (isPlaylist) {
+      if (currentTrack === 0) {
+        setCurrentTrack(myPlaylist.length - 1);
+        updateSong();
+      } else {
+        setCurrentTrack(currentTrack - 1);
+        updateSong();
+      }
+    } else if (currentTrack === item.length - 1) {
+      setCurrentTrack(0);
       updateSong();
-      handlePlay();
     } else {
-      audioRef3.current.pause();
-      setAudio(true);
-      setCurrentTrack((currentTrack -= 1));
+      setCurrentTrack((currentTrack += 1));
       updateSong();
-      handlePlay();
     }
   };
 
   const handleForWard = () => {
-    if (currentTrack >= item.length - 1) {
+    if (isPlaylist) {
+      if (currentTrack === myPlaylist.length - 1) {
+        setCurrentTrack(0);
+        updateSong();
+      } else {
+        setCurrentTrack((currentTrack += 1));
+        updateSong();
+      }
+    } else if (currentTrack === item.length - 1) {
       setCurrentTrack(0);
       updateSong();
     } else {
@@ -124,7 +150,7 @@ export default function PlayerMobile({
 
 PlayerMobile.propTypes = {
   setOnListen: PropTypes.func.isRequired,
-  onListen: PropTypes.string.isRequired,
+  onListen: PropTypes.string,
   item: PropTypes.array.isRequired,
   currentTrack: PropTypes.number.isRequired,
   setCurrentTrack: PropTypes.func.isRequired,
@@ -135,11 +161,13 @@ PlayerMobile.propTypes = {
   isPlaySwitch: PropTypes.bool,
   setIsPlaySwitch: PropTypes.func,
   picture: PropTypes.string,
-  selectedSong: PropTypes.array,
-  isAlbum: PropTypes.bool.isRequired,
-  isArtist: PropTypes.bool.isRequired,
+  selectedSong: PropTypes.any,
   setPicture: PropTypes.any.isRequired,
   isAlbumTrackList: PropTypes.bool.isRequired,
-  isArtistTrackList: PropTypes.bool.isRequired,
-  isOnSearch: PropTypes.bool.isRequired,
+  setTitle: PropTypes.func.isRequired,
+  myPlaylist: PropTypes.array.isRequired,
+  isPlaylist: PropTypes.bool.isRequired,
+  isRecentAddsActive: PropTypes.bool.isRequired,
+  setSelectedSong: PropTypes.func.isRequired,
+  isArtistTrackList: PropTypes.func.isRequired,
 };

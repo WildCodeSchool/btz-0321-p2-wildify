@@ -4,11 +4,11 @@ import AdminSidebar from './AdminSidebar/AdminSidebar';
 import AdminSongs from './AdminSongs/AdminSongs';
 import authContext from '../../context/authContext';
 import PropTypes from 'prop-types';
-import LogginPannel from './LogginPage/LogginPage';
+import BackGround from '../../img/BackGrounds/PanelBG.png';
+import ReturnBtn from '../../img/PlayList/ReturnButton.svg';
 
 export default function AdminPannel({ item, albums, hideAdmin, artists }) {
-  const [isAdminSong, setIsAdminSong] = useState(false);
-  const [isLogged, setIsLogged] = useState(false);
+  const [isAdminSong, setIsAdminSong] = useState(true);
   const [isAdminPlayList, setIsAdminPlayList] = useState(false);
   const { token } = useContext(authContext);
   const [myPlayList, setMyPlayList] = useState();
@@ -40,33 +40,31 @@ export default function AdminPannel({ item, albums, hideAdmin, artists }) {
     setIsAdminPlayList(false);
   };
 
-  const handleLoggin = () => {
-    if (isLogged) {
-      setIsLogged(false);
-    } else {
-      setIsLogged(true);
-    }
-  };
-
   return (
-
-    <div className="w-full h-screen z-50 fixed bg-gray-700 overflow-y-auto">
-      <button onClick={hideAdmin} className="border-2 text-white border-white rounded-xl py-2 px-4  whitespace-nowrap">
-
-        RETURN TO WIZIC
-      </button>
-      <div className="h-44 w-full text-5xl text-gray-500 flex flex-col items-center align-middle justify-center border-white border-b-2">
-        {' '}
-        <h1 className="border-white border-2 py-2 px-4 rounded-xl text-white">ADMIN PANNEL</h1>
-        <p className="text-white">Take control on what U ear !</p>
-      </div>
-      <div className="h-4/5 w-full flex flex-row">
-        <AdminSidebar showAdminSongs={showAdminSongs} showAdminPlayList={showAdminPlayList} />
-        <div className="w-full flex flex-col justify-center items-center align-middle h-full ">
-          {!isLogged && <LogginPannel handleLoggin={handleLoggin} />}
-          {isAdminSong && <AdminSongs artists={artists} albums={albums} myPlayList={myPlayList} item={item} />}
-          {isAdminPlayList && <AdminPlaylist playListFetch={playListFetch} myPlayList={myPlayList} item={item} />}
+    <div
+      className="w-screen h-screen px-3 z-50 fixed  overflow-y-auto"
+      style={{
+        backgroundImage: `url(${BackGround})`,
+        backgroundSize: `cover`,
+        backgroundRepeat: `no-repeat`,
+        backgroundPosition: `top`,
+      }}>
+      <div className="pb-2 pt-6  px-4">
+        <div className="w-full text-6xl  flex flex-col">
+          <div className="flex justify-between">
+            <h1 className=" rounded-xl font-sacda text-6xl font-bold text-white">ADMIN PANNEL</h1>
+            <button onClick={hideAdmin} className="flex w-10 mr-24 focus:outline-none text-white text-lg  whitespace-nowrap ">
+              Back to WIZIC <img className="w-6 h-6 ml-2" src={ReturnBtn} alt="ReturnButton" />
+            </button>
+          </div>
+          <p className="mt-5 text-5xl text-white">Take control on what you ear !</p>
         </div>
+        <AdminSidebar showAdminSongs={showAdminSongs} showAdminPlayList={showAdminPlayList} />
+      </div>
+
+      <div className=" mt-2 w-full flex flex-col h-full">
+        {isAdminSong && <AdminSongs artists={artists} albums={albums} myPlayList={myPlayList} item={item} />}
+        {isAdminPlayList && <AdminPlaylist playListFetch={playListFetch} myPlayList={myPlayList} item={item} />}
       </div>
     </div>
   );
