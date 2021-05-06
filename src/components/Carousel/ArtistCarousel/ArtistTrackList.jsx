@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Defaultimg from '../../../img/defaultPicture.png';
+import Wave from '../../../img/wavegreen.gif';
 
-function ArtistTrackList({ item, artistChoice, setSelectedSong }) {
+function ArtistTrackList({ item, artistChoice, setSelectedSong, displayNone, setDisplayNone, songTitle, setSongTitle }) {
   const handleClick = (e) => {
     const mySong = item.filter((song) => song.title.includes(e.target.value));
     setSelectedSong(mySong);
+    setDisplayNone('flex');
+    setSongTitle(e.target.value);
   };
   return (
     <div className="h-full w-full px-4 900:px-6">
@@ -29,6 +32,7 @@ function ArtistTrackList({ item, artistChoice, setSelectedSong }) {
                       backgroundPosition: `center`,
                     }}></div>
                   {song.title}
+                  {songTitle === song.title ? <img className="h-12 w-12 opacity-50" style={{ display: `${displayNone}` }} src={Wave} alt="" /> : ''}
                 </div>
               </button>
             );
@@ -44,4 +48,8 @@ ArtistTrackList.propTypes = {
   item: PropTypes.array.isRequired,
   artistChoice: PropTypes.string.isRequired,
   setSelectedSong: PropTypes.func.isRequired,
+  displayNone: PropTypes.string.isRequired,
+  setDisplayNone: PropTypes.func.isRequired,
+  songTitle: PropTypes.any.isRequired,
+  setSongTitle: PropTypes.func.isRequired,
 };

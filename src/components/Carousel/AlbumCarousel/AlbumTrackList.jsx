@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Defaultimg from '../../../img/defaultPicture.png';
 import Wave from '../../../img/wavegreen.gif';
 
-function AlbumTrackList({ item, albumChoice, setSelectedSong }) {
-  const [displayNone, setdisplayNone] = useState('none');
-  const [songTitle, setSongTitle] = useState();
+function AlbumTrackList({ item, albumChoice, setSelectedSong, displayNone, setDisplayNone, songTitle, setSongTitle }) {
   const handleClick = (e) => {
     const mySong = item.filter((song) => song.title.includes(e.target.value));
     setSelectedSong(mySong);
-    setdisplayNone('flex');
+    setDisplayNone('flex');
     setSongTitle(e.target.value);
   };
 
@@ -51,4 +49,8 @@ AlbumTrackList.propTypes = {
   item: PropTypes.array.isRequired,
   albumChoice: PropTypes.string.isRequired,
   setSelectedSong: PropTypes.func.isRequired,
+  displayNone: PropTypes.string.isRequired,
+  setDisplayNone: PropTypes.func.isRequired,
+  songTitle: PropTypes.any.isRequired,
+  setSongTitle: PropTypes.func.isRequired,
 };
