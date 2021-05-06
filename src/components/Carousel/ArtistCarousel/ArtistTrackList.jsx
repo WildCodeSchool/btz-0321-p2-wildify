@@ -1,11 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Defaultimg from '../../../img/defaultPicture.png';
+import AddPl from '../../../img/Icons/AddPl.png';
+import PlayerBtn from '../../../img/Icons/PlayerButton.svg';
 
-function ArtistTrackList({ item, artistChoice, setSelectedSong }) {
+function ArtistTrackList({ item, artistChoice, setSelectedSong, setMyPlaylist, setIsPlaylist }) {
   const handleClick = (e) => {
-    const mySong = item.filter((song) => song.title.includes(e.target.value));
-    setSelectedSong(mySong);
+    setSelectedSong(JSON.parse(e.target.value));
+    setIsPlaylist(false);
+  };
+  const handleClick2 = (e) => {
+    let result = localStorage.getItem('myPlaylist') ? JSON.parse(localStorage.getItem('myPlaylist')) : [];
+    result.push(JSON.parse(e.target.value));
+    setMyPlaylist(result);
+    localStorage.setItem('myPlaylist', JSON.stringify(result));
   };
   return (
     <div className="h-full w-full px-4 900:px-6">
@@ -14,23 +22,36 @@ function ArtistTrackList({ item, artistChoice, setSelectedSong }) {
           .filter((song) => song.artist.name.includes(artistChoice))
           .map((song, index) => {
             return (
-              <button
-                className="focus:outline-none  mb-4 text-white flex flex-col text-left pb-2 border-b w-full hover:border-mainColor hover:text-mainColor"
-                key={index}
-                value={song.title}
-                onClick={handleClick}>
+              <div
+                className="focus:outline-none  mb-4 text-white flex justify-between text-left pb-2 border-b w-full hover:border-mainColor hover:text-mainColor"
+                key={index}>
                 <div className="flex pointer-events-none items-center">
                   <div
-                    className="pointer-events-none flex h-12 w-12 mr-2 rounded-full"
+                    className="pointer-events-none flex h-12 w-12 mr-4 rounded-full"
                     style={{
                       backgroundImage: `url(${song.artist.picture === null ? Defaultimg : song.artist.picture})`,
                       backgroundSize: `cover`,
                       backgroundRepeat: `no-repeat`,
                       backgroundPosition: `center`,
                     }}></div>
-                  {song.title}
+                  <h1 className="pointer-events-none font-scada mr-2 font-bold">{song.title}</h1> -{' '}
+                  <h1 className="pointer-events-none ml-2 text-xs">{song.artist.name}</h1>
                 </div>
-              </button>
+                <div className="flex">
+                  <button
+                    className="focus:outline-none w-10 flex justify-end items-end pb-2 pr-2 text-white transform hover:scale-125"
+                    value={JSON.stringify(song)}
+                    onClick={handleClick}>
+                    <img className="pointer-events-none w-5 h-5" src={PlayerBtn} alt="" />
+                  </button>
+                  <button
+                    value={JSON.stringify(song)}
+                    className="focus:outline-none w-10 flex justify-end items-end pb-2 pr-2 text-white transform hover:scale-125"
+                    onClick={handleClick2}>
+                    <img src={AddPl} className="pointer-events-none w-5 h-5" alt="" />
+                  </button>
+                </div>
+              </div>
             );
           })}
       </ul>
@@ -44,4 +65,6 @@ ArtistTrackList.propTypes = {
   item: PropTypes.array.isRequired,
   artistChoice: PropTypes.string.isRequired,
   setSelectedSong: PropTypes.func.isRequired,
+  setMyPlaylist: PropTypes.func.isRequired,
+  setIsPlaylist: PropTypes.func.isRequired,
 };
