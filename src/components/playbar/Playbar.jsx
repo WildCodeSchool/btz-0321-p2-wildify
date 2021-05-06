@@ -66,13 +66,13 @@ export default function Playbar({
   };
 
   const updateSong = () => {
-    if (isPlaylist || !selectedSong) {
+    if (isPlaylist && !selectedSong) {
       setOnListen(myPlaylist[currentTrack].s3_link);
       setTitle(myPlaylist[currentTrack].title);
       setArtist(myPlaylist[currentTrack].artist.name);
       setAlbum(myPlaylist[currentTrack].album.title);
       setPicture(myPlaylist[currentTrack].album.picture);
-    } else if (isAlbumTrackList || isArtistTrackList || selectedSong || isRecentAddsActive) {
+    } else if (isAlbumTrackList || isArtistTrackList || selectedSong || (isRecentAddsActive && !isPlaylist)) {
       if (selectedSong) {
         setOnListen(selectedSong.s3_link);
         setTitle(selectedSong.title);

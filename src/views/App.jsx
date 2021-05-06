@@ -25,7 +25,7 @@ function App() {
   const { width } = useWindowDimensions();
   const [item, setItem] = useState([]);
   const [audio, setAudio] = useState(false);
-  const [onListen, setOnListen] = useState('');
+  const [onListen, setOnListen] = useState();
   const [currentTrack, setCurrentTrack] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [title, setTitle] = useState();
@@ -73,6 +73,15 @@ function App() {
     };
     getDatas();
   }, []);
+  useEffect(() => {
+    if (!isLoading) {
+      setOnListen(item[0].s3_link);
+      setTitle(item[0].title);
+      setAlbum(item[0].album.title);
+      setPicture(item[0].album.picture);
+      setArtist(item[0].artist.name);
+    }
+  }, [isLoading]);
 
   useEffect(() => {
     setIsAlbum(false);

@@ -2,13 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PlayerButton from '../../../img/Icons/PlayerButton.svg';
 
-export default function TrackListCard({ items, setCurrentTrack, setMyPlaylist }) {
+export default function TrackListCard({ items, setIsRecentAddsActive, setIsPlaylist, setSelectedSong, setMyPlaylist }) {
   const handleClick = (e) => {
-    let myPlaylist = localStorage.getItem('myPlaylist');
-    myPlaylist = myPlaylist ? myPlaylist.split(',') : [];
-    myPlaylist.push(e.target.value);
-    localStorage.setItem('myPlaylist', myPlaylist.toString());
-    setMyPlaylist(localStorage.getItem('myPlaylist').split(','));
+    let result = localStorage.getItem('myPlaylist') ? JSON.parse(localStorage.getItem('myPlaylist')) : [];
+    result.push(JSON.parse(e.target.value));
+    setMyPlaylist(result);
+    localStorage.setItem('myPlaylist', JSON.stringify(result));
+  };
+  const handleClick2 = (e) => {
+    console.log(JSON.parse(e.target.value));
+    setIsPlaylist(false);
+    setSelectedSong(JSON.parse(e.target.value));
+    setIsRecentAddsActive(true);
   };
   return (
     <div className="flex flex-row">
@@ -28,11 +33,11 @@ export default function TrackListCard({ items, setCurrentTrack, setMyPlaylist })
               <p className="font-scada text-white text-sm">{item.artist.name}</p>
             </div>
             <div className="flex focus:outline-none items-end m-1">
-              <button onClick={() => setCurrentTrack(index)}>
-                <img src={PlayerButton} alt="" />
+              <button value={JSON.stringify(item)} onClick={handleClick2} className="flex focus:outline-none items-end m-1">
+                <img className="pointer-events-none" src={PlayerButton} alt="" />
               </button>
 
-              <button value={item.title} className="text-white" onClick={handleClick}>
+              <button value={JSON.stringify(item)} onClick={handleClick} className="text-white">
                 XX
               </button>
             </div>

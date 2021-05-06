@@ -187,7 +187,15 @@ export default function Carousel({
         )}
         {isArtistActive && <Artist setMyPlaylist={setMyPlaylist} handleArtistClick={handleArtistClick} artists={artists} />}
         {isAlbumActive && <Album setMyPlaylist={setMyPlaylist} handleAlbumClick={handleAlbumClick} albums={albums} />}
-        {isTrackListActive && <TrackList setMyPlaylist={setMyPlaylist} setMyPlaylist={setMyPlaylist} item={item} setCurrentTrack={setCurrentTrack} />}
+        {isTrackListActive && (
+          <TrackList
+            setIsPlaylist={setIsPlaylist}
+            setSelectedSong={setSelectedSong}
+            setMyPlaylist={setMyPlaylist}
+            item={item}
+            setCurrentTrack={setCurrentTrack}
+          />
+        )}
         {isAlbumTrackList && <AlbumTrackList setMyPlaylist={setMyPlaylist} setSelectedSong={setSelectedSong} albumChoice={albumChoice} item={item} />}
         {isArtistTrackList && (
           <ArtistTrackList setMyPlaylist={setMyPlaylist} setSelectedSong={setSelectedSong} artistChoice={artistChoice} item={item} />
