@@ -213,7 +213,7 @@ export default function Carousel({
             item={item}
           />
         )}
-        {onSearch && <SearchResults setMyPlaylist={setMyPlaylist} onSearch={onSearch} item={item} />}
+        {onSearch && <SearchResults setSelectedSong={setSelectedSong} onSearch={onSearch} item={item} />}
       </div>
     </div>
   );

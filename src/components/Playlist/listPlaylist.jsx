@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Defaultimg from '../../img/defaultPicture.png';
-import authContext from '../../context/authContext';
-import axios from 'axios';
 
 function ListPlaylist({ handleClick, playLists }) {
   return (

@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReturnBtn from '../../img/PlayList/ReturnButton.svg';
 
-function ListPlaylistOnClick({ playlistChoice, isLoading, Return, setCurrentTrack, playLists, setSelectedSong, myPlaylist }) {
+function ListPlaylistOnClick({ isLoading, Return, setSelectedSong, myPlaylist }) {
   const handleClick = (e) => {
-    console.log(JSON.parse(e.target.value));
     setSelectedSong(JSON.parse(e.target.value));
   };
   return (
@@ -37,4 +36,7 @@ ListPlaylistOnClick.propTypes = {
   Return: PropTypes.func.isRequired,
   setCurrentTrack: PropTypes.func.isRequired,
   playlistChoice: PropTypes.string,
+  isLoading: PropTypes.bool.isRequired,
+  setSelectedSong: PropTypes.func.isRequired,
+  myPlaylist: PropTypes.array.isRequired,
 };
