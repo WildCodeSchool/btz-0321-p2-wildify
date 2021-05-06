@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import PlayerButton from '../../../img/Icons/PlayerButton.svg';
 
-export default function TrackListCard({ items, setIsRecentAddsActive, setIsPlaylist, setSelectedSong, setMyPlaylist }) {
+export default function TrackListCard({ isDragging, items, setIsRecentAddsActive, setIsPlaylist, setSelectedSong, setMyPlaylist }) {
+  const [pointerEvent, setPointerEvent] = useState();
   const handleClick = (e) => {
     let result = localStorage.getItem('myPlaylist') ? JSON.parse(localStorage.getItem('myPlaylist')) : [];
     result.push(JSON.parse(e.target.value));
@@ -14,8 +15,15 @@ export default function TrackListCard({ items, setIsRecentAddsActive, setIsPlayl
     setSelectedSong(JSON.parse(e.target.value));
     setIsRecentAddsActive(true);
   };
+  useEffect(() => {
+    if (isDragging) {
+      setPointerEvent('pointer-events-none');
+    } else {
+      setPointerEvent('');
+    }
+  }, [isDragging]);
   return (
-    <div className="flex flex-row">
+    <div className={`${pointerEvent}flex flex-row`}>
       {items.map((item, index) => (
         <div
           key={index}
@@ -53,4 +61,5 @@ TrackListCard.propTypes = {
   setIsPlaylist: PropTypes.func.isRequired,
   setSelectedSong: PropTypes.func.isRequired,
   setMyPlaylist: PropTypes.func.isRequired,
+  isDragging: PropTypes.bool.isRequired,
 };
