@@ -24,7 +24,7 @@ export default function TrackListCard({ isDragging, items, setIsRecentAddsActive
     }
   }, [isDragging]);
   return (
-    <div className={`  ${pointerEvent} flex flex-row justify-end h-full`}>
+    <div className={`${pointerEvent} flex flex-row justify-end h-full`}>
       {items.map((item, index) => (
         <div
           key={index}
@@ -41,7 +41,7 @@ export default function TrackListCard({ isDragging, items, setIsRecentAddsActive
               <p className="font-scada text-white text-sm">{item.artist.name}</p>
             </div>
             <div className="flex focus:outline-none items-end m-1">
-              <button value={JSON.stringify(item)} onClick={handleClick2} className="flex focus:outline-none items-end m-1">
+              <button value={JSON.stringify(item)} onClick={handleClick2} className={`${pointerEvent} flex focus:outline-none items-end m-1`}>
                 <img className="pointer-events-none" src={PlayerButton} alt="" />
               </button>
 
