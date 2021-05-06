@@ -3,6 +3,7 @@ import Card from '../RecentAdds/Card';
 import PropTypes from 'prop-types';
 import useScrollBox from '../scroll';
 import '../scrollbarwebkit.css';
+
 function RecentAdds({ item, setSelectedSong, setMyPlaylist, setIsPlaylist, setIsRecentAddsActive }) {
   const itemReversed = [...item];
   const scrollWrapperRef = useRef();
