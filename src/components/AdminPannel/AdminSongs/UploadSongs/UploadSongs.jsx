@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import authContext from '../../../../context/authContext';
-import PropTypes from 'prop-types';
+
 import axios from 'axios';
 
 export default function UploadSongs() {
@@ -11,21 +11,6 @@ export default function UploadSongs() {
   const handleFile = (e) => {
     setSelectFile(e.target.files[0]);
   };
-
-  // const handleSubmit = () => {
-  //   const formData = new FormData();
-  //   formData.append('file', selectFile);
-
-  //   axios
-  //     .post('https://bazify-backend.basile.vernouillet.dev/api/v1/songs', formData, {
-  //       headers: { Authorization: `Bearer ${token}` },
-  //       onUploadProgress: (p) => {
-  //         setProgress((p.loaded / p.total) * 100);
-  //       },
-  //     })
-  //     .then((res) => res)
-  //     .catch((res) => res);
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -76,8 +61,3 @@ export default function UploadSongs() {
     </div>
   );
 }
-
-UploadSongs.propTypes = {
-  myPlayList: PropTypes.array.isRequired,
-  albums: PropTypes.array.isRequired,
-};

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import authContext from '../../../context/authContext';
 import PropTypes from 'prop-types';
 export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
@@ -12,7 +12,9 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
   const [onSelect, setOnSelect] = useState();
   const [selectSong, setSelectSong] = useState(item[0]);
   const [onSelectP, setOnSelectP] = useState();
-
+  const [choosenP, setChoosenP] = useState();
+  const [deletePlaylistSelect, setDeletePlaylistSelect] = useState();
+  const [deleteSongSelect, setDeleteSongSelect] = useState();
   const { token } = useContext(authContext);
 
   const playListData = {
@@ -66,6 +68,32 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
       .catch((err) => err);
     playListFetch();
   };
+
+  const handleChange = (e) => {
+    setDeletePlaylistSelect(e.target.value);
+  };
+
+  useEffect(() => {
+    fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/playlists/${deletePlaylistSelect}`, {
+      method: 'GET',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+    })
+      .then((res) => res.json())
+      .then((res) => setChoosenP(res))
+      .catch((err) => err);
+    playListFetch();
+  }, [deletePlaylistSelect]);
+
+  const deleteSong = () => {
+    fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/playlists/${deletePlaylistSelect}/songs/${deleteSongSelect}`, {
+      method: 'DELETE',
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => res.json())
+      .catch((err) => err);
+    playListFetch();
+  };
+
   return (
     <div className=" text-white w-full pr-20 flex">
       <form onSubmit={createPlayList} className="bg-white p-5 bg-opacity-10 flex-col shadow-searchbar rounded-lg flex w-97 mx-4">
@@ -157,6 +185,7 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
             Update Playlist
           </button>
         </form>
+
         <div className="mt-4">
           <label className=" text-white font-scada text-ls font-bold" htmlFor="add-song">
             Add a song to a playlist :
@@ -193,7 +222,7 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
               onClick={postSong}
               type="submit"
               className="h-8 px-8 mt-5 w-full  mr-4 md:font-scada text-white rounded-lg  bg-white bg-opacity-20  shadow-searchbar  focus:outline-none  hover:border-mainColor">
-              Update Playlist
+              ADD
             </button>
           </div>
         </div>
@@ -215,6 +244,50 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
               );
             })}
           </ul>
+        </div>
+      </div>
+
+      <div className="bg-white p-5 bg-opacity-10 flex-col shadow-searchbar rounded-lg flex w-97 mx-4  ">
+        <div className="mt-4">
+          <label className=" text-white font-scada text-ls font-bold" htmlFor="add-song">
+            Delete a song from a playlist :
+          </label>
+          <select
+            onBlur={(e) => setDeleteSongSelect(e.target.value)}
+            className=" mt-1 w-full focus:outline-none px-3 py-2 bg-white bg-opacity-20 rounded-lg shadow-input2"
+            name="add-song"
+            id="">
+            {choosenP &&
+              choosenP.songs.map((song, index) => {
+                return (
+                  <option value={song.id} key={index}>
+                    {song.title}
+                  </option>
+                );
+              })}
+          </select>
+          <div className="mt-3 flex flex-col ">
+            <h1 className="text-white font-scada text-ls font-bold">SelectPlaylist</h1>
+            <select
+              onBlur={handleChange}
+              className=" mt-1 focus:outline-none px-3 py-2 bg-white bg-opacity-20 rounded-lg shadow-input2"
+              name=""
+              id="">
+              {myPlayList.map((playList, index) => {
+                return (
+                  <option value={playList.id} key={index}>
+                    {playList.title}
+                  </option>
+                );
+              })}
+            </select>
+            <button
+              onClick={deleteSong}
+              type="submit"
+              className="h-8 px-8 mt-5 w-full  mr-4 md:font-scada text-white rounded-lg  bg-white bg-opacity-20  shadow-searchbar  focus:outline-none  hover:border-mainColor">
+              DELETE
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -67,7 +67,6 @@ export default function AdminSongs({ item, albums, myPlayList, artists }) {
 AdminSongs.propTypes = {
   item: PropTypes.array.isRequired,
   albums: PropTypes.array.isRequired,
-  playList: PropTypes.array.isRequired,
   artists: PropTypes.array.isRequired,
-  myPlayList: PropTypes.array.isRequired,
+  myPlayList: PropTypes.array,
 };
