@@ -10,6 +10,8 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
   const [updateDescription, setUpdateDescription] = useState();
   const [updatePicture, setUpdatePicture] = useState();
   const [onSelect, setOnSelect] = useState();
+  const [selectSong, setSelectSong] = useState(item[0]);
+  const [onSelectP, setOnSelectP] = useState();
 
   const { token } = useContext(authContext);
 
@@ -51,12 +53,24 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
       .then((res) => res);
     playListFetch();
   };
-
+  const myObject = {
+    playlistId: onSelectP,
+  };
+  const postSong = () => {
+    fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/songs/${selectSong}`, {
+      method: 'PUT',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(myObject),
+    })
+      .then((res) => res)
+      .catch((err) => err);
+    playListFetch();
+  };
   return (
     <div className=" text-white w-full pr-20 flex">
       <form onSubmit={createPlayList} className="bg-white p-5 bg-opacity-10 flex-col shadow-searchbar rounded-lg flex w-97 mx-4">
         <h1 className="text-white font-scada text-4xl font-bold">Update Playlist</h1>
-        <label className="mt-4 text-white font-scada text-ls" tmlFor="playList">
+        <label className="mt-4 text-white font-scada text-ls" htmlFor="playList">
           PLaylist Title{' '}
         </label>
         <input
@@ -66,7 +80,7 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
           className="focus:outline-none px-3 py-2 bg-white bg-opacity-20 rounded-lg shadow-input2"
           placeholder="PlayList Title"
         />
-        <label className="mt-5 text-white font-scada text-ls" tmlFor="playList">
+        <label className="mt-5 text-white font-scada text-ls" htmlFor="playList">
           Playlist Description{' '}
         </label>
         <input
@@ -76,7 +90,7 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
           className="focus:outline-none px-3  py-2 bg-white bg-opacity-20 rounded-lg shadow-input2"
           placeholder="PlayList Description"
         />
-        <label className="mt-5 text-white font-scada text-ls" tmlFor="playList">
+        <label className="mt-5 text-white font-scada text-ls" htmlFor="playList">
           PlayList Picture{' '}
         </label>
         <input
@@ -148,21 +162,39 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
             Add a song to a playlist :
           </label>
           <select
-            onBlur={(e) => setOnSelect(e.target.value)}
+            onBlur={(e) => setSelectSong(e.target.value)}
             className=" mt-1 w-full focus:outline-none px-3 py-2 bg-white bg-opacity-20 rounded-lg shadow-input2"
             name="add-song"
             id="">
             {item.map((song, index) => {
-              return <option key={index}>{song.title}</option>;
+              return (
+                <option value={song.id} key={index}>
+                  {song.title}
+                </option>
+              );
             })}
           </select>
           <div className="mt-3 flex flex-col ">
             <h1 className="text-white font-scada text-ls font-bold">SelectPlaylist</h1>
-            <select className=" mt-1 focus:outline-none px-3 py-2 bg-white bg-opacity-20 rounded-lg shadow-input2" name="" id="">
+            <select
+              onBlur={(e) => setOnSelectP(e.target.value)}
+              className=" mt-1 focus:outline-none px-3 py-2 bg-white bg-opacity-20 rounded-lg shadow-input2"
+              name=""
+              id="">
               {myPlayList.map((playList, index) => {
-                return <option key={index}>{playList.title}</option>;
+                return (
+                  <option value={playList.id} key={index}>
+                    {playList.title}
+                  </option>
+                );
               })}
             </select>
+            <button
+              onClick={postSong}
+              type="submit"
+              className="h-8 px-8 mt-5 w-full  mr-4 md:font-scada text-white rounded-lg  bg-white bg-opacity-20  shadow-searchbar  focus:outline-none  hover:border-mainColor">
+              Update Playlist
+            </button>
           </div>
         </div>
       </div>
