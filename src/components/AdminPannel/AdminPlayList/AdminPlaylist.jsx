@@ -52,6 +52,18 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
     playListFetch();
   };
 
+  const postSong = (e) => {
+    e.preventDefault();
+
+    fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/playlists/${myPlayList[onSelect].id}`, {
+      metgode: 'POST',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(playListUpdate),
+    })
+      .then((res) => res.json())
+      .then((res) => res);
+    playListFetch();
+  };
   return (
     <div className=" text-white w-full pr-20 flex">
       <form onSubmit={createPlayList} className="bg-white p-5 bg-opacity-10 flex-col shadow-searchbar rounded-lg flex w-97 mx-4">
@@ -163,6 +175,12 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
                 return <option key={index}>{playList.title}</option>;
               })}
             </select>
+            <button
+              onClick={postSong}
+              type="submit"
+              className="h-8 px-8 mt-5 w-full  mr-4 md:font-scada text-white rounded-lg  bg-white bg-opacity-20  shadow-searchbar  focus:outline-none  hover:border-mainColor">
+              Update Playlist
+            </button>
           </div>
         </div>
       </div>
