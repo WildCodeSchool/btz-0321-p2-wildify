@@ -28,7 +28,7 @@ export default function SearchResults({ item, onSearch, setSelectedSong }) {
                   <p className="mr-4 pointer-events-none font-bold">{song.title}</p>-
                   <p className="mx-4 pointer-events-none text-sm">{song.artist.name}</p>-
                   <p className="mx-4 pointer-events-none text-sm">{song.album.title}</p>
-                  {songTitle === song.title ? <img className="h-12 w-12 opacity-50" style={{ display: `${displayNone}` }} src={Wave} alt="" /> : ''}
+                  {songTitle === song.title ? <img className="h-12 w-12" style={{ display: `${displayNone}` }} src={Wave} alt="" /> : ''}
                 </button>
               </li>
             );

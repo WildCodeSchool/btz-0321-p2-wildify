@@ -28,7 +28,7 @@ function ArtistTrackList({ handleClick, item, artistChoice, setSelectedSong }) {
                   onClick={handleButton}
                   type="button">
                   {song.title}
-                  {songTitle === song.title ? <img className="h-8 w-8 opacity-50" style={{ display: `${displayNone}` }} src={Wave} alt="" /> : ''}
+                  {songTitle === song.title ? <img className="h-8 w-8" style={{ display: `${displayNone}` }} src={Wave} alt="" /> : ''}
                 </button>
               </li>
             );

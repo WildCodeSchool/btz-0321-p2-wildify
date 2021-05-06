@@ -35,7 +35,7 @@ function AlbumTrackList({ item, albumChoice, setSelectedSong }) {
                       backgroundPosition: `center`,
                     }}></div>
                   {song.title}
-                  {songTitle === song.title ? <img className="h-12 w-12 opacity-50" style={{ display: `${displayNone}` }} src={Wave} alt="" /> : ''}
+                  {songTitle === song.title ? <img className="h-12 w-12" style={{ display: `${displayNone}` }} src={Wave} alt="" /> : ''}
                 </div>
               </button>
             );
