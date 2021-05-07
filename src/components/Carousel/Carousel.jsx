@@ -8,6 +8,7 @@ import SearchResults from './SearchResults/SearchResults';
 import AlbumTrackList from './AlbumCarousel/AlbumTrackList';
 import ArtistTrackList from './ArtistCarousel/ArtistTrackList';
 import Backward from '../../img/PlayList/ReturnButton.svg';
+import './scrollbarwebkit.css';
 
 export default function Carousel({
   item,
@@ -173,7 +174,7 @@ export default function Carousel({
           TrackList
         </button>
       </div>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto sidebar">
         {isRecentAddsActive && (
           <RecentAdds
             setIsRecentAddsActive={setIsRecentAddsActive}

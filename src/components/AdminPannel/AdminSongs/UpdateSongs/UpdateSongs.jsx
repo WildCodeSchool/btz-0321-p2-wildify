@@ -1,11 +1,15 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import authContext from '../../../../context/authContext';
 
 export default function UpdateSongs({ item }) {
   const { token } = useContext(authContext);
   const [onSelect, setOnSelect] = useState();
-
+  const [title, setTitle] = useState();
+  const [duration, setDuration] = useState();
+  const [albumPicture, setAlbumPicture] = useState();
+  const [albumTitle, setAlbumTitle] = useState();
+  const [artistName, setArtistName] = useState();
   const songData = {
     title: 'title',
     artist: 'artist',
@@ -24,6 +28,15 @@ export default function UpdateSongs({ item }) {
       .then((res) => res)
       .catch((err) => err);
   };
+  useEffect(() => {
+    if (onSelect) {
+      setTitle(item[onSelect].title);
+      setDuration(item[onSelect].duration);
+      setAlbumPicture(item[onSelect].album.picture);
+      setAlbumTitle(item[onSelect].album.title);
+      setArtistName(item[onSelect].artist.name);
+    }
+  }, [onSelect]);
 
   const songDelete = () => {};
 
@@ -34,7 +47,7 @@ export default function UpdateSongs({ item }) {
         Update :
       </label>
       <select
-        onBlur={(e) => setOnSelect(e.target.value)}
+        onChange={(e) => setOnSelect(e.target.value)}
         className="focus:outline-none px-3 py-2 bg-white bg-opacity-10 rounded-lg shadow-input2"
         name="song">
         {item.map((song, index) => {
@@ -48,27 +61,27 @@ export default function UpdateSongs({ item }) {
       <input
         className="focus:outline-none px-3 mt-5 py-2 bg-white bg-opacity-10 rounded-lg shadow-input2"
         type="text"
-        placeholder={onSelect ? item[onSelect].title : 'Track Title'}
+        placeholder={onSelect ? title : 'Track Title'}
       />
       <input
         className="focus:outline-none px-3 mt-5 py-2 bg-white bg-opacity-10 rounded-lg shadow-input2"
         type="text"
-        placeholder={onSelect ? item[onSelect].duration : 'Duration'}
+        placeholder={onSelect ? duration : 'Duration'}
       />
       <input
         className="focus:outline-none px-3 mt-5 py-2 bg-white bg-opacity-10 rounded-lg shadow-input2"
         type="text"
-        placeholder={onSelect ? item[onSelect].album.picture : 'Ablbum Picture'}
+        placeholder={onSelect ? albumPicture : 'Ablbum Picture'}
       />
       <input
         className="focus:outline-none px-3 mt-5 py-2 bg-white bg-opacity-10 rounded-lg shadow-input2"
         type="text"
-        placeholder={onSelect ? item[onSelect].album.title : 'Album Title'}
+        placeholder={onSelect ? albumTitle : 'Album Title'}
       />
       <input
         className="focus:outline-none px-3 mt-5 py-2 bg-white bg-opacity-10 rounded-lg shadow-input2"
         type="text"
-        placeholder={onSelect ? item[onSelect].artist.name : 'Artist Name'}
+        placeholder={onSelect ? artistName : 'Artist Name'}
       />
       <div className="w-full mt-5">
         <button
