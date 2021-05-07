@@ -7,9 +7,9 @@ function ListPlaylistOnClick({ isLoading, Return, setSelectedSong, myPlaylist })
     setSelectedSong(JSON.parse(e.target.value));
   };
   return (
-    <div className="p-6 900:p-10 ">
-      <div className="flex justify-between items-center">
-        <button onClick={Return} className="h-3 w-3  focus:outline-none transform hover:scale-110">
+    <div className="p-6  900:p-10 ">
+      <div className="flex  justify-between items-center">
+        <button onClick={Return} className="h-3 w-3   focus:outline-none transform hover:scale-110">
           <img src={ReturnBtn} alt="ReturnButton" />
         </button>
       </div>
@@ -17,7 +17,7 @@ function ListPlaylistOnClick({ isLoading, Return, setSelectedSong, myPlaylist })
         myPlaylist &&
         myPlaylist.songs.map((song, index) => {
           return (
-            <button key={index} onClick={handleClick} type="button" value={JSON.stringify(song)} className="bg p-1 w-full focus:outline-none">
+            <button key={index} onClick={handleClick} type="button" value={JSON.stringify(song)} className="bg  p-1 w-full focus:outline-none">
               <div className="flex pointer-events-none flex-wrap items-center text-white mt-4 border-b border-gra border-white pb-1 mb-2 hover:border-mainColor hover:text-mainColor transform hover:scale-105">
                 <div className="font-scada text-xs font-bold mr-2 900:text-base">{song.title} -</div>
                 <div className="font-scada text-xs ">{song.artist.name}</div>

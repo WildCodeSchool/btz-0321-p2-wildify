@@ -16,6 +16,7 @@ import authContext from '../context/authContext';
 import { useHistory } from 'react-router';
 import AdminPannel from '../components/AdminPannel/AdminPannel';
 import MyPlaylist from '../components/MyPlaylist/MyPlaylist';
+import '../components/Carousel/scrollbarwebkit.css';
 
 function App() {
   const [isRecentAddsActive, setIsRecentAddsActive] = useState(true);
@@ -159,7 +160,7 @@ function App() {
             />
           )}
         </div>
-        <div className=" overflow-y-auto col-start-1 col-end-3 row-start-3 row-end-4 900:col-end-2 900:row-end-5 rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
+        <div className=" overflow-y-auto sidebar col-start-1 col-end-3 row-start-3 row-end-4 900:col-end-2 900:row-end-5 rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
           {!isLoading && (
             <PlaylistSwitch
               setSelectedSong={setSelectedSong}
