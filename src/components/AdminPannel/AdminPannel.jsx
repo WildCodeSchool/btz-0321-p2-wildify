@@ -52,7 +52,7 @@ export default function AdminPannel({ item, albums, hideAdmin, artists }) {
       <div className="pb-2 pt-6  px-4">
         <div className="w-full text-6xl  flex flex-col">
           <div className="flex justify-between">
-            <h1 className=" rounded-xl font-sacda text-6xl font-bold text-white">ADMIN PANNEL</h1>
+            <h1 className=" rounded-xl font-scada text-6xl font-bold text-white">ADMIN PANNEL</h1>
             <button onClick={hideAdmin} className="flex w-10 mr-24 focus:outline-none text-white text-lg  whitespace-nowrap ">
               Back to WIZIC <img className="w-6 h-6 ml-2" src={ReturnBtn} alt="ReturnButton" />
             </button>
