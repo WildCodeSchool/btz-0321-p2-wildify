@@ -141,7 +141,7 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
           </label>
 
           <select
-            onBlur={(e) => setOnSelect(e.target.value)}
+            onChange={(e) => setOnSelect(e.target.value)}
             name="update"
             id=""
             className="focus:outline-none px-3 py-2 mt-5 bg-white bg-opacity-20 rounded-lg shadow-input2">
@@ -211,7 +211,7 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
             Add a song to a playlist
           </label>
           <select
-            onBlur={(e) => setSelectSong(e.target.value)}
+            onChange={(e) => setSelectSong(e.target.value)}
             className=" mt-1 w-full focus:outline-none px-3 py-2 bg-white bg-opacity-20 rounded-lg shadow-input2"
             name="add-song"
             id="">
@@ -226,7 +226,7 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
           <div className="mt-3 flex flex-col ">
             <h1 className="text-white font-scada text-ls font-bold">SelectPlaylist</h1>
             <select
-              onBlur={(e) => setOnSelectP(e.target.value)}
+              onChange={(e) => setOnSelectP(e.target.value)}
               className=" mt-1 focus:outline-none px-3 py-2 bg-white bg-opacity-20 rounded-lg shadow-input2"
               name=""
               id="">
@@ -251,7 +251,7 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
             Delete song from a playlist
           </label>
           <select
-            onBlur={(e) => setDeleteSongSelect(e.target.value)}
+            onChange={(e) => setDeleteSongSelect(e.target.value)}
             className=" mt-1 w-full focus:outline-none px-3 py-2 bg-white bg-opacity-20 rounded-lg shadow-input2"
             name="add-song"
             id="">
@@ -267,7 +267,7 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
           <div className="mt-3 flex flex-col ">
             <h1 className="text-white font-scada text-ls font-bold">SelectPlaylist</h1>
             <select
-              onBlur={handleChange}
+              onChange={handleChange}
               className=" mt-1 focus:outline-none px-3 py-2 bg-white bg-opacity-20 rounded-lg shadow-input2"
               name=""
               id="">
