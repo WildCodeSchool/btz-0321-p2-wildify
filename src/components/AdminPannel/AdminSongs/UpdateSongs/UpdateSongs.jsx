@@ -71,7 +71,7 @@ export default function UpdateSongs({ item }) {
       <input
         className="focus:outline-none px-3 mt-5 py-2 bg-white bg-opacity-10 rounded-lg shadow-input2"
         type="text"
-        placeholder={onSelect ? albumPicture : 'Ablbum Picture'}
+        placeholder={onSelect ? albumPicture : 'Album Picture'}
       />
       <input
         className="focus:outline-none px-3 mt-5 py-2 bg-white bg-opacity-10 rounded-lg shadow-input2"
