@@ -15,15 +15,18 @@ import PlayerMobile from '../components/PlayerMobile/PlayerMobile';
 import authContext from '../context/authContext';
 import { useHistory } from 'react-router';
 import AdminPannel from '../components/AdminPannel/AdminPannel';
+import MyPlaylist from '../components/MyPlaylist/MyPlaylist';
+import '../components/Carousel/scrollbarwebkit.css';
 
 function App() {
+  const [isRecentAddsActive, setIsRecentAddsActive] = useState(true);
   const [isSideBarVisible, setisSideBarVisible] = useState(false);
   const [isPlayerVisible, setIsPlayerVisible] = useState(false);
   const [isMobilePlayerVisible, setIsMobilePlayerVisible] = useState(true);
   const { width } = useWindowDimensions();
   const [item, setItem] = useState([]);
   const [audio, setAudio] = useState(false);
-  const [onListen, setOnListen] = useState('');
+  const [onListen, setOnListen] = useState();
   const [currentTrack, setCurrentTrack] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [title, setTitle] = useState();
@@ -39,7 +42,6 @@ function App() {
   const [selectedSong, setSelectedSong] = useState();
   const [isAlbum, setIsAlbum] = useState(false);
   const [isArtist, setIsArtist] = useState(true);
-
   const [onSearch, setOnSearch] = useState();
   const { token } = useContext(authContext);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -47,11 +49,15 @@ function App() {
   const [isAlbumTrackList, setIsAlBumTrackList] = useState(false);
   const [isArtistTrackList, setIsArtistTrackList] = useState(false);
   const [playLists, setPlayLists] = useState([]);
+  const [myPlaylist, setMyPlaylist] = useState(localStorage.getItem('myPlaylist') ? JSON.parse(localStorage.getItem('myPlaylist')) : []);
+  const [isPlaylist, setIsPlaylist] = useState(false);
+
   useEffect(() => {
     if (!token) {
       history.push('/');
     }
   }, [token]);
+
   useEffect(() => {
     const getDatas = async () => {
       const [resSongs, resArtists, resAlbums, resPlayLists] = await Promise.all([
@@ -68,6 +74,15 @@ function App() {
     };
     getDatas();
   }, []);
+  useEffect(() => {
+    if (!isLoading) {
+      setOnListen(item[0].s3_link);
+      setTitle(item[0].title);
+      setAlbum(item[0].album.title);
+      setPicture(item[0].album.picture);
+      setArtist(item[0].artist.name);
+    }
+  }, [isLoading]);
 
   useEffect(() => {
     setIsAlbum(false);
@@ -95,9 +110,11 @@ function App() {
   const handleSideBar = () => {
     isSideBarVisible ? setisSideBarVisible(false) : setisSideBarVisible(true);
     isSideBarVisible
-      ? setSideBarClass('flex fixed  h-screen  flex-col  900:col-start-5 900:col-end-6 900:row-start-1 900:row-span-6 bg-bgPlaybar shadow-playbar')
+      ? setSideBarClass(
+          'flex fixed  h-screen  flex-col  900:col-start-5 900:col-end-6 900:row-start-1 900:row-span-6 bg-bgPlaybar shadow-playbar overflow-y-auto',
+        )
       : setSideBarClass(
-          'flex fixed z-50 flex-col h-screen w-screen  top-0 right-0 900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-bgPlaybar  shadow-playbar',
+          'flex fixed z-50 flex-col h-screen w-screen  top-0 right-0 900:col-start-4 900:col-end-5 900:row-start-1 900:row-span-6 bg-bgPlaybar  shadow-playbar overflow-y-auto',
         );
   };
   const handleAdmin = () => {
@@ -107,6 +124,7 @@ function App() {
       setIsAdmin(true);
     }
   };
+
   return (
     <div
       className="flex align-middle justify-center pb-24"
@@ -119,26 +137,39 @@ function App() {
 
       <div className="grid mx-5 gap-5  900:gap-6 grid-cols-mobile grid-rows-mobile 900:grid-cols-desktop 900:ml-6 900:mr-0 900:grid-rows-desktop">
         <Header handleSideBar={handleSideBar} setOnSearch={setOnSearch} isSideBarVisible={isSideBarVisible} />
-
         <div className="col-start-1 col-end-3 row-start-2 900:col-end-4 rounded-20 bg-black bg-opacity-10 shadow-layoutContainer overflow-x-auto">
           {/* The Main Component GoHere */}
           {!isLoading && (
             <Carousel
-              setIsAlBumTrackList={setIsAlBumTrackList}
-              isAlbumTrackList={isAlbumTrackList}
-              setIsArtistTrackList={setIsArtistTrackList}
-              isArtistTrackList={isArtistTrackList}
+              isRecentAddsActive={isRecentAddsActive}
+              setIsRecentAddsActive={setIsRecentAddsActive}
               setSelectedSong={setSelectedSong}
+              setIsAlBumTrackList={setIsAlBumTrackList}
+              setIsArtistTrackList={setIsArtistTrackList}
               setCurrentTrack={setCurrentTrack}
+              isAlbumTrackList={isAlbumTrackList}
+              isArtistTrackList={isArtistTrackList}
               onSearch={onSearch}
               item={item}
               albums={albums}
               artists={artists}
+              setMyPlaylist={setMyPlaylist}
+              isPlaylist={isPlaylist}
+              setIsPlaylist={setIsPlaylist}
             />
           )}
         </div>
-        <div className=" overflow-y-auto col-start-1 col-end-3 row-start-3 row-end-4 900:col-end-2 900:row-end-5 rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
-          {!isLoading && <PlaylistSwitch playLists={playLists} item={item} setCurrentTrack={setCurrentTrack} currentTrack={currentTrack} />}
+        <div className=" overflow-y-auto sidebar col-start-1 col-end-3 row-start-3 row-end-4 900:col-end-2 900:row-end-5 rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
+          {!isLoading && (
+            <PlaylistSwitch
+              setSelectedSong={setSelectedSong}
+              playLists={playLists}
+              item={item}
+              setCurrentTrack={setCurrentTrack}
+              currentTrack={currentTrack}
+              setAddPlaylist={setMyPlaylist}
+            />
+          )}
           {/* />*/}
         </div>
         <div className="overflow-hidden col-start-1 col-end-2 row-start-4 row-end-5 gap-x-1 900:col-start-2 900:col-end-3 900:row-start-3 900:row-end-4  rounded-20 bg-black bg-opacity-20 shadow-layoutContainer">
@@ -166,13 +197,25 @@ function App() {
           )}
         </div>
         <div className="col-start-1 col-end-3 row-start-5 row-end-6 rounded-20 900:col-start-2 900:col-end-4 900:row-start-4 900:row-end-5 bg-black bg-opacity-20 shadow-layoutContainer">
-          {/* MixtapesComponent GoHere */}
+          {myPlaylist && (
+            <MyPlaylist
+              myPlaylist={myPlaylist}
+              setMyPlaylist={setMyPlaylist}
+              setIsPlaylist={setIsPlaylist}
+              setSelectedSong={setSelectedSong}
+              item={item}
+              setOnListen={setOnListen}
+              setCurrentTrack={setCurrentTrack}
+            />
+          )}
         </div>
+
         <div className="col-start-1 col-end-3 row-start-6 row-end-7 rounded-20 900:col-end-4 900:row-start-5 900:row-end-6 bg-black bg-opacity-20 shadow-layoutContainer mb-4">
           <Contact />
         </div>
         {isSideBarVisible && (
           <SideBar
+            playLists={playLists}
             handleAdmin={handleAdmin}
             sideBarClass={sideBarClass}
             albums={albums}
@@ -208,12 +251,17 @@ function App() {
           isArtist={isArtist}
           isArtistTrackList={isArtistTrackList}
           isAlbumTrackList={isAlbumTrackList}
+          isPlaylist={isPlaylist}
+          myPlaylist={myPlaylist}
+          isRecentAddsActive={isRecentAddsActive}
+          setSelectedSong={setSelectedSong}
         />
       ) : (
         ''
       )}
       {!isLoading && width > 900 ? (
         <Playbar
+          isRecentAddsActive={isRecentAddsActive}
           isAlbumTrackList={isAlbumTrackList}
           isArtistTrackList={isArtistTrackList}
           onListen={onListen}
@@ -239,6 +287,9 @@ function App() {
           selectedSong={selectedSong}
           isAlbum={isAlbum}
           isArtist={isArtist}
+          isPlaylist={isPlaylist}
+          myPlaylist={myPlaylist}
+          setSelectedSong={setSelectedSong}
         />
       ) : (
         ''
@@ -269,6 +320,10 @@ function App() {
           isArtistTrackList={isArtistTrackList}
           isArtist={isArtist}
           isAlbumTrackList={isAlbumTrackList}
+          isPlaylist={isPlaylist}
+          myPlaylist={myPlaylist}
+          isRecentAddsActive={isRecentAddsActive}
+          setSelectedSong={setSelectedSong}
         />
       ) : (
         ''

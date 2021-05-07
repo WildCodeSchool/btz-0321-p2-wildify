@@ -19,9 +19,10 @@ export default function AdminPlayer({ item }) {
   }, [onListen]);
 
   return (
-    <div className="flex flex-col items-center justify-center align-middle">
-      <h1>Track Preview (API RESULTS ):</h1>
-      <select onChange={handleChange} name="Track" className="text-white bg-black bg-opacity-50 my-4 h-11 w-48 rounded-xl " id="">
+    <div className="flex flex-col">
+      <h1 className="text-white font-scada text-2xl font-bold">Track Preview</h1>
+      <h2 className=" mt-2 text-white font-scada text-lg">Select track</h2>
+      <select onChange={handleChange} name="Track" className="px-3 py-2 bg-white bg-opacity-10 rounded-lg shadow-input2" id="">
         {item.map((song, index) => {
           return (
             <option key={index} value={song.s3_link}>
@@ -30,7 +31,7 @@ export default function AdminPlayer({ item }) {
           );
         })}
       </select>
-      <audio id="audio" ref={audioRef} controls className="w-72">
+      <audio id="audio" ref={audioRef} controls className="mt-5 w-full shadow-input2 rounded-3xl">
         <source src={onListen} type="audio/mp3"></source>
         <track default kind="captions" />
       </audio>

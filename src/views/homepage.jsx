@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import authContext from '../context/authContext';
 import PropTypes from 'prop-types';
-import Homebg from '../img/BackGrounds/Acceuil.png';
+import Homebg from '../img/BackGrounds/Acceuil.webp';
 import GHicon from '../img/Icons/github.png';
 import WCSlogo from '../img/LogoWild.png';
 

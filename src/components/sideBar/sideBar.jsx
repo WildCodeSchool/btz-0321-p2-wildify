@@ -1,147 +1,122 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import ReturnBtn from '../../img/PlayList/ReturnButton.svg';
 import useWindowDimensions from '../../Hooks/useWindowDimension';
 import Formbg from '../../img/BackGrounds/BgSideBarBG5.png';
 import WCSlogo from '../../img/LogoWild.png';
+import authContext from '../../context/authContext';
+import axios from 'axios';
+import Popup from './popup';
+import Check from '../../img/Icons/Check.png';
 
-function SideBar({ sideBarClass, albums, handleSideBar, handleAdmin }) {
+function SideBar({ sideBarClass, handleSideBar, handleAdmin }) {
   const [imgUrl, setImgUrl] = useState();
-  const [albumIndex, setAlbumindex] = useState();
   const { width } = useWindowDimensions();
+  const { token } = useContext(authContext);
   const [selectFile, setSelectFile] = useState();
+  const [uploadOk, setUploadOk] = useState(false);
+  const [popup, setPopup] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const changeFileHandler = (event) => {
     setSelectFile(event.target.files[0]);
+    setUploadOk(true);
   };
 
-  const handleSubmission = () => {
-    let formData = new FormData();
-    formData.append('file', selectFile);
-    fetch('https://bazify-backend.basile.vernouillet.dev/api/v1/songs', {
-      method: 'POST',
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        result;
-      })
-      .catch((error) => {
-        error;
-      });
-  };
-
-  const handlePictureSubmission = (e) => {
+  const handleSubmission = async (e) => {
     e.preventDefault();
-    fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/albums/${albums[albumIndex].id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ picture: imgUrl }),
-    }).then((res) => res);
-  };
-
-  const handleChange = (e) => {
-    setImgUrl(e.target.value);
-  };
-
-  const handlePictureChange = (e) => {
-    setAlbumindex(e.target.value);
+    const formData = new FormData();
+    formData.append('file', selectFile);
+    await axios
+      .post('https://bazify-backend.basile.vernouillet.dev/api/v1/songs', formData, {
+        headers: { Authorization: `Bearer ${token}` },
+        onUploadProgress: (p) => {
+          setProgress((p.loaded / p.total) * 100);
+        },
+      })
+      .then((res) => {
+        fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/albums/${res.data.albumId}`, {
+          method: 'PUT',
+          headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ picture: imgUrl }),
+        }).then((res) => res, setPopup(true));
+      });
   };
 
   return (
     <div className={sideBarClass}>
+      {popup && (
+        <div className="absolute bottom-24 h-screen w-screen 900:w-full 900:h-full z-50 flex items-end align-middle justify-center">
+          <Popup />
+        </div>
+      )}
       <div
-        className="flex flex-col justify-between w-full h-full py-2 px-6 900:px-6"
+        className="flex flex-col justify-between w-full h-full py-2 px-6 900:px-8"
         style={{
           backgroundImage: `url(${Formbg})`,
           backgroundSize: `cover`,
           backgroundRepeat: `no-repeat`,
           backgroundPosition: `top`,
         }}>
-        <div className="mt-5 w-full flex flex-row-reverse">
-          <div className="mt-2 flex items-start">
-            {width < 768 ? (
-              <button className="focus:outline-none" onClick={handleSideBar}>
-                <img src={ReturnBtn} alt="" />
+        <div className="flex flex-col">
+          <div className="mt-5 w-full flex flex-row-reverse">
+            <div className="mt-2 flex items-start">
+              {width < 768 ? (
+                <button className="focus:outline-none" onClick={handleSideBar}>
+                  <img src={ReturnBtn} alt="" />
+                </button>
+              ) : (
+                ''
+              )}
+            </div>
+            <form className="w-full flex  flex-col">
+              <h1 className="mt-4 mr-10 font-scada text-white text-4xl 900:text-3xl 900:mt-0">Share your Favorits songs with us</h1>
+              <h1 className="mt-8  font-scada text-white text-2xl 900:text-xl">Upload Music</h1>
+              <label
+                className="mt-3 flex text-ls items-center hover:text-mainColor hover:shadow-input focus:outline-none p-4 900:p-2  900:px-4 text-white bg-bgPlaybar rounded-lg shadow-input2"
+                htmlFor="file">
+                <div className="w-full items-center flex justify-between">
+                  <div className="font-cuprum flex items-center">Upload Your music files</div>
+                  {uploadOk && <img className="w-6 h-6" src={Check} alt="Check"></img>}
+                </div>
+              </label>
+              <input
+                style={{
+                  width: `0.1px`,
+                  height: `0.1px`,
+                  opacity: 0,
+                  overflow: `hidden`,
+                  position: `absolute`,
+                  zIndex: `-1`,
+                }}
+                type="file"
+                id="file"
+                name="file"
+                accept=".mp3"
+                multiple
+                onChange={changeFileHandler}
+              />
+              <h1 className="text-white text-2xl font-scada mt-8 900:text-xl">Import the album image</h1>
+              <input
+                className="mt-3 focus:outline-none p-3  text-white font-cuprum bg-bgPlaybar rounded-xl shadow-input"
+                type="text"
+                onChange={(e) => setImgUrl(e.target.value)}
+                placeholder="Url Album Image...."
+              />
+              <label className=" text-white w-full mt-3 font-scada" htmlFor="">
+                Upload {progress ? Math.floor(progress) : '00'}%{' '}
+              </label>
+              <div className=" bg-white bg-opacity-10 mt-1 h-6 rounded-full shadow-input2">
+                <div style={{ width: `${progress}%` }} className=" h-full bg-mainColor text-center rounded-full"></div>
+              </div>
+              <button
+                className="bg-bgPlaybar shadow-input2 focus:outline-none w-6/12 mt-5 rounded-lg text-sm text-white py-2 p-4 900:p-2  font-cuprum hover:text-mainColor hover:shadow-input"
+                onClick={handleSubmission}>
+                Upload Music
               </button>
-            ) : (
-              ''
-            )}
+            </form>
           </div>
-          <form className="w-full flex  flex-col">
-            <h1 className="font-scada text-white text-2xl">1. Upload Music</h1>
-            <label className="text-white text-lg font-cuprum mt-3" htmlFor="playlist">
-              Select Playlist:
-            </label>
-            <select className="w-full h-10 bg-bgPlaybar shadow-input p-2 focus:outline-none text-white font-cuprum rounded-xl mt-1" id="">
-              <option className="" value="1">
-                Playlist 1
-              </option>
-              <option className="" value="2">
-                Playlist 2
-              </option>
-              <option className="" value="3">
-                Playlist 3
-              </option>
-              <option className="" value="4">
-                Playlist 4
-              </option>
-              <option className="" value="5">
-                Playlist 5
-              </option>
-            </select>
-
-            <label className="text-white text-lg font-cuprum mt-5" htmlFor="upload">
-              Select Music
-            </label>
-            <input
-              className="w-full h-12 p-2  shadow-input2 focus:outline-none text-white font-cuprum rounded-xl customFiles "
-              type="file"
-              id="file"
-              name="file"
-              accept=".mp3"
-              multiple
-              onChange={changeFileHandler}
-            />
-            <button
-              className="bg-bgPlaybar shadow-input2 focus:outline-none w-5/12 mt-5 rounded-xl text-sm text-white py-1 font-scada hover:text-mainColor hover:shadow-input"
-              onClick={handleSubmission}>
-              Upload Music
-            </button>
-          </form>
         </div>
-        <form className="mb-28 900:mb-20 flex flex-col">
-          <h1 className="font-scada text-white text-2xl">2. Upload image</h1>
-          <div className=" w-full flex flex-col mt-3">
-            <label className="w-full text-white text-lg font-cuprum mt-2" htmlFor="Picture">
-              Select Album
-            </label>
-            <select
-              className="w-full h-10 bg-bgPlaybar mt-1 shadow-input focus:outline-none text-white font-cuprum p-2 rounded-xl"
-              onBlur={handlePictureChange}>
-              {albums.map((album, key) => {
-                return (
-                  <option value={key} id={album.id} key={album.id}>
-                    {album.title}
-                  </option>
-                );
-              })}
-            </select>
-            <label className="w-full text-white text-lg font-cuprum mt-3" htmlFor="Picture">
-              Album image Url :
-            </label>
-            <input
-              onChange={handleChange}
-              className="w-full h-10 bg-bgPlaybar shadow-input p-4 focus:outline-none text-white font-cuprum rounded-xl mt-1"
-              type="text"
-              name="Picture"></input>
-            <button
-              className="bg-bgPlaybar shadow-input2 focus:outline-none w-5/12 mt-5 rounded-xl text-sm text-white py-1 font-scada hover:text-mainColor hover:shadow-input"
-              onClick={handlePictureSubmission}>
-              Upload Image
-            </button>
-          </div>
-        </form>
         <div className=" flex w-full justify-between items-end ">
           <div className="h-16 900:h-14">
             <h2 className="font-scada font-bold text-white text-xl 900:text-sm">Made by Happy Wilders</h2>
