@@ -16,9 +16,9 @@ function ListPlaylistOnClick({ isLoading, Return, setSelectedSong, myPlaylist, s
   };
   return (
     <div className="p-6  900:p-10 ">
-      <h1 className="text-white font-scada text-3xl font-bold">{playlistChoice}</h1>
-      <div className="flex  justify-between items-center">
-        <button onClick={Return} className="h-3 w-3   focus:outline-none transform hover:scale-110">
+      <div className="flex mb-2 justify-between items-center">
+        <h1 className="text-white font-scada text-3xl font-bold">{playlistChoice}</h1>
+        <button onClick={Return} className="h-3 w-3 mb-2 focus:outline-none transform hover:scale-110">
           <img src={ReturnBtn} alt="ReturnButton" />
         </button>
       </div>
@@ -33,20 +33,20 @@ function ListPlaylistOnClick({ isLoading, Return, setSelectedSong, myPlaylist, s
               className="focus:outline-none mb-4 text-white flex justify-between text-left border-b w-full hover:border-mainColor hover:text-mainColor">
               <div className="flex pointer-events-none flex-wrap items-center text-white mt-4  border-white pr-3 mb-2 hover:border-mainColor hover:text-mainColor transform hover:scale-105">
                 <div className="font-scada text-xs font-bold mr-2 900:text-base">{song.title} -</div>
-                <div className="font-scada text-xs ">{song.artist.name}</div>
+                <div className="font-scada text-xs">{song.artist.name}</div>
               </div>
               <div className="flex">
                 <button
-                  className="focus:outline-none w-10 flex justify-end items-end pb-4 pr-2 text-white transform hover:scale-125"
+                  className="focus:outline-none w-10 flex justify-end items-end pb-4 pr-1 text-white transform hover:scale-125"
                   value={JSON.stringify(song)}
                   onClick={handleClick}>
-                  <img className="pointer-events-none w-6 h-6" src={PlayerBtn} alt="" />
+                  <img className="pointer-events-none 900:w-5 w-6 900:h-5 h-6" src={PlayerBtn} alt="" />
                 </button>
                 <button
                   value={JSON.stringify(song)}
                   className="focus:outline-none w-10 flex justify-end items-end pb-4 pr-2 text-white transform hover:scale-125"
                   onClick={handleClick2}>
-                  <img src={AddPl} className="pointer-events-none w-6 h-6" alt="" />
+                  <img src={AddPl} className="pointer-events-none 900:w-5 w-6 900:h-5 h-6" alt="" />
                 </button>
               </div>
             </div>
