@@ -15,7 +15,9 @@ function PlaylistSwitch({ setCurrentTrack, playLists, setSelectedSong, setAddPla
   useEffect(() => {
     const getData = async () => {
       const [resPlaylist] = await Promise.all([
-        axios.get(`https://bazify-backend.basile.vernouillet.dev/api/v1/playlists/${playlistId}`, { headers: { Authorization: `Bearer ${token}` } }),
+        axios.get(`https://bazify-backend.basile.vernouillet.dev/api/v1/playlists/${JSON.parse(playlistId).id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        }),
       ]);
 
       setMyPlaylist(resPlaylist.data);
@@ -26,8 +28,10 @@ function PlaylistSwitch({ setCurrentTrack, playLists, setSelectedSong, setAddPla
 
   const handleClick = (e) => {
     setIsChange(false);
-    setPlaylistChoice(e.target.value);
+    setPlaylistChoice(JSON.parse(e.target.value).title);
+    console.log(playlistChoice);
     setPlaylistId(e.target.value);
+    console.log(e.target.value);
   };
 
   const Return = () => {
@@ -48,6 +52,7 @@ function PlaylistSwitch({ setCurrentTrack, playLists, setSelectedSong, setAddPla
           />
         ) : (
           <ListPlaylistOnClick
+            playlistChoice={playlistChoice}
             setAddPlaylist={setAddPlaylist}
             setSelectedSong={setSelectedSong}
             isLoading={isLoading}

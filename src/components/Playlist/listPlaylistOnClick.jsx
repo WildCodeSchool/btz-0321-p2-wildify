@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReturnBtn from '../../img/PlayList/ReturnButton.svg';
 
-function ListPlaylistOnClick({ isLoading, Return, setSelectedSong, myPlaylist, setAddPlaylist }) {
+function ListPlaylistOnClick({ isLoading, Return, setSelectedSong, myPlaylist, setAddPlaylist, playlistChoice }) {
   const handleClick = (e) => {
     setSelectedSong(JSON.parse(e.target.value));
   };
@@ -14,6 +14,7 @@ function ListPlaylistOnClick({ isLoading, Return, setSelectedSong, myPlaylist, s
   };
   return (
     <div className="p-6  900:p-10 ">
+      <h1 className="text-white font-scada text-3xl font-bold">{playlistChoice}</h1>
       <div className="flex  justify-between items-center">
         <button onClick={Return} className="h-3 w-3   focus:outline-none transform hover:scale-110">
           <img src={ReturnBtn} alt="ReturnButton" />
