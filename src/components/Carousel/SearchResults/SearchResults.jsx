@@ -57,5 +57,4 @@ SearchResults.propTypes = {
   item: PropTypes.array.isRequired,
   onSearch: PropTypes.string.isRequired,
   setSelectedSong: PropTypes.func.isRequired,
-  audio: PropTypes.bool.isRequired,
 };
