@@ -9,7 +9,7 @@ function ListPlaylist({ handleClick, playLists }) {
       {playLists.map((playlist, key) => (
         <button
           onClick={handleClick}
-          value={playlist.id}
+          value={JSON.stringify(playlist)}
           key={key}
           type="button"
           className="rounded-3xl w-full flex 900:mt-5 mt-4 items-center p-2 bg-black bg-opacity-20 shadow-searchbar focus:outline-none cursor-pointer hover:border-mainColor hover:text-mainColor transform hover:scale-105">
