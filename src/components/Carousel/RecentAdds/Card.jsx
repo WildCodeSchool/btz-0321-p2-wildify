@@ -18,7 +18,6 @@ export default function Card({ itemReversed, isDragging, setIsRecentAddsActive, 
     setIsRecentAddsActive(true);
   };
 
-  itemReversed.reverse();
   useEffect(() => {
     if (isDragging) {
       setPointerEvent('pointer-events-none');

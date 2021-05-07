@@ -5,10 +5,11 @@ import useScrollBox from '../scroll';
 import '../scrollbarwebkit.css';
 
 function RecentAdds({ item, setSelectedSong, setMyPlaylist, setIsPlaylist, setIsRecentAddsActive }) {
-  const itemReversed = [...item];
+  let itemReversed = [...item];
   const scrollWrapperRef = useRef();
   const { isDragging } = useScrollBox(scrollWrapperRef);
-  itemReversed.reverse();
+  itemReversed = itemReversed.reverse();
+
   return (
     <div
       ref={scrollWrapperRef}

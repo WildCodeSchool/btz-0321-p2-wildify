@@ -14,14 +14,16 @@ function PlaylistSwitch({ setCurrentTrack, playLists, setSelectedSong, setAddPla
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const getData = async () => {
-      const [resPlaylist] = await Promise.all([
-        axios.get(`https://bazify-backend.basile.vernouillet.dev/api/v1/playlists/${JSON.parse(playlistId).id}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        }),
-      ]);
+      if (playlistId) {
+        const [resPlaylist] = await Promise.all([
+          axios.get(`https://bazify-backend.basile.vernouillet.dev/api/v1/playlists/${JSON.parse(playlistId).id}`, {
+            headers: { Authorization: `Bearer ${token}` },
+          }),
+        ]);
 
-      setMyPlaylist(resPlaylist.data);
-      setIsLoading(false);
+        setMyPlaylist(resPlaylist.data);
+        setIsLoading(false);
+      }
     };
     getData();
   }, [playlistId]);
