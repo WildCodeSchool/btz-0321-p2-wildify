@@ -15,7 +15,7 @@ function Tracklist({ setIsPlaylist, setCurrentTrack, myPlaylist }) {
             return (
               <button
                 onClick={handleClick2}
-                className="border-b mt-3 pb-1 w-full hover:text-green-500 hover:border-mainColor text-left border-white"
+                className="border-b mt-3 pb-1 w-full focus:outline-none hover:text-green-500 hover:border-mainColor text-left border-white"
                 value={index}
                 key={index}>
                 <div className="pointer-events-none flex items-center">
