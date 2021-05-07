@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReturnBtn from '../../img/PlayList/ReturnButton.svg';
+import PlayerBtn from '../../img/Icons/PlayerButton.svg';
+import AddPl from '../../img/Icons/AddPl.png';
 
 function ListPlaylistOnClick({ isLoading, Return, setSelectedSong, myPlaylist, setAddPlaylist }) {
   const handleClick = (e) => {
@@ -23,16 +25,26 @@ function ListPlaylistOnClick({ isLoading, Return, setSelectedSong, myPlaylist, s
         myPlaylist &&
         myPlaylist.songs.map((song, index) => {
           return (
-            <div key={index} type="button" value={JSON.stringify(song)} className="bg  p-1 w-full focus:outline-none">
-              <div className="flex pointer-events-none flex-wrap items-center text-white mt-4 border-b border-gra border-white pb-1 mb-2 hover:border-mainColor hover:text-mainColor transform hover:scale-105">
+            <div
+              key={index}
+              type="button"
+              value={JSON.stringify(song)}
+              className="focus:outline-none mb-4 text-white flex justify-between text-left border-b w-full hover:border-mainColor hover:text-mainColor">
+              <div className="flex pointer-events-none flex-wrap items-center text-white mt-4  border-white pr-3 mb-2 hover:border-mainColor hover:text-mainColor transform hover:scale-105">
                 <div className="font-scada text-xs font-bold mr-2 900:text-base">{song.title} -</div>
                 <div className="font-scada text-xs ">{song.artist.name}</div>
               </div>
-              <button value={JSON.stringify(song)} onClick={handleClick}>
-                PLAY
+              <button
+                className="focus:outline-none w-10 flex justify-end items-end pb-4 pr-2 text-white transform hover:scale-125"
+                value={JSON.stringify(song)}
+                onClick={handleClick}>
+                <img className="pointer-events-none w-6 h-6" src={PlayerBtn} alt="" />
               </button>
-              <button value={JSON.stringify(song)} onClick={handleClick2}>
-                ADD
+              <button
+                value={JSON.stringify(song)}
+                className="focus:outline-none w-10 flex justify-end items-end pb-4 pr-2 text-white transform hover:scale-125"
+                onClick={handleClick2}>
+                <img src={AddPl} className="pointer-events-none w-6 h-6" alt="" />
               </button>
             </div>
           );
