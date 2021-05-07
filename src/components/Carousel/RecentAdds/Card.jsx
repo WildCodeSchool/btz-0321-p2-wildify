@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import PlayerButton from '../../../img/Icons/PlayerButton.svg';
 import Defaultimg from '../../../img/defaultPicture.png';
 import AddPl from '../../../img/Icons/AddPl.png';
 
-export default function Card({ itemReversed, setIsClicked, isDragging, setIsRecentAddsActive, setSelectedSong, setIsPlaylist, setMyPlaylist }) {
-  const [pointerEvent, setPointerEvent] = useState();
+export default function Card({ itemReversed, setIsClicked, setIsRecentAddsActive, setSelectedSong, setIsPlaylist, setMyPlaylist }) {
   const handleClick = (e) => {
     let result = localStorage.getItem('myPlaylist') ? JSON.parse(localStorage.getItem('myPlaylist')) : [];
     result.push(JSON.parse(e.target.value));
@@ -25,7 +24,7 @@ export default function Card({ itemReversed, setIsClicked, isDragging, setIsRece
   };
 
   return (
-    <div className={`${pointerEvent}h-full flex flex-row justify-end`}>
+    <div className="h-full flex flex-row justify-end">
       {itemReversed.map((song, index) => (
         <div
           key={index}
@@ -73,4 +72,5 @@ Card.propTypes = {
   setSelectedSong: PropTypes.func.isRequired,
   setIsPlaylist: PropTypes.func.isRequired,
   isDragging: PropTypes.bool.isRequired,
+  setIsClicked: PropTypes.func.isRequired,
 };
