@@ -22,7 +22,7 @@ export default function AdminPlayer({ item }) {
     <div className="flex flex-col">
       <h1 className="text-white font-scada text-2xl font-bold">Track Preview</h1>
       <h2 className=" mt-2 text-white font-scada text-lg">Select track</h2>
-      <select onBlur={handleChange} name="Track" className="px-3 py-2 bg-white bg-opacity-10 rounded-lg shadow-input2" id="">
+      <select onChange={handleChange} name="Track" className="px-3 py-2 bg-white bg-opacity-10 rounded-lg shadow-input2" id="">
         {item.map((song, index) => {
           return (
             <option key={index} value={song.s3_link}>
