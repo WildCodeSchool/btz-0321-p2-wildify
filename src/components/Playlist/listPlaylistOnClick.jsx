@@ -35,18 +35,20 @@ function ListPlaylistOnClick({ isLoading, Return, setSelectedSong, myPlaylist, s
                 <div className="font-scada text-xs font-bold mr-2 900:text-base">{song.title} -</div>
                 <div className="font-scada text-xs ">{song.artist.name}</div>
               </div>
-              <button
-                className="focus:outline-none w-10 flex justify-end items-end pb-4 pr-2 text-white transform hover:scale-125"
-                value={JSON.stringify(song)}
-                onClick={handleClick}>
-                <img className="pointer-events-none w-6 h-6" src={PlayerBtn} alt="" />
-              </button>
-              <button
-                value={JSON.stringify(song)}
-                className="focus:outline-none w-10 flex justify-end items-end pb-4 pr-2 text-white transform hover:scale-125"
-                onClick={handleClick2}>
-                <img src={AddPl} className="pointer-events-none w-6 h-6" alt="" />
-              </button>
+              <div className="flex">
+                <button
+                  className="focus:outline-none w-10 flex justify-end items-end pb-4 pr-2 text-white transform hover:scale-125"
+                  value={JSON.stringify(song)}
+                  onClick={handleClick}>
+                  <img className="pointer-events-none w-6 h-6" src={PlayerBtn} alt="" />
+                </button>
+                <button
+                  value={JSON.stringify(song)}
+                  className="focus:outline-none w-10 flex justify-end items-end pb-4 pr-2 text-white transform hover:scale-125"
+                  onClick={handleClick2}>
+                  <img src={AddPl} className="pointer-events-none w-6 h-6" alt="" />
+                </button>
+              </div>
             </div>
           );
         })}
