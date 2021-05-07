@@ -168,6 +168,7 @@ function App() {
               item={item}
               setCurrentTrack={setCurrentTrack}
               currentTrack={currentTrack}
+              setAddPlaylist={setMyPlaylist}
             />
           )}
           {/* />*/}
