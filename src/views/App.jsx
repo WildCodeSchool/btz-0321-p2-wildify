@@ -43,7 +43,6 @@ function App() {
   const [isAlbum, setIsAlbum] = useState(false);
   const [isArtist, setIsArtist] = useState(true);
   const [onSearch, setOnSearch] = useState();
-
   const { token } = useContext(authContext);
   const [isAdmin, setIsAdmin] = useState(false);
   const history = useHistory();

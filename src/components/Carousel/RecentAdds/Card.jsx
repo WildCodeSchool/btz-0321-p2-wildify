@@ -4,7 +4,7 @@ import PlayerButton from '../../../img/Icons/PlayerButton.svg';
 import Defaultimg from '../../../img/defaultPicture.png';
 import AddPl from '../../../img/Icons/AddPl.png';
 
-export default function Card({ itemReversed, isDragging, setIsRecentAddsActive, setSelectedSong, setIsPlaylist, setMyPlaylist }) {
+export default function Card({ itemReversed, setIsClicked, isDragging, setIsRecentAddsActive, setSelectedSong, setIsPlaylist, setMyPlaylist }) {
   const [pointerEvent, setPointerEvent] = useState();
   const handleClick = (e) => {
     let result = localStorage.getItem('myPlaylist') ? JSON.parse(localStorage.getItem('myPlaylist')) : [];
@@ -13,9 +13,15 @@ export default function Card({ itemReversed, isDragging, setIsRecentAddsActive, 
     localStorage.setItem('myPlaylist', JSON.stringify(result));
   };
   const handleClick2 = (e) => {
-    setIsPlaylist(false);
-    setSelectedSong(JSON.parse(e.target.value));
-    setIsRecentAddsActive(true);
+    e.preventDefault();
+    if (e.type === 'mousedown') {
+      setIsPlaylist(false);
+      setSelectedSong(JSON.parse(e.target.value));
+      setIsRecentAddsActive(true);
+      setIsClicked(true);
+    } else if (e.type === 'mouseup') {
+      setIsClicked(false);
+    }
   };
 
   useEffect(() => {
@@ -55,7 +61,8 @@ export default function Card({ itemReversed, isDragging, setIsRecentAddsActive, 
             <div className="flex">
               <button
                 value={JSON.stringify(song)}
-                onClick={handleClick2}
+                onMouseUp={handleClick2}
+                onMouseDown={handleClick2}
                 className="flex items-center w-full focus:outline-none m-1 transform hover:scale-110">
                 <img className="pointer-events-none" src={PlayerButton} alt="" />
               </button>
