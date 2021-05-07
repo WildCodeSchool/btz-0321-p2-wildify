@@ -69,10 +69,10 @@ function SideBar({ sideBarClass, handleSideBar, handleAdmin }) {
               <h1 className="mt-4 mr-10 font-scada text-white text-4xl 900:text-3xl 900:mt-0">Share your Favorits songs with us</h1>
               <h1 className="mt-8  font-scada text-white text-2xl 900:text-xl">Upload Music</h1>
               <label
-                className="mt-3 flex text-ls items-center hover:text-mainColor hover:shadow-input focus:outline-none p-4 900:p-2  900:px-4 text-white font-cuprum bg-bgPlaybar rounded-lg shadow-input2"
+                className="mt-3 flex text-ls items-center hover:text-mainColor hover:shadow-input focus:outline-none p-4 900:p-2  900:px-4 text-white bg-bgPlaybar rounded-lg shadow-input2"
                 htmlFor="file">
                 <div className="w-full items-center flex justify-between">
-                  <div className="flex items-center">Upload Your music files</div>
+                  <div className="font-cuprum flex items-center">Upload Your music files</div>
                   {uploadOk && <img className="w-6 h-6" src={Check} alt="Check"></img>}
                 </div>
               </label>
@@ -92,7 +92,7 @@ function SideBar({ sideBarClass, handleSideBar, handleAdmin }) {
                 multiple
                 onChange={changeFileHandler}
               />
-              <h1 className="text-white text-2xl font-cuprum mt-8 900:text-xl">Import the album image</h1>
+              <h1 className="text-white text-2xl font-scada mt-8 900:text-xl">Import the album image</h1>
               <input
                 className="mt-3 focus:outline-none p-3  text-white font-cuprum bg-bgPlaybar rounded-xl shadow-input"
                 type="text"
@@ -100,7 +100,7 @@ function SideBar({ sideBarClass, handleSideBar, handleAdmin }) {
                 placeholder="Url Album Image...."
               />
               <button
-                className="bg-bgPlaybar shadow-input2 focus:outline-none w-6/12 mt-5 rounded-xl text-sm text-white py-2 font-scada hover:text-mainColor hover:shadow-input"
+                className="bg-bgPlaybar shadow-input2 focus:outline-none w-6/12 mt-5 rounded-lg text-sm text-white py-2 p-4 900:p-2  font-cuprum hover:text-mainColor hover:shadow-input"
                 onClick={handleSubmission}>
                 Upload Music
               </button>

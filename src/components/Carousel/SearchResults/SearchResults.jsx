@@ -25,7 +25,7 @@ export default function SearchResults({ item, onSearch, setSelectedSong }) {
     <div className="w-full h-full  py-2 pl-2 pr-4 900:px-8">
       <ul>
         {isNoResult ? (
-          <h1 className="font-scada mr-2  font-bold opacity-10 text-4xl text-white">No Result...</h1>
+          <h1 className="font-scada mr-2 font-bold opacity-10 text-4xl text-white">No Result...</h1>
         ) : (
           item
             .filter(
