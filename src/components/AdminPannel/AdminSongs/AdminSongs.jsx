@@ -46,7 +46,7 @@ export default function AdminSongs({ item, albums, myPlayList, artists }) {
             <input
               onChange={(e) => setImgUrl(e.target.value)}
               className=" px-3 py-2 bg-white bg-opacity-10 rounded-lg shadow-input2"
-              placeholder="Album picture URL"
+              placeholder="Artist picture URL"
               type="text"
             />
             <button
