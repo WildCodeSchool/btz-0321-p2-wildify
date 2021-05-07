@@ -5,7 +5,7 @@ import Defaultimg from '../../img/defaultPicture.png';
 function ListPlaylist({ handleClick, playLists }) {
   return (
     <div className="w-full h-full  p-4 900:p-6">
-      <h1 className="text-white font-scada text-3xl font-bold">WizicPlaylist</h1>
+      <h1 className="text-white font-scada text-3xl font-bold">WizicSelection</h1>
       {playLists.map((playlist, key) => (
         <button
           onClick={handleClick}

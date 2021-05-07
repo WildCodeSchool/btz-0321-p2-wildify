@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import PlayerButton from '../../../img/Icons/PlayerButton.svg';
 import Defaultimg from '../../../img/defaultPicture.png';
 import AddPl from '../../../img/Icons/AddPl.png';
 
-export default function Card({ itemReversed, isDragging, setIsRecentAddsActive, setSelectedSong, setIsPlaylist, setMyPlaylist }) {
-  const [pointerEvent, setPointerEvent] = useState();
+export default function Card({ itemReversed, setIsClicked, setIsRecentAddsActive, setSelectedSong, setIsPlaylist, setMyPlaylist }) {
   const handleClick = (e) => {
     let result = localStorage.getItem('myPlaylist') ? JSON.parse(localStorage.getItem('myPlaylist')) : [];
     result.push(JSON.parse(e.target.value));
@@ -13,21 +12,19 @@ export default function Card({ itemReversed, isDragging, setIsRecentAddsActive, 
     localStorage.setItem('myPlaylist', JSON.stringify(result));
   };
   const handleClick2 = (e) => {
-    setIsPlaylist(false);
-    setSelectedSong(JSON.parse(e.target.value));
-    setIsRecentAddsActive(true);
+    e.preventDefault();
+    if (e.type === 'mousedown') {
+      setIsPlaylist(false);
+      setSelectedSong(JSON.parse(e.target.value));
+      setIsRecentAddsActive(true);
+      setIsClicked(true);
+    } else if (e.type === 'mouseup') {
+      setIsClicked(false);
+    }
   };
 
-  useEffect(() => {
-    if (isDragging) {
-      setPointerEvent('pointer-events-none');
-    } else {
-      setPointerEvent('');
-    }
-  }, [isDragging]);
-
   return (
-    <div className={`${pointerEvent}h-full flex flex-row justify-end`}>
+    <div className="h-full flex flex-row justify-end">
       {itemReversed.map((song, index) => (
         <div
           key={index}
@@ -55,7 +52,8 @@ export default function Card({ itemReversed, isDragging, setIsRecentAddsActive, 
             <div className="flex">
               <button
                 value={JSON.stringify(song)}
-                onClick={handleClick2}
+                onMouseUp={handleClick2}
+                onMouseDown={handleClick2}
                 className="flex items-center w-full focus:outline-none m-1 transform hover:scale-110">
                 <img className="pointer-events-none" src={PlayerButton} alt="" />
               </button>
@@ -74,4 +72,5 @@ Card.propTypes = {
   setSelectedSong: PropTypes.func.isRequired,
   setIsPlaylist: PropTypes.func.isRequired,
   isDragging: PropTypes.bool.isRequired,
+  setIsClicked: PropTypes.func.isRequired,
 };
