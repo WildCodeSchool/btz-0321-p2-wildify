@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import PlayerButton from '../../../img/Icons/PlayerButton.svg';
 import Defaultimg from '../../../img/defaultPicture.png';
 import AddPl from '../../../img/Icons/AddPl.png';
-export default function TrackListCard({ isDragging, items, setIsRecentAddsActive, setIsPlaylist, setSelectedSong, setMyPlaylist }) {
+export default function TrackListCard({ isDragging, items, setIsPlaylist, setSelectedSong, setMyPlaylist }) {
   const [pointerEvent, setPointerEvent] = useState();
   const handleClick = (e) => {
     let result = localStorage.getItem('myPlaylist') ? JSON.parse(localStorage.getItem('myPlaylist')) : [];
@@ -12,9 +12,9 @@ export default function TrackListCard({ isDragging, items, setIsRecentAddsActive
     localStorage.setItem('myPlaylist', JSON.stringify(result));
   };
   const handleClick2 = (e) => {
+    e.preventDefault();
     setIsPlaylist(false);
     setSelectedSong(JSON.parse(e.target.value));
-    setIsRecentAddsActive(true);
   };
 
   useEffect(() => {
@@ -67,7 +67,6 @@ export default function TrackListCard({ isDragging, items, setIsRecentAddsActive
 
 TrackListCard.propTypes = {
   items: PropTypes.array.isRequired,
-  setIsRecentAddsActive: PropTypes.func.isRequired,
   setIsPlaylist: PropTypes.func.isRequired,
   setSelectedSong: PropTypes.func.isRequired,
   setMyPlaylist: PropTypes.func.isRequired,
