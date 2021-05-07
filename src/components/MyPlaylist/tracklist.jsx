@@ -35,7 +35,6 @@ export default Tracklist;
 
 Tracklist.propTypes = {
   myPlaylist: PropTypes.array.isRequired,
-  setMyPlaylist: PropTypes.func.isRequired,
   setIsPlaylist: PropTypes.func.isRequired,
   setCurrentTrack: PropTypes.func.isRequired,
 };

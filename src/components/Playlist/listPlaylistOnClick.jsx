@@ -8,7 +8,6 @@ function ListPlaylistOnClick({ isLoading, Return, setSelectedSong, myPlaylist, s
   };
   const handleClick2 = (e) => {
     let result = localStorage.getItem('myPlaylist') ? JSON.parse(localStorage.getItem('myPlaylist')) : [];
-    console.log(e.target);
     result.push(JSON.parse(e.target.value));
     setAddPlaylist(result);
     localStorage.setItem('myPlaylist', JSON.stringify(result));
@@ -51,5 +50,6 @@ ListPlaylistOnClick.propTypes = {
   playlistChoice: PropTypes.string,
   isLoading: PropTypes.bool.isRequired,
   setSelectedSong: PropTypes.func.isRequired,
-  myPlaylist: PropTypes.array.isRequired,
+  myPlaylist: PropTypes.object,
+  setAddPlaylist: PropTypes.func.isRequired,
 };
