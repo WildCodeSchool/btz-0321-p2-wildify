@@ -31,9 +31,7 @@ function PlaylistSwitch({ setCurrentTrack, playLists, setSelectedSong, setAddPla
   const handleClick = (e) => {
     setIsChange(false);
     setPlaylistChoice(JSON.parse(e.target.value).title);
-    console.log(playlistChoice);
     setPlaylistId(e.target.value);
-    console.log(e.target.value);
   };
 
   const Return = () => {
@@ -61,7 +59,6 @@ function PlaylistSwitch({ setCurrentTrack, playLists, setSelectedSong, setAddPla
             myPlaylist={myPlaylist}
             playlistId={playlistId}
             playLists={playLists}
-            playlistChoice={playlistChoice}
             Return={Return}
             setCurrentTrack={setCurrentTrack}
           />
