@@ -24,14 +24,6 @@ export default function Card({ itemReversed, setIsClicked, isDragging, setIsRece
     }
   };
 
-  useEffect(() => {
-    if (isDragging) {
-      setPointerEvent('pointer-events-none');
-    } else {
-      setPointerEvent('');
-    }
-  }, [isDragging]);
-
   return (
     <div className={`${pointerEvent}h-full flex flex-row justify-end`}>
       {itemReversed.map((song, index) => (
