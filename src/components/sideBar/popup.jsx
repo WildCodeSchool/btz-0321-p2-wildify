@@ -27,7 +27,6 @@ function Popup({ setPopup, getDatas }) {
 export default Popup;
 
 Popup.propTypes = {
-  progress: PropTypes.number,
   getDatas: PropTypes.func.isRequired,
   setPopup: PropTypes.func.isRequired,
 };
