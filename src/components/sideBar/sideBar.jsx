@@ -16,6 +16,7 @@ function SideBar({ sideBarClass, handleSideBar, handleAdmin }) {
   const [selectFile, setSelectFile] = useState();
   const [uploadOk, setUploadOk] = useState(false);
   const [popup, setPopup] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const changeFileHandler = (event) => {
     setSelectFile(event.target.files[0]);
@@ -29,6 +30,9 @@ function SideBar({ sideBarClass, handleSideBar, handleAdmin }) {
     await axios
       .post('https://bazify-backend.basile.vernouillet.dev/api/v1/songs', formData, {
         headers: { Authorization: `Bearer ${token}` },
+        onUploadProgress: (p) => {
+          setProgress((p.loaded / p.total) * 100);
+        },
       })
       .then((res) => {
         fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/albums/${res.data.albumId}`, {
@@ -99,6 +103,12 @@ function SideBar({ sideBarClass, handleSideBar, handleAdmin }) {
                 onChange={(e) => setImgUrl(e.target.value)}
                 placeholder="Url Album Image...."
               />
+              <label className=" text-white w-full   font-scada my-2 py-2" htmlFor="">
+                Upload :{progress ? Math.floor(progress) : '00'}%{' '}
+              </label>
+              <div className=" mt-2 bg-white bg-opacity-10 h-6 rounded-full shadow-input2">
+                <div style={{ width: `${progress}%` }} className=" h-full bg-mainColor text-center rounded-full"></div>
+              </div>
               <button
                 className="bg-bgPlaybar shadow-input2 focus:outline-none w-6/12 mt-5 rounded-xl text-sm text-white py-2 font-scada hover:text-mainColor hover:shadow-input"
                 onClick={handleSubmission}>
