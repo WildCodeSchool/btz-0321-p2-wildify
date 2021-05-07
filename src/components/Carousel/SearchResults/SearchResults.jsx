@@ -22,10 +22,10 @@ export default function SearchResults({ item, onSearch, setSelectedSong }) {
   }, [onSearch]);
 
   return (
-    <div className="w-full h-full py-2 pl-2 pr-4 900:px-8">
+    <div className="w-full h-full  py-2 pl-2 pr-4 900:px-8">
       <ul>
         {isNoResult ? (
-          <h1 className="font-scada mr-2 font-bold opacity-10 text-4xl text-white">No Result...</h1>
+          <h1 className="font-scada mr-2  font-bold opacity-10 text-4xl text-white">No Result...</h1>
         ) : (
           item
             .filter(
@@ -36,7 +36,7 @@ export default function SearchResults({ item, onSearch, setSelectedSong }) {
             )
             .map((song, index) => {
               return (
-                <li className="font-scada text-white border-b-2 pb-1 mb-5 hover:text-mainColor hover:border-mainColor" key={index}>
+                <li className="font-scada  text-white border-b-2 pb-1 mb-5 hover:text-mainColor hover:border-mainColor" key={index}>
                   <button value={JSON.stringify(song)} onClick={handleClick} className="flex">
                     <div className="pointer-events-none flex items-center">
                       <img src={song.album.picture} className="w-8 h-8 mr-3 rounded-full" alt="" />
