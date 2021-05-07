@@ -51,29 +51,35 @@ function App() {
   const [playLists, setPlayLists] = useState([]);
   const [myPlaylist, setMyPlaylist] = useState(localStorage.getItem('myPlaylist') ? JSON.parse(localStorage.getItem('myPlaylist')) : []);
   const [isPlaylist, setIsPlaylist] = useState(false);
-
+  const [popup, setPopup] = useState(false);
   useEffect(() => {
     if (!token) {
       history.push('/');
     }
   }, [token]);
 
+  const getDatas = async () => {
+    const [resSongs, resArtists, resAlbums, resPlayLists] = await Promise.all([
+      axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs', { headers: { Authorization: `Bearer ${token}` } }),
+      axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/artists', { headers: { Authorization: `Bearer ${token}` } }),
+      axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/albums', { headers: { Authorization: `Bearer ${token}` } }),
+      axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/playlists', { headers: { Authorization: `Bearer ${token}` } }),
+    ]);
+    setItem(resSongs.data);
+    setAlbums(resAlbums.data);
+    setArtists(resArtists.data);
+    setPlayLists(resPlayLists.data);
+    setIsLoading(false);
+  };
+
   useEffect(() => {
-    const getDatas = async () => {
-      const [resSongs, resArtists, resAlbums, resPlayLists] = await Promise.all([
-        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs', { headers: { Authorization: `Bearer ${token}` } }),
-        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/artists', { headers: { Authorization: `Bearer ${token}` } }),
-        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/albums', { headers: { Authorization: `Bearer ${token}` } }),
-        axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/playlists', { headers: { Authorization: `Bearer ${token}` } }),
-      ]);
-      setItem(resSongs.data);
-      setAlbums(resAlbums.data);
-      setArtists(resArtists.data);
-      setPlayLists(resPlayLists.data);
-      setIsLoading(false);
-    };
     getDatas();
   }, []);
+
+  useEffect(() => {
+    getDatas();
+  }, [popup]);
+
   useEffect(() => {
     if (!isLoading) {
       setOnListen(item[0].s3_link);
@@ -221,6 +227,9 @@ function App() {
             albums={albums}
             setSideBarClass={setSideBarClass}
             handleSideBar={handleSideBar}
+            popup={popup}
+            setPopup={setPopup}
+            getDatas={getDatas}
           />
         )}
       </div>
