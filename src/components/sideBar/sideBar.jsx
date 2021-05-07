@@ -9,13 +9,13 @@ import axios from 'axios';
 import Popup from './popup';
 import Check from '../../img/Icons/Check.png';
 
-function SideBar({ sideBarClass, handleSideBar, handleAdmin }) {
+function SideBar({ sideBarClass, getDatas, handleSideBar, popup, setPopup, handleAdmin }) {
   const [imgUrl, setImgUrl] = useState();
   const { width } = useWindowDimensions();
   const { token } = useContext(authContext);
   const [selectFile, setSelectFile] = useState();
   const [uploadOk, setUploadOk] = useState(false);
-  const [popup, setPopup] = useState(false);
+
   const [progress, setProgress] = useState(0);
 
   const changeFileHandler = (event) => {
@@ -39,7 +39,7 @@ function SideBar({ sideBarClass, handleSideBar, handleAdmin }) {
           method: 'PUT',
           headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
           body: JSON.stringify({ picture: imgUrl }),
-        }).then((res) => res, setPopup(true));
+        }).then(() => setPopup(true));
       });
   };
 
@@ -47,7 +47,7 @@ function SideBar({ sideBarClass, handleSideBar, handleAdmin }) {
     <div className={sideBarClass}>
       {popup && (
         <div className="absolute bottom-24 h-screen w-screen 900:w-full 900:h-full z-50 flex items-end align-middle justify-center">
-          <Popup />
+          <Popup getDatas={getDatas} setPopup={setPopup} />
         </div>
       )}
       <div
@@ -104,7 +104,7 @@ function SideBar({ sideBarClass, handleSideBar, handleAdmin }) {
                 placeholder="Url Album Image...."
               />
               <label className=" text-white w-full mt-3 font-scada" htmlFor="">
-                Upload {progress ? Math.floor(progress) : '00'}%{' '}
+                Upload {progress ? Math.floor(progress) : '0'}%{' '}
               </label>
               <div className=" bg-white bg-opacity-10 mt-1 h-6 rounded-full shadow-input2">
                 <div style={{ width: `${progress}%` }} className=" h-full bg-mainColor text-center rounded-full"></div>
@@ -139,6 +139,9 @@ SideBar.propTypes = {
   albums: PropTypes.array.isRequired,
   handleSideBar: PropTypes.func.isRequired,
   handleAdmin: PropTypes.func.isRequired,
+  popup: PropTypes.bool.isRequired,
+  setPopup: PropTypes.func.isRequired,
+  getDatas: PropTypes.func.isRequired,
 };
 
 export default SideBar;

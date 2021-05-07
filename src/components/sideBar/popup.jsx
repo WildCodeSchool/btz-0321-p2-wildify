@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Popup() {
+function Popup({ setPopup, getDatas }) {
   const handleClick = () => {
-    window.location.reload(false);
+    setPopup(false);
+    getDatas();
   };
   return (
     <div className="flex border border-mainColor shadow-playbar justify-between flex-col h-42  w-80 rounded-xl p-6 bg-bgPlaybar">
@@ -26,5 +27,6 @@ function Popup() {
 export default Popup;
 
 Popup.propTypes = {
-  progress: PropTypes.number.isRequired,
+  getDatas: PropTypes.func.isRequired,
+  setPopup: PropTypes.func.isRequired,
 };
