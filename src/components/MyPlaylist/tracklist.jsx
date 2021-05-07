@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './scrollbarwebkit.css';
+import Defaultimg from '../../img/defaultPicture.png';
 function Tracklist({ setIsPlaylist, setCurrentTrack, myPlaylist }) {
   const handleClick2 = (e) => {
     setIsPlaylist(true);
@@ -18,10 +19,19 @@ function Tracklist({ setIsPlaylist, setCurrentTrack, myPlaylist }) {
                 className="border-b mt-3 pb-1 w-full focus:outline-none hover:text-green-500 hover:border-mainColor text-left border-white"
                 value={index}
                 key={index}>
-                <div className="pointer-events-none flex items-center">
-                  <img src={song.album.picture} className="w-8 h-8 mr-3 rounded-full" alt="" />
-                  <h1 className="pointer-events-none font-scada mr-2 font-bold">{song.title}</h1> -{' '}
-                  <h1 className="pointer-events-none ml-2 text-xs">{song.artist.name}</h1>
+                <div className="w-full pointer-events-none flex items-center">
+                  <div
+                    className="pointer-events-none flex h-9 w-9 mr-4 rounded-full"
+                    style={{
+                      backgroundImage: `url(${song.artist.picture === null ? Defaultimg : song.artist.picture})`,
+                      backgroundSize: `cover`,
+                      backgroundRepeat: `no-repeat`,
+                      backgroundPosition: `center`,
+                    }}></div>
+                  <div className="flex flex-col">
+                    <h1 className="pointer-events-none font-scada mr-2 font-bold">{song.title}</h1>
+                    <h1 className="pointer-events-none text-xs">{song.artist.name}</h1>
+                  </div>
                 </div>
               </button>
             );

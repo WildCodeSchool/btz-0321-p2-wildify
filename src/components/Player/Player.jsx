@@ -233,7 +233,7 @@ Player.propTypes = {
   setIsMobilePlayerVisible: PropTypes.func.isRequired,
   isPlaySwitch: PropTypes.bool.isRequired,
   setIsPlaySwitch: PropTypes.func.isRequired,
-  selectedSong: PropTypes.array,
+  selectedSong: PropTypes.string,
   isAlbumTrackList: PropTypes.bool.isRequired,
   isArtistTrackList: PropTypes.bool.isRequired,
   myPlaylist: PropTypes.array.isRequired,

@@ -169,5 +169,5 @@ PlayerMobile.propTypes = {
   isPlaylist: PropTypes.bool.isRequired,
   isRecentAddsActive: PropTypes.bool.isRequired,
   setSelectedSong: PropTypes.func.isRequired,
-  isArtistTrackList: PropTypes.func.isRequired,
+  isArtistTrackList: PropTypes.bool.isRequired,
 };
