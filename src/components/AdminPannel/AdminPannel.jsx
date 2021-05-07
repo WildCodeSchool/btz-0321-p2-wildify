@@ -4,7 +4,7 @@ import AdminSidebar from './AdminSidebar/AdminSidebar';
 import AdminSongs from './AdminSongs/AdminSongs';
 import authContext from '../../context/authContext';
 import PropTypes from 'prop-types';
-import BackGround from '../../img/BackGrounds/PanelBG.png';
+import BackGround from '../../img/BackGrounds/PanelBG.webp';
 import ReturnBtn from '../../img/PlayList/ReturnButton.svg';
 
 export default function AdminPannel({ item, albums, hideAdmin, artists }) {

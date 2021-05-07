@@ -47,7 +47,7 @@ function SideBar({ sideBarClass, handleSideBar, handleAdmin }) {
         </div>
       )}
       <div
-        className="flex flex-col justify-between w-full h-full py-2 px-4 900:px-8"
+        className="flex flex-col justify-between w-full h-full py-2 px-6 900:px-8"
         style={{
           backgroundImage: `url(${Formbg})`,
           backgroundSize: `cover`,
