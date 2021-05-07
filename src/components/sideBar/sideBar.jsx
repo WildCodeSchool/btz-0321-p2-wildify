@@ -103,10 +103,10 @@ function SideBar({ sideBarClass, handleSideBar, handleAdmin }) {
                 onChange={(e) => setImgUrl(e.target.value)}
                 placeholder="Url Album Image...."
               />
-              <label className=" text-white w-full   font-scada my-2 py-2" htmlFor="">
-                Upload :{progress ? Math.floor(progress) : '00'}%{' '}
+              <label className=" text-white w-full mt-3 font-scada" htmlFor="">
+                Upload {progress ? Math.floor(progress) : '00'}%{' '}
               </label>
-              <div className=" mt-2 bg-white bg-opacity-10 h-6 rounded-full shadow-input2">
+              <div className=" bg-white bg-opacity-10 mt-1 h-6 rounded-full shadow-input2">
                 <div style={{ width: `${progress}%` }} className=" h-full bg-mainColor text-center rounded-full"></div>
               </div>
               <button
