@@ -14,7 +14,7 @@ export default function AdminPannel({ item, albums, hideAdmin, artists }) {
   const [myPlayList, setMyPlayList] = useState();
 
   const playListFetch = () =>
-    fetch('https://bazify-backend.basile.vernouillet.dev/api/v1/playlists', {
+    fetch('https://api-bazify.basile.vernouillet.dev/api/v1/playlists', {
       method: 'GET',
       headers: { Authorization: `Bearer ${token}` },
     })

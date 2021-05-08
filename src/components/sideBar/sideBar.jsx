@@ -39,8 +39,9 @@ function SideBar({ sideBarClass, getDatas, handleSideBar, popup, setPopup, handl
           method: 'PUT',
           headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
           body: JSON.stringify({ picture: imgUrl }),
-        }).then(() => setPopup(true));
-      });
+        }).then(() => setPopup(true).catch((err) => console.log(err)));
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
