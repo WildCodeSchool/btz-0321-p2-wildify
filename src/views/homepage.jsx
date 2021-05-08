@@ -49,7 +49,7 @@ function Homepage({ location: { search } }) {
         <button
           className="flex items-center justify-center  bg-bginput shadow-input2 focus:outline-none w-8/12 900:w-4/12 mt-5 rounded-lg text-sm text-white py-2 px-2 font-scada hover:text-mainColor active:shadow-input"
           onClick={() => {
-            window.open('https://bazify-backend.basile.vernouillet.dev/auth/github', '_self');
+            window.open('https://api-bazify.basile.vernouillet.dev/auth/github', '_self');
           }}>
           <img className="w-6 h-6 mr-3" src={GHicon} alt="Github" />
           Log with Github

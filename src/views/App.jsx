@@ -60,10 +60,10 @@ function App() {
 
   const getDatas = async () => {
     const [resSongs, resArtists, resAlbums, resPlayLists] = await Promise.all([
-      axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/songs', { headers: { Authorization: `Bearer ${token}` } }),
-      axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/artists', { headers: { Authorization: `Bearer ${token}` } }),
-      axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/albums', { headers: { Authorization: `Bearer ${token}` } }),
-      axios.get('https://bazify-backend.basile.vernouillet.dev/api/v1/playlists', { headers: { Authorization: `Bearer ${token}` } }),
+      axios.get('https://api-bazify.basile.vernouillet.dev/api/v1/songs', { headers: { Authorization: `Bearer ${token}` } }),
+      axios.get('https://api-bazify.basile.vernouillet.dev/api/v1/artists', { headers: { Authorization: `Bearer ${token}` } }),
+      axios.get('https://api-bazify.basile.vernouillet.dev/api/v1/albums', { headers: { Authorization: `Bearer ${token}` } }),
+      axios.get('https://api-bazify.basile.vernouillet.dev/api/v1/playlists', { headers: { Authorization: `Bearer ${token}` } }),
     ]);
     setItem(resSongs.data);
     setAlbums(resAlbums.data);

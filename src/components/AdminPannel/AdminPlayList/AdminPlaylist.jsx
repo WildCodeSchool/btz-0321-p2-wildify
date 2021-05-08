@@ -31,7 +31,7 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
 
   const createPlayList = (e) => {
     e.preventDefault();
-    fetch('https://bazify-backend.basile.vernouillet.dev/api/v1/playlists', {
+    fetch('https://api-bazify.basile.vernouillet.dev/api/v1/playlists', {
       method: 'POST',
       headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
 

@@ -28,14 +28,14 @@ function SideBar({ sideBarClass, getDatas, handleSideBar, popup, setPopup, handl
     const formData = new FormData();
     formData.append('file', selectFile);
     await axios
-      .post('https://bazify-backend.basile.vernouillet.dev/api/v1/songs', formData, {
+      .post('https://api-bazify.basile.vernouillet.dev/api/v1/songs', formData, {
         headers: { Authorization: `Bearer ${token}` },
         onUploadProgress: (p) => {
           setProgress((p.loaded / p.total) * 100);
         },
       })
       .then((res) => {
-        fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/albums/${res.data.albumId}`, {
+        fetch(`https://api-bazify.basile.vernouillet.dev/api/v1/albums/${res.data.albumId}`, {
           method: 'PUT',
           headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
           body: JSON.stringify({ picture: imgUrl }),

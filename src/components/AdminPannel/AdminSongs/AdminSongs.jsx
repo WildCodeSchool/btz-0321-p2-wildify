@@ -11,7 +11,7 @@ export default function AdminSongs({ item, albums, myPlayList, artists }) {
   const [artistId, setArtistId] = useState();
   const handlePictureSubmission = (e) => {
     e.preventDefault();
-    fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/artists/${artistId}`, {
+    fetch(`https://api-bazify.basile.vernouillet.dev/api/v1/artists/${artistId}`, {
       method: 'PUT',
       headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({ picture: imgUrl }),

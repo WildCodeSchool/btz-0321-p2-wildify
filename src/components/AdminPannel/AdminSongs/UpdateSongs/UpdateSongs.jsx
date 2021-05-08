@@ -19,7 +19,7 @@ export default function UpdateSongs({ item }) {
 
   const songUpdate = (e) => {
     e.preventDefault();
-    fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/songs/${item[onSelect].id}`, {
+    fetch(`https://api-bazify.basile.vernouillet.dev/api/v1/songs/${item[onSelect].id}`, {
       method: 'PUT',
       headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
       body: JSON.stringify(songData),
