@@ -45,7 +45,7 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
   const updatePlayList = (e) => {
     e.preventDefault();
 
-    fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/playlists/${myPlayList[onSelect].id}`, {
+    fetch(`https://api-bazify.basile.vernouillet.dev/api/v1/playlists/${myPlayList[onSelect].id}`, {
       method: 'PUT',
       headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
 
@@ -59,7 +59,7 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
     playlistId: onSelectP,
   };
   const postSong = () => {
-    fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/songs/${selectSong}`, {
+    fetch(`https://api-bazify.basile.vernouillet.dev/api/v1/songs/${selectSong}`, {
       method: 'PUT',
       headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
       body: JSON.stringify(myObject),
@@ -85,7 +85,7 @@ export default function AdminPlaylist({ myPlayList, playListFetch, item }) {
   }, [deletePlaylistSelect]);
 
   const deleteSong = () => {
-    fetch(`https://bazify-backend.basile.vernouillet.dev/api/v1/playlists/${deletePlaylistSelect}/songs/${deleteSongSelect}`, {
+    fetch(`https://api-bazify.basile.vernouillet.dev/api/v1/playlists/${deletePlaylistSelect}/songs/${deleteSongSelect}`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${token}` },
     })
